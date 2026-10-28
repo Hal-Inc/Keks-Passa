@@ -34,14 +34,14 @@ SOURCES = [
     {"name": "Galeria Zé dos Bois", "url": "https://zedosbois.org/programa/", "venue": "Galeria Zé dos Bois (ZDB)", "neighborhood": "Bairro Alto"},
     {"name": "BOTA", "url": "https://www.botaanjos.com/programacao/", "venue": "BOTA (Base Organizada da Toca das Artes)", "neighborhood": "Anjos"},
     {"name": "Gulbenkian", "url": "https://gulbenkian.pt/agenda/", "venue": "Fundação Calouste Gulbenkian", "neighborhood": "São Sebastião"},
-    {"name": "MAAT", "url": "https://www.maat.pt/exposicoes", "venue": "MAAT", "neighborhood": "Belém"},
+    {"name": "MAAT", "url": "https://maat.pt/pt/agenda", "venue": "MAAT", "neighborhood": "Belém"},
     {"name": "Culturgest", "url": "https://www.culturgest.pt/pt/programacao/", "venue": "Culturgest", "neighborhood": "Campo Pequeno"},
     {"name": "Teatro Maria Matos", "url": "https://teatromariamatos.pt/", "venue": "Teatro Maria Matos", "neighborhood": "Alvalade / Roma"},
-    {"name": "Coliseu dos Recreios", "url": "https://coliseulisboa.com/eventos/", "venue": "Coliseu dos Recreios", "neighborhood": "Baixa / Rossio"},
+    {"name": "Coliseu dos Recreios", "url": "https://coliseulisboa.com/o-coliseu/programacao/", "venue": "Coliseu dos Recreios", "neighborhood": "Baixa / Rossio"},
     {"name": "Museu de Lisboa", "url": "https://www.museudelisboa.pt/pt/agenda.html", "venue": "Museu de Lisboa", "neighborhood": "Lisboa"},
     {"name": "Museu Bordalo Pinheiro", "url": "https://museubordalopinheiro.pt/", "venue": "Museu Bordalo Pinheiro", "neighborhood": "Campo Grande"},
-    {"name": "Cinemateca Portuguesa", "url": "https://www.cinemateca.pt/programacao/", "venue": "Cinemateca Portuguesa", "neighborhood": "Príncipe Real"},
-    {"name": "Teatro do Bairro Alto", "url": "https://teatrodobairroalto.pt/agenda/", "venue": "Teatro do Bairro Alto", "neighborhood": "Bairro Alto"},
+    {"name": "Cinemateca Portuguesa", "url": "https://www.cinemateca.pt/programacao.aspx", "venue": "Cinemateca Portuguesa", "neighborhood": "Príncipe Real"},
+    {"name": "Teatro do Bairro Alto", "url": "https://teatrodobairroalto.pt/pt/programa?a=1", "venue": "Teatro do Bairro Alto", "neighborhood": "Bairro Alto"},
 ]
 
 MONTHS = {
@@ -95,7 +95,7 @@ FREE_RE = re.compile(r"entrada\s+livre|gratuit[oa]s?|gr[aá]tis|\bfree(?:\s+entr
 PRICE_RE = re.compile(r"(?:€\s*\d+(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?\s*€|\d+(?:[.,]\d{1,2})?\s*(?:euros?))", re.I)
 TIME_RE = re.compile(r"\b(?:às?\s*)?(\d{1,2})\s*(?::|h)(\d{2})\b", re.I)
 DATE_RE = re.compile(r"\b(\d{1,2})\s*(?:de\s+)?([a-zA-ZÀ-ÿ]+)(?:\s+(?:de\s+)?(20\d{2}))?\b", re.I)
-DATE_GROUP_RE = re.compile(r"\b((?:\d{1,2}\s*(?:,|e|and)\s*)*\d{1,2})\s*(?:de\s+)?([a-zA-ZÀ-ÿ]+)(?:\s+(?:de\s+)?(20\d{2}))?\b", re.I)
+DATE_GROUP_RE = re.compile(r"\b((?:\d{1,2}\s*(?:,|e|and)\s*)*\d{1,2})\s*(?:de\s+)?([a-zA-ZÀ-ÿ]+)(?:\s*,?\s*(?:de\s+)?(20\d{2}))?\b", re.I)
 NUMERIC_DATE_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?(?!\d)", re.I)
 COMPACT_DATE_TIME_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})[./-](\d{2})(?=\d{1,2}:\d{2})", re.I)
 COMPACT_DATE_TIME_FULL_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})[./-](\d{2})(\d{1,2}):(\d{2})", re.I)
@@ -526,7 +526,7 @@ def scrape_source(session: requests.Session, source: dict[str, str], target: dat
         combined = {}
         for event in jsonld + cards:
             combined[(normalize(event["title"]), event["url"])] = event
-        return 1, list(combined.values()), f"OK ({len(jsonld)} JSON-LD, {len(cards)} cartões, {len(combined)} únicos)"
+        return 1, list(combined.values()), f"OK HTTP 200 ({len(jsonld)} JSON-LD, {len(cards)} eventos reconhecidos nos cartões, {len(combined)} únicos; zero pode significar sem evento hoje ou seletor desatualizado)"
     except Exception as exc:  # Keep a single broken source from stopping the remaining sources.
         return 0, [], f"ERRO: {type(exc).__name__}: {str(exc)[:180]}"
 
