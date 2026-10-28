@@ -1,0 +1,45 @@
+name: Atualizar eventos do Keks Passa
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+      timezone: 'Europe/Lisbon'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: keks-passa-daily-refresh
+  cancel-in-progress: false
+
+jobs:
+  scrape-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obter o repositório
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependências
+        run: python -m pip install --upgrade pip requests beautifulsoup4
+
+      - name: Recolher eventos para hoje
+        run: python scraper.py
+
+      - name: Guardar events.json atualizado
+        run: |
+          git config user.name "Keks Passa Event Bot"
+          git config user.email "keks-passa-bot@users.noreply.github.com"
+          git add events.json
+          if git diff --cached --quiet; then
+            echo "events.json não mudou; não há commit a criar."
+            exit 0
+          fi
+          git commit -m "chore: atualizar agenda diária do Keks Passa"
+          git push
