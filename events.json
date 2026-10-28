@@ -3,8 +3,8 @@
   "date_string": "quarta-feira, 28 de outubro",
   "timezone": "Europe/Lisbon",
   "reset_hour": 4,
-  "generated_at": "2026-10-28T19:31:56+00:00",
-  "event_count": 27,
+  "generated_at": "2026-10-28T19:46:45+00:00",
+  "event_count": 31,
   "events": [
     {
       "id": "a70fe6f54e",
@@ -85,6 +85,26 @@
       "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
       "event_date": "2026-10-28",
       "source": "CCB"
+    },
+    {
+      "id": "48cc6f9bd0",
+      "title": "Artes Visuais Exposições RedSkyFalls (Réplica) – Uma rede de transmissão sísmica — de Alexandre Estrela 23.05 — 22.11.26 Galeria Zé dos Bois",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🔵",
+      "venue": "Galeria Zé dos Bois (ZDB)",
+      "neighborhood": "Bairro Alto",
+      "corridor": "Axial Spine",
+      "lat": 38.7122,
+      "lng": -9.1444,
+      "time": "Durante o dia",
+      "hour": 12,
+      "price": "Consultar",
+      "priceTier": "UNKNOWN",
+      "url": "https://zedosbois.org/programa/redskyfalls-replica/",
+      "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
+      "event_date": "2026-10-28",
+      "source": "Galeria Zé dos Bois"
     },
     {
       "id": "7ae035a8c7",
@@ -347,6 +367,26 @@
       "source": "CCB"
     },
     {
+      "id": "953f0ff18c",
+      "title": "Projecto Educativo Workshops Visita-oficina à exposição ‘RedSkyFalls (Réplica)’ com o Serviço Educativo 23.05 — 22.11.26 Galeria Zé dos Bois",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🔵",
+      "venue": "Galeria Zé dos Bois (ZDB)",
+      "neighborhood": "Bairro Alto",
+      "corridor": "Axial Spine",
+      "lat": 38.7122,
+      "lng": -9.1444,
+      "time": "Durante o dia",
+      "hour": 12,
+      "price": "Consultar",
+      "priceTier": "UNKNOWN",
+      "url": "https://zedosbois.org/programa/visita-oficina-a-exposicao-redskyfalls-replica-com-o-servico-educativo/",
+      "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
+      "event_date": "2026-10-28",
+      "source": "Galeria Zé dos Bois"
+    },
+    {
       "id": "1865fb67a5",
       "title": "Ricardo Reis Soares | Daniela Galhoz",
       "category": "Concerts & Live Music",
@@ -365,6 +405,26 @@
       "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
       "event_date": "2026-10-28",
       "source": "Coliseu dos Recreios"
+    },
+    {
+      "id": "b5f9c85d71",
+      "title": "RITA REDSHOES",
+      "category": "Concerts & Live Music",
+      "color": "#E63946",
+      "icon": "🔴",
+      "venue": "Teatro Maria Matos",
+      "neighborhood": "Alvalade / Roma",
+      "corridor": "Northern Belt",
+      "lat": 38.7461,
+      "lng": -9.1415,
+      "time": "Durante o dia",
+      "hour": 12,
+      "price": "Consultar",
+      "priceTier": "UNKNOWN",
+      "url": "https://teatromariamatos.pt/espetaculos/rita-redshoes-apresentacao-do-novo-disco/",
+      "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
+      "event_date": "2026-10-28",
+      "source": "Teatro Maria Matos"
     },
     {
       "id": "e76cb3d868",
@@ -545,6 +605,26 @@
       "description": "As artes do século XX a partir da Coleção Berardo",
       "event_date": "2026-10-28",
       "source": "CCB"
+    },
+    {
+      "id": "26d37040dc",
+      "title": "Música Concertos Bernardo Tinoco Creature Close-up (Bernardo Tinoco, Malina Midera, Minki Cho e Patrycja Wybranczyk) ⟡ José Lencastre qua 28.10.26 21:00 Galeria Zé dos Bois",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🔵",
+      "venue": "Galeria Zé dos Bois (ZDB)",
+      "neighborhood": "Bairro Alto",
+      "corridor": "Axial Spine",
+      "lat": 38.7122,
+      "lng": -9.1444,
+      "time": "21:00",
+      "hour": 21,
+      "price": "Consultar",
+      "priceTier": "UNKNOWN",
+      "url": "https://zedosbois.org/programa/bernardo-tinoco-creature-close-up-bernardo-tinoco-malina-midera-minki-cho-e-patrycja-wybranczyk-%e2%9f%a1-jose-lencastre/",
+      "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
+      "event_date": "2026-10-28",
+      "source": "Galeria Zé dos Bois"
     }
   ]
 }
