@@ -42,6 +42,7 @@ SOURCES = [
     {"name": "Museu Bordalo Pinheiro", "url": "https://museubordalopinheiro.pt/", "venue": "Museu Bordalo Pinheiro", "neighborhood": "Campo Grande"},
     {"name": "Cinemateca Portuguesa", "url": "https://www.cinemateca.pt/programacao.aspx", "venue": "Cinemateca Portuguesa", "neighborhood": "Príncipe Real"},
     {"name": "Teatro do Bairro Alto", "url": "https://teatrodobairroalto.pt/pt/programa?a=1", "venue": "Teatro do Bairro Alto", "neighborhood": "Bairro Alto"},
+    {"name": "EGEAC — Agenda Municipal", "url": "https://egeac.pt/programacao-espacos-culturais/", "venue": "", "neighborhood": "Lisboa", "parser": "egeac"},
 ]
 
 MONTHS = {
@@ -87,6 +88,22 @@ VENUES = [
     ("bordalo pinheiro", "Museu Bordalo Pinheiro", "Campo Grande", 38.7580, -9.1578),
     ("cinemateca", "Cinemateca Portuguesa", "Príncipe Real", 38.7201, -9.1491),
     ("bairro alto", "Teatro do Bairro Alto", "Bairro Alto", 38.7126, -9.1458),
+    ("teatro sao luiz", "Teatro São Luiz", "Chiado", 38.7102, -9.1395),
+    ("galeria da boavista", "Galeria da Boavista", "São Paulo / Cais do Sodré", 38.7107, -9.1484),
+    ("luca", "LU.CA — Teatro Luís de Camões", "Ajuda", 38.7058, -9.1978),
+    ("teatro luis de camoes", "LU.CA — Teatro Luís de Camões", "Ajuda", 38.7058, -9.1978),
+    ("teatro romano", "Museu de Lisboa — Teatro Romano", "Sé", 38.7102, -9.1320),
+    ("capitolio", "Capitólio", "Parque Mayer", 38.7210, -9.1463),
+    ("museu do fado", "Museu do Fado", "Alfama", 38.7121, -9.1272),
+    ("galeria quadrum", "Galeria Quadrum", "Campo Grande", 38.7550, -9.1550),
+    ("casa fernando pessoa", "Casa Fernando Pessoa", "Campo de Ourique", 38.7188, -9.1663),
+    ("teatro variedades", "Teatro Variedades", "Parque Mayer", 38.7207, -9.1468),
+    ("teatro meridional", "Teatro Meridional", "Marvila", 38.7430, -9.0992),
+    ("teatro nacional d. maria ii", "Teatro Nacional D. Maria II", "Rossio", 38.7135, -9.1393),
+    ("d. maria ii", "Teatro Nacional D. Maria II", "Rossio", 38.7135, -9.1393),
+    ("castelo de sao jorge", "Castelo de São Jorge", "Castelo", 38.7139, -9.1334),
+    ("museu de lisboa - palacio pimenta", "Museu de Lisboa — Palácio Pimenta", "Campo Grande", 38.7584, -9.1557),
+    ("museu de lisboa - santo antonio", "Museu de Lisboa — Santo António", "Sé", 38.7108, -9.1322),
     ("meo arena", "MEO Arena", "Parque das Nações", 38.7682, -9.0940),
     ("fabbrica braco de prata", "Fábrica Braço de Prata", "Marvila", 38.7428, -9.0988),
 ]
@@ -100,6 +117,7 @@ NUMERIC_DATE_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?
 COMPACT_DATE_TIME_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})[./-](\d{2})(?=\d{1,2}:\d{2})", re.I)
 COMPACT_DATE_TIME_FULL_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})[./-](\d{2})(\d{1,2}):(\d{2})", re.I)
 NUMERIC_RANGE_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?\s*(?:—|–|-| a | to )\s*(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?(?!\d)", re.I)
+NAMED_MONTH_RANGE_RE = re.compile(r"\b(\d{1,2})\s*(?:de\s+)?([a-zA-ZÀ-ÿ]{3,12})(?:\s*\([^)]*\))?\s*(?:—|–|-|\ba\b|\bat[eé]\b|\bto\b)\s*(\d{1,2})\s*(?:de\s+)?([a-zA-ZÀ-ÿ]{3,12})(?:\s*\([^)]*\))?(?:\s*(?:de\s*)?(20\d{2}))?\b", re.I)
 
 
 def normalize(value: Any) -> str:
@@ -183,7 +201,7 @@ def infer_place(venue_name: str, source: dict[str, str], geo: Any = None, addres
         except (TypeError, ValueError):
             lat = lng = None
     haystack = normalize(f"{venue} {address or ''} {source.get('venue','')}")
-    for key, fallback_venue, fallback_neighborhood, fallback_lat, fallback_lng in VENUES:
+    for key, fallback_venue, fallback_neighborhood, fallback_lat, fallback_lng in sorted(VENUES, key=lambda row: len(row[0]), reverse=True):
         if key in haystack:
             venue = venue or fallback_venue
             neighborhood = fallback_neighborhood
@@ -284,6 +302,24 @@ def date_mentioned(text: str, target: date) -> bool:
         if year < 100:
             year += 2000
         if day == target.day and month == target.month and year == target.year:
+            return True
+    # Textual date ranges such as "15 Out (Outubro) — 29 Out (Outubro) 2026".
+    for match in NAMED_MONTH_RANGE_RE.finditer(normalized):
+        start_day, start_month_raw, end_day, end_month_raw, year_raw = match.groups()
+        start_month_name = normalize(start_month_raw).rstrip(".")
+        end_month_name = normalize(end_month_raw).rstrip(".")
+        start_month = MONTHS.get(start_month_name) or MONTHS.get(start_month_name[:3])
+        end_month = MONTHS.get(end_month_name) or MONTHS.get(end_month_name[:3])
+        if not start_month or not end_month:
+            continue
+        end_year = int(year_raw) if year_raw else target.year
+        start_year = end_year - 1 if start_month > end_month else end_year
+        try:
+            range_start = date(start_year, start_month, int(start_day))
+            range_end = date(end_year, end_month, int(end_day))
+        except ValueError:
+            continue
+        if range_start <= target <= range_end:
             return True
     # Date spans such as "23.05 — 22.11.26" describe exhibitions currently running.
     if any(word in normalized for word in ("exposic", "exhibition", "instalacao", "artes visuais")):
@@ -453,6 +489,71 @@ def useful_title(anchor: Tag) -> str:
 
 
 
+# Venue names shown on EGEAC's multi-venue cultural programme page. These are
+# matched against the whole card so events keep their actual venue rather than
+# all being pinned to EGEAC's office.
+EGEAC_VENUES = [
+    "Museu de Lisboa - Palácio Pimenta",
+    "Museu de Lisboa - Santo António",
+    "Museu de Lisboa - Teatro Romano",
+    "Teatro Nacional D. Maria II",
+    "LU.CA - Teatro Luís de Camões",
+    "Museu Bordalo Pinheiro",
+    "Galeria da Boavista",
+    "Teatro do Bairro Alto",
+    "Teatro São Luiz",
+    "Teatro Meridional",
+    "Teatro Variedades",
+    "Casa Fernando Pessoa",
+    "Museu do Fado",
+    "Galeria Quadrum",
+    "Castelo de São Jorge",
+    "Centro Cultural de Belém",
+    "Cossoul",
+    "Capitólio",
+    "Teatro São Carlos",
+    "LU.CA",
+]
+EGEAC_CATEGORY_PREFIX_RE = re.compile(
+    r"^(?:m[uú]sica|teatro|dan[cç]a|feira|oficina|percursos|visita orientada|visita guiada|visita|stand\s*up|festa|exposi[cç][aã]o|inaugura[cç][aã]o|apresenta[cç][aã]o(?:\s*/\s*lan[cç]amento)?|debate/conversa/confer[eê]ncia|cinema)\s+",
+    re.I,
+)
+EGEAC_DATE_TEXT_RE = re.compile(
+    r"\b\d{1,2}\s+(?:de\s+)?(?:janeiro|jan|fevereiro|fev|mar[cç]o|mar|abril|abr|maio|may|junho|jun|julho|jul|agosto|ago|setembro|set|outubro|out|novembro|nov|dezembro|dez)"
+    r"(?:\s*\([^)]*\))?(?:\s*(?:—|–|-)\s*\d{1,2}\s+(?:de\s+)?(?:janeiro|jan|fevereiro|fev|mar[cç]o|mar|abril|abr|maio|may|junho|jun|julho|jul|agosto|ago|setembro|set|outubro|out|novembro|nov|dezembro|dez)(?:\s*\([^)]*\))?)?"
+    r"(?:\s*(?:de\s*)?20\d{2})?\b",
+    re.I,
+)
+
+def egeac_metadata(container_text: str, anchor_text: str, target: date) -> tuple[str, str]:
+    """Extract a useful event title and its venue from an EGEAC calendar card."""
+    venue = ""
+    normalized_container = normalize(container_text)
+    # Longest-first prevents 'Museu de Lisboa' swallowing a more specific site.
+    for candidate_venue in sorted(EGEAC_VENUES, key=len, reverse=True):
+        if normalize(candidate_venue) in normalized_container:
+            venue = candidate_venue
+            break
+
+    candidate = clean_text(anchor_text, 500) or clean_text(container_text, 500)
+    # Some EGEAC cards wrap title, date and venue in one anchor; others link only
+    # the title. In the latter case keep the short anchor as-is.
+    candidate_normalized = normalize(candidate)
+    contains_metadata = bool(EGEAC_DATE_TEXT_RE.search(candidate)) or (venue and normalize(venue) in candidate_normalized)
+    if not contains_metadata:
+        candidate = clean_text(anchor_text, 500) or clean_text(container_text, 500)
+    else:
+        for known_venue in EGEAC_VENUES:
+            candidate = re.sub(re.escape(known_venue), " ", candidate, flags=re.I)
+        candidate = EGEAC_DATE_TEXT_RE.sub(" ", candidate)
+        candidate = re.sub(r"\s+", " ", candidate).strip(" -–—|,;:·")
+        candidate = EGEAC_CATEGORY_PREFIX_RE.sub("", candidate).strip(" -–—|,;:·")
+
+    if len(candidate) > 180:
+        candidate = candidate[:180].rsplit(" ", 1)[0]
+    return candidate, venue
+
+
 def card_description(container: Tag, title: str, target: date) -> str:
     candidates = []
     selectors = (
@@ -495,6 +596,11 @@ def parse_card_events(soup: BeautifulSoup, source: dict[str, str], target: date)
         if not picked:
             continue
         title = useful_title(picked)
+        card_venue = source.get("venue", "")
+        if source.get("parser") == "egeac":
+            title, card_venue = egeac_metadata(text, clean_text(picked.get("aria-label") or picked.get("title") or picked.get_text(" ", strip=True), 500), target)
+            if not title or not card_venue:
+                continue
         url = absolute_http_url(picked.get("href", ""), source["url"])
         if not url or url.rstrip("/") == source["url"].rstrip("/"):
             continue
@@ -504,7 +610,7 @@ def parse_card_events(soup: BeautifulSoup, source: dict[str, str], target: date)
             continue
         category = category_for(f"{title} {text}")
         description = card_description(container, title, target)
-        record = base_record(title, url, source, target, text, venue=source.get("venue", ""), neighborhood=source.get("neighborhood", "Lisboa"), description=description, price_raw="", category_override=category)
+        record = base_record(title, url, source, target, text, venue=card_venue, neighborhood=source.get("neighborhood", "Lisboa"), description=description, price_raw="", category_override=category)
         if not record:
             continue
         dedupe = (normalize(record["title"]), record["url"])
