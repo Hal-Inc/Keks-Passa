@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build events.json for Keks Passa from public event calendars.
+"""Build events.json for Keks Passa from public event calendars and venue-level listings.
 
 The scraper prefers Schema.org Event JSON-LD and falls back to date-stamped
 cards in the official listing pages below. It deliberately fails rather than
@@ -45,6 +45,27 @@ SOURCES = [
     {"name": "EGEAC — Agenda Municipal", "url": "https://egeac.pt/programacao-espacos-culturais/", "venue": "", "neighborhood": "Lisboa", "parser": "egeac"},
     {"name": "Resident Advisor", "url": "https://ra.co/events/pt/lisbon", "venue": "", "neighborhood": "Lisboa", "parser": "aggregator", "platform": "ra"},
     {"name": "Shotgun", "url": "https://shotgun.live/en/cities/lisbon", "venue": "", "neighborhood": "Lisboa", "parser": "aggregator", "platform": "shotgun"},
+    # Public venue calendars from Terminus. These pages show dated upcoming events
+    # and link to event detail pages; they supplement venue sites where the official
+    # programme is image-only or not accessible to simple HTML requests.
+    {"name": "Terminus — Outra Cena", "url": "https://terminusevents.com/pt/lisboa/espacos/outra-cena", "venue": "Outra Cena", "neighborhood": "Marvila", "parser": "terminus"},
+    {"name": "Terminus — Lux Frágil", "url": "https://terminusevents.com/pt/lisboa/espacos/lux-fr-gil", "venue": "Lux Frágil", "neighborhood": "Santa Apolónia", "parser": "terminus"},
+    {"name": "Terminus — 5A Club", "url": "https://terminusevents.com/pt/lisboa/espacos/5a-club", "venue": "5A Club", "neighborhood": "Príncipe Real", "parser": "terminus"},
+    {"name": "Terminus — Titanic Sur Mer", "url": "https://terminusevents.com/pt/lisboa/espacos/titanic-sur-mer", "venue": "Titanic Sur Mer", "neighborhood": "Cais do Sodré", "parser": "terminus"},
+    {"name": "Terminus — Fábrica Braço de Prata", "url": "https://terminusevents.com/pt/lisboa/espacos/f-brica-bra-o-de-prata", "venue": "Fábrica Braço de Prata", "neighborhood": "Marvila", "parser": "terminus"},
+    {"name": "Terminus — Those Who Dance", "url": "https://terminusevents.com/pt/lisboa/espacos/those-who-dance", "venue": "Those Who Dance", "neighborhood": "Marvila", "parser": "terminus"},
+    {"name": "Terminus — Casa Capitão", "url": "https://terminusevents.com/pt/lisboa/espacos/casa-capitao", "venue": "Casa Capitão", "neighborhood": "Beato / Marvila", "parser": "terminus"},
+    {"name": "Terminus — Lisboa ao Vivo", "url": "https://terminusevents.com/pt/lisboa/espacos/lisboa-ao-vivo", "venue": "LAV — Lisboa ao Vivo", "neighborhood": "Marvila", "parser": "terminus"},
+    {"name": "Terminus — Chapitô", "url": "https://terminusevents.com/pt/lisboa/espacos/chapito", "venue": "Chapitô", "neighborhood": "Alfama", "parser": "terminus"},
+    {"name": "Terminus — Jardins do Bombarda", "url": "https://terminusevents.com/pt/lisboa/espacos/jardins-do-bombarda", "venue": "Jardins do Bombarda", "neighborhood": "Arroios", "parser": "terminus"},
+    {"name": "Terminus — Má Língua", "url": "https://terminusevents.com/pt/lisboa/espacos/ma-lingua", "venue": "Má Língua", "neighborhood": "Graça", "parser": "terminus"},
+    {"name": "Terminus — Café Central", "url": "https://terminusevents.com/pt/lisboa/espacos/cafe-central", "venue": "Café Central", "neighborhood": "Graça", "parser": "terminus"},
+    # RCA has an official agenda whose month list links to individual event pages.
+    {"name": "RCA Club", "url": "https://www.rcaclub.com/agenda/", "venue": "RCA Club", "neighborhood": "Alvalade", "parser": "rca"},
+    # Songkick is an accessible secondary calendar for these two venues. Coverage is
+    # narrower than the venues' own social/ticketing channels.
+    {"name": "Moon Club — Songkick", "url": "https://www.songkick.com/pt/venues/4592769-moon-club-prior-velho", "venue": "Moon Club", "neighborhood": "Prior Velho", "parser": "songkick"},
+    {"name": "Kømplex — Songkick", "url": "https://www.songkick.com/venues/4535312-komplex", "venue": "Kømplex Lisbon", "neighborhood": "Prior Velho", "parser": "songkick"},
 ]
 
 MONTHS = {
@@ -108,6 +129,24 @@ VENUES = [
     ("museu de lisboa - santo antonio", "Museu de Lisboa — Santo António", "Sé", 38.7108, -9.1322),
     ("meo arena", "MEO Arena", "Parque das Nações", 38.7682, -9.0940),
     ("fabbrica braco de prata", "Fábrica Braço de Prata", "Marvila", 38.7428, -9.0988),
+    ("fabrica braco de prata", "Fábrica Braço de Prata", "Marvila", 38.7428, -9.0988),
+    ("outra cena", "Outra Cena", "Marvila", 38.7528, -9.0950),
+    ("lux fragil", "Lux Frágil", "Santa Apolónia", 38.7220, -9.1218),
+    ("5a club", "5A Club", "Príncipe Real", 38.7178, -9.1496),
+    ("titanic sur mer", "Titanic Sur Mer", "Cais do Sodré", 38.7057, -9.1448),
+    ("rca club", "RCA Club", "Alvalade", 38.7526, -9.1451),
+    ("komplex lisbon", "Kømplex Lisbon", "Prior Velho", 38.7863, -9.1215),
+    ("komplex", "Kømplex Lisbon", "Prior Velho", 38.7863, -9.1215),
+    ("moon club", "Moon Club", "Prior Velho", 38.7860, -9.1217),
+    ("those who dance", "Those Who Dance", "Marvila", 38.7536, -9.0948),
+    ("casa capitao", "Casa Capitão", "Beato / Marvila", 38.7360, -9.1082),
+    ("casa capitão", "Casa Capitão", "Beato / Marvila", 38.7360, -9.1082),
+    ("lisboa ao vivo", "LAV — Lisboa ao Vivo", "Marvila", 38.7467, -9.0996),
+    ("lav", "LAV — Lisboa ao Vivo", "Marvila", 38.7467, -9.0996),
+    ("chapito", "Chapitô", "Alfama", 38.7147, -9.1314),
+    ("jardins do bombarda", "Jardins do Bombarda", "Arroios", 38.7248, -9.1361),
+    ("ma lingua", "Má Língua", "Graça", 38.7197, -9.1308),
+    ("cafe central", "Café Central", "Graça", 38.7182, -9.1290),
 ]
 
 FREE_RE = re.compile(r"entrada\s+livre|gratuit[oa]s?|gr[aá]tis|\bfree(?:\s+entry)?\b", re.I)
@@ -784,6 +823,141 @@ def parse_aggregator_events(soup: BeautifulSoup, source: dict[str, str], target:
     return records
 
 
+
+TERMINUS_EVENT_PATH_RE = re.compile(r"/pt/lisboa/evento/", re.I)
+TERMINUS_DATE_PREFIX_RE = re.compile(
+    r"(?:segunda|ter[cç]a|quarta|quinta|sexta|s[aá]bado|domingo)(?:-feira)?[,]?\s+"
+    r"\d{1,2}\s+(?:de\s+)?[a-zA-ZÀ-ÿ]+(?:\s+de\s+20\d{2})?"
+    r"(?:\s+às?\s+\d{1,2}:\d{2})?",
+    re.I,
+)
+TERMINUS_PRICE_RE = re.compile(r"(?:pre[cç]o\s+n[aã]o\s+indicado|gr[aá]tis|€\s*\d+(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?\s*€)", re.I)
+
+
+def terminus_clean_title(raw_title: str, venue: str) -> str:
+    """Remove date, price and venue labels from Terminus event-card text."""
+    title = clean_text(raw_title, 400)
+    title = TERMINUS_DATE_PREFIX_RE.sub(" ", title)
+    title = re.sub(r"\b(?:segunda|ter[cç]a|quarta|quinta|sexta|s[aá]bado|domingo)(?:-feira)?[,]?\s+\d{1,2}\s+(?:de\s+)?[a-zA-ZÀ-ÿ]+(?:\s+de\s+20\d{2})?(?:\s+às?\s+\d{1,2}:\d{2})?", " ", title, flags=re.I)
+    title = re.sub(r"\b(?:esgotado|sold\s*out)\b", " ", title, flags=re.I)
+    title = TERMINUS_PRICE_RE.sub(" ", title)
+    if venue:
+        title = re.sub(re.escape(venue), " ", title, flags=re.I)
+    # Some cards repeat the venue or price at the end; the substitutions above remove
+    # those labels while leaving actual multi-act event titles intact.
+    title = re.sub(r"\s*[·|•–—-]\s*$", "", title)
+    title = re.sub(r"\s+", " ", title).strip(" ·|•–—-,:;")
+    return title[:180]
+
+
+def parse_terminus_events(soup: BeautifulSoup, source: dict[str, str], target: date) -> list[dict[str, Any]]:
+    """Parse dated event links from a public Terminus venue calendar."""
+    records: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for anchor in soup.find_all("a", href=True):
+        full_url = absolute_http_url(anchor.get("href", ""), source["url"])
+        if not full_url or not TERMINUS_EVENT_PATH_RE.search(urlparse(full_url).path):
+            continue
+        # Work up to the nearest compact card with one event link and the target date.
+        card: Tag | None = None
+        card_text = ""
+        for parent in anchor.parents:
+            if not isinstance(parent, Tag) or parent.name in {"body", "html"}:
+                break
+            text = clean_text(parent.get_text(" ", strip=True), 1500)
+            if len(text) > 1000:
+                break
+            if not text or not date_mentioned(text, target):
+                continue
+            event_urls = set()
+            for candidate in parent.find_all("a", href=True):
+                candidate_url = absolute_http_url(candidate.get("href", ""), source["url"])
+                if candidate_url and TERMINUS_EVENT_PATH_RE.search(urlparse(candidate_url).path):
+                    event_urls.add(candidate_url)
+            if len(event_urls) <= 1:
+                card, card_text = parent, text
+                break
+        if not card:
+            # The link itself can sometimes be the complete card.
+            card_text = clean_text(anchor.get_text(" ", strip=True), 1200)
+            if not date_mentioned(card_text, target):
+                continue
+            card = anchor
+        raw_title = clean_text(anchor.get("aria-label") or anchor.get("title") or anchor.get_text(" ", strip=True), 400)
+        title = terminus_clean_title(raw_title, source.get("venue", ""))
+        if len(title) < 3 or normalize(title) in {"programacao", "ver programacao", "ver mais", "bilhetes"}:
+            # Some pages put all metadata on a wrapper rather than the link itself.
+            title = terminus_clean_title(card_text, source.get("venue", ""))
+        # Remove generic lead-in labels from whole-card fallback titles.
+        title = re.sub(r"^(?:programa[cç][aã]o|eventos?)\s+", "", title, flags=re.I).strip()
+        if len(title) < 3:
+            continue
+        record = base_record(
+            title, full_url, source, target, card_text or raw_title,
+            venue=source.get("venue", ""), neighborhood=source.get("neighborhood", "Lisboa"),
+            description="", price_raw=card_text,
+        )
+        if not record:
+            continue
+        dedupe = (normalize(record["title"]), record["url"])
+        if dedupe not in seen:
+            records.append(record)
+            seen.add(dedupe)
+    return records
+
+
+def parse_rca_events(session: requests.Session, soup: BeautifulSoup, source: dict[str, str], target: date) -> list[dict[str, Any]]:
+    """Follow RCA's official agenda links and use the event detail page to verify date."""
+    candidate_urls: dict[str, str] = {}
+    for anchor in soup.find_all("a", href=True):
+        url = absolute_http_url(anchor.get("href", ""), source["url"])
+        if not url:
+            continue
+        parsed = urlparse(url)
+        if (parsed.netloc or "").lower().removeprefix("www.") != "rcaclub.com":
+            continue
+        path = parsed.path.rstrip("/").lower()
+        if not path or path in {"/agenda", "/onde-estamos"} or path.startswith(("/category/", "/tag/", "/author/")):
+            continue
+        title = useful_title(anchor)
+        if not title:
+            continue
+        candidate_urls.setdefault(url, title)
+    records: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    # The agenda is short; cap page visits so one change in markup cannot fan out endlessly.
+    for url, fallback_title in list(candidate_urls.items())[:30]:
+        try:
+            detail_response = session.get(url, timeout=REQUEST_TIMEOUT, headers={"User-Agent": USER_AGENT})
+            detail_response.raise_for_status()
+            detail_soup = BeautifulSoup(detail_response.text, "html.parser")
+            detail_text = clean_text(detail_soup.get_text(" ", strip=True), 6000)
+            if not date_mentioned(detail_text, target):
+                continue
+            heading = detail_soup.find(["h1", "h2"])
+            title = clean_text(heading.get_text(" ", strip=True) if heading else fallback_title, 180)
+            record = base_record(
+                title, url, source, target, detail_text, venue=source.get("venue", ""),
+                neighborhood=source.get("neighborhood", "Alvalade"), description="", price_raw=detail_text,
+            )
+            if record:
+                dedupe = (normalize(record["title"]), record["url"])
+                if dedupe not in seen:
+                    records.append(record)
+                    seen.add(dedupe)
+        except Exception:
+            # Keep checking the rest of the agenda if one detail page is unavailable.
+            continue
+    return records
+
+
+def normalized_event_key(event: dict[str, Any]) -> tuple[str, str]:
+    """Cross-source de-duplication by normalized title and venue, not URL alone."""
+    title = re.sub(r"[^a-z0-9]+", " ", normalize(event.get("title", ""))).strip()
+    venue = re.sub(r"[^a-z0-9]+", " ", normalize(event.get("venue", ""))).strip()
+    return title, venue
+
+
 def scrape_source(session: requests.Session, source: dict[str, str], target: date) -> tuple[int, list[dict[str, Any]], str]:
     try:
         response = session.get(source["url"], timeout=REQUEST_TIMEOUT, headers={"User-Agent": USER_AGENT})
@@ -792,15 +966,20 @@ def scrape_source(session: requests.Session, source: dict[str, str], target: dat
             response.encoding = response.apparent_encoding or "utf-8"
         soup = BeautifulSoup(response.text, "html.parser")
         jsonld = parse_jsonld_events(soup, source, target)
-        if source.get("parser") == "aggregator":
+        parser = source.get("parser", "")
+        if parser == "aggregator":
             cards = parse_aggregator_events(soup, source, target)
+        elif parser == "terminus":
+            cards = parse_terminus_events(soup, source, target)
+        elif parser == "rca":
+            cards = parse_rca_events(session, soup, source, target)
         else:
             cards = parse_card_events(soup, source, target)
         combined = {}
         for event in jsonld + cards:
             combined[(normalize(event["title"]), event["url"])] = event
-        detail = "cartões agregadores" if source.get("parser") == "aggregator" else "cartões"
-        return 1, list(combined.values()), f"OK HTTP {response.status_code} ({len(jsonld)} JSON-LD, {len(cards)} eventos reconhecidos nos {detail}, {len(combined)} únicos; zero pode significar sem evento hoje ou parser desatualizado)"
+        detail = {"aggregator": "cartões agregadores", "terminus": "cartões Terminus", "rca": "páginas de evento RCA"}.get(parser, "cartões")
+        return 1, list(combined.values()), f"OK HTTP {response.status_code} ({len(jsonld)} JSON-LD, {len(cards)} eventos reconhecidos em {detail}, {len(combined)} únicos; zero pode significar sem evento hoje ou parser desatualizado)"
     except Exception as exc:  # Keep a single broken source from stopping the remaining sources.
         return 0, [], f"ERRO: {type(exc).__name__}: {str(exc)[:180]}"
 
@@ -817,8 +996,10 @@ def main() -> int:
         successful_sources += success
         print(f"[{source['name']}] {status}")
         for event in events:
-            key = (normalize(event["title"]), event["url"])
-            all_events[key] = event
+            key = normalized_event_key(event)
+            # SOURCES is ordered from more primary/official sources to secondary calendars.
+            # Keep the first match so the direct source link wins when titles overlap.
+            all_events.setdefault(key, event)
         time.sleep(0.35)
     if successful_sources == 0:
         print("ERRO: nenhuma fonte respondeu; events.json não foi alterado.", file=sys.stderr)
