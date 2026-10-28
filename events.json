@@ -3,8 +3,8 @@
   "date_string": "quarta-feira, 28 de outubro",
   "timezone": "Europe/Lisbon",
   "reset_hour": 4,
-  "generated_at": "2026-10-28T19:46:45+00:00",
-  "event_count": 31,
+  "generated_at": "2026-10-28T20:13:34+00:00",
+  "event_count": 30,
   "events": [
     {
       "id": "a70fe6f54e",
@@ -327,26 +327,6 @@
       "source": "CCB"
     },
     {
-      "id": "f764f1d9e7",
-      "title": "May I Help You? Posso ajudar?",
-      "category": "Exhibitions & Visual Arts",
-      "color": "#1D3557",
-      "icon": "🔵",
-      "venue": "CCB – Centro Cultural de Belém",
-      "neighborhood": "Belém",
-      "corridor": "Belém Waterfront",
-      "lat": 38.6956,
-      "lng": -9.2086,
-      "time": "Durante o dia",
-      "hour": 12,
-      "price": "Consultar",
-      "priceTier": "UNKNOWN",
-      "url": "https://www.ccb.pt/evento/exhibition-may-i-help-you-posso-ajudar/2026-12-03/",
-      "description": "Arts and Artists from the 1970s Onwards",
-      "event_date": "2026-10-28",
-      "source": "CCB"
-    },
-    {
       "id": "5550f0076f",
       "title": "Mostra Espanha 2026: Obras Convidadas",
       "category": "Exhibitions & Visual Arts",
@@ -527,46 +507,6 @@
       "source": "EGEAC — Agenda Municipal"
     },
     {
-      "id": "0175a83408",
-      "title": "Site externo",
-      "category": "Exhibitions & Visual Arts",
-      "color": "#1D3557",
-      "icon": "🔵",
-      "venue": "LU.CA - Teatro Luís de Camões",
-      "neighborhood": "Ajuda",
-      "corridor": "Axial Spine",
-      "lat": 38.7058,
-      "lng": -9.1978,
-      "time": "Durante o dia",
-      "hour": 12,
-      "price": "Consultar",
-      "priceTier": "UNKNOWN",
-      "url": "https://lucateatroluisdecamoes.pt/event/da-cabeca-para-cima/",
-      "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
-      "event_date": "2026-10-28",
-      "source": "EGEAC — Agenda Municipal"
-    },
-    {
-      "id": "65f09035c2",
-      "title": "Site externo",
-      "category": "Theatre & Comedy",
-      "color": "#2A9D8F",
-      "icon": "🟢",
-      "venue": "LU.CA - Teatro Luís de Camões",
-      "neighborhood": "Ajuda",
-      "corridor": "Axial Spine",
-      "lat": 38.7058,
-      "lng": -9.1978,
-      "time": "Durante o dia",
-      "hour": 12,
-      "price": "Consultar",
-      "priceTier": "UNKNOWN",
-      "url": "https://lucateatroluisdecamoes.pt/event/atencao-ha-obras-no-teatro-2/",
-      "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
-      "event_date": "2026-10-28",
-      "source": "EGEAC — Agenda Municipal"
-    },
-    {
       "id": "9b77b7ce70",
       "title": "Site externo",
       "category": "Exhibitions & Visual Arts",
@@ -607,6 +547,26 @@
       "source": "CCB"
     },
     {
+      "id": "b69294aac2",
+      "title": "A teologia das coisas simples · Pay the Poets",
+      "category": "Concerts & Live Music",
+      "color": "#E63946",
+      "icon": "🔴",
+      "venue": "Casa Capitão",
+      "neighborhood": "Beato / Marvila",
+      "corridor": "Eastern Corridor",
+      "lat": 38.736,
+      "lng": -9.1082,
+      "time": "21:30",
+      "hour": 21,
+      "price": "Grátis quarta-feira, 28 de outubro às 21:30 A teologia das coisas simples · Pay ",
+      "priceTier": "FREE",
+      "url": "https://terminusevents.com/pt/lisboa/evento/a-teologia-das-coisas-simples-pay-the-poets--evt_20261027230713_De1ceGZCiqf_0",
+      "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
+      "event_date": "2026-10-28",
+      "source": "Terminus — Casa Capitão"
+    },
+    {
       "id": "26d37040dc",
       "title": "Música Concertos Bernardo Tinoco Creature Close-up (Bernardo Tinoco, Malina Midera, Minki Cho e Patrycja Wybranczyk) ⟡ José Lencastre qua 28.10.26 21:00 Galeria Zé dos Bois",
       "category": "Exhibitions & Visual Arts",
@@ -625,6 +585,26 @@
       "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
       "event_date": "2026-10-28",
       "source": "Galeria Zé dos Bois"
+    },
+    {
+      "id": "f1e5c38e3b",
+      "title": "Pay the Poets · A teologia das coisas simples",
+      "category": "Concerts & Live Music",
+      "color": "#E63946",
+      "icon": "🔴",
+      "venue": "Casa Capitão",
+      "neighborhood": "Beato / Marvila",
+      "corridor": "Eastern Corridor",
+      "lat": 38.736,
+      "lng": -9.1082,
+      "time": "21:30",
+      "hour": 21,
+      "price": "Grátis quarta-feira, 28 de outubro às 21:30 Pay the Poets · A teologia das coisa",
+      "priceTier": "FREE",
+      "url": "https://terminusevents.com/pt/lisboa/evento/pay-the-poets-a-teologia-das-coisas-simples--evt_web_1719a6f9",
+      "description": "Consulta a página oficial para confirmar horários, local e bilhetes.",
+      "event_date": "2026-10-28",
+      "source": "Terminus — Casa Capitão"
     }
   ]
 }
