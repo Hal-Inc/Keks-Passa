@@ -43,6 +43,8 @@ SOURCES = [
     {"name": "Cinemateca Portuguesa", "url": "https://www.cinemateca.pt/programacao.aspx", "venue": "Cinemateca Portuguesa", "neighborhood": "Príncipe Real"},
     {"name": "Teatro do Bairro Alto", "url": "https://teatrodobairroalto.pt/pt/programa?a=1", "venue": "Teatro do Bairro Alto", "neighborhood": "Bairro Alto"},
     {"name": "EGEAC — Agenda Municipal", "url": "https://egeac.pt/programacao-espacos-culturais/", "venue": "", "neighborhood": "Lisboa", "parser": "egeac"},
+    {"name": "Resident Advisor", "url": "https://ra.co/events/pt/lisbon", "venue": "", "neighborhood": "Lisboa", "parser": "aggregator", "platform": "ra"},
+    {"name": "Shotgun", "url": "https://shotgun.live/en/cities/lisbon", "venue": "", "neighborhood": "Lisboa", "parser": "aggregator", "platform": "shotgun"},
 ]
 
 MONTHS = {
@@ -111,8 +113,10 @@ VENUES = [
 FREE_RE = re.compile(r"entrada\s+livre|gratuit[oa]s?|gr[aá]tis|\bfree(?:\s+entry)?\b", re.I)
 PRICE_RE = re.compile(r"(?:€\s*\d+(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?\s*€|\d+(?:[.,]\d{1,2})?\s*(?:euros?))", re.I)
 TIME_RE = re.compile(r"\b(?:às?\s*)?(\d{1,2})\s*(?::|h)(\d{2})\b", re.I)
+MERIDIEM_TIME_RE = re.compile(r"\b(\d{1,2})(?::(\d{2}))?\s*(a\.?m\.?|p\.?m\.?)\b", re.I)
 DATE_RE = re.compile(r"\b(\d{1,2})\s*(?:de\s+)?([a-zA-ZÀ-ÿ]+)(?:\s+(?:de\s+)?(20\d{2}))?\b", re.I)
 DATE_GROUP_RE = re.compile(r"\b((?:\d{1,2}\s*(?:,|e|and)\s*)*\d{1,2})\s*(?:de\s+)?([a-zA-ZÀ-ÿ]+)(?:\s*,?\s*(?:de\s+)?(20\d{2}))?\b", re.I)
+MONTH_FIRST_RE = re.compile(r"\b(" + "|".join(re.escape(m) for m in sorted(MONTHS.keys(), key=len, reverse=True)) + r")\.?\s+(\d{1,2})(?:,?\s+(20\d{2}))?\b", re.I)
 NUMERIC_DATE_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})(?:[./-](\d{2,4}))?(?!\d)", re.I)
 COMPACT_DATE_TIME_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})[./-](\d{2})(?=\d{1,2}:\d{2})", re.I)
 COMPACT_DATE_TIME_FULL_RE = re.compile(r"(?<!\d)(\d{1,2})[./-](\d{1,2})[./-](\d{2})(\d{1,2}):(\d{2})", re.I)
@@ -257,6 +261,18 @@ def price_details(value: Any, context: str = "") -> tuple[str, str]:
 def parse_times(text: str, start: datetime | None = None) -> tuple[str, int]:
     if start and (start.hour or start.minute):
         return start.strftime("%H:%M"), start.hour
+    # RA and Shotgun often show 8:30 PM / 10 PM rather than 20:30 / 22:00.
+    meridiem = MERIDIEM_TIME_RE.search(text or "")
+    if meridiem:
+        hour = int(meridiem.group(1))
+        minute = int(meridiem.group(2) or 0)
+        suffix = normalize(meridiem.group(3)).replace(".", "")
+        if suffix == "pm" and hour < 12:
+            hour += 12
+        elif suffix == "am" and hour == 12:
+            hour = 0
+        if 0 <= hour <= 23 and 0 <= minute <= 59:
+            return f"{hour:02d}:{minute:02d}", hour
     compact = COMPACT_DATE_TIME_FULL_RE.search(normalize(text or ""))
     if compact:
         hour, minute = int(compact.group(4)), int(compact.group(5))
@@ -286,6 +302,14 @@ def date_mentioned(text: str, target: date) -> bool:
         month = MONTHS.get(month_name) or MONTHS.get(month_name[:3])
         year = int(match.group(3)) if match.group(3) else target.year
         if target.day in days and month == target.month and year == target.year:
+            return True
+    # Ticket platforms often format dates in English month-first style, e.g. "Oct 28".
+    for match in MONTH_FIRST_RE.finditer(normalized):
+        month_name = normalize(match.group(1)).rstrip(".")
+        month = MONTHS.get(month_name) or MONTHS.get(month_name[:3])
+        day = int(match.group(2))
+        year = int(match.group(3)) if match.group(3) else target.year
+        if day == target.day and month == target.month and year == target.year:
             return True
     # Compact dates are common on underground venue calendars; ZDB can concatenate
     # weekday, date and time into a token such as "qua28.10.2621:00".
@@ -620,6 +644,146 @@ def parse_card_events(soup: BeautifulSoup, source: dict[str, str], target: date)
     return records
 
 
+
+def is_aggregator_event_url(url: str, platform: str) -> bool:
+    """Return True only for event-detail links, not the source's city listing."""
+    parsed = urlparse(url)
+    host = (parsed.netloc or "").lower().split(":", 1)[0]
+    path = parsed.path.rstrip("/").lower()
+    parts = [part for part in path.split("/") if part]
+    if platform == "ra":
+        if host not in {"ra.co", "www.ra.co", "pt.ra.co"}:
+            return False
+        if not path.startswith("/events/"):
+            return False
+        # Exclude the city listing submitted by the user, including its locale variants.
+        if path in {"/events/pt/lisbon", "/events/lisbon", "/events/pt", "/events"}:
+            return False
+        return len(parts) >= 2 and parts[1] not in {"new", "submit", "create"}
+    if platform == "shotgun":
+        if host not in {"shotgun.live", "www.shotgun.live"}:
+            return False
+        return bool(re.search(r"/(?:[a-z]{2}/)?events/[^/]+", path)) and not any(
+            token in path for token in ("/submit", "/create", "/new-event")
+        )
+    return False
+
+
+def aggregator_card_venue(container: Tag, event_anchor: Tag, target: date) -> str:
+    """Read a venue from a venue link or semantic venue/location element in a ticket card."""
+    # Prefer explicit venue links; those are usually the most reliable values.
+    for anchor in container.find_all("a", href=True):
+        if anchor is event_anchor:
+            continue
+        url = absolute_http_url(anchor.get("href", ""), "https://example.invalid/") or ""
+        path = urlparse(url).path.lower()
+        if re.search(r"/(?:venues?|locations?|places?|spaces?|clubs?)/", path):
+            value = clean_text(anchor.get("aria-label") or anchor.get("title") or anchor.get_text(" ", strip=True), 140)
+            if value and len(value) >= 2 and normalize(value) not in {"lisbon", "lisboa", "venues", "locations"}:
+                return value
+
+    # Prefer short text from elements whose classes or test IDs explicitly identify venue/location.
+    for node in container.select(
+        '[class*="venue"], [class*="Venue"], [data-testid*="venue"], '
+        '[class*="location"], [class*="Location"], [data-testid*="location"], '
+        '[class*="place"], [class*="Place"]'
+    ):
+        value = clean_text(node.get_text(" ", strip=True), 140)
+        normalized = normalize(value)
+        if not value or len(value) < 2 or len(value) > 120:
+            continue
+        if normalized in {"lisbon", "lisboa", "venue", "location", "place"}:
+            continue
+        if date_mentioned(value, target) or TIME_RE.search(value) or MERIDIEM_TIME_RE.search(value) or PRICE_RE.search(value):
+            continue
+        return value
+
+    # Last-resort heuristic: venue names are often individual short strings in the card.
+    title_norm = normalize(useful_title(event_anchor))
+    ignored = {
+        "buy tickets", "tickets", "rara tickets", "get tickets", "view more", "lisbon", "lisboa",
+        "free", "free entry", "event details", "see event", "read more", "featured", "popular",
+    }
+    for raw in container.stripped_strings:
+        value = clean_text(raw, 140)
+        normalized = normalize(value)
+        if not value or len(value) < 2 or len(value) > 100 or normalized == title_norm or normalized in ignored:
+            continue
+        if date_mentioned(value, target) or TIME_RE.search(value) or MERIDIEM_TIME_RE.search(value) or PRICE_RE.search(value):
+            continue
+        if re.fullmatch(r"[\W_\d]+", value):
+            continue
+        if any(word in normalized for word in ("house", "techno", "trance", "psytrance", "indie", "disco", "electronic", "afro house", "tickets", "bilhetes")):
+            continue
+        # Avoid long descriptions and generic controls; a compact location label is expected here.
+        if len(value.split()) <= 10:
+            return value
+    return ""
+
+
+def parse_aggregator_events(soup: BeautifulSoup, source: dict[str, str], target: date) -> list[dict[str, Any]]:
+    """Parse the event-specific cards exposed by Resident Advisor and Shotgun city pages."""
+    platform = source.get("platform", "")
+    records: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    bad_titles = {
+        "events", "submit an event", "submit event", "tickets", "buy tickets", "view more",
+        "all events", "lisbon", "lisboa", "see all", "featured", "explore", "login / sign up",
+    }
+
+    for anchor in soup.find_all("a", href=True):
+        full_url = absolute_http_url(anchor.get("href", ""), source["url"])
+        if not full_url or not is_aggregator_event_url(full_url, platform):
+            continue
+        title = clean_text(anchor.get("aria-label") or anchor.get("title") or anchor.get_text(" ", strip=True), 180)
+        if len(title) < 3 or normalize(title) in bad_titles:
+            continue
+        if len(title) > 180:
+            title = title[:180].rsplit(" ", 1)[0]
+
+        # Work upward from the event link and take the nearest compact container whose
+        # own text includes the target date. This avoids accidentally inheriting tomorrow's
+        # heading or blending many events into one card.
+        card: Tag | None = None
+        for parent in anchor.parents:
+            if not isinstance(parent, Tag) or parent.name in {"body", "html"}:
+                break
+            card_text = clean_text(parent.get_text(" ", strip=True), 1400)
+            if len(card_text) > 900:
+                break
+            if len(card_text) >= 8 and date_mentioned(card_text, target):
+                # Skip broad date groups containing many distinct event links.
+                event_links = {
+                    u for a in parent.find_all("a", href=True)
+                    if (u := absolute_http_url(a.get("href", ""), source["url"])) and is_aggregator_event_url(u, platform)
+                }
+                # Image/title links for one card can point to the same event URL;
+                # don't mistake a whole date section containing several events for one card.
+                if len(event_links) <= 1:
+                    card = parent
+                    break
+        if not card:
+            continue
+
+        card_text = clean_text(card.get_text(" ", strip=True), 1200)
+        event_venue = aggregator_card_venue(card, anchor, target)
+        category = category_for(f"{title} {card_text}")
+        description = card_description(card, title, target)
+        record = base_record(
+            title, full_url, source, target, card_text,
+            venue=event_venue or "", neighborhood=source.get("neighborhood", "Lisboa"),
+            description=description, price_raw="", category_override=category,
+        )
+        if not record:
+            continue
+        dedupe = (normalize(record["title"]), record["url"])
+        if dedupe not in seen:
+            records.append(record)
+            seen.add(dedupe)
+
+    return records
+
+
 def scrape_source(session: requests.Session, source: dict[str, str], target: date) -> tuple[int, list[dict[str, Any]], str]:
     try:
         response = session.get(source["url"], timeout=REQUEST_TIMEOUT, headers={"User-Agent": USER_AGENT})
@@ -628,11 +792,15 @@ def scrape_source(session: requests.Session, source: dict[str, str], target: dat
             response.encoding = response.apparent_encoding or "utf-8"
         soup = BeautifulSoup(response.text, "html.parser")
         jsonld = parse_jsonld_events(soup, source, target)
-        cards = parse_card_events(soup, source, target)
+        if source.get("parser") == "aggregator":
+            cards = parse_aggregator_events(soup, source, target)
+        else:
+            cards = parse_card_events(soup, source, target)
         combined = {}
         for event in jsonld + cards:
             combined[(normalize(event["title"]), event["url"])] = event
-        return 1, list(combined.values()), f"OK HTTP 200 ({len(jsonld)} JSON-LD, {len(cards)} eventos reconhecidos nos cartões, {len(combined)} únicos; zero pode significar sem evento hoje ou seletor desatualizado)"
+        detail = "cartões agregadores" if source.get("parser") == "aggregator" else "cartões"
+        return 1, list(combined.values()), f"OK HTTP {response.status_code} ({len(jsonld)} JSON-LD, {len(cards)} eventos reconhecidos nos {detail}, {len(combined)} únicos; zero pode significar sem evento hoje ou parser desatualizado)"
     except Exception as exc:  # Keep a single broken source from stopping the remaining sources.
         return 0, [], f"ERRO: {type(exc).__name__}: {str(exc)[:180]}"
 
