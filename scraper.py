@@ -148,7 +148,6 @@ def detect_category(title, venue, category_hint=""):
     return CATEGORY_PRESETS["music"]
 
 def parse_json_ld_scripts(soup):
-    """Extracts schema.org Event items from JSON-LD tags."""
     events = []
     scripts = soup.find_all("script", type="application/ld+json")
     for s in scripts:
@@ -170,27 +169,19 @@ def parse_json_ld_scripts(soup):
     return events
 
 def scrape_resident_advisor(target_date):
-    """
-    Scrapes Resident Advisor (RA.co) Lisbon events for the target date.
-    Source URL: https://ra.co/events/pt/lisbon?startDate=YYYY-MM-DD
-    """
     events = []
     date_str = target_date.strftime("%Y-%m-%d")
     url = f"https://ra.co/events/pt/lisbon?startDate={date_str}"
     print(f"Scraping Resident Advisor: {url}")
-    
     try:
         resp = requests.get(url, headers=HTTP_HEADERS, timeout=12)
         if resp.status_code == 200:
             soup = BeautifulSoup(resp.text, "html.parser")
-            
-            # Extract via JSON-LD microdata
             ld_events = parse_json_ld_scripts(soup)
             for idx, item in enumerate(ld_events):
                 title = item.get("name")
                 if not title:
                     continue
-                
                 event_url = item.get("url")
                 if event_url and not event_url.startswith("http"):
                     event_url = f"https://ra.co{event_url}"
@@ -200,7 +191,6 @@ def scrape_resident_advisor(target_date):
                 venue_obj = item.get("location", {})
                 venue_name = venue_obj.get("name", "Lisbon Venue") if isinstance(venue_obj, dict) else "Lisbon Venue"
                 
-                # Time extraction
                 start_time = "23:00"
                 start_iso = item.get("startDate", "")
                 if "T" in start_iso:
@@ -229,66 +219,24 @@ def scrape_resident_advisor(target_date):
                     "url": event_url,
                     "description": f"Live electronic/nightlife event at {geo['venue']}. Scraped from Resident Advisor."
                 })
-
-            # Next.js payload fallback parsing if JSON-LD returns empty
-            if not events:
-                next_script = soup.find("script", id="__NEXT_DATA__")
-                if next_script and next_script.string:
-                    next_json = json.loads(next_script.string)
-                    # Traverse json structure for event listing
-                    raw_str = json.dumps(next_json)
-                    event_titles = re.findall(r'"title":"([^"]+)"', raw_str)
-                    event_urls = re.findall(r'"filename":"([^"]+)"', raw_str)
-                    
-                    for idx, t in enumerate(event_titles[:15]):
-                        if len(t) < 3 or t.lower() in ["events", "lisbon", "resident advisor"]:
-                            continue
-                        e_url = f"https://ra.co/events/{event_urls[idx]}" if idx < len(event_urls) else url
-                        geo = match_venue("Lux Frágil" if idx % 2 == 0 else "Musicbox")
-                        events.append({
-                            "id": f"ra-next-{date_str}-{idx+1}",
-                            "title": t,
-                            "category": CATEGORY_PRESETS["nightlife"]["category"],
-                            "color": CATEGORY_PRESETS["nightlife"]["color"],
-                            "icon": CATEGORY_PRESETS["nightlife"]["icon"],
-                            "venue": geo["venue"],
-                            "neighborhood": geo["neighborhood"],
-                            "corridor": geo["corridor"],
-                            "lat": geo["lat"],
-                            "lng": geo["lng"],
-                            "time": "23:00",
-                            "hour": 23,
-                            "price": "12€ - 18€",
-                            "priceTier": "ACCESSIBLE",
-                            "url": e_url,
-                            "description": f"Nightlife event in Lisbon via Resident Advisor listing."
-                        })
     except Exception as e:
         print(f"Resident Advisor scraper notice: {e}")
-        
     return events
 
 def scrape_shotgun(target_date):
-    """
-    Scrapes Shotgun Live Lisbon events for the target date.
-    Source URL: https://shotgun.live/pt-pt/cities/lisbon/-/YYYY-MM-DD
-    """
     events = []
     date_str = target_date.strftime("%Y-%m-%d")
     url = f"https://shotgun.live/pt-pt/cities/lisbon/-/{date_str}"
     print(f"Scraping Shotgun Live: {url}")
-    
     try:
         resp = requests.get(url, headers=HTTP_HEADERS, timeout=12)
         if resp.status_code == 200:
             soup = BeautifulSoup(resp.text, "html.parser")
             ld_events = parse_json_ld_scripts(soup)
-            
             for idx, item in enumerate(ld_events):
                 title = item.get("name")
                 if not title:
                     continue
-                
                 event_url = item.get("url") or url
                 venue_obj = item.get("location", {})
                 venue_name = venue_obj.get("name", "Lisbon Venue") if isinstance(venue_obj, dict) else "Lisbon Venue"
@@ -323,28 +271,23 @@ def scrape_shotgun(target_date):
                 })
     except Exception as e:
         print(f"Shotgun Live scraper notice: {e}")
-        
     return events
 
 def scrape_agendalx(target_date):
-    """Scrapes AgendaLX with multiple CSS selector fallbacks."""
     events = []
     date_str = target_date.strftime("%Y-%m-%d")
     url = f"https://www.agendalx.pt/events/categoria/todos/?data={date_str}"
     print(f"Scraping AgendaLX: {url}")
-    
     try:
         resp = requests.get(url, headers=HTTP_HEADERS, timeout=12)
         if resp.status_code == 200:
             soup = BeautifulSoup(resp.text, "html.parser")
             cards = soup.find_all(["article", "div"], class_=re.compile(r"event|card|post|item", re.I))
-            
             for idx, card in enumerate(cards):
                 title_el = card.find(["h2", "h3", "h4", "a"], class_=re.compile(r"title|heading", re.I)) or card.find(["h2", "h3", "h4"])
                 link_el = card.find("a", href=True)
                 if not title_el or not link_el:
                     continue
-                
                 title = title_el.get_text(strip=True)
                 if len(title) < 4 or title.lower() in ["menu", "agendalx", "pesquisar"]:
                     continue
@@ -376,16 +319,11 @@ def scrape_agendalx(target_date):
                 })
     except Exception as e:
         print(f"AgendaLX scraper notice: {e}")
-    
     return events
 
 def get_daily_lisbon_ecosystem(target_date):
-    """
-    Generates a realistic, dynamic cultural schedule for Lisbon (30+ events)
-    customized by day of the week to ensure maximum map density every single day.
-    """
     master_catalog = [
-        {"title": "Ciclo de Cinema do Arquivo Histórico", "category_key": "cinema", "venue_key": "cinemateca", "time": "19:00", "hour": 19, "price": "3.20€", "priceTier": "FREE", "url": "https://www.cinemateca.pt", "desc": "Sessão temática e restauro cinematográfico em cópia 35mm na Sala M. Félix Ribeiro."},
+        {"title": "Ciclo de Cinema do Arquivo Histórico", "category_key": "cinema", "venue_key": "cinemateca", "time": "19:00", "hour": 19, "price": "3.20€", "priceTier": "ACCESSIBLE", "url": "https://www.cinemateca.pt", "desc": "Sessão temática e restauro cinematográfico em cópia 35mm na Sala M. Félix Ribeiro."},
         {"title": "Sessão de Cinema de Autor e Estreias Nacionais", "category_key": "cinema", "venue_key": "cinema ideal", "time": "21:30", "hour": 21, "price": "7.00€", "priceTier": "ACCESSIBLE", "url": "https://www.cinemaideal.pt", "desc": "Projeção de cinema independente no histórico Cinema Ideal no Chiado."},
         {"title": "Ciclo Estreias Independentes & Debates", "category_key": "cinema", "venue_key": "cinema nimas", "time": "18:30", "hour": 18, "price": "7.50€", "priceTier": "ACCESSIBLE", "url": "https://medeiafilmes.com", "desc": "Sessão especial de cinema internacional em cópia digital restaurada no Saldanha."},
         {"title": "Sessão Noturna de Cinema e Documentário", "category_key": "cinema", "venue_key": "casa do comum", "time": "20:30", "hour": 20, "price": "4.00€", "priceTier": "ACCESSIBLE", "url": "https://casadocomum.org", "desc": "Projeção de documentários e conversa com os realizadores no Bairro Alto."},
@@ -449,10 +387,6 @@ def get_daily_lisbon_ecosystem(target_date):
     return events
 
 def apply_coordinate_jitter(events):
-    """
-    Applies small geographical offsets to events that share the exact same venue coordinates
-    so every map pin is distinct and visible instead of overlapping into a single pin.
-    """
     coord_counts = {}
     for ev in events:
         key = f"{ev['lat']:.4f},{ev['lng']:.4f}"
@@ -465,21 +399,18 @@ def apply_coordinate_jitter(events):
         if count > 1:
             idx = coord_indices.get(key, 0)
             coord_indices[key] = idx + 1
-            # Apply slight spiral/jitter offset (approx 30-80 meters offset)
             angle = idx * (360.0 / count)
             radius = 0.00035 + (idx * 0.0001)
             import math
             rad_angle = math.radians(angle)
             ev["lat"] = round(ev["lat"] + (radius * math.cos(rad_angle)), 6)
             ev["lng"] = round(ev["lng"] + (radius * math.sin(rad_angle) * 1.2), 6)
-
     return events
 
 def main():
     target_date, now_time = get_lisbon_operational_date()
     print(f"Executing Lisbon Event Pipeline for Date: {target_date}")
 
-    # Scrape multi-sources
     ra_events = scrape_resident_advisor(target_date)
     shotgun_events = scrape_shotgun(target_date)
     agendalx_events = scrape_agendalx(target_date)
@@ -487,7 +418,6 @@ def main():
 
     all_raw = ra_events + shotgun_events + agendalx_events + ecosystem_events
 
-    # De-duplicate by normalized title string
     seen_titles = set()
     all_events = []
 
@@ -497,11 +427,15 @@ def main():
             seen_titles.add(t_key)
             all_events.append(ev)
 
-    # Apply coordinate offset jittering so pins do not stack on top of each other
+    # Sort events chronologically by hour and time string
+    all_events.sort(key=lambda x: (x.get("hour", 0), x.get("time", "00:00")))
+
     all_events = apply_coordinate_jitter(all_events)
 
+    timestamp_str = now_time.isoformat()
     output_payload = {
-        "updated_at": now_time.isoformat(),
+        "updated_at": timestamp_str,
+        "generated_at": timestamp_str,
         "date_string": target_date.strftime("%A, %B %d, %Y"),
         "operational_date": target_date.strftime("%Y-%m-%d"),
         "total_events": len(all_events),
