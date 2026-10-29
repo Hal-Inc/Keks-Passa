@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Yellow drop shadow box -->
+  <rect x="6" y="6" width="52" height="52" fill="#f4ce46" />
+  <!-- Red main stamp box with paper border -->
+  <rect x="2" y="2" width="52" height="52" fill="#f04432" stroke="#f0eddf" stroke-width="3" transform="rotate(-4 28 28)" />
+  <!-- Bold KP text -->
+  <text x="29" y="38" font-family="Impact, &#39;Barlow Condensed&#39;, sans-serif" font-weight="900" font-size="32" fill="#111713" text-anchor="middle" transform="rotate(-4 29 28)">KP</text>
+</svg>
