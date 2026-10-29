@@ -16,11 +16,13 @@
     .site-header{position:sticky;top:0;z-index:1000;background:rgba(17,23,19,.96);border-bottom:2px solid var(--red);backdrop-filter:blur(12px)}.header-inner{max-width:1600px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:13px;min-width:0;text-decoration:none}.brand-stamp{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;background:var(--red);color:var(--ink);font:900 18px/1 var(--display);letter-spacing:-1px;transform:rotate(-4deg);border:2px solid var(--paper);box-shadow:4px 4px 0 var(--yellow)}.brand-name{display:block;font:900 clamp(27px,3.1vw,39px)/.85 var(--display);text-transform:uppercase;letter-spacing:-.5px}.brand-line{display:block;color:var(--yellow);font:500 10px/1.6 var(--mono);text-transform:uppercase;letter-spacing:1.2px;margin-top:5px}.header-note{text-align:right;color:var(--muted);font:11px/1.6 var(--mono);text-transform:uppercase}.header-note strong{color:var(--green);font-weight:500}
     main{width:min(1600px,100%);margin:0 auto;padding:26px 22px 48px}.hero{position:relative;overflow:hidden;padding:clamp(24px,4vw,52px);background:var(--red);color:var(--ink);border:2px solid var(--paper);box-shadow:8px 8px 0 var(--yellow)}.hero:after{content:'KP?';position:absolute;right:-9px;bottom:-65px;font:900 clamp(170px,29vw,420px)/.8 var(--display);letter-spacing:-.08em;color:rgba(17,23,19,.08);pointer-events:none}.hero-topline{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:1.2px}.hero h1{position:relative;z-index:1;margin:12px 0 0;font:900 clamp(68px,11.2vw,160px)/.78 var(--display);letter-spacing:-.045em;text-transform:uppercase}.hero h1 span{color:var(--paper);-webkit-text-stroke:1px var(--ink);text-shadow:5px 5px 0 var(--ink)}.hero-bottom{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-top:26px}.hero-copy{max-width:520px;margin:0;font-size:clamp(14px,1.35vw,18px);font-weight:600;line-height:1.5}.hero-count{display:flex;flex-direction:column;align-items:flex-end;min-width:125px}.hero-count strong{font:900 42px/.9 var(--display)}.hero-count span{margin-top:8px;font:500 10px/1.6 var(--mono);text-align:right;text-transform:uppercase}
     
-    /* Marquee ticker styling (set to 660s for smooth slow scroll) */
-    .ticker-wrap{overflow:hidden;width:100%;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0 18px}
-    .ticker{display:flex;width:max-content;animation:tickerScroll 660s linear infinite;color:var(--yellow);font:700 12px var(--mono);text-transform:none;letter-spacing:.5px}
+    /* Interactive Draggable Marquee Ticker */
+    .ticker-wrap{overflow:hidden;width:100%;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0 18px;cursor:grab;user-select:none;-webkit-user-select:none}
+    .ticker-wrap:active{cursor:grabbing}
+    .ticker{display:flex;width:max-content;animation:tickerScroll 560s linear infinite;color:var(--yellow);font:700 12px var(--mono);text-transform:none;letter-spacing:.5px;will-change:transform}
+    .ticker.is-dragging{animation-play-state:paused!important;cursor:grabbing}
     .ticker:hover{animation-play-state:paused}
-    .ticker span{display:inline-flex;align-items:center;padding-right:24px}
+    .ticker span{display:inline-flex;align-items:center;padding-right:24px;pointer-events:none}
     .ticker span:nth-child(even){color:var(--red)}
     @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -48,7 +50,7 @@
       <h1 id="hero-title">Que temos<br><span>hoje?</span></h1><div class="hero-bottom"><p class="hero-copy">Concertos, exposições, cinema, teatro e outras desculpas para sair de casa. Espreita o que se passa pela cidade, escolhe um plano e vai.</p><div class="hero-count"><strong id="total-count">—</strong><span>planos no mapa<br>à tua espera</span></div></div>
     </section>
     
-    <!-- Infinite Marquee Quote Ticker -->
+    <!-- Interactive Draggable Marquee Quote Ticker -->
     <div class="ticker-wrap" aria-label="Citações sobre Lisboa">
       <div class="ticker" id="quote-ticker">
         <!-- Dynamically shuffled quotes will be injected here -->
@@ -194,6 +196,68 @@
       tickerEl.innerHTML = fullList.map(q => `<span>&ldquo;${escapeHtml(q)}&rdquo; &nbsp;★&nbsp;</span>`).join('');
     }
 
+    function initDraggableTicker(){
+      const wrap = document.querySelector('.ticker-wrap');
+      const ticker = document.getElementById('quote-ticker');
+      if(!wrap || !ticker) return;
+
+      let isDown = false;
+      let startX = 0;
+      let currentTranslateX = 0;
+
+      function getTranslateX(el){
+        const style = window.getComputedStyle(el);
+        const matrix = new DOMMatrix(style.transform);
+        return matrix.m41;
+      }
+
+      function handleDragStart(e){
+        isDown = true;
+        ticker.classList.add('is-dragging');
+        startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        currentTranslateX = getTranslateX(ticker);
+      }
+
+      function handleDragMove(e){
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        const walk = (x - startX) * 1.5;
+        let newX = currentTranslateX + walk;
+
+        const halfWidth = ticker.scrollWidth / 2;
+        if(newX > 0) newX = -halfWidth;
+        if(newX < -halfWidth) newX = 0;
+
+        ticker.style.transform = `translateX(${newX}px)`;
+      }
+
+      function handleDragEnd(){
+        if(!isDown) return;
+        isDown = false;
+        ticker.classList.remove('is-dragging');
+
+        const currentX = getTranslateX(ticker);
+        const halfWidth = ticker.scrollWidth / 2;
+        const progressPercent = Math.abs(currentX / halfWidth) * 100;
+        
+        ticker.style.animation = 'none';
+        ticker.offsetHeight;
+        ticker.style.transform = '';
+        const totalDuration = 560;
+        ticker.style.animation = `tickerScroll ${totalDuration}s linear infinite`;
+        ticker.style.animationDelay = `-${(progressPercent / 100) * totalDuration}s`;
+      }
+
+      wrap.addEventListener('mousedown', handleDragStart);
+      window.addEventListener('mousemove', handleDragMove);
+      window.addEventListener('mouseup', handleDragEnd);
+
+      wrap.addEventListener('touchstart', handleDragStart, {passive: false});
+      window.addEventListener('touchmove', handleDragMove, {passive: false});
+      window.addEventListener('touchend', handleDragEnd);
+    }
+
     function escapeHtml(value){return String(value ?? '').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
     function safeUrl(value){try{const u=new URL(value,window.location.href);return ['https:','http:'].includes(u.protocol)?u.href:'#';}catch{return '#';}}
     function hasCoords(e){return Number.isFinite(Number(e.lat))&&Number.isFinite(Number(e.lng))&&e.lat!==null&&e.lng!==null&&e.lat!==''&&e.lng!=='';}
@@ -234,6 +298,7 @@
     
     document.addEventListener('DOMContentLoaded',async()=>{
       initTicker();
+      initDraggableTicker();
       document.getElementById('search-input').addEventListener('input',applyFilters);
       ['category-filter','price-filter','corridor-filter'].forEach(id=>document.getElementById(id).addEventListener('change',applyFilters));
       document.getElementById('reset-filters').addEventListener('click',resetFilters);
