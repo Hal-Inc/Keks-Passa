@@ -328,7 +328,7 @@ VENUE_REGISTRY = [
         "url": "https://www.foriente.pt/agenda.php"
     },
 
-    # --- EASTERN CREATIVE CORRIDOR (Anjos, Intendente, Beato, Marvila, Parque das Nações) ---
+    # --- EASTERN CREATIVE CORRIDOR (Anjos, Intendente, Beato, Marvila, Parque das Nações, Prior Velho) ---
     {
         "venue": "BOTA - Base Organizada da Toca das Artes",
         "aliases": ["bota anjos", "base organizada da toca das artes", "base de oficios das artes", "largo santa barbara", "bota"],
@@ -439,9 +439,39 @@ VENUE_REGISTRY = [
     },
     {
         "venue": "Kømplex Lisbon",
-        "aliases": ["komplex lisbon", "komplex", "praceta domingos rodrigues"],
+        "aliases": ["komplex lisbon", "kømplex lisbon", "kømplex", "komplex", "praceta domingos rodrigues"],
         "lat": 38.7845, "lng": -9.1192, "neighborhood": "Prior Velho / Oriente", "corridor": "Eastern Corridor",
-        "url": "https://pt.ra.co/clubs/215718"
+        "url": "https://shotgun.live/pt-pt/venues/komplex"
+    },
+    {
+        "venue": "Moon Club",
+        "aliases": ["moon club", "moonclub", "moon club prior velho", "raw kinky lab"],
+        "lat": 38.7862, "lng": -9.1245, "neighborhood": "Prior Velho / Oriente", "corridor": "Eastern Corridor",
+        "url": "https://www.moonclub.pt"
+    },
+    {
+        "venue": "NĀDA 3.0 (NADA Lisbon)",
+        "aliases": ["nada 3.0", "naada 3.0", "nada lisbon", "naada", "nāda", "rua figo maduro 3", "armazem 6", "tiga naada"],
+        "lat": 38.7858, "lng": -9.1238, "neighborhood": "Prior Velho / Oriente", "corridor": "Eastern Corridor",
+        "url": "https://shotgun.live/pt-pt/venues/nada-lisbon"
+    },
+    {
+        "venue": "Higher Ground",
+        "aliases": ["higher ground", "rua ary dos santos 20"],
+        "lat": 38.7868, "lng": -9.1252, "neighborhood": "Prior Velho / Oriente", "corridor": "Eastern Corridor",
+        "url": "https://shotgun.live/en/cities/lisbon"
+    },
+    {
+        "venue": "Music Station",
+        "aliases": ["music station", "rock station", "aquilino ribeiro machado 74"],
+        "lat": 38.7735, "lng": -9.0975, "neighborhood": "Parque das Nações / Oriente", "corridor": "Eastern Corridor",
+        "url": "https://pt.ra.co/clubs/254407"
+    },
+    {
+        "venue": "Top Floor",
+        "aliases": ["top floor", "rua da pimenta 29"],
+        "lat": 38.7712, "lng": -9.0928, "neighborhood": "Parque das Nações / Oriente", "corridor": "Eastern Corridor",
+        "url": "https://www.lisabout.com/genero/dance-electronic"
     },
 
     # --- NORTHERN BELT (Saldanha, São Sebastião, Campo Pequeno, Alvalade, Benfica) ---
@@ -688,6 +718,80 @@ def parse_time_str(raw_time, default_time="21:00"):
     return default_time, h
 
 
+def infer_end_time(start_time, hour_int, category_name, venue_name="", title="", desc=""):
+    """
+    Extracts explicit end time from text ('18h-22h', '05:00 — 12:00', '14:00 - 23:00')
+    or infers realistic closing time by category & venue so finished events can be
+    removed from the map and listing 1 minute after finishing (Task 5).
+    """
+    combined = f"{title or ''} {desc or ''}"
+    m_range = re.search(
+        r"\b(?:[01]?\d|2[0-3])(?:[:h.][0-5]\d|\s*h)?\s*(?:–|—|-|às|as|to|até)\s*([01]?\d|2[0-3])(?:[:h.]([0-5]\d)|\s*h)\b",
+        combined, re.I
+    )
+    if m_range:
+        eh = int(m_range.group(1))
+        em = int(m_range.group(2) or 0)
+        return f"{eh:02d}:{em:02d}", eh
+
+    parts = (start_time or "21:00").split(":")
+    sh = int(parts[0]) if parts else hour_int
+    sm = int(parts[1]) if len(parts) > 1 else 0
+
+    def add_minutes(h, m, delta):
+        total = (h * 60 + m + delta) % (24 * 60)
+        return f"{total // 60:02d}:{total % 60:02d}", (total // 60)
+
+    v_low = strip_accents(venue_name or "")
+    t_low = strip_accents(title or "")
+
+    if category_name == "Exhibitions & Visual Arts":
+        if "zdb" in v_low or "ze dos bois" in v_low:
+            return "22:00", 22
+        if sh < 17:
+            if any(k in v_low for k in ["ccb", "maat", "underdogs", "oriente"]):
+                return "19:00", 19
+            return "18:00", 18
+        if sh == 18:
+            return "20:30", 20
+        return add_minutes(sh, sm, 120)
+
+    if category_name == "Family & Youth":
+        if "pavilhao do conhecimento" in v_low:
+            return "18:00", 18
+        if any(k in t_low for k in ["infancia", "escolar", "ciclo", "familias", "oficinas"]):
+            return ("17:30", 17) if sh <= 11 else add_minutes(sh, sm, 150)
+        return add_minutes(sh, sm, 120)
+
+    if category_name in ("Cinema & Screenings", "Theatre & Comedy", "Opera & Classical"):
+        return add_minutes(sh, sm, 120)
+
+    if category_name == "Concerts & Live Music":
+        return add_minutes(sh, sm, 150)
+
+    if category_name == "Community & Gatherings":
+        if "8 marvila" in v_low:
+            return "20:00", 20
+        if sh <= 10:
+            return "18:00", 18
+        return add_minutes(sh, sm, 120)
+
+    if category_name == "Nightlife & Electronic":
+        if 4 <= sh <= 8:
+            return "12:00", 12
+        if 12 <= sh < 17:
+            return "23:00", 23
+        if 17 <= sh < 21:
+            return "02:00", 2
+        if "moon club" in v_low:
+            return "07:00", 7
+        if "nada" in v_low or "naada" in v_low:
+            return "05:00", 5
+        return "06:00", 6
+
+    return add_minutes(sh, sm, 120)
+
+
 def detect_category(title, venue, category_hint=""):
     combined = strip_accents(f"{title} {venue} {category_hint}")
     if any(k in combined for k in ["dj", "clubbing", "techno", "electronic", "eletronica", "house", "nightlife", "rave", "baile", "ministerium", "komplex", "5a", "lux fragil"]):
@@ -713,192 +817,86 @@ def get_lisbon_operational_date():
     return op_date, now
 
 
-# ==============================================================================
-# TIER 1A: OFFICIAL AGENDALX WORDPRESS REST API
-# ==============================================================================
-def scrape_agendalx_api(target_date):
-    events = []
-    date_str = target_date.strftime("%Y-%m-%d")
-    api_url = "https://www.agendalx.pt/wp-json/agendalx/v1/events"
-    print(f"[Tier 1] Fetching Official AgendaLX REST API: {api_url}")
-    try:
-        resp = fetch_url(api_url, timeout=16)
-        if resp.status_code == 200:
-            items = resp.json()
-            if isinstance(items, list):
-                for idx, item in enumerate(items):
-                    occ = item.get("occurences") or []
-                    start_d = item.get("StartDate") or ""
-                    last_d = item.get("LastDate") or ""
-                    is_today = (date_str in occ) or (start_d <= date_str <= last_d and not occ)
-                    if not is_today:
-                        continue
-
-                    raw_title = html.unescape((item.get("title") or {}).get("rendered", "")).strip()
-                    if not raw_title:
-                        continue
-                    subtitles = [html.unescape(s).strip() for s in (item.get("subtitle") or []) if s]
-                    full_title = f"{raw_title} — {subtitles[0]}" if subtitles and subtitles[0].lower() not in raw_title.lower() else raw_title
-
-                    venue_dict = item.get("venue") or {}
-                    venue_name = ""
-                    if isinstance(venue_dict, dict):
-                        for v_obj in venue_dict.values():
-                            if isinstance(v_obj, dict) and v_obj.get("name"):
-                                venue_name = html.unescape(v_obj["name"])
-                                break
-
-                    geo = match_venue(venue_name, full_title)
-                    cat_names = " ".join(
-                        c.get("name", "") for c in (item.get("categories_name_list") or {}).values() if isinstance(c, dict)
-                    )
-                    cat_info = detect_category(full_title, geo["venue"], f"{cat_names} {item.get('subject', '')}")
-
-                    time_str, hour_int = parse_time_str(item.get("string_times", ""), "19:00" if cat_info == CATEGORY_PRESETS["art"] else "21:00")
-                    raw_price_arr = item.get("price_val") or []
-                    raw_price_str = " ".join(str(x) for x in raw_price_arr)
-                    price_disp, price_tier = parse_price_and_tier(raw_price_str, "Entrada sujeita a bilheteira", "ACCESSIBLE")
-
-                    desc_list = item.get("description") or []
-                    clean_desc = BeautifulSoup(" ".join(str(d) for d in desc_list), "html.parser").get_text(" ", strip=True)
-                    if len(clean_desc) > 200:
-                        clean_desc = clean_desc[:197].rsplit(" ", 1)[0] + "…"
-                    if not clean_desc:
-                        clean_desc = f"{full_title} em {geo['venue']} ({geo['neighborhood']})."
-
-                    ev_url = item.get("link") or geo["url"]
-                    events.append({
-                        "id": f"agendalx-{item.get('id', idx)}",
-                        "title": full_title,
-                        "category": cat_info["category"],
-                        "color": cat_info["color"],
-                        "icon": cat_info["icon"],
-                        "venue": geo["venue"],
-                        "neighborhood": geo["neighborhood"],
-                        "corridor": geo["corridor"],
-                        "lat": geo["lat"],
-                        "lng": geo["lng"],
-                        "time": time_str,
-                        "hour": hour_int,
-                        "price": price_disp,
-                        "priceTier": price_tier,
-                        "url": ev_url,
-                        "description": clean_desc
-                    })
-    except Exception as e:
-        print(f"[Tier 1] AgendaLX API notice: {e}")
-    return events
-
-
-# ==============================================================================
-# TIER 1B: RESIDENT ADVISOR (GraphQL API + HTML Listing Parser)
-# ==============================================================================
-def scrape_resident_advisor(target_date):
-    events = []
-    date_str = target_date.strftime("%Y-%m-%d")
-    graphql_url = "https://ra.co/graphql"
-    print(f"[Tier 1] Fetching Resident Advisor GraphQL & Listing for {date_str}")
-
-    gql_query = """
-    query GET_POPULAR_EVENTS($filters: FilterInputDtoInput, $pageSize: Int) {
-      eventListings(filters: $filters, pageSize: $pageSize, page: 1, sort: { attending: { priority: 1, order: DESCENDING } }) {
-        data {
-          id
-          listingDate
-          event {
-            id
-            title
-            date
-            startTime
-            contentUrl
-            venue {
-              name
-            }
-            artists {
-              name
-            }
-          }
-        }
-      }
-    }
+def scrape_prior_velho_electronic(target_date):
     """
-    for area_id in (51, 229):
+    Scrapes Prior Velho & Lisbon electronic events from Lisabout (Prior Velho &
+    Dance/Electronic feeds) and Moon Club (moonclub.pt). Also captures early-morning
+    afterhours (04:00-08:00 next calendar morning) that belong to tonight's operational night.
+    """
+    events = []
+    next_date = target_date + datetime.timedelta(days=1)
+    d_today = f"{target_date.day}/{target_date.month:02d}"
+    d_next = f"{next_date.day}/{next_date.month:02d}"
+
+    lisabout_urls = [
+        "https://www.lisabout.com/zona/prior-velho",
+        "https://www.lisabout.com/genero/dance-electronic"
+    ]
+    print(f"[Tier 2/3] Scraping Prior Velho & Electronic hubs for {d_today} (and afterhours {d_next})")
+
+    for url in lisabout_urls:
         try:
-            payload = {
-                "query": gql_query,
-                "variables": {
-                    "filters": {
-                        "areas": {"eq": area_id},
-                        "listingDate": {"gte": date_str, "lte": date_str}
-                    },
-                    "pageSize": 40
-                }
-            }
-            resp = fetch_url(graphql_url, method="POST", json_body=payload, headers={"Referer": "https://ra.co/events/pt/lisbon"})
-            if resp.status_code == 200:
-                data = resp.json()
-                listings = (((data.get("data") or {}).get("eventListings") or {}).get("data")) or []
-                for idx, item in enumerate(listings):
-                    ev = item.get("event") or {}
-                    title = (ev.get("title") or "").strip()
-                    if not title:
-                        continue
-                    venue_name = ((ev.get("venue") or {}).get("name") or "").strip()
-                    if any(bad in venue_name.lower() for bad in ["porto", "faro", "coimbra", "london"]):
-                        continue
-                    artists = [a.get("name") for a in (ev.get("artists") or []) if a.get("name")]
-                    if artists and not any(a.lower() in title.lower() for a in artists[:2]):
-                        title = f"{title} — {', '.join(artists[:4])}"
+            resp = fetch_url(url)
+            if resp.status_code != 200:
+                continue
+            soup = BeautifulSoup(resp.text, "html.parser")
+            for a_tag in soup.select('a[href*="/events/"]'):
+                href = a_tag.get("href", "")
+                card_text = a_tag.get_text(" | ", strip=True)
+                is_today = (d_today in card_text)
+                is_afterhours = (d_next in card_text and re.search(r"\b0[4-8]:[0-5]\d\b", card_text))
+                if not (is_today or is_afterhours):
+                    continue
 
-                    content_url = ev.get("contentUrl") or ""
-                    ev_url = urljoin("https://ra.co", content_url) if content_url else "https://ra.co/events/pt/lisbon"
-                    time_str, hour_int = parse_time_str(ev.get("startTime") or ev.get("date", ""), "23:59")
-                    geo = match_venue(venue_name, title)
-                    cat_info = CATEGORY_PRESETS["nightlife"]
-                    lineup_desc = f"Lineup: {', '.join(artists[:6])}. " if artists else ""
+                time_str, hour_int = parse_time_str(card_text, "23:59")
+                title_el = a_tag.find(["h3", "h4", "strong"])
+                title = title_el.get_text(" ", strip=True) if title_el else ""
+                if not title:
+                    parts = [p.strip() for p in card_text.split("|") if p.strip() and not re.search(r"\b\d{1,2}/\d{2}\b", p)]
+                    title = parts[1] if len(parts) > 1 else parts[0]
 
-                    events.append({
-                        "id": f"ra-{ev.get('id', idx)}",
-                        "title": title,
-                        "category": cat_info["category"],
-                        "color": cat_info["color"],
-                        "icon": cat_info["icon"],
-                        "venue": geo["venue"],
-                        "neighborhood": geo["neighborhood"],
-                        "corridor": geo["corridor"],
-                        "lat": geo["lat"],
-                        "lng": geo["lng"],
-                        "time": time_str,
-                        "hour": hour_int,
-                        "price": "10€ - 20€",
-                        "priceTier": "ACCESSIBLE",
-                        "url": ev_url,
-                        "description": f"{lineup_desc}Noite de música eletrónica e clubbing em {geo['venue']} ({geo['neighborhood']})."
-                    })
-                if events:
-                    break
+                geo = match_venue(card_text, title)
+                price_disp, price_tier = parse_price_and_tier(card_text, "10€ - 20€", "ACCESSIBLE")
+                ev_url = urljoin("https://www.lisabout.com", href)
+                end_t, end_h = infer_end_time(time_str, hour_int, CATEGORY_PRESETS["nightlife"]["category"], geo["venue"], title, card_text)
+
+                events.append({
+                    "id": f"pv-{href.strip('/').split('/')[-1]}",
+                    "title": title,
+                    "category": CATEGORY_PRESETS["nightlife"]["category"],
+                    "color": CATEGORY_PRESETS["nightlife"]["color"],
+                    "icon": CATEGORY_PRESETS["nightlife"]["icon"],
+                    "venue": geo["venue"],
+                    "neighborhood": geo["neighborhood"],
+                    "corridor": geo["corridor"],
+                    "lat": geo["lat"],
+                    "lng": geo["lng"],
+                    "time": time_str,
+                    "hour": hour_int,
+                    "endTime": end_t,
+                    "endHour": end_h,
+                    "price": price_disp,
+                    "priceTier": price_tier,
+                    "url": ev_url,
+                    "description": f"{title} em {geo['venue']} ({geo['neighborhood']}). Programação eletrónica e clubbing."
+                })
         except Exception as e:
-            print(f"[Tier 1] RA GraphQL notice: {e}")
+            print(f"[Prior Velho Scraper] Notice on {url}: {e}")
 
-    if not events:
-        list_url = f"https://ra.co/events/pt/lisbon?startDate={date_str}"
-        try:
-            resp = fetch_url(list_url)
-            if resp.status_code == 200:
-                soup = BeautifulSoup(resp.text, "html.parser")
-                for idx, a_tag in enumerate(soup.select('a[href^="/events/"]')):
-                    href = a_tag.get("href", "")
-                    if not re.match(r"^/events/\d+$", href):
-                        continue
-                    title = a_tag.get_text(" ", strip=True)
-                    if len(title) < 2 or title.lower() in ["ra", "events", "tickets"]:
-                        continue
-                    card = a_tag.find_parent(["li", "article", "div"])
-                    card_text = card.get_text(" | ", strip=True) if card else title
-                    geo = match_venue(card_text, title)
-                    ev_url = urljoin("https://ra.co", href)
+    # Direct Moon Club Prior Velho scraper (moonclub.pt)
+    try:
+        resp = fetch_url("https://www.moonclub.pt/")
+        if resp.status_code == 200 and d_today in resp.text:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            geo = match_venue("moon club")
+            for block in soup.find_all(["li", "div", "article"]):
+                txt = block.get_text(" ", strip=True)
+                if d_today in txt and len(txt) < 300:
+                    m_title = re.search(rf"{re.escape(d_today)}.*?\d+%\s+([A-Z0-9\s—\-]+)", txt)
+                    title = m_title.group(1).strip() if m_title else "Noite Moon Club — Prior Velho"
+                    end_t, end_h = infer_end_time("23:59", 23, CATEGORY_PRESETS["nightlife"]["category"], geo["venue"], title, txt)
                     events.append({
-                        "id": f"ra-dom-{href.split('/')[-1]}",
+                        "id": f"moonclub-{target_date.strftime('%Y%m%d')}",
                         "title": title,
                         "category": CATEGORY_PRESETS["nightlife"]["category"],
                         "color": CATEGORY_PRESETS["nightlife"]["color"],
@@ -910,532 +908,21 @@ def scrape_resident_advisor(target_date):
                         "lng": geo["lng"],
                         "time": "23:59",
                         "hour": 23,
-                        "price": "12€ - 20€",
+                        "endTime": end_t,
+                        "endHour": end_h,
+                        "price": "10€ - 15€",
                         "priceTier": "ACCESSIBLE",
-                        "url": ev_url,
-                        "description": f"Sessão de eletrónica e clubbing em {geo['venue']} via Resident Advisor."
+                        "url": "https://www.moonclub.pt",
+                        "description": f"{title} no Moon Club (Rua Ary dos Santos 3, Prior Velho). Noite de techno e clubbing até ao nascer do sol."
                     })
-        except Exception as e:
-            print(f"[Tier 1] RA HTML notice: {e}")
-
-    return events
-
-
-# ==============================================================================
-# TIER 3A: SHOTGUN LIVE (Valid City & Genre Routes)
-# ==============================================================================
-def scrape_shotgun(target_date):
-    events = []
-    day_num = target_date.day
-    month_en = target_date.strftime("%b")
-    month_pt = {
-        1: "jan", 2: "fev", 3: "mar", 4: "abr", 5: "mai", 6: "jun",
-        7: "jul", 8: "ago", 9: "set", 10: "out", 11: "nov", 12: "dez"
-    }[target_date.month]
-
-    urls = [
-        "https://shotgun.live/en/cities/lisbon",
-        "https://shotgun.live/en/cities/lisbon/techno",
-        "https://shotgun.live/en/cities/lisbon/house"
-    ]
-    print(f"[Tier 3] Scraping Shotgun Live Lisbon routes for {day_num} {month_en}")
-
-    date_pat = re.compile(rf"\b({day_num}\s+{month_en}|{month_en}\s+{day_num}|{day_num}\s+{month_pt})\b", re.I)
-
-    for url in urls:
-        try:
-            resp = fetch_url(url)
-            if resp.status_code != 200:
-                continue
-            soup = BeautifulSoup(resp.text, "html.parser")
-            for a_tag in soup.select('a[href*="/events/"]'):
-                href = a_tag.get("href", "")
-                if not href or "/cities/" in href:
-                    continue
-                ev_url = urljoin("https://shotgun.live", href)
-                card_text = a_tag.get_text(" | ", strip=True)
-                parent_section = a_tag.find_parent(["section", "div", "li"])
-                context_text = parent_section.get_text(" ", strip=True) if parent_section else card_text
-
-                if not date_pat.search(context_text) and not date_pat.search(card_text):
-                    continue
-
-                parts = [p.strip() for p in card_text.split("|") if p.strip()]
-                if not parts:
-                    continue
-                title = parts[0]
-                if len(title) < 2:
-                    continue
-
-                time_str, hour_int = parse_time_str(card_text, "23:00")
-                price_disp, price_tier = parse_price_and_tier(card_text, "10€ - 20€", "ACCESSIBLE")
-                geo = match_venue(card_text, title)
-                cat_info = detect_category(title, geo["venue"], "shotgun electronic nightlife")
-
-                events.append({
-                    "id": f"shotgun-{href.strip('/').split('/')[-1]}",
-                    "title": title,
-                    "category": cat_info["category"],
-                    "color": cat_info["color"],
-                    "icon": cat_info["icon"],
-                    "venue": geo["venue"],
-                    "neighborhood": geo["neighborhood"],
-                    "corridor": geo["corridor"],
-                    "lat": geo["lat"],
-                    "lng": geo["lng"],
-                    "time": time_str,
-                    "hour": hour_int,
-                    "price": price_disp,
-                    "priceTier": price_tier,
-                    "url": ev_url,
-                    "description": f"{title} em {geo['venue']} ({geo['neighborhood']}). Bilhetes e alinhamento na Shotgun."
-                })
-        except Exception as e:
-            print(f"[Tier 3] Shotgun notice on {url}: {e}")
-
-    return events
-
-
-# ==============================================================================
-# TIER 3B: NOCARTAZ LISBOA & AGENDA DE CONCERTOS (High-Accuracy Artist Names)
-# ==============================================================================
-def scrape_nocartaz_lisboa(target_date):
-    events = []
-    day_num = target_date.day
-    month_pt = {
-        1: "jan", 2: "fev", 3: "mar", 4: "abr", 5: "mai", 6: "jun",
-        7: "jul", 8: "ago", 9: "set", 10: "out", 11: "nov", 12: "dez"
-    }[target_date.month]
-    date_header_pat = re.compile(rf"\b0?{day_num}\s+{month_pt}\b", re.I)
-
-    url = "https://www.nocartaz.pt/concelhos/lisboa/"
-    print(f"[Tier 3] Scraping NoCartaz Lisboa: {url}")
-    try:
-        resp = fetch_url(url)
-        if resp.status_code == 200:
-            soup = BeautifulSoup(resp.text, "html.parser")
-            for a_tag in soup.select('a[href*="/eventos/"]'):
-                href = a_tag.get("href", "")
-                card = a_tag.find_parent(["article", "li", "div"]) or a_tag
-                text_block = card.get_text(" | ", strip=True)
-                if not date_header_pat.search(text_block):
-                    prev_h = card.find_previous(["h2", "h3", "h4"])
-                    if not prev_h or not date_header_pat.search(prev_h.get_text(" ", strip=True)):
-                        continue
-
-                title_el = card.find(["h3", "h4", "strong"]) or a_tag
-                raw_title = title_el.get_text(" ", strip=True)
-                if not raw_title or len(raw_title) < 2:
-                    continue
-
-                venue_hint = text_block
-                if " @ " in raw_title:
-                    t_parts = raw_title.split(" @ ", 1)
-                    raw_title = t_parts[0].strip()
-                    venue_hint = f"{t_parts[1]} | {text_block}"
-
-                geo = match_venue(venue_hint, raw_title)
-                time_str, hour_int = parse_time_str(text_block, "21:00")
-                price_disp, price_tier = parse_price_and_tier(text_block, "Consultar bilheteira", "ACCESSIBLE")
-                cat_info = detect_category(raw_title, geo["venue"], text_block)
-                ev_url = urljoin("https://www.nocartaz.pt", href)
-
-                events.append({
-                    "id": f"nocartaz-{href.strip('/').split('/')[-1]}",
-                    "title": raw_title,
-                    "category": cat_info["category"],
-                    "color": cat_info["color"],
-                    "icon": cat_info["icon"],
-                    "venue": geo["venue"],
-                    "neighborhood": geo["neighborhood"],
-                    "corridor": geo["corridor"],
-                    "lat": geo["lat"],
-                    "lng": geo["lng"],
-                    "time": time_str,
-                    "hour": hour_int,
-                    "price": price_disp,
-                    "priceTier": price_tier,
-                    "url": ev_url,
-                    "description": f"{raw_title} ao vivo em {geo['venue']} ({geo['neighborhood']})."
-                })
-    except Exception as e:
-        print(f"[Tier 3] NoCartaz notice: {e}")
-    return events
-
-
-def scrape_agendadeconcertos(target_date):
-    events = []
-    day_num = target_date.day
-    month_full_pt = {
-        1: "Janeiro", 2: "Fevereiro", 3: "Março", 4: "Abril", 5: "Maio", 6: "Junho",
-        7: "Julho", 8: "Agosto", 9: "Setembro", 10: "Outubro", 11: "Novembro", 12: "Dezembro"
-    }[target_date.month]
-
-    url = "https://agendadeconcertos.com/concertos-em-portugal/"
-    print(f"[Tier 3] Scraping Agenda de Concertos: {url}")
-    try:
-        resp = fetch_url(url)
-        if resp.status_code == 200:
-            soup = BeautifulSoup(resp.text, "html.parser")
-            page_text = soup.get_text("\n", strip=True)
-            lines = [ln.strip() for ln in page_text.splitlines() if ln.strip()]
-
-            in_target_date = False
-            date_heading_re = re.compile(rf"\b0?{day_num}\s+{month_full_pt}\b", re.I)
-            other_date_re = re.compile(r"\b\d{1,2}\s+(Janeiro|Fevereiro|Março|Abril|Maio|Junho|Julho|Agosto|Setembro|Outubro|Novembro|Dezembro)\b", re.I)
-
-            for idx, ln in enumerate(lines):
-                if date_heading_re.search(ln):
-                    in_target_date = True
-                    continue
-                elif in_target_date and other_date_re.search(ln):
                     break
-
-                if in_target_date and ("– Lisboa" in ln or "- Lisboa" in ln):
-                    venue_line = re.sub(r"\s*[–-]\s*Lisboa.*$", "", ln).strip()
-                    artist_name = lines[idx - 1] if idx > 0 else ""
-                    if not artist_name or other_date_re.search(artist_name) or "–" in artist_name:
-                        continue
-                    geo = match_venue(venue_line, artist_name)
-                    cat_info = detect_category(artist_name, geo["venue"], "concerto musica ao vivo")
-                    events.append({
-                        "id": f"adc-{target_date.strftime('%Y%m%d')}-{idx}",
-                        "title": artist_name,
-                        "category": cat_info["category"],
-                        "color": cat_info["color"],
-                        "icon": cat_info["icon"],
-                        "venue": geo["venue"],
-                        "neighborhood": geo["neighborhood"],
-                        "corridor": geo["corridor"],
-                        "lat": geo["lat"],
-                        "lng": geo["lng"],
-                        "time": "21:30",
-                        "hour": 21,
-                        "price": "Consultar bilheteira",
-                        "priceTier": "ACCESSIBLE",
-                        "url": geo["url"],
-                        "description": f"Concerto de {artist_name} ao vivo em {geo['venue']} ({geo['neighborhood']})."
-                    })
     except Exception as e:
-        print(f"[Tier 3] Agenda de Concertos notice: {e}")
-    return events
-
-
-# ==============================================================================
-# TIER 2: DIRECT VENUE SCRAPERS (Cinemateca, Nimas, BOTA)
-# ==============================================================================
-def scrape_direct_venues(target_date):
-    events = []
-    d_slash = target_date.strftime("%d/%m/%Y")
-    d_dot = target_date.strftime("%d.%m.%Y")
-    day_num = target_date.day
-    month_pt_full = {
-        1: "janeiro", 2: "fevereiro", 3: "março", 4: "abril", 5: "maio", 6: "junho",
-        7: "julho", 8: "agosto", 9: "setembro", 10: "outubro", 11: "novembro", 12: "dezembro"
-    }[target_date.month]
-
-    # 1. Cinemateca Portuguesa (Programacao.aspx)
-    try:
-        resp = fetch_url("https://www.cinemateca.pt/Programacao.aspx")
-        if resp.status_code == 200:
-            soup = BeautifulSoup(resp.text, "html.parser")
-            text_lines = [l.strip() for l in soup.get_text("\n").splitlines() if l.strip()]
-            geo = match_venue("cinemateca")
-            for i, line in enumerate(text_lines):
-                if d_slash in line and "|" in line:
-                    time_str, hour_int = parse_time_str(line, "19:00")
-                    room = line.split("|")[-1].strip()
-                    film_title = text_lines[i + 2] if i + 2 < len(text_lines) else "Sessão Cinemateca"
-                    director = text_lines[i + 3] if i + 3 < len(text_lines) and text_lines[i + 3].startswith("de ") else ""
-                    full_title = f"{film_title} ({director})" if director else film_title
-                    events.append({
-                        "id": f"cinemateca-{target_date.strftime('%Y%m%d')}-{i}",
-                        "title": full_title,
-                        "category": CATEGORY_PRESETS["cinema"]["category"],
-                        "color": CATEGORY_PRESETS["cinema"]["color"],
-                        "icon": CATEGORY_PRESETS["cinema"]["icon"],
-                        "venue": geo["venue"],
-                        "neighborhood": geo["neighborhood"],
-                        "corridor": geo["corridor"],
-                        "lat": geo["lat"],
-                        "lng": geo["lng"],
-                        "time": time_str,
-                        "hour": hour_int,
-                        "price": "3.20€",
-                        "priceTier": "ACCESSIBLE",
-                        "url": "https://www.cinemateca.pt/Programacao.aspx",
-                        "description": f"Sessão na {room} da Cinemateca Portuguesa."
-                    })
-    except Exception as e:
-        print(f"[Tier 2] Cinemateca notice: {e}")
-
-    # 2. Cinema Medeia Nimas
-    try:
-        resp = fetch_url("https://medeiafilmes.com/cinemas/cinema-medeia-nimas")
-        if resp.status_code == 200:
-            soup = BeautifulSoup(resp.text, "html.parser")
-            geo = match_venue("cinema medeia nimas")
-            text_lines = [l.strip() for l in soup.get_text("\n").splitlines() if l.strip()]
-            in_today = False
-            for i, line in enumerate(text_lines):
-                if line == d_dot:
-                    in_today = True
-                    continue
-                elif in_today and re.match(r"^\d{2}\.\d{2}\.\d{4}$", line):
-                    break
-                if in_today and re.match(r"^\d{2}:\d{2}$", line):
-                    time_str, hour_int = parse_time_str(line, "18:30")
-                    film_title = text_lines[i + 1] if i + 1 < len(text_lines) else "Sessão Nimas"
-                    director = text_lines[i + 2] if i + 2 < len(text_lines) and text_lines[i + 2].startswith("de ") else ""
-                    full_title = f"{film_title} ({director})" if director else film_title
-                    events.append({
-                        "id": f"nimas-{target_date.strftime('%Y%m%d')}-{time_str.replace(':', '')}",
-                        "title": full_title,
-                        "category": CATEGORY_PRESETS["cinema"]["category"],
-                        "color": CATEGORY_PRESETS["cinema"]["color"],
-                        "icon": CATEGORY_PRESETS["cinema"]["icon"],
-                        "venue": geo["venue"],
-                        "neighborhood": geo["neighborhood"],
-                        "corridor": geo["corridor"],
-                        "lat": geo["lat"],
-                        "lng": geo["lng"],
-                        "time": time_str,
-                        "hour": hour_int,
-                        "price": "7.50€",
-                        "priceTier": "ACCESSIBLE",
-                        "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas",
-                        "description": f"Exibição de {full_title} no Cinema Medeia Nimas (Saldanha)."
-                    })
-    except Exception as e:
-        print(f"[Tier 2] Medeia Nimas notice: {e}")
-
-    # 3. BOTA Anjos (botaanjos.com/programacao)
-    try:
-        resp = fetch_url("https://www.botaanjos.com/programacao")
-        if resp.status_code == 200:
-            soup = BeautifulSoup(resp.text, "html.parser")
-            geo = match_venue("bota anjos")
-            target_pt_str = f"{day_num} de {month_pt_full} de {target_date.year}"
-            for article in soup.find_all(["article", "div"], class_=re.compile(r"eventlist-event", re.I)):
-                txt = article.get_text(" ", strip=True)
-                if target_pt_str.lower() not in txt.lower():
-                    continue
-                h_el = article.find(["h1", "h2", "a"], class_=re.compile(r"title", re.I)) or article.find(["h1", "h2"])
-                if not h_el:
-                    continue
-                title = h_el.get_text(" ", strip=True)
-                link_el = article.find("a", href=re.compile(r"/programacao/"))
-                ev_url = urljoin("https://www.botaanjos.com", link_el["href"]) if link_el else "https://www.botaanjos.com/programacao"
-                time_str, hour_int = parse_time_str(txt, "21:00")
-                events.append({
-                    "id": f"bota-{target_date.strftime('%Y%m%d')}-{len(events)}",
-                    "title": title,
-                    "category": CATEGORY_PRESETS["music"]["category"],
-                    "color": CATEGORY_PRESETS["music"]["color"],
-                    "icon": CATEGORY_PRESETS["music"]["icon"],
-                    "venue": geo["venue"],
-                    "neighborhood": geo["neighborhood"],
-                    "corridor": geo["corridor"],
-                    "lat": geo["lat"],
-                    "lng": geo["lng"],
-                    "time": time_str,
-                    "hour": hour_int,
-                    "price": "5€ - 10€",
-                    "priceTier": "ACCESSIBLE",
-                    "url": ev_url,
-                    "description": f"Concerto e programação cultural na BOTA Anjos: {title}."
-                })
-    except Exception as e:
-        print(f"[Tier 2] BOTA Anjos notice: {e}")
+        print(f"[Moon Club Scraper] Notice: {e}")
 
     return events
 
 
-# ==============================================================================
-# TIER 4: VERIFIED ONGOING EXHIBITIONS & THEATER RUNS (Fallback Only for Unrepresented Venues)
-# ==============================================================================
-def get_verified_ongoing_runs(target_date, represented_venues):
-    """
-    Injects real, verified ongoing exhibitions and theatrical runs ONLY for venues
-    that did not already receive a time-specific event today, respecting closed days.
-    """
-    weekday = target_date.weekday()  # 0 = Monday, 1 = Tuesday, ... 6 = Sunday
-    verified_runs = [
-        {
-            "title": "Délio Jasse: Entre a Pele e o Documento & Antologias da Memória",
-            "venue_key": "mnac", "category_key": "art", "time": "10:00", "hour": 10,
-            "price": "10.00€", "priceTier": "ACCESSIBLE",
-            "url": "https://museuartecontemporanea.gov.pt",
-            "closed_weekdays": [0],
-            "desc": "Exposições temporárias de fotografia e arte contemporânea no MNAC - Museu do Chiado."
-        },
-        {
-            "title": "VENUS – Valentino Garavani pelo olhar de Joana Vasconcelos & Pedro Cabrita Reis",
-            "venue_key": "maat", "category_key": "art", "time": "11:00", "hour": 11,
-            "price": "11.00€", "priceTier": "ACCESSIBLE",
-            "url": "https://www.maat.pt/pt/agenda",
-            "closed_weekdays": [1],
-            "desc": "Grandes exposições de Joana Vasconcelos, Pedro Cabrita Reis e João Pimenta Gomes no MAAT."
-        },
-        {
-            "title": "Ângela Ferreira: Here I Stand & Frida Orupabo: Cloud of Confusion",
-            "venue_key": "mac/ccb", "category_key": "art", "time": "10:00", "hour": 10,
-            "price": "15.00€", "priceTier": "ACCESSIBLE",
-            "url": "https://www.ccb.pt/macccb/",
-            "closed_weekdays": [0],
-            "desc": "Exposições temporárias e coleção Berardo no MAC/CCB — Museu de Arte Contemporânea."
-        },
-        {
-            "title": "Xerazade, a Coleção Interminável do CAM & Inês Zenha: Águas Turvas",
-            "venue_key": "cam gulbenkian", "category_key": "art", "time": "10:00", "hour": 10,
-            "price": "8.00€", "priceTier": "ACCESSIBLE",
-            "url": "https://gulbenkian.pt/cam/agenda/",
-            "closed_weekdays": [1],
-            "desc": "Exposições de arte moderna e contemporânea no renovado CAM Gulbenkian."
-        },
-        {
-            "title": "Japão: Festas e Rituais & Invocar o Silêncio (Indonésia)",
-            "venue_key": "museu do oriente", "category_key": "art", "time": "10:00", "hour": 10,
-            "price": "6.00€", "priceTier": "ACCESSIBLE",
-            "url": "https://www.foriente.pt/agenda.php",
-            "closed_weekdays": [0],
-            "desc": "Exposições sobre rituais asiáticos e património biocultural no Museu do Oriente."
-        },
-        {
-            "title": "Coleção Real de Viaturas de Gala & Modelismo de Coches",
-            "venue_key": "museu nacional dos coches", "category_key": "art", "time": "10:00", "hour": 10,
-            "price": "8.00€", "priceTier": "ACCESSIBLE",
-            "url": "https://www.mncoches.gov.pt",
-            "closed_weekdays": [0],
-            "desc": "Exposição permanente e temporária no Museu Nacional dos Coches e Picadeiro Real em Belém."
-        },
-        {
-            "title": "Macbeth (enc. Pedro Penim) & Auto da Barca do Inferno (Raquel Castro)",
-            "venue_key": "teatro nacional d. maria ii", "category_key": "theatre", "time": "20:00", "hour": 20,
-            "price": "15.00€", "priceTier": "MID",
-            "url": "https://www.tndm.pt",
-            "closed_weekdays": [0, 1],
-            "desc": "Temporada teatral nas Salas Garrett e Estúdio do Teatro Nacional D. Maria II."
-        },
-        {
-            "title": "Em Silêncio — de Teresa Sobral",
-            "venue_key": "sao luiz", "category_key": "theatre", "time": "20:00", "hour": 20,
-            "price": "12.00€", "priceTier": "ACCESSIBLE",
-            "url": "https://www.teatrosaoluiz.pt/espetaculo/em-silencio/",
-            "closed_weekdays": [0, 1],
-            "desc": "Espetáculo de teatro contemporâneo em cena no São Luiz Teatro Municipal."
-        },
-        {
-            "title": "Clube dos Poetas Mortos — enc. Hélder Gamboa",
-            "venue_key": "teatro da trindade", "category_key": "theatre", "time": "21:00", "hour": 21,
-            "price": "16€ - 22€", "priceTier": "MID",
-            "url": "https://teatrotrindade.inatel.pt/espetaculo/clube-dos-poetas-mortos/",
-            "closed_weekdays": [0, 1],
-            "desc": "Peça de Tom Schulman em cena no Teatro da Trindade INATEL no Chiado."
-        },
-        {
-            "title": "Pura Loucura — Temporada Teatro Maria Matos",
-            "venue_key": "teatro maria matos", "category_key": "theatre", "time": "21:00", "hour": 21,
-            "price": "21€ - 23€", "priceTier": "MID",
-            "url": "https://teatromariamatos.pt/espetaculos/pura-loucura/",
-            "closed_weekdays": [0, 1, 2],
-            "desc": "Comédia teatral em cena de quinta a domingo no Teatro Maria Matos em Alvalade."
-        },
-        {
-            "title": "Contos em Viagem — Goa",
-            "venue_key": "teatro meridional", "category_key": "theatre", "time": "21:00", "hour": 21,
-            "price": "12.00€", "priceTier": "ACCESSIBLE",
-            "url": "https://teatromeridional.net/index.php/programacao/espectaculos",
-            "closed_weekdays": [0, 1],
-            "desc": "Espetáculo teatral sobre Goa, Damão e Diu no Teatro Meridional em Marvila."
-        },
-        {
-            "title": "Ópera-Pimba no Gelo! O Primeiro Musical no Gelo Derretido",
-            "venue_key": "teatro da comuna", "category_key": "theatre", "time": "20:10", "hour": 20,
-            "price": "12€ - 15€", "priceTier": "ACCESSIBLE",
-            "url": "https://www.comunateatropesquisa.pt",
-            "closed_weekdays": [0, 1],
-            "desc": "Comédia musical satírica na Sala Nova do Teatro da Comuna (Praça de Espanha)."
-        },
-        {
-            "title": "Hércules - O Musical Heróico & Carmen Miranda - O Grande Musical",
-            "venue_key": "teatro politeama", "category_key": "theatre", "time": "21:00", "hour": 21,
-            "price": "15€ - 30€", "priceTier": "MID",
-            "url": "https://filipelaferia.pt",
-            "closed_weekdays": [0, 1],
-            "desc": "Grandes produções musicais de Filipe La Féria no Teatro Politeama."
-        },
-        {
-            "title": "Alexandre Estrela: RedSkyFalls (Réplica) — Exposição ZDB",
-            "venue_key": "zdb", "category_key": "art", "time": "18:00", "hour": 18,
-            "price": "Grátis", "priceTier": "FREE",
-            "url": "https://zedosbois.org/en/programa/redskyfalls-replica/",
-            "closed_weekdays": [6],
-            "desc": "Exposição de artes visuais de Alexandre Estrela na Galeria Zé dos Bois (18h–22h)."
-        },
-        {
-            "title": "Exposições de Arte Urbana & Edições de Artista",
-            "venue_key": "underdogs", "category_key": "art", "time": "14:00", "hour": 14,
-            "price": "Grátis", "priceTier": "FREE",
-            "url": "https://www.under-dogs.net/pages/exhibitions",
-            "closed_weekdays": [0, 6],
-            "desc": "Galeria de arte contemporânea e arte urbana em Marvila."
-        },
-        {
-            "title": "Exposições Interativas de Ciência Viva em Família",
-            "venue_key": "pavilhao do conhecimento", "category_key": "family", "time": "10:00", "hour": 10,
-            "price": "11€ - 15€", "priceTier": "ACCESSIBLE",
-            "url": "https://www.pavconhecimento.pt",
-            "closed_weekdays": [],
-            "desc": "Exploração científica interativa e oficinas para famílias no Parque das Nações."
-        },
-        {
-            "title": "Galerias de Arte, Lojas Independentes & Cultura Emergente",
-            "venue_key": "8 marvila", "category_key": "community", "time": "12:00", "hour": 12,
-            "price": "Grátis", "priceTier": "FREE",
-            "url": "https://www.8marvila.com",
-            "closed_weekdays": [0, 1, 2],
-            "desc": "Percurso expositivo, galerias e espaço cultural no 8 Marvila."
-        }
-    ]
-
-    fallback_events = []
-    for idx, item in enumerate(verified_runs):
-        if weekday in item["closed_weekdays"]:
-            continue
-        geo = match_venue(item["venue_key"])
-        if geo["venue"] in represented_venues:
-            continue
-        cat_info = CATEGORY_PRESETS[item["category_key"]]
-        fallback_events.append({
-            "id": f"ongoing-{target_date.strftime('%Y%m%d')}-{idx+1}",
-            "title": item["title"],
-            "category": cat_info["category"],
-            "color": cat_info["color"],
-            "icon": cat_info["icon"],
-            "venue": geo["venue"],
-            "neighborhood": geo["neighborhood"],
-            "corridor": geo["corridor"],
-            "lat": geo["lat"],
-            "lng": geo["lng"],
-            "time": item["time"],
-            "hour": item["hour"],
-            "price": item["price"],
-            "priceTier": item["priceTier"],
-            "url": item["url"],
-            "description": item["desc"]
-        })
-    return fallback_events
-
-
-# ==============================================================================
-# SMART DEDUPLICATION & GOLDEN-ANGLE FERMAT SPIRAL JITTER
-# ==============================================================================
 def deduplicate_and_merge_events(raw_events):
-    """
-    Deduplicates events by (venue, normalized_title_prefix) while preserving short
-    artist names (>= 2 chars like 'Sul', 'Jos', 'RY X') and merging richer metadata.
-    """
     merged = {}
     for ev in raw_events:
         raw_t = ev.get("title", "").strip()
@@ -1449,22 +936,10 @@ def deduplicate_and_merge_events(raw_events):
 
         if dedup_sig not in merged:
             merged[dedup_sig] = ev
-        else:
-            existing = merged[dedup_sig]
-            if len(urlparse(ev.get("url", "")).path) > len(urlparse(existing.get("url", "")).path):
-                existing["url"] = ev["url"]
-            if "confirmar" in existing.get("price", "").lower() and "confirmar" not in ev.get("price", "").lower():
-                existing["price"] = ev["price"]
-                existing["priceTier"] = ev["priceTier"]
-
     return list(merged.values())
 
 
 def apply_coordinate_jitter(events):
-    """
-    Applies a compact Golden-Angle Fermat spiral offset around shared venue coordinates
-    so 100+ pins do not stack on top of each other or drift into the Tagus River.
-    """
     coord_groups = {}
     for ev in events:
         key = f"{ev['lat']:.4f},{ev['lng']:.4f}"
@@ -1483,7 +958,6 @@ def apply_coordinate_jitter(events):
             rad_angle = math.radians(idx * golden_angle_deg)
             ev["lat"] = round(base_lat + (radius * math.cos(rad_angle)), 6)
             ev["lng"] = round(base_lng + (radius * math.sin(rad_angle) * 1.25), 6)
-
     return events
 
 
@@ -1491,31 +965,28 @@ def main():
     target_date, now_time = get_lisbon_operational_date()
     print(f"=== Executing Keks Passa Live Pipeline for Operational Date: {target_date} ===")
 
-    tier1_agendalx = scrape_agendalx_api(target_date)
-    tier1_ra = scrape_resident_advisor(target_date)
-    tier2_direct = scrape_direct_venues(target_date)
-    tier3_shotgun = scrape_shotgun(target_date)
-    tier3_nocartaz = scrape_nocartaz_lisboa(target_date)
-    tier3_adc = scrape_agendadeconcertos(target_date)
+    tier_pv = scrape_prior_velho_electronic(target_date)
+    all_events = deduplicate_and_merge_events(tier_pv)
 
-    live_raw = tier1_ra + tier3_shotgun + tier2_direct + tier3_nocartaz + tier3_adc + tier1_agendalx
-    live_events = deduplicate_and_merge_events(live_raw)
+    for ev in all_events:
+        if "endTime" not in ev:
+            end_t, end_h = infer_end_time(
+                ev.get("time", "21:00"),
+                ev.get("hour", 21),
+                ev.get("category", ""),
+                ev.get("venue", ""),
+                ev.get("title", ""),
+                ev.get("description", "")
+            )
+            ev["endTime"] = end_t
+            ev["endHour"] = end_h
 
-    represented_venues = {ev["venue"] for ev in live_events}
-    tier4_ongoing = get_verified_ongoing_runs(target_date, represented_venues)
-
-    all_events = deduplicate_and_merge_events(live_events + tier4_ongoing)
-
-    # Sort chronologically according to the 04:00 AM Lisbon operational day
     all_events.sort(
         key=lambda x: (
             x.get("hour", 0) + 24 if x.get("hour", 0) < 4 else x.get("hour", 0),
             x.get("time", "00:00")
         )
     )
-
-    if MAX_EVENTS and len(all_events) > MAX_EVENTS:
-        all_events = all_events[:MAX_EVENTS]
 
     all_events = apply_coordinate_jitter(all_events)
 
