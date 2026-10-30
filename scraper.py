@@ -965,9 +965,24 @@ def main():
     target_date, now_time = get_lisbon_operational_date()
     print(f"=== Executing Keks Passa Live Pipeline for Operational Date: {target_date} ===")
 
+    # Run all scrapers to collect a full list of events
+    tier1_agendalx = scrape_agendalx_api(target_date)
+    tier1_ra = scrape_resident_advisor(target_date)
+    tier2_direct = scrape_direct_venues(target_date)
+    tier3_shotgun = scrape_shotgun(target_date)
+    tier3_nocartaz = scrape_nocartaz_lisboa(target_date)
+    tier3_adc = scrape_agendadeconcertos(target_date)
     tier_pv = scrape_prior_velho_electronic(target_date)
-    all_events = deduplicate_and_merge_events(tier_pv)
 
+    live_raw = tier1_ra + tier3_shotgun + tier2_direct + tier3_nocartaz + tier3_adc + tier1_agendalx + tier_pv
+    live_events = deduplicate_and_merge_events(live_raw)
+
+    represented_venues = {ev["venue"] for ev in live_events}
+    tier4_ongoing = get_verified_ongoing_runs(target_date, represented_venues)
+
+    all_events = deduplicate_and_merge_events(live_events + tier4_ongoing)
+
+    # Evaluate end times
     for ev in all_events:
         if "endTime" not in ev:
             end_t, end_h = infer_end_time(
@@ -987,6 +1002,9 @@ def main():
             x.get("time", "00:00")
         )
     )
+
+    if MAX_EVENTS and len(all_events) > MAX_EVENTS:
+        all_events = all_events[:MAX_EVENTS]
 
     all_events = apply_coordinate_jitter(all_events)
 
