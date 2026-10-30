@@ -1,8 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- Yellow drop shadow box -->
-  <rect x="6" y="6" width="52" height="52" fill="#f4ce46" />
-  <!-- Red main stamp box with paper border -->
-  <rect x="2" y="2" width="52" height="52" fill="#f04432" stroke="#f0eddf" stroke-width="3" transform="rotate(-4 28 28)" />
-  <!-- Bold KP text -->
-  <text x="29" y="38" font-family="Impact, &#39;Barlow Condensed&#39;, sans-serif" font-weight="900" font-size="32" fill="#111713" text-anchor="middle" transform="rotate(-4 29 28)">KP</text>
+  <!-- Full-bleed red square with high-contrast cream border -->
+  <rect x="1" y="1" width="62" height="62" fill="#f04432" stroke="#f0eddf" stroke-width="2" />
+  <!-- Ultra-bold K and P with cream outline nearly touching all 4 borders (1.5px margin) -->
+  <g fill="#111713" stroke="#f0eddf" stroke-width="3" stroke-linejoin="miter">
+    <!-- Letter K: x=3..31, y=3..61 -->
+    <path d="M3 3 H13 V25 L21 3 H31 L20 31 L31 61 H21 L13 37 V61 H3 Z" />
+    <!-- Letter P (with counter cutout): x=34..61, y=3..61 -->
+    <path fill-rule="evenodd" d="M34 3 H51 C57.8 3 61 7.5 61 15.5 V24.5 C61 32.5 57.8 37 51 37 H44 V61 H34 Z M44 12 V28 H49.5 C51.2 28 52 26.8 52 24 V16 C52 13.2 51.2 12 49.5 12 Z" />
+  </g>
 </svg>
