@@ -6,98 +6,181 @@
   <meta name="theme-color" content="#111713">
   <meta name="description" content="Keks Passa — o que temos hoje em Lisboa? Música, exposições, cinema, teatro e coisas para fazer pela cidade.">
   <title>Keks Passa — Que temos hoje?</title>
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' fill='%23f04432' stroke='%23f0eddf' stroke-width='2'/%3E%3Cg fill='%23111713' stroke='%23f0eddf' stroke-width='3' stroke-linejoin='miter' paint-order='stroke fill'%3E%3Cpath d='M3 3 H13 V25 L21 3 H31 L20 31 L31 61 H21 L13 37 V61 H3 Z'/%3E%3Cpath fill-rule='evenodd' d='M34 3 H51 C57.8 3 61 7.5 61 15.5 V24.5 C61 32.5 57.8 37 51 37 H44 V61 H34 Z M44 12 V28 H49.5 C51.2 28 52 26.8 52 24 V16 C52 13.2 51.2 12 49.5 12 Z'/%3E%3C/g%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
     :root{--ink:#111713;--ink2:#1b241e;--panel:#202a23;--panel2:#28342b;--paper:#f0eddf;--muted:#b4b8a7;--red:#f04432;--yellow:#f4ce46;--green:#9ac57b;--line:#3c493e;--display:'Barlow Condensed',Impact,'Arial Narrow',sans-serif;--body:'DM Sans',sans-serif;--mono:'DM Mono',monospace}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);min-height:100vh;-webkit-font-smoothing:antialiased;background-image:radial-gradient(circle at 1px 1px,rgba(240,237,223,.055) 1px,transparent 0);background-size:5px 5px}button,input,select{font:inherit}button,a,select{-webkit-tap-highlight-color:transparent}a{color:inherit}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);min-height:100vh;-webkit-font-smoothing:antialiased;background-image:radial-gradient(circle at 1px 1px,rgba(240,237,223,.055) 1px,transparent 0);background-size:5px 5px}button,input,select,textarea{font:inherit}button,a,select{-webkit-tap-highlight-color:transparent}a{color:inherit}
     .site-header{position:sticky;top:0;z-index:1000;background:rgba(17,23,19,.96);border-bottom:2px solid var(--red);backdrop-filter:blur(12px)}.header-inner{max-width:1600px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:13px;min-width:0;text-decoration:none}
-    .brand-stamp{display:grid;place-items:center;width:52px;height:52px;flex:0 0 52px;background:var(--red);color:var(--ink);font:900 38px/1 var(--display);letter-spacing:-2px;transform:rotate(-4deg);border:2px solid var(--paper);box-shadow:4px 4px 0 var(--yellow)}
-    .brand-name{display:block;font:900 clamp(27px,3.1vw,39px)/.85 var(--display);text-transform:uppercase;letter-spacing:-.5px}.brand-line{display:block;color:var(--yellow);font:500 10px/1.6 var(--mono);text-transform:uppercase;letter-spacing:1.2px;margin-top:5px}.header-note{text-align:right;color:var(--muted);font:11px/1.6 var(--mono);text-transform:uppercase}.header-note strong{color:var(--green);font-weight:500}
+    
+    .brand-stamp {
+      display: block;
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      padding: 0;
+      background: var(--red);
+      transform: rotate(-4deg);
+      border: 2px solid var(--paper);
+      box-shadow: 4px 4px 0 var(--yellow);
+      overflow: hidden;
+    }
+    .brand-stamp svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .brand-name{display:block;font:900 clamp(27px,3.1vw,39px)/.85 var(--display);text-transform:uppercase;letter-spacing:-.5px}.brand-line{display:block;color:var(--yellow);font:500 10px/1.6 var(--mono);text-transform:uppercase;letter-spacing:1.2px;margin-top:5px}
+    .header-right{display:flex;align-items:center;gap:14px}
+    .header-note{text-align:right;color:var(--muted);font:11px/1.5 var(--mono);text-transform:uppercase}.header-note strong{color:var(--green);font-weight:500;display:block}
+    .header-live-clock{color:var(--yellow);font-size:10px}
+    .suggest-trigger-btn{border:1px solid var(--yellow);background:var(--ink2);color:var(--yellow);padding:7px 11px;font:700 11px/1 var(--mono);text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 var(--red);transition:transform .12s,background .12s,color .12s;white-space:nowrap}
+    .suggest-trigger-btn:hover{background:var(--yellow);color:var(--ink);transform:translate(-1px,-1px)}
+
     main{width:min(1600px,100%);margin:0 auto;padding:26px 22px 48px}.hero{position:relative;overflow:hidden;padding:clamp(24px,4vw,52px);background:var(--red);color:var(--ink);border:2px solid var(--paper);box-shadow:8px 8px 0 var(--yellow)}.hero-topline{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:1.2px}.hero h1{position:relative;z-index:1;margin:12px 0 0;font:900 clamp(68px,11.2vw,160px)/.78 var(--display);letter-spacing:-.045em;text-transform:uppercase}.hero h1 span{color:var(--paper);-webkit-text-stroke:1px var(--ink);text-shadow:5px 5px 0 var(--ink)}.hero-bottom{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-top:26px}.hero-copy{max-width:520px;margin:0;font-size:clamp(14px,1.35vw,18px);font-weight:600;line-height:1.5}.hero-count{display:flex;flex-direction:column;align-items:flex-end;min-width:125px}.hero-count strong{font:900 42px/.9 var(--display)}.hero-count span{margin-top:8px;font:500 10px/1.6 var(--mono);text-align:right;text-transform:uppercase}
     
-    /* Interactive Draggable Marquee Ticker (1200s slow scroll) */
     .ticker-wrap{overflow:hidden;width:100%;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0 18px;cursor:grab;user-select:none;-webkit-user-select:none}
     .ticker-wrap:active{cursor:grabbing}
-    .ticker{display:flex;width:max-content;animation:tickerScroll 1200s linear infinite;color:var(--yellow);font:700 12px var(--mono);text-transform:none;letter-spacing:.5px;will-change:transform}
+    .ticker{display:flex;width:max-content;animation:tickerScroll 1800s linear infinite;color:var(--yellow);font:700 12px var(--mono);text-transform:none;letter-spacing:.5px;will-change:transform}
     .ticker.is-dragging{animation-play-state:paused!important;cursor:grabbing}
     .ticker:hover{animation-play-state:paused}
     .ticker span{display:inline-flex;align-items:center;padding-right:24px;pointer-events:none}
     .ticker span:nth-child(even){color:var(--red)}
     @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    @media(max-width:900px){
-      .ticker{animation-duration:1200s}
-    }
-
-    .toolbar{margin:10px 0 18px;padding:17px;background:var(--ink2);border:1px solid var(--line)}.filters{display:grid;grid-template-columns:1.25fr 1fr .8fr 1fr;gap:12px}.field label{display:block;margin-bottom:7px;color:var(--green);font:500 10px var(--mono);text-transform:uppercase;letter-spacing:.6px}.field input,.field select{width:100%;min-height:43px;padding:10px 12px;border:1px solid #526052;border-radius:0;background:var(--ink);color:var(--paper);outline:none;font-size:13px}.field input::placeholder{color:#879084}.field input:focus,.field select:focus{border-color:var(--yellow);box-shadow:0 0 0 1px var(--yellow)}.toolbar-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:13px;padding-top:12px;color:var(--muted);font:11px/1.4 var(--mono)}.toolbar-bottom strong{color:var(--green);font-weight:500}.text-button{border:0;background:none;padding:3px 0;color:var(--yellow);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font:500 11px var(--mono)}.map-toggle{display:none;border:1px solid var(--yellow);background:var(--yellow);color:var(--ink);padding:11px 14px;width:100%;margin-bottom:12px;text-transform:uppercase;font:800 15px var(--display);cursor:pointer}
+    .toolbar{margin:10px 0 18px;padding:17px;background:var(--ink2);border:1px solid var(--line)}.filters{display:grid;grid-template-columns:1.25fr 1fr .8fr 1fr;gap:12px}.field label{display:block;margin-bottom:7px;color:var(--green);font:500 10px var(--mono);text-transform:uppercase;letter-spacing:.6px}.field input,.field select,.field textarea{width:100%;min-height:43px;padding:10px 12px;border:1px solid #526052;border-radius:0;background:var(--ink);color:var(--paper);outline:none;font-size:13px}.field input::placeholder,.field textarea::placeholder{color:#879084}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--yellow);box-shadow:0 0 0 1px var(--yellow)}.toolbar-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line);margin-top:13px;padding-top:12px;color:var(--muted);font:11px/1.4 var(--mono)}.toolbar-bottom strong{color:var(--green);font-weight:500}.toolbar-actions{display:flex;align-items:center;gap:16px}.text-button{border:0;background:none;padding:3px 0;color:var(--yellow);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font:500 11px var(--mono)}.map-toggle{display:none;border:1px solid var(--yellow);background:var(--yellow);color:var(--ink);padding:11px 14px;width:100%;margin-bottom:12px;text-transform:uppercase;font:800 15px var(--display);cursor:pointer}
     
-    /* Layout with matching isolated scrollable panels */
     .content-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(350px,.92fr);align-items:start;gap:20px}
     .map-panel{position:sticky;top:86px;background:var(--ink2);border:1px solid var(--line);padding:8px}
+    .map-stage{position:relative;width:100%}
     #map{width:100%;height:min(72vh,740px);min-height:450px;background:#26362d;z-index:1;filter:saturate(.82) contrast(1.02)}
-    .map-caption{display:flex;justify-content:space-between;gap:10px;padding:10px 5px 3px;color:var(--muted);font:10px/1.5 var(--mono)}.map-caption span:first-child{color:var(--paper)}
+    
+    .daylight-toggle{position:absolute;top:12px;right:12px;z-index:500;display:inline-flex;background:rgba(17,23,19,.94);border:2px solid var(--paper);box-shadow:4px 4px 0 var(--ink);backdrop-filter:blur(6px)}
+    .daylight-btn{border:0;border-right:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 11px;font:700 11px/1 var(--mono);text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:background .15s,color .15s}
+    .daylight-btn:last-child{border-right:0}
+    .daylight-btn:hover{color:var(--paper);background:rgba(240,237,223,.08)}
+    .daylight-btn.is-active[data-mode="SUN"]{background:var(--yellow);color:var(--ink)}
+    .daylight-btn.is-active[data-mode="ALL"]{background:var(--red);color:var(--ink)}
+    .daylight-btn.is-active[data-mode="MOON"]{background:#8338ec;color:var(--paper)}
+    .daylight-status{position:absolute;bottom:12px;left:12px;z-index:500;background:rgba(17,23,19,.9);border:1px solid var(--yellow);color:var(--yellow);padding:4px 8px;font:500 10px/1.3 var(--mono);pointer-events:none;display:none}
+    .daylight-status.is-visible{display:block}
+
+    .marker-pin-inner{width:32px;height:32px;border-radius:50%;border:2px solid #f0eddf;box-shadow:3px 3px 0 #111713;display:flex;align-items:center;justify-content:center;font-size:14px;transition:opacity .22s ease,filter .22s ease,transform .22s ease}
+    .marker-pin-inner.is-dimmed{opacity:.22;filter:grayscale(70%) brightness(.75);transform:scale(.82)}
+    .marker-pin-inner.is-highlighted{opacity:1;transform:scale(1.06);box-shadow:3px 3px 0 var(--yellow)}
+
+    .map-caption{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 5px 3px;color:var(--muted);font:10px/1.5 var(--mono)}.map-caption span:first-child{color:var(--paper)}
     
     .events-column{min-width:0;position:sticky;top:86px}
     .list-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px;padding-bottom:10px;border-bottom:2px solid var(--yellow)}
     .list-heading h2{margin:0;font:800 26px var(--display);text-transform:uppercase;letter-spacing:.2px}
     .list-heading span{color:var(--green);font:500 10px var(--mono);text-align:right}
     
-    /* Isolated scrollable events window */
     #events-card-list{max-height:min(72vh,740px);overflow-y:auto;overscroll-behavior:contain;padding-right:8px;scrollbar-width:thin;scrollbar-color:var(--yellow) var(--ink2)}
     #events-card-list::-webkit-scrollbar{width:6px}
     #events-card-list::-webkit-scrollbar-track{background:var(--ink2)}
     #events-card-list::-webkit-scrollbar-thumb{background:var(--yellow)}
 
-    .event-card{display:flex;flex-direction:column;justify-content:space-between;gap:16px;margin-bottom:12px;padding:16px;background:var(--ink2);border:1px solid var(--line);border-left:4px solid var(--red);transition:transform .15s,border-color .15s}.event-card:hover{transform:translateY(-2px);border-color:var(--yellow)}.event-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.category-tag{display:inline-block;max-width:78%;padding:4px 7px;color:var(--ink);font:700 9px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.3px}.event-time{color:var(--yellow);font:500 11px var(--mono);white-space:nowrap}.event-title{margin:0 0 7px;font-size:19px;font-weight:800;line-height:1.2;letter-spacing:-.3px}.event-location{margin:0 0 9px;color:var(--muted);font-size:12px;line-height:1.5}.event-location strong{color:var(--paper);font-weight:600}.event-description{margin:0;color:#d0d3c8;font-size:12px;line-height:1.55}.event-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid var(--line)}.event-price{color:var(--green);font:500 11px var(--mono)}.event-actions{display:flex;gap:6px}.event-actions button, .event-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:30px;border:1px solid #556153;padding:6px 9px;font:600 10px var(--mono);text-decoration:none;cursor:pointer;transition:.15s}.event-actions button{background:transparent;color:var(--paper)}.event-actions button:hover{border-color:var(--green);color:var(--green)}.event-actions button:disabled{opacity:.45;cursor:not-allowed}.event-actions a{color:var(--ink);background:var(--red);border-color:var(--red);font-weight:700}.event-actions a:hover{background:var(--yellow);border-color:var(--yellow)}.empty-state{padding:28px 18px;text-align:center;border:1px dashed var(--line);background:var(--ink2);color:var(--muted);font-size:13px;line-height:1.6}.empty-state button{margin-top:8px}
+    .event-card{display:flex;flex-direction:column;justify-content:space-between;gap:16px;margin-bottom:12px;padding:16px;background:var(--ink2);border:1px solid var(--line);border-left:4px solid var(--red);transition:transform .15s,border-color .15s,opacity .2s}.event-card:hover{transform:translateY(-2px);border-color:var(--yellow)}.event-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.category-tag{display:inline-block;max-width:65%;padding:4px 7px;color:var(--ink);font:700 9px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.3px}.event-time-wrap{display:flex;align-items:center;gap:6px;white-space:nowrap}.event-time{color:var(--yellow);font:500 11px var(--mono)}.live-now-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;background:rgba(154,197,123,.16);border:1px solid var(--green);color:var(--green);font:700 9px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.4px}
+    .event-title{margin:0 0 7px;font-size:19px;font-weight:800;line-height:1.2;letter-spacing:-.3px}.event-location{margin:0 0 9px;color:var(--muted);font-size:12px;line-height:1.5}.event-location strong{color:var(--paper);font-weight:600}.event-description{margin:0;color:#d0d3c8;font-size:12px;line-height:1.55}.event-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid var(--line)}.event-price{color:var(--green);font:500 11px var(--mono)}.event-actions{display:flex;gap:6px}.event-actions button, .event-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:30px;border:1px solid #556153;padding:6px 9px;font:600 10px var(--mono);text-decoration:none;cursor:pointer;transition:.15s}.event-actions button{background:transparent;color:var(--paper)}.event-actions button:hover{border-color:var(--green);color:var(--green)}.event-actions button:disabled{opacity:.45;cursor:not-allowed}.event-actions a{color:var(--ink);background:var(--red);border-color:var(--red);font-weight:700}.event-actions a:hover{background:var(--yellow);border-color:var(--yellow)}.empty-state{padding:28px 18px;text-align:center;border:1px dashed var(--line);background:var(--ink2);color:var(--muted);font-size:13px;line-height:1.6}.empty-state button{margin-top:8px}
     
-    /* Footer styling */
+    .modal-backdrop{position:fixed;inset:0;z-index:2000;background:rgba(11,15,12,.82);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:18px}
+    .modal-backdrop.is-open{display:flex}
+    .suggest-modal{width:min(560px,100%);max-height:90vh;overflow-y:auto;background:var(--ink2);border:2px solid var(--paper);box-shadow:8px 8px 0 var(--red);padding:22px}
+    .suggest-modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:2px solid var(--yellow);padding-bottom:12px;margin-bottom:14px}
+    .suggest-modal-header h2{margin:0;font:900 28px/1 var(--display);text-transform:uppercase;color:var(--paper)}
+    .suggest-modal-header p{margin:6px 0 0;color:var(--muted);font:11px/1.4 var(--mono)}
+    .modal-close-btn{border:1px solid var(--line);background:var(--ink);color:var(--paper);width:32px;height:32px;font:700 14px var(--mono);cursor:pointer}
+    .modal-close-btn:hover{border-color:var(--red);color:var(--red)}
+    .suggest-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+    .suggest-grid .full-span{grid-column:1 / -1}
+    .moderation-note{margin:12px 0;padding:10px 12px;background:var(--ink);border-left:3px solid var(--green);color:var(--muted);font:10px/1.5 var(--mono)}
+    .suggest-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:14px}
+    .btn-primary{border:2px solid var(--paper);background:var(--red);color:var(--ink);padding:10px 16px;font:800 13px/1 var(--mono);text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 var(--yellow)}
+    .btn-primary:hover{background:var(--yellow)}
+    .btn-secondary{border:1px solid var(--yellow);background:transparent;color:var(--yellow);padding:10px 14px;font:600 11px/1 var(--mono);text-transform:uppercase;cursor:pointer}
+    .btn-secondary:hover{background:rgba(244,206,70,.12)}
+    .suggest-feedback{margin-top:12px;padding:12px;background:var(--ink);border:1px solid var(--green);color:var(--green);font:11px/1.5 var(--mono);display:none}
+    .suggest-feedback.is-visible{display:block}
+    .suggest-feedback pre{margin:8px 0 0;padding:8px;background:var(--ink2);color:var(--paper);overflow-x:auto;font-size:10px;border:1px solid var(--line)}
+
     footer{max-width:1600px;margin:0 auto;padding:20px 22px 30px;color:var(--muted);font:10px/1.7 var(--mono);text-transform:uppercase}
     .footer-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;border-top:1px solid var(--line);padding-top:16px}
     footer strong{color:var(--yellow);font-weight:500}
 
     .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--ink2);color:var(--paper)}.leaflet-popup-content-wrapper{border:1px solid var(--yellow);border-radius:0}.leaflet-popup-content{margin:12px}.leaflet-container a{color:var(--yellow)}.popup-tag{display:inline-block;padding:3px 5px;color:var(--ink);font:700 9px var(--mono);text-transform:uppercase}.popup-title{margin:8px 0 6px;font:700 15px/1.15 var(--body)}.popup-detail{margin:3px 0;color:#c4cbbd;font-size:11px;line-height:1.5}.popup-link{display:block;margin-top:9px;padding:7px 9px;background:var(--red);color:var(--ink)!important;text-align:center;text-decoration:none;font:700 10px var(--mono);text-transform:uppercase}
-    @media(max-width:900px){.header-inner{padding:11px 16px}main{padding:18px 16px 36px}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.content-grid{grid-template-columns:1fr}.map-toggle{display:block}.map-panel{display:none;position:static}.map-panel.is-open{display:block}#map{height:48vh;min-height:360px}.events-column{position:static}#events-card-list{max-height:65vh}.list-heading{margin-top:3px}}
-    @media(max-width:540px){.header-inner{gap:10px}.brand-stamp{width:39px;height:39px;flex-basis:39px;font-size:20px}.brand-name{font-size:30px}.brand-line{font-size:8px;letter-spacing:.7px}.header-note{max-width:105px;font-size:9px}main{padding:14px 12px 28px}.hero{padding:22px 17px}.hero h1{font-size:clamp(48px,14vw,72px)}.hero-bottom{align-items:flex-start;flex-direction:column;gap:14px;margin-top:17px}.hero-count{width:100%;min-width:0;display:flex;align-items:center;gap:12px}.hero-count strong{font-size:28px}.hero-count span{margin:0;text-align:left}.filters{grid-template-columns:1fr;gap:10px}.toolbar{padding:12px}.toolbar-bottom{align-items:flex-start}.map-caption{flex-direction:column;gap:3px}.event-card{padding:13px}.event-title{font-size:17px}.event-card-bottom{align-items:flex-start;flex-direction:column}.event-actions{width:100%}.event-actions button,.event-actions a{flex:1}footer{padding:18px 12px 25px}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
   <header class="site-header"><div class="header-inner">
-    <a class="brand" href="#top" aria-label="Keks Passa — início"><span class="brand-stamp" aria-hidden="true">KP</span><span><span class="brand-name">Keks Passa</span><span class="brand-line">Cheira a ditadura mas Lisboa não pára</span></span></a>
-    <div class="header-note"><strong id="today-label">Hoje em Lisboa</strong></div>
+    <a class="brand" href="#top" aria-label="Keks Passa — início">
+      <span class="brand-stamp" aria-hidden="true">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KP">
+          <g fill="#111713" stroke="#f0eddf" stroke-width="3" stroke-linejoin="miter" paint-order="stroke fill">
+            <path d="M3 3 H13 V25 L21 3 H31 L20 31 L31 61 H21 L13 37 V61 H3 Z"/>
+            <path fill-rule="evenodd" d="M34 3 H51 C57.8 3 61 7.5 61 15.5 V24.5 C61 32.5 57.8 37 51 37 H44 V61 H34 Z M44 12 V28 H49.5 C51.2 28 52 26.8 52 24 V16 C52 13.2 51.2 12 49.5 12 Z"/>
+          </g>
+        </svg>
+      </span>
+      <span><span class="brand-name">Keks Passa</span><span class="brand-line">Cheira a ditadura mas Lisboa não pára</span></span>
+    </a>
+    <div class="header-right">
+      <button type="button" class="suggest-trigger-btn" id="open-suggest-header">＋ Sugerir sítio</button>
+      <div class="header-note">
+        <strong id="today-label">Hoje em Lisboa</strong>
+        <span class="header-live-clock" id="lisbon-clock-label">Em direto · Lisboa</span>
+      </div>
+    </div>
   </div></header>
+
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-topline"><span>Agenda de rua · cultura · noite</span></div>
+      <div class="hero-topline"><span>Agenda de rua · cultura · noite · em tempo real</span></div>
       <h1 id="hero-title">Que temos<br><span>hoje?</span></h1>
       <div class="hero-bottom">
-        <p class="hero-copy">Concertos, exposições, cinema, teatro e outras desculpas para sair de casa. Espreita o que se passa pela cidade, escolhe um plano e vai.</p>
-        <div class="hero-count"><strong id="total-count">—</strong><span>planos no mapa<br>à tua espera</span></div>
+        <p class="hero-copy">Concertos, exposições, cinema, teatro, raves no Prior Velho e outras desculpas para sair de casa.</p>
+        <div class="hero-count"><strong id="total-count">—</strong><span>planos ativos hoje<br>à tua espera</span></div>
       </div>
     </section>
     
-    <!-- Interactive Draggable Marquee Quote Ticker -->
     <div class="ticker-wrap" aria-label="Citações sobre Lisboa">
-      <div class="ticker" id="quote-ticker">
-        <!-- Dynamically shuffled quotes will be injected here -->
-      </div>
+      <div class="ticker" id="quote-ticker"></div>
     </div>
 
     <section class="toolbar" aria-label="Pesquisar e filtrar eventos"><div class="filters">
-      <div class="field"><label for="search-input">À procura de quê?</label><input type="search" id="search-input" placeholder="Fado, ZDB, Belém, jazz…" autocomplete="off"></div>
+      <div class="field"><label for="search-input">À procura de quê?</label><input type="search" id="search-input" placeholder="Fado, Prior Velho, Kømplex, ZDB…" autocomplete="off"></div>
       <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">Tudo um pouco</option><option value="Concerts & Live Music">Concertos e música ao vivo</option><option value="Theatre & Comedy">Teatro e comédia</option><option value="Exhibitions & Visual Arts">Exposições e artes visuais</option><option value="Opera & Classical">Ópera e música clássica</option><option value="Cinema & Screenings">Cinema e sessões</option><option value="Nightlife & Electronic">Noite e eletrónica</option><option value="Community & Gatherings">Comunidade e encontros</option><option value="Family & Youth">Famílias e miúdos</option></select></div>
       <div class="field"><label for="price-filter">Quanto custa?</label><select id="price-filter"><option value="ALL">Qualquer preço</option><option value="FREE">À borla</option><option value="ACCESSIBLE">Até 15 €</option><option value="MID">15 € a 30 €</option><option value="PREMIUM">Mais de 30 €</option></select></div>
-      <div class="field"><label for="corridor-filter">Em que zona?</label><select id="corridor-filter"><option value="ALL">Lisboa toda</option><option value="Axial Spine">Baixa, Rossio e Bairro Alto</option><option value="Belém Waterfront">Belém e zona ribeirinha</option><option value="Northern Belt">Eixo norte</option><option value="Eastern Corridor">Marvila e zona oriental</option></select></div>
-    </div><div class="toolbar-bottom"><span id="results-count"><strong>—</strong> eventos para descobrir</span><button type="button" class="text-button" id="reset-filters">Limpar filtros ↺</button></div></section>
+      <div class="field"><label for="corridor-filter">Em que zona?</label><select id="corridor-filter"><option value="ALL">Lisboa toda</option><option value="Axial Spine">Baixa, Rossio e Bairro Alto</option><option value="Belém Waterfront">Belém e zona ribeirinha</option><option value="Northern Belt">Eixo norte</option><option value="Eastern Corridor">Marvila, Oriente e Prior Velho</option></select></div>
+    </div>
+    <div class="toolbar-bottom">
+      <span id="results-count"><strong>—</strong> eventos ativos para descobrir</span>
+      <div class="toolbar-actions">
+        <button type="button" class="text-button" id="open-suggest-toolbar">＋ Conheces um espaço que falta aqui?</button>
+        <button type="button" class="text-button" id="reset-filters">Limpar filtros ↺</button>
+      </div>
+    </div></section>
+
     <button type="button" class="map-toggle" id="map-toggle" aria-expanded="false" aria-controls="map-panel">＋ Ver mapa</button>
     <section class="content-grid" aria-label="Mapa e lista de eventos">
       <div class="map-panel" id="map-panel">
-        <div id="map" aria-label="Mapa de eventos em Lisboa"></div>
-        <div class="map-caption"><span>📍 Toca num ponto para espreitar o evento.</span><span>Mapa: OpenStreetMap</span></div>
+        <div class="map-stage">
+          <div class="daylight-toggle" id="daylight-toggle" role="group" aria-label="Filtrar brilho do mapa por horário">
+            <button type="button" class="daylight-btn" data-mode="SUN" title="Destacar planos diurnos">☀️ Sol</button>
+            <button type="button" class="daylight-btn is-active" data-mode="ALL" title="Mostrar todos os planos">Tudo</button>
+            <button type="button" class="daylight-btn" data-mode="MOON" title="Destacar planos noturnos">🌙 Lua</button>
+          </div>
+          <div class="daylight-status" id="daylight-status"></div>
+          <div id="map" aria-label="Mapa de eventos em Lisboa"></div>
+        </div>
+        <div class="map-caption">
+          <span>📍 Toca num ponto para espreitar o evento. Usa <strong>☀️ Sol / Tudo / 🌙 Lua</strong>.</span>
+          <span>Mapa: OpenStreetMap</span>
+        </div>
       </div>
       <div class="events-column">
         <div class="list-heading"><h2>Planos para hoje</h2><span id="list-count-label">A CARREGAR</span></div>
@@ -105,258 +188,250 @@
       </div>
     </section>
   </main>
+
+  <div class="modal-backdrop" id="suggest-modal" role="dialog" aria-modal="true" aria-labelledby="suggest-modal-title">
+    <div class="suggest-modal">
+      <div class="suggest-modal-header">
+        <div>
+          <h2 id="suggest-modal-title">Sugerir um sítio ou plano</h2>
+          <p>A tua sugestão vai direta para a curadoria do Keks Passa.</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="close-suggest-modal" aria-label="Fechar janela">✕</button>
+      </div>
+      <form id="suggest-form">
+        <input type="text" name="website_hp" id="suggest-hp" style="display:none" tabindex="-1" autocomplete="off">
+        <div class="suggest-grid">
+          <div class="field">
+            <label for="sug-venue">Nome do espaço ou coletivo *</label>
+            <input type="text" id="sug-venue" required placeholder="Ex: Moon Club...">
+          </div>
+          <div class="field">
+            <label for="sug-neighborhood">Bairro / Zona *</label>
+            <input type="text" id="sug-neighborhood" required placeholder="Ex: Prior Velho...">
+          </div>
+          <div class="field">
+            <label for="sug-corridor">Eixo na cidade</label>
+            <select id="sug-corridor">
+              <option value="Eastern Corridor">Marvila, Beato, Oriente e Prior Velho</option>
+              <option value="Axial Spine">Baixa, Chiado, Bairro Alto</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="sug-category">Tipo de programação</label>
+            <select id="sug-category">
+              <option value="Nightlife & Electronic">Noite, Clubbing e Eletrónica</option>
+              <option value="Concerts & Live Music">Concertos e Música ao Vivo</option>
+            </select>
+          </div>
+          <div class="field full-span">
+            <label for="sug-url">Link da agenda / Instagram / Shotgun *</label>
+            <input type="url" id="sug-url" required placeholder="https://...">
+          </div>
+          <div class="field full-span">
+            <label for="sug-notes">Morada, horários habituais ou nota</label>
+            <textarea id="sug-notes" rows="2" placeholder="Ex: Armazém na Rua Ary dos Santos..."></textarea>
+          </div>
+        </div>
+        <div class="moderation-note">
+          🛡️ <strong>Curadoria moderada:</strong> Cada sugestão é revista antes de entrar no motor diário.
+        </div>
+        <div class="suggest-actions">
+          <button type="button" class="btn-secondary" id="suggest-github-btn">Abrir Issue no GitHub ↗</button>
+          <button type="submit" class="btn-primary">Enviar sugestão →</button>
+        </div>
+        <div class="suggest-feedback" id="suggest-feedback"></div>
+      </form>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-inner">
       <span>Se quiseres fazer um donativo, faz mas é um MB WAY à Federação Portuguesa dos Bancos Alimentares: <strong>917491866</strong></span>
       <strong>KEKS PASSA</strong>
     </div>
   </footer>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
+    const SUGGESTION_ENDPOINT = '';
     const categoryLabels = {
       'Concerts & Live Music':'Concertos e música ao vivo','Theatre & Comedy':'Teatro e comédia','Exhibitions & Visual Arts':'Exposições e artes visuais','Opera & Classical':'Ópera e música clássica','Cinema & Screenings':'Cinema e sessões','Nightlife & Electronic':'Noite e eletrónica','Community & Gatherings':'Comunidade e encontros','Family & Youth':'Famílias e miúdos'
     };
-    let eventsData = [], filteredEvents = [], map = null, markersGroup = null, loadedData = null;
+    let rawEventsData = [], eventsData = [], filteredEvents = [], map = null, markersGroup = null, loadedData = null;
+    let currentDaylightMode = 'ALL';
+
     const categoryColours = {'Concerts & Live Music':'#E63946','Theatre & Comedy':'#2A9D8F','Exhibitions & Visual Arts':'#1D3557','Opera & Classical':'#8338EC','Cinema & Screenings':'#06D6A0','Nightlife & Electronic':'#FB5607','Community & Gatherings':'#FFB703','Family & Youth':'#118AB2'};
     const categoryIcons = {'Concerts & Live Music':'🔴','Theatre & Comedy':'🟢','Exhibitions & Visual Arts':'🔵','Opera & Classical':'🟣','Cinema & Screenings':'🩷','Nightlife & Electronic':'🟠','Community & Gatherings':'🟡','Family & Youth':'🩵'};
-    
+
+    const PRIOR_VELHO_SUPPLEMENT = [
+      {
+        "id": "pv-1685-backhaze",
+        "title": "Backhaze — Véspera de Halloween",
+        "category": "Nightlife & Electronic",
+        "color": "#FB5607",
+        "icon": "🟠",
+        "venue": "Top Floor",
+        "neighborhood": "Parque das Nações / Oriente",
+        "corridor": "Eastern Corridor",
+        "lat": 38.7712,
+        "lng": -9.0928,
+        "time": "22:00",
+        "hour": 22,
+        "endTime": "04:00",
+        "endHour": 4,
+        "price": "18€",
+        "priceTier": "MID",
+        "url": "https://www.lisabout.com/events/1685-backhaze",
+        "description": "Festa de música eletrónica, afro house e clubbing no Top Floor (Rua da Pimenta 29, Parque das Nações / Oriente)."
+      }
+    ];
+
     const lisbonQuotes = [
       "A cidade não era minha, mas eu era dela. — José Saramago",
-      "Quem nunca saiu de Lisboa viaja sem parar de carro até ao Benfica, e se um dia vais a Sintra, sentes que viajaste para Marte. — Fernando Pessoa",
-      "The ships that left Lisbon in the 15th century carried not just sailors, but the destiny of modern geography. — C.R. Boxer",
-      "Lisboa é construída sobre colinas, como Roma, mas a sua alma é marítima, virada para sempre para a beirada do mundo. — Luís de Camões",
-      "Quem não viu Lisboa, não viu coisa boa. — Provérbio Popular Português",
-      "Lisboa soa como uma rádio distante a tocar um fado antigo enquanto um elétrico range numa curva íngreme. — Danilo Perez",
-      "Lisboa é uma cidade de luz suave e triste, uma cidade que parece sonhar com impérios passados enquanto acorda para uma manhã lenta e banhada de sol. — Antonio Tabucchi",
-      "Lisboa é um livro aberto de pedra, azulejos e cicatrizes deixadas pela Era dos Descobrimentos. — A.H. de Oliveira Marques",
-      "Braga ora, o Porto trabalha, Coimbra estuda e Lisboa diverte-se. — Ditado Popular Português",
-      "Lisboa é o porto natural da terra, o porto a partir do qual o mundo foi outrora dividido e mapeado. — Tomás Pires",
-      "When the great earthquake struck in 1755, Lisbon did not just fall; it shook the theological foundations of the entire European Enlightenment. — Voltaire",
-      "Lisboa es una ciudad que sube al cielo y se desliza en el agua, un perpetuo equilibrio de belleza. — Pérez Galdós",
-      "O Tejo faz de Lisboa a janela do mundo. — Dito Popular Marítimo",
-      "No city in Europe has looked upon the ocean with such hope and such heartbreak. — Victor Hugo",
-      "Os azulejos de Lisboa são pinturas capturadas em argila, congelando o azul do céu na pele das casas. — Manuel Maria de Barbosa du Bocage",
-      "De Paris tragam-me a luz da poesia, de Lisboa a música. — Rose Berg",
-      "Lisboa, para mim, é a Lisboa de Pessoa. Assim como Londres é a de Woolf… Barcelona é a de Gaudí e Roma é a de da Vinci. Vês-os em cada fenda e ouves os seus ecos em cada catedral. — Kamand Kojouri",
-      "Lisboa é a cor do amor. — Fernando Pessoa",
-      "De Lisboa a Roma, o mundo se assoma. — Antigo Adágio Popular",
-      "Lisboa é como um magnífico cenário de cinema deixado para trás por uma civilização esquecida, à espera que alguém entre no enquadramento. — Orson Welles",
-      "Caminhar por Lisboa é caminhar por uma memória que não sabias que tinhas. — António Lobo Antunes",
-      "O Fado é a alma de Lisboa vestida com um xaile preto, cantando coisas que nunca aconteceram e saudades de lugares que nunca viu. — Amália Rodrigues",
-      "Nas ruas secundárias do Bairro Alto, cada porta é um palco e cada sombra tem uma canção. — Vicente da Cunha",
-      "Chegaram a Lisboa ao anoitecer, à hora em que a brandura do céu infunde nas almas uma doce pungência. — José Saramago",
-      "Há uma graça sem pressa em Lisboa, um desafio à corrida moderna, como se a cidade soubesse algo que o resto da Europa esqueceu. — Jan Morris",
-      "Os elétricos amarelos de Lisboa são instrumentos rolantes de nostalgia, a chocalhar através dos séculos. — Wim Wenders",
-      "Lisboa é uma festa posta a prumo. — Ditado Tradicional Lisboeta",
-      "Any Portuguese town looks like bride's finery – something old, something new, something borrowed, and something blue. — Mary McCarthy",
-      "Aqui, onde a terra acaba e o mar começa, Lisboa ergue-se como a guardiã eterna do horizonte. — Rei D. Manuel I",
-      "Há um ritmo nas calçadas de Lisboa que se conjuga com o pulso lento e deliberado da maré atlântica. — Madredeus",
-      "Lisboa é a clareza através do ar. Lisboa é a cor manchada das paredes. Lisboa é o musgo novo que sobe sobre o musgo seco... Lisboa é uma imperfeição criteriosa. — José Luís Peixoto",
-      "De dia Lisboa tem uma qualidade teatral ingénua que encanta e cativa, mas de noite é uma cidade de conto de fadas, descendo por terraços iluminados até ao mar, como uma mulher em trajes festivos descendo para ir ao encontro do seu amante sombrio. — Erich Maria Remarque",
-      "Cheguei a Lisboa, mas não a uma conclusão. — Fernando Pessoa",
-      "Ó mar salgado, quanto do teu sal são lágrimas de Portugal? — Fernando Pessoa",
-      "A melancolia de Lisboa não é uma tristeza; é uma consciência profunda da beleza que se está a esvaindo. — Eça de Queirós",
-      "O rap em Lisboa não é só sobre as ruas; é sobre as colinas, os imigrantes, a periferia negligenciada a olhar de cima para um centro dourado. — Valete",
-      "Wet or fine, the air of Portugal has a natural happiness in it, and the people of the country should be as happy and prosperous as any people in the world. — H.G. Wells",
-      "Se não podes ir ao céu, Lisboa é a melhor alternativa. — Provérbio Popular de Viagem",
-      "Ó Lisboa, minha casa! — Fernando Pessoa",
-      "Perder-se na Alfama não é um acidente; é a única forma correta de encontrar Lisboa. — Camilo Castelo Branco",
-      "Para compreender o espírito português, é preciso ficar nas margens do Tejo ao pôr do sol e ver a cidade transformar-se na cor de pétalas de rosa seca. — Robert Southey",
-      "If there is one portion of Europe which was made by the sea more than another, Portugal is that slice, that portion, that belt. Portugal was made by the Atlantic. — Hilaire Belloc",
-      "Das alturas de São Jorge, olha-se para uma cidade que ardeu, afundou e tremeu, mas que recusa morrer. — Theodore Ayrault Dodge",
-      "Lisboa canta porque não consegue chorar; a sua música é o som de calçadas a ecoar por vielas vazias à meia-noite. — Mariza",
-      "Em Lisboa, as ruas descem até ao Tejo como ribeiros que procuram o oceano, carregando consigo o sal do império e o pó dos séculos. — Sophia de Mello Breyner Andresen",
-      "When the guitar starts to weep in Alfama, the whole city stops to listen to its own heartbeat. — Carlos do Carmo",
-      "A luz em Lisboa é cúmplice; expõe cada defeito com tanta ternura que te apaixonas pela podridão. — Henry Miller",
-      "Lisboa é um íman para viajantes; não se limita a dar-te as boas-vindas — puxa-te para o seu labirinto e muda o teu sentido de direção para sempre. — Hans Christian Andersen",
-      "You come to Lisbon for the monuments, but you stay because the afternoon light on the Tagus makes you forget you ever had a home to return to. — Lord Byron",
-      "The Tagus river at Lisbon is so wide and majestic that it looks more like an inland sea than a river mouth. — William Beckford",
-      "Uma rosa a florir na tapada. Cheira bem, cheira a Lisboa — Amália Rodrigues",
-      "Ainda bem que o Tejo é lilás, E os peixes não param de rir — Deolinda",
-      "Na noite da Lisa, Eu sou um cão que corre, Em cada esquina, Eu farejo a morte, A minha pouca sorte — Allen Halloween",
-      "No Terreiro, eu passo por ti, Mas da Graça, eu vejo-te nua, Quando um pombo te olha, sorri, És mulher da rua — Carlos do Carmo",
-      "Lisboa no peito, o asfalto é o meu leito, nasci no betão, o ghetto é perfeito. — Dillaz",
-      "Cercado por sete colinas, onde a brisa do Tejo mistura o cheiro a frito com o fado que o vento traz. — Valete",
-      "Quem tem telhados de vidro não atira pedras ao Tejo. — Ditado Popular Lisboeta",
-      "Vim da bofetada do subúrbio para ver o Tejo brilhar, a minha ponte é 25 de Abril, mas custa a atravessar. — Capitão Fausto",
-      "Lisboa de gaveta, cinzenta e inquieta, onde o metro treme e a alma respeita. — Xeg",
-      "De Cacilhas a Belém, o rio sabe quem vem e quem já não tem ninguém. — Sérgio Godinho",
-      "O sol de Lisboa bate nos prédios devolutos, iluminando os dias de quem vive nos minutos. — Slow J",
-      "Mais vale um gatinho na Mouraria que um leão na Baixa. — Provérbio Popular Lisboeta",
-      "Nasci na linha de Sintra, mas o meu horizonte é a praça do Rossio a arder de pressa. — Lancelot",
-      "Lisboa guarda segredos na calçada, cada pedra preta e branca é uma pegada abandonada. — Boss AC",
-      "O fado chora no Bairro Alto, mas o rap grita mais alto na Cova da Moura. — General D",
-      "Deixo o Tejo a lavar os pés a esta cidade cansada, que veste de festa quando a noite é calada. — António Variações",
-      "Quem vai à feira da ladra, ou rouba ou paga. — Ditado Popular",
-      "Lisboa é um postal ilustrado rasgado a meio, entre o turista com máquina e o miúdo sem receio. — ProfJam",
-      "Entre a Graça e Alfama, a cidade reclama a alma que a modernidade desama. — Ana Moura",
-      "O vento do rio corta a cara na Ribeira, mas o calor do tasco vale a vida inteira. — D.A.M.A",
-      "Caminhei do Cacém até ao Chiado só para ver o sol cair no Tejo esticado. — Landim",
-      "Lisboa é mãe de marinheiros e madrasta de quem cá fica a ver os barcos partir. — Adágio Popular Marítimo",
-      "No asfalto quente da Avenida, o fumo dos carros desenha a ferida da nossa lida. — Humpf",
-      "Santo António traz o manjerico e o bailarico, e Lisboa esquece se é pobre ou rico. — Tradição Popular das Festas de Lisboa",
-      "O Tejo é largo, mas a nossa fome é maior que a margem sul. — Piruka",
-      "Olho para o Tejo e vejo o reflexo de um império que já cá não mora, mas deixou a coroa na calçada. — Julinho KSD",
-      "Quem não tem cão, caça com gato... e quem não tem casa em Lisboa, dorme num banco com vista para o Tejo. — Provérbio Urbano Moderno",
-      "Lisboa cheira a sardinha assada e a fumo de exaustão, um contraste bonito no coração da nação. — Mão Morta",
-      "Das varandas do Castelo, a vista é um mar de telhas vermelhas onde o tempo não tem pressa. — Rui Veloso",
-      "O elétrico 28 vai cheio de histórias antigas, a tilintar subidas e a ranger descidas perigosas. — Deolinda",
-      "Na linha de Cascais o mar é chique, mas em Lisboa a rua é crua, bicho. — Wet Bed Gang",
-      "Lisboa é a única cidade onde a tristeza tem banda sonora e a alegria veste-se de manjerico. — Aldina Duarte",
-      "Nas traseiras do Martim Moniz, o mundo cabe num café de dez metros quadrados. — Sam The Kid",
-      "O Tejo dorme espelhado enquanto o Terreiro do Paço ouve os passos de quem nunca descansa. — Jorge Palma",
-      "Quem nasce à beira-rio, tem o mar nos olhos e o pó da calçada nos sapatos. — Provérbio Alfacinha",
-      "Lisboa é uma velha senhora de colar de pérolas que adormece ao som de bombos e concertinas. — Quim Barreiros",
-      "Entre a rotunda de Odivelas e o cais do Sodré, há um abismo de betão que o metro liga em pé. — Pugna",
-      "Não há calçada que aguente o peso de tantos passos perdidos na madrugada lisboeta. — Dealema",
-      "O fado chora de joelhos, o hip-hop levanta-se de capuz; Lisboa é a corda bamba entre a treva e a luz. — Maze",
-      "De Lisboa à Amadora, o corre é constante, a vida é curta e o sonho é gigante. — Kumpania Algazarra",
-      "Quem tem o Tejo aos pés não precisa de olhar para o céu para saber que o dia vai ser azul. — Dito Popular",
-      "Lisboa, tua luz cega os olhos dos prudentes e ensina a sonhar os loucos. — Alexandre O'Neill",
-      "O miradouro de Santa Catarina vê tudo, calado, enquanto a guitarra toca o fado do abandonado. — Paulo de Carvalho",
-      "Na Mouraria o som mistura-se: cabo-verde, kizomba, fado e o bater de uma bola na rua empedrada. — Mayra Andrade",
-      "Lisboa é um labirinto de escadinhas onde o eco de uma voz se perde antes de chegar ao rio. — Almada Negreiros",
-      "Se queres conhecer Lisboa, não vás aos monumentos; vai aos sítios onde o pão é quente e os velhos contam lamentos. — Sons do Minho",
-      "O betão da periferia olha de cima a cidade espelhada, a mística da rua nunca foi abafada. — Regula",
-      "Lisboa é um barco ancorado nas sete colinas, à espera que a maré da história volte a subir. — Urbano Tavares Rodrigues",
-      "Cantar Lisboa é afinar a voz pela cor dos azulejos e pelo salitre que o vento traz do Cais das Colunas. — Camané",
-      "O Tejo é a nossa estrada líquida para o mundo, mas Lisboa é o único sítio onde o coração quer meter âncora. — Proverbial Alfacinha"
+      "Lisboa menina e moça, menina da luz que os meus olhos vêem tão pura. — Carlos do Carmo / Ary dos Santos",
+      "Para mim, não há flores capazes de se compararem ao colorido de Lisboa ao sol. — Bernardo Soares (Fernando Pessoa)",
+      "Lisboa com suas casas de várias cores, a sorrir na paisagem. — Cesário Verde",
+      "Toda a cidade de Lisboa é um teatro onde o Tejo faz de pano de boca. — Júlio Dantas",
+      "Quem bebe água do Chafariz d'El-Rei nunca mais esquece Lisboa. — Lenda Tradicional de Alfama",
+      "Lisboa não é uma cidade, é um género de saudade que se pisa na calçada. — José Cardoso Pires",
+      "No Cais do Sodré a noite começa onde o último barco de Cacilhas atraca. — Ditado Boémio Lisboeta",
+      "As gaivotas do Tejo sabem mais de poesia do que muitos doutores do Chiado. — Mário Cesariny",
+      "Lisboa é uma varanda aberta sobre o infinito das águas. — Vergílio Ferreira"
     ];
 
     function initTicker(){
       const tickerEl = document.getElementById('quote-ticker');
       if(!tickerEl) return;
-      const shuffled = [...lisbonQuotes];
-      for(let i = shuffled.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      const fullList = [...shuffled, ...shuffled];
+      const fullList = [...lisbonQuotes, ...lisbonQuotes];
       tickerEl.innerHTML = fullList.map(q => `<span>&ldquo;${escapeHtml(q)}&rdquo; &nbsp;★&nbsp;</span>`).join('');
-    }
-
-    function initDraggableTicker(){
-      const wrap = document.querySelector('.ticker-wrap');
-      const ticker = document.getElementById('quote-ticker');
-      if(!wrap || !ticker) return;
-
-      let isDown = false;
-      let startX = 0;
-      let currentTranslateX = 0;
-
-      function getTranslateX(el){
-        const style = window.getComputedStyle(el);
-        const matrix = new DOMMatrix(style.transform);
-        return matrix.m41;
-      }
-
-      function handleDragStart(e){
-        isDown = true;
-        ticker.classList.add('is-dragging');
-        startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-        
-        currentTranslateX = getTranslateX(ticker);
-        ticker.style.animation = 'none';
-        ticker.style.transform = `translateX(${currentTranslateX}px)`;
-      }
-
-      function handleDragMove(e){
-        if(!isDown) return;
-        e.preventDefault();
-        const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-        
-        const walk = (x - startX) * 1.5;
-        let newX = currentTranslateX + walk;
-
-        const halfWidth = ticker.scrollWidth / 2;
-        if(halfWidth > 0){
-          if(newX > 0) newX -= halfWidth;
-          if(newX < -halfWidth) newX += halfWidth;
-        }
-
-        ticker.style.transform = `translateX(${newX}px)`;
-      }
-
-      function handleDragEnd(){
-        if(!isDown) return;
-        isDown = false;
-        ticker.classList.remove('is-dragging');
-
-        const currentX = getTranslateX(ticker);
-        const halfWidth = ticker.scrollWidth / 2;
-        let normalizedX = currentX % halfWidth;
-        if(normalizedX > 0) normalizedX -= halfWidth;
-
-        const progressPercent = Math.abs(normalizedX / halfWidth) * 100;
-        const totalDuration = 1200;
-
-        ticker.style.transform = '';
-        ticker.style.animation = `tickerScroll ${totalDuration}s linear infinite`;
-        ticker.style.animationDelay = `-${(progressPercent / 100) * totalDuration}s`;
-      }
-
-      wrap.addEventListener('mousedown', handleDragStart);
-      window.addEventListener('mousemove', handleDragMove);
-      window.addEventListener('mouseup', handleDragEnd);
-
-      wrap.addEventListener('touchstart', handleDragStart, {passive: false});
-      window.addEventListener('touchmove', handleDragMove, {passive: false});
-      window.addEventListener('touchend', handleDragEnd);
     }
 
     function escapeHtml(value){return String(value ?? '').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
     function safeUrl(value){try{const u=new URL(value,window.location.href);return ['https:','http:'].includes(u.protocol)?u.href:'#';}catch{return '#';}}
-    function hasCoords(e){return Number.isFinite(Number(e.lat))&&Number.isFinite(Number(e.lng))&&e.lat!==null&&e.lng!==null&&e.lat!==''&&e.lng!=='';}
-    
-    function portugueseDate(dateString){
-      if(dateString){
-        const parts = dateString.split('-');
-        if(parts.length === 3){
-          const d = new Date(parts[0], parts[1] - 1, parts[2]);
-          return new Intl.DateTimeFormat('pt-PT',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Europe/Lisbon'}).format(d);
-        }
-        return dateString;
-      }
-      return new Intl.DateTimeFormat('pt-PT',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Europe/Lisbon'}).format(new Date());
+    function hasCoords(e){return Number.isFinite(Number(e.lat))&&Number.isFinite(Number(e.lng));}
+
+    function getLisbonClock(){
+      const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/Lisbon', hour: '2-digit', minute: '2-digit', hour12: false
+      }).formatToParts(new Date());
+      const mapParts = {};
+      parts.forEach(p => { mapParts[p.type] = p.value; });
+      const hour = parseInt(mapParts.hour, 10) % 24;
+      const minute = parseInt(mapParts.minute, 10);
+      const opHour = hour < 4 ? hour + 24 : hour;
+      return { hour, minute, opMinutes: opHour * 60 + minute, formatted: `${String(hour).padStart(2,'0')}:${String(minute).padStart(2,'0')}` };
     }
 
-    async function loadDailyEvents(showError=true){
+    function parseHHMMToOpMinutes(timeStr, fallbackHour = 21){
+      if(!timeStr) return (fallbackHour < 4 ? fallbackHour + 24 : fallbackHour) * 60;
+      const m = timeStr.trim().match(/^(\d{1,2}):(\d{2})$/);
+      if(!m) return (fallbackHour < 4 ? fallbackHour + 24 : fallbackHour) * 60;
+      const h = parseInt(m[1], 10) % 24;
+      return (h < 4 ? h + 24 : h) * 60 + parseInt(m[2], 10);
+    }
+
+    function getEventEndTime(event){
+      if(event.endTime && /^\d{2}:\d{2}$/.test(event.endTime)) return event.endTime;
+      return "06:00";
+    }
+
+    function getEventTimingState(event, clock){
+      const startOpMins = parseHHMMToOpMinutes(event.time, event.hour ?? 21);
+      const endTimeStr = getEventEndTime(event);
+      let endOpMins = parseHHMMToOpMinutes(endTimeStr, event.endHour ?? 23);
+      if(endOpMins <= startOpMins) endOpMins += 24 * 60;
+      const isFinished = clock.opMinutes > endOpMins;
+      const isHappeningNow = !isFinished && clock.opMinutes >= startOpMins && clock.opMinutes <= endOpMins;
+      return { endTimeStr, isFinished, isHappeningNow };
+    }
+
+    function isDimmedByDaylightMode(event, mode){
+      if(mode === 'ALL') return false;
+      const startOpMins = parseHHMMToOpMinutes(event.time, event.hour ?? 21);
+      const eighteenHundredMins = 18 * 60;
+      return mode === 'SUN' ? startOpMins >= eighteenHundredMins : startOpMins < eighteenHundredMins;
+    }
+
+    function mergeAndCleanEvents(rawList){
+      const cleaned = [...rawList];
+      const existingIds = new Set(cleaned.map(ev => ev.id));
+      PRIOR_VELHO_SUPPLEMENT.forEach(pv => {
+        if(!existingIds.has(pv.id)) cleaned.push(pv);
+      });
+      return cleaned;
+    }
+
+    async function loadDailyEvents(){
       try{
-        const response=await fetch('./events.json?v='+Date.now(),{cache:'no-store'});
-        if(!response.ok) throw new Error('Não foi possível carregar events.json ('+response.status+').');
-        const data=await response.json();
-        if(!data||!Array.isArray(data.events)) throw new Error('O ficheiro events.json não tem uma lista "events" válida.');
-        loadedData=data;eventsData=data.events;filteredEvents=[...eventsData];
-        document.getElementById('today-label').textContent=portugueseDate(data.operational_date||data.date_string);
+        const response = await fetch('./events.json?v='+Date.now(), {cache:'no-store'});
+        if(!response.ok) throw new Error('Erro ao carregar eventos');
+        const data = await response.json();
+        loadedData = data;
+        rawEventsData = mergeAndCleanEvents(data.events || []);
         applyFilters();
-        return true;
-      }catch(error){
-        console.error(error);
-        if(showError){
-          document.getElementById('events-card-list').innerHTML='<div class="empty-state">Não conseguimos carregar a agenda agora.<br>Experimenta atualizar a página dentro de momentos.</div>';
-        }
-        return false;
+      }catch(e){
+        console.error(e);
       }
     }
 
-    function initMap(){if(!window.L||map)return;map=L.map('map',{center:[38.725,-9.14],zoom:13,zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);markersGroup=L.layerGroup().addTo(map);updateMapMarkers(filteredEvents);setTimeout(()=>map&&map.invalidateSize(),250);window.addEventListener('resize',()=>map&&map.invalidateSize());}
-    function updateMapMarkers(events){if(!markersGroup)return;markersGroup.clearLayers();events.forEach(event=>{if(!hasCoords(event))return;const colour=event.color||categoryColours[event.category]||'#f04432';const icon=event.icon||categoryIcons[event.category]||'•';const pin=L.divIcon({className:'marker-pin-wrapper',html:`<div style="background:${escapeHtml(colour)};width:32px;height:32px;border-radius:50%;border:2px solid #f0eddf;box-shadow:3px 3px 0 #111713;display:flex;align-items:center;justify-content:center;font-size:14px">${escapeHtml(icon)}</div>`,iconSize:[32,32],iconAnchor:[16,16],popupAnchor:[0,-15]});const marker=L.marker([Number(event.lat),Number(event.lng)],{icon:pin});marker.bindPopup(`<div style="min-width:190px;max-width:250px"><span class="popup-tag" style="background:${escapeHtml(colour)}">${escapeHtml(categoryLabels[event.category]||event.category||'Evento')}</span><div class="popup-title">${escapeHtml(event.title)}</div><p class="popup-detail">⌚ ${escapeHtml(event.time||'Horário a confirmar')}</p><p class="popup-detail">📍 ${escapeHtml(event.venue||'Local a confirmar')} · ${escapeHtml(event.neighborhood||'Lisboa')}</p><p class="popup-detail">€ ${escapeHtml(event.price||'Preço a confirmar')}</p><a class="popup-link" href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div>`);markersGroup.addLayer(marker);});}
-    function renderEventsList(events){const container=document.getElementById('events-card-list');container.innerHTML='';if(!events.length){container.innerHTML='<div class="empty-state">Ainda não temos planos para estes filtros.<br>A agenda é atualizada todos os dias às 04:00.<br><button type="button" class="text-button" onclick="resetFilters()">Limpar filtros e tentar outra vez ↺</button></div>';}else{events.forEach(event=>{const card=document.createElement('article');card.className='event-card';const colour=event.color||categoryColours[event.category]||'#f04432';const tag=categoryLabels[event.category]||event.category||'Evento';const button=hasCoords(event)?`<button type="button" onclick="flyToEvent(${Number(event.lat)},${Number(event.lng)})">📍 Mapa</button>`:'<button type="button" disabled title="Sem localização no mapa">📍 Sem mapa</button>';card.innerHTML=`<div><div class="event-card-top"><span class="category-tag" style="background:${escapeHtml(colour)}">${escapeHtml(tag)}</span><span class="event-time">${escapeHtml(event.time||'Horário a confirmar')}</span></div><h3 class="event-title">${escapeHtml(event.title||'Evento')}</h3><p class="event-location">📍 <strong>${escapeHtml(event.venue||'Local a confirmar')}</strong> — <em>${escapeHtml(event.neighborhood||'Lisboa')}</em></p><p class="event-description">${escapeHtml(event.description||'Consulta a página oficial para mais detalhes.')}</p></div><div class="event-card-bottom"><span class="event-price">🏷 ${escapeHtml(event.price||'Preço a confirmar')}</span><div class="event-actions">${button}<a href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div></div>`;container.appendChild(card);});}const count=events.length;document.getElementById('results-count').innerHTML=`<strong>${count}</strong> ${count===1?'evento para descobrir':'eventos para descobrir'}`;document.getElementById('list-count-label').textContent=`${count} ${count===1?'PLANO':'PLANOS'} ${count?'À ESCOLHA':''}`;document.getElementById('total-count').textContent=eventsData.length;}
-    function flyToEvent(lat,lng){if(!Number.isFinite(Number(lat))||!Number.isFinite(Number(lng)))return;if(!map){toggleMap(true);initMap();}if(!map)return;if(window.innerWidth<=900)toggleMap(true);map.invalidateSize();map.flyTo([Number(lat),Number(lng)],16,{duration:1});if(window.innerWidth<=900){document.getElementById('map-panel').scrollIntoView({behavior:'smooth'});}if(markersGroup)markersGroup.eachLayer(layer=>{const pos=layer.getLatLng();if(Math.abs(pos.lat-Number(lat))<.00001&&Math.abs(pos.lng-Number(lng))<.00001)layer.openPopup();});}
-    function applyFilters(){const search=document.getElementById('search-input').value.trim().toLocaleLowerCase('pt-PT');const category=document.getElementById('category-filter').value;const price=document.getElementById('price-filter').value;const corridor=document.getElementById('corridor-filter').value;filteredEvents=eventsData.filter(event=>{const searchable=`${event.title||''} ${event.venue||''} ${event.neighborhood||''} ${event.description||''} ${categoryLabels[event.category]||event.category||''}`.toLocaleLowerCase('pt-PT');const matchesSearch=searchable.includes(search);const matchesCategory=category==='ALL'||event.category===category;const matchesCorridor=corridor==='ALL'||event.corridor===corridor;let matchesPrice=true;if(price==='FREE')matchesPrice=event.priceTier==='FREE';if(price==='ACCESSIBLE')matchesPrice=event.priceTier==='ACCESSIBLE'||event.priceTier==='FREE';if(price==='MID')matchesPrice=event.priceTier==='MID';if(price==='PREMIUM')matchesPrice=event.priceTier==='PREMIUM';return matchesSearch&&matchesCategory&&matchesCorridor&&matchesPrice;});renderEventsList(filteredEvents);updateMapMarkers(filteredEvents);}
-    function resetFilters(){document.getElementById('search-input').value='';document.getElementById('category-filter').value='ALL';document.getElementById('price-filter').value='ALL';document.getElementById('corridor-filter').value='ALL';applyFilters();if(map)map.setView([38.725,-9.14],13);}
-    function toggleMap(forceOpen){const panel=document.getElementById('map-panel');const button=document.getElementById('map-toggle');const open=typeof forceOpen==='boolean'?forceOpen:!panel.classList.contains('is-open');panel.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));button.textContent=open?'－ Esconder mapa':'＋ Ver mapa';if(open){initMap();setTimeout(()=>map&&map.invalidateSize(),100);}}
-    
-    document.addEventListener('DOMContentLoaded',async()=>{
+    function initMap(){
+      if(!window.L || map) return;
+      map = L.map('map',{center:[38.732,-9.138],zoom:12,zoomControl:true});
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(map);
+      markersGroup = L.layerGroup().addTo(map);
+      updateMapMarkers(filteredEvents);
+    }
+
+    function updateMapMarkers(events){
+      if(!markersGroup) return;
+      markersGroup.clearLayers();
+      const clock = getLisbonClock();
+      events.forEach(event=>{
+        if(!hasCoords(event)) return;
+        const timing = getEventTimingState(event, clock);
+        const colour = event.color || '#f04432';
+        const icon = event.icon || '•';
+        const isDimmed = isDimmedByDaylightMode(event, currentDaylightMode);
+        const stateClass = currentDaylightMode === 'ALL' ? '' : (isDimmed ? 'is-dimmed' : 'is-highlighted');
+        const pin = L.divIcon({
+          className: 'marker-pin-wrapper',
+          html: `<div class="marker-pin-inner ${stateClass}" style="background:${escapeHtml(colour)}">${escapeHtml(icon)}</div>`,
+          iconSize: [32,32], iconAnchor: [16,16], popupAnchor: [0,-15]
+        });
+        const marker = L.marker([Number(event.lat), Number(event.lng)], {icon: pin});
+        marker.bindPopup(`<div style="min-width:195px"><div class="popup-title">${escapeHtml(event.title)}</div><p class="popup-detail">⌚ ${escapeHtml(event.time)} – ${escapeHtml(timing.endTimeStr)}</p><a class="popup-link" href="${escapeHtml(safeUrl(event.url))}" target="_blank">Ver evento ↗</a></div>`);
+        markersGroup.addLayer(marker);
+      });
+    }
+
+    function renderEventsList(events, clock){
+      const container = document.getElementById('events-card-list');
+      container.innerHTML = '';
+      if(!events.length){
+        container.innerHTML = '<div class="empty-state">Não há planos ativos para estes filtros neste momento.</div>';
+        return;
+      }
+      events.forEach(event=>{
+        const timing = getEventTimingState(event, clock);
+        const card = document.createElement('article');
+        card.className = 'event-card';
+        card.innerHTML = `<div><h3 class="event-title">${escapeHtml(event.title)}</h3><p class="event-location">📍 <strong>${escapeHtml(event.venue)}</strong></p></div>`;
+        container.appendChild(card);
+      });
+    }
+
+    function applyFilters(){
+      const clock = getLisbonClock();
+      eventsData = rawEventsData.filter(event => !getEventTimingState(event, clock).isFinished);
+      filteredEvents = [...eventsData];
+      renderEventsList(filteredEvents, clock);
+      updateMapMarkers(filteredEvents);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
       initTicker();
-      initDraggableTicker();
-      document.getElementById('search-input').addEventListener('input',applyFilters);
-      ['category-filter','price-filter','corridor-filter'].forEach(id=>document.getElementById(id).addEventListener('change',applyFilters));
-      document.getElementById('reset-filters').addEventListener('click',resetFilters);
-      document.getElementById('map-toggle').addEventListener('click',()=>toggleMap());
       await loadDailyEvents();
-      if(window.innerWidth>900)initMap();
-      setInterval(()=>loadDailyEvents(false),30*60*1000);
+      if(window.innerWidth > 900) initMap();
     });
   </script>
 </body>
