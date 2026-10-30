@@ -1,0 +1,56 @@
+[
+  {
+    "venue": "Kømplex Lisbon",
+    "aliases": ["komplex lisbon", "kømplex lisbon", "kømplex", "komplex", "praceta domingos rodrigues"],
+    "lat": 38.7845,
+    "lng": -9.1192,
+    "neighborhood": "Prior Velho / Oriente",
+    "corridor": "Eastern Corridor",
+    "url": "https://shotgun.live/pt-pt/venues/komplex"
+  },
+  {
+    "venue": "Moon Club",
+    "aliases": ["moon club", "moonclub", "moon club prior velho", "raw kinky lab"],
+    "lat": 38.7862,
+    "lng": -9.1245,
+    "neighborhood": "Prior Velho / Oriente",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.moonclub.pt"
+  },
+  {
+    "venue": "NĀDA 3.0 (NADA Lisbon)",
+    "aliases": ["nada 3.0", "naada 3.0", "nada lisbon", "naada", "nāda", "rua figo maduro 3", "armazem 6", "tiga naada"],
+    "lat": 38.7858,
+    "lng": -9.1238,
+    "neighborhood": "Prior Velho / Oriente",
+    "corridor": "Eastern Corridor",
+    "url": "https://shotgun.live/pt-pt/venues/nada-lisbon"
+  },
+  {
+    "venue": "Higher Ground",
+    "aliases": ["higher ground", "rua ary dos santos 20"],
+    "lat": 38.7868,
+    "lng": -9.1252,
+    "neighborhood": "Prior Velho / Oriente",
+    "corridor": "Eastern Corridor",
+    "url": "https://shotgun.live/en/cities/lisbon"
+  },
+  {
+    "venue": "Music Station",
+    "aliases": ["music station", "rock station", "aquilino ribeiro machado 74"],
+    "lat": 38.7735,
+    "lng": -9.0975,
+    "neighborhood": "Parque das Nações / Oriente",
+    "corridor": "Eastern Corridor",
+    "url": "https://pt.ra.co/clubs/254407"
+  },
+  {
+    "venue": "Top Floor",
+    "aliases": ["top floor", "rua da pimenta 29"],
+    "lat": 38.7712,
+    "lng": -9.0928,
+    "neighborhood": "Parque das Nações / Oriente",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.lisabout.com/genero/dance-electronic"
+  }
+]
