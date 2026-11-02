@@ -35,16 +35,35 @@ jobs:
       - name: Validar events.json antes de publicar
         run: |
           python -c "
-          import json
+          import json, datetime
+
           with open('events.json', 'r', encoding='utf-8') as f:
               data = json.load(f)
+
           events = data.get('events', [])
           print(f'Total events validated: {len(events)}')
+
+          # 1. Minimum event count
           assert len(events) >= 30, f'Too few events generated ({len(events)})!'
+
+          # 2. operational_date must match today (UTC+0/+1 — Lisbon time)
+          today = datetime.date.today().isoformat()
+          op_date = data.get('operational_date', '')
+          assert op_date == today, \
+              f'operational_date {op_date!r} does not match today {today!r}. Stale or cached output?'
+
+          # 3. Per-event field validation
+          valid_tiers = {'FREE', 'ACCESSIBLE', 'MID', 'PREMIUM', 'CONSULTAR'}
           for ev in events:
               assert ev.get('url', '').startswith('http'), f'Invalid URL in {ev}'
               assert 38.65 <= float(ev['lat']) <= 38.82, f'Lat out of Lisbon bounds: {ev}'
               assert -9.25 <= float(ev['lng']) <= -9.05, f'Lng out of Lisbon bounds: {ev}'
+              assert ev.get('title', '').strip(), f'Empty title in {ev}'
+              assert ev.get('venue', '').strip(), f'Empty venue in {ev}'
+              assert ev.get('priceTier') in valid_tiers, \
+                  f'Unknown priceTier {ev.get(\"priceTier\")!r} in {ev}'
+
+          print('All validations passed.')
           "
 
       - name: Guardar events.json atualizado
