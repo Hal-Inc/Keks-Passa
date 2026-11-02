@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111713">
-  <meta name="description" content="Keks Passa — o que temos hoje em Lisboa? Música, exposições, cinema, teatro e coisas para fazer pela cidade.">
+  <meta name="description" content="Keks Passa — o que temos hoje em Lisboa? Música, exposições, cinema, teatro, mercados, oficinas e coisas para fazer pela cidade.">
   <title>Keks Passa — Que temos hoje?</title>
   <!-- Task 2: High-visibility full-bleed KP SVG favicon (inline data URI + external file) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' fill='%23f04432' stroke='%23f0eddf' stroke-width='2'/%3E%3Cg fill='%23111713' stroke='%23f0eddf' stroke-width='3' stroke-linejoin='miter' paint-order='stroke fill'%3E%3Cpath d='M3 3 H13 V25 L21 3 H31 L20 31 L31 61 H21 L13 37 V61 H3 Z'/%3E%3Cpath fill-rule='evenodd' d='M34 3 H51 C57.8 3 61 7.5 61 15.5 V24.5 C61 32.5 57.8 37 51 37 H44 V61 H34 Z M44 12 V28 H49.5 C51.2 28 52 26.8 52 24 V16 C52 13.2 51.2 12 49.5 12 Z'/%3E%3C/g%3E%3C/svg%3E">
@@ -93,6 +93,8 @@
     .modal-close-btn:hover{border-color:var(--red);color:var(--red)}
     .suggest-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
     .suggest-grid .full-span{grid-column:1 / -1}
+    .custom-category-wrap{display:none}
+    .custom-category-wrap.is-visible{display:block}
     .moderation-note{margin:12px 0;padding:10px 12px;background:var(--ink);border-left:3px solid var(--green);color:var(--muted);font:10px/1.5 var(--mono)}
     .suggest-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;margin-top:14px}
     .btn-primary{border:2px solid var(--paper);background:var(--red);color:var(--ink);padding:10px 16px;font:800 13px/1 var(--mono);text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 var(--yellow)}
@@ -139,10 +141,10 @@
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-topline"><span>Agenda de rua · cultura · noite · em tempo real</span></div>
+      <div class="hero-topline"><span>Agenda de rua · cultura · mercados · oficinas · noite · em tempo real</span></div>
       <h1 id="hero-title">Que temos<br><span>hoje?</span></h1>
       <div class="hero-bottom">
-        <p class="hero-copy">Concertos, exposições, cinema, teatro, raves no Prior Velho e outras desculpas para sair de casa. Quando um evento acaba, sai da lista: aqui só vês o que está a acontecer ou ainda vai começar hoje.</p>
+        <p class="hero-copy">Concertos, exposições, cinema, teatro, mercados de rua, oficinas de artes, palestras e raves no Prior Velho. Quando um evento acaba, sai da lista: aqui só vês o que está a acontecer ou ainda vai começar hoje.</p>
         <div class="hero-count"><strong id="total-count">—</strong><span>planos ativos hoje<br>à tua espera</span></div>
       </div>
     </section>
@@ -153,10 +155,10 @@
     </div>
 
     <section class="toolbar" aria-label="Pesquisar e filtrar eventos"><div class="filters">
-      <div class="field"><label for="search-input">À procura de quê?</label><input type="search" id="search-input" placeholder="Fado, Prior Velho, Kømplex, ZDB, Belém…" autocomplete="off"></div>
-      <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">Tudo um pouco</option><option value="Concerts & Live Music">Concertos e música ao vivo</option><option value="Theatre & Comedy">Teatro e comédia</option><option value="Exhibitions & Visual Arts">Exposições e artes visuais</option><option value="Opera & Classical">Ópera e música clássica</option><option value="Cinema & Screenings">Cinema e sessões</option><option value="Nightlife & Electronic">Noite e eletrónica</option><option value="Community & Gatherings">Comunidade e encontros</option><option value="Family & Youth">Famílias e miúdos</option></select></div>
+      <div class="field"><label for="search-input">À procura de quê?</label><input type="search" id="search-input" placeholder="Cerâmica, Feira, Prior Velho, ZDB, Belém…" autocomplete="off"></div>
+      <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">Tudo um pouco</option><option value="Concerts & Live Music">Concertos e música ao vivo</option><option value="Theatre & Comedy">Teatro e comédia</option><option value="Exhibitions & Visual Arts">Exposições e artes visuais</option><option value="Opera & Classical">Ópera e música clássica</option><option value="Cinema & Screenings">Cinema e sessões</option><option value="Nightlife & Electronic">Noite e eletrónica</option><option value="Community & Gatherings">Mercados, oficinas, conversas e comunidade</option><option value="Family & Youth">Famílias e miúdos</option></select></div>
       <div class="field"><label for="price-filter">Quanto custa?</label><select id="price-filter"><option value="ALL">Qualquer preço</option><option value="FREE">À borla</option><option value="ACCESSIBLE">Até 15 €</option><option value="MID">15 € a 30 €</option><option value="PREMIUM">Mais de 30 €</option></select></div>
-      <div class="field"><label for="corridor-filter">Em que zona?</label><select id="corridor-filter"><option value="ALL">Lisboa toda</option><option value="Axial Spine">Baixa, Rossio e Bairro Alto</option><option value="Belém Waterfront">Belém e zona ribeirinha</option><option value="Northern Belt">Eixo norte</option><option value="Eastern Corridor">Marvila, Oriente e Prior Velho</option></select></div>
+      <div class="field"><label for="corridor-filter">Por onde andas?</label><select id="corridor-filter"><option value="ALL">Lisboa inteira (tudo ao molho)</option><option value="Axial Spine">Centro e Sobe-e-Desce (Baixa, Chiado, Bairro Alto, Cais e Intendente)</option><option value="Belém Waterfront">Beira-Rio a Oeste (Santos, Alcântara, Docas e Belém)</option><option value="Northern Belt">Lá p'ra Cima (Avenidas Novas, Saldanha, Alvalade e Sete Rios)</option><option value="Eastern Corridor">Lado Oriental e Armazéns (Anjos, Graça, Beato, Marvila, Oriente e Prior Velho)</option></select></div>
     </div>
     <div class="toolbar-bottom">
       <span id="results-count"><strong>—</strong> eventos ativos para descobrir</span>
@@ -207,19 +209,19 @@
         <div class="suggest-grid">
           <div class="field">
             <label for="sug-venue">Nome do espaço ou coletivo *</label>
-            <input type="text" id="sug-venue" required placeholder="Ex: Moon Club, Desterro, Coletivo X…">
+            <input type="text" id="sug-venue" required placeholder="Ex: FICA, Moon Club, Feira X, Coletivo Y…">
           </div>
           <div class="field">
             <label for="sug-neighborhood">Bairro / Zona *</label>
-            <input type="text" id="sug-neighborhood" required placeholder="Ex: Prior Velho, Marvila, Anjos, Cais…">
+            <input type="text" id="sug-neighborhood" required placeholder="Ex: Prior Velho, Marvila, Anjos, Alcântara…">
           </div>
           <div class="field">
-            <label for="sug-corridor">Eixo na cidade</label>
+            <label for="sug-corridor">Por que lados fica?</label>
             <select id="sug-corridor">
-              <option value="Eastern Corridor">Marvila, Beato, Oriente e Prior Velho</option>
-              <option value="Axial Spine">Baixa, Chiado, Bairro Alto e Cais do Sodré</option>
-              <option value="Northern Belt">Saldanha, Alvalade e Eixo Norte</option>
-              <option value="Belém Waterfront">Alcântara, Belém e Zona Ribeirinha</option>
+              <option value="Eastern Corridor">Lado Oriental e Armazéns (Anjos, Graça, Beato, Marvila, Oriente e Prior Velho)</option>
+              <option value="Axial Spine">Centro e Sobe-e-Desce (Baixa, Chiado, Bairro Alto, Cais e Intendente)</option>
+              <option value="Northern Belt">Lá p'ra Cima (Avenidas Novas, Saldanha, Alvalade e Sete Rios)</option>
+              <option value="Belém Waterfront">Beira-Rio a Oeste (Santos, Alcântara, Docas e Belém)</option>
             </select>
           </div>
           <div class="field">
@@ -227,19 +229,25 @@
             <select id="sug-category">
               <option value="Nightlife & Electronic">Noite, Clubbing e Eletrónica</option>
               <option value="Concerts & Live Music">Concertos e Música ao Vivo</option>
+              <option value="Community & Gatherings">Mercados, Artesanato, Oficinas e Palestras</option>
               <option value="Exhibitions & Visual Arts">Exposições e Artes Visuais</option>
               <option value="Theatre & Comedy">Teatro, Performance e Comédia</option>
               <option value="Cinema & Screenings">Cinema e Sessões</option>
-              <option value="Community & Gatherings">Comunidade, Mercados e Encontros</option>
+              <option value="Family & Youth">Famílias e Miúdos</option>
+              <option value="OUTRO">Outro (escrever abaixo…)</option>
             </select>
           </div>
+          <div class="field full-span custom-category-wrap" id="sug-category-custom-wrap">
+            <label for="sug-category-custom">Qual é o tipo de programação? *</label>
+            <input type="text" id="sug-category-custom" placeholder="Ex: Oficina de cerâmica, Feira de zines, Clube de leitura, Tertúlia…">
+          </div>
           <div class="field full-span">
-            <label for="sug-url">Link da agenda / Instagram / Shotgun / RA *</label>
-            <input type="url" id="sug-url" required placeholder="https://...">
+            <label for="sug-url">Link da agenda / Instagram / Shotgun / RA (opcional)</label>
+            <input type="text" id="sug-url" placeholder="https://... ou @instagram (opcional)">
           </div>
           <div class="field full-span">
             <label for="sug-notes">Morada, horários habituais ou nota para a equipa</label>
-            <textarea id="sug-notes" rows="2" placeholder="Ex: Armazém na Rua Ary dos Santos, abre sextas e sábados das 23h59 às 07h00…"></textarea>
+            <textarea id="sug-notes" rows="2" placeholder="Ex: Atelier na Rua da Artilharia, oficinas aos sábados às 15h00…"></textarea>
           </div>
         </div>
         <div class="moderation-note">
@@ -267,97 +275,20 @@
     const SUGGESTION_ENDPOINT = ''; 
 
     const categoryLabels = {
-      'Concerts & Live Music':'Concertos e música ao vivo','Theatre & Comedy':'Teatro e comédia','Exhibitions & Visual Arts':'Exposições e artes visuais','Opera & Classical':'Ópera e música clássica','Cinema & Screenings':'Cinema e sessões','Nightlife & Electronic':'Noite e eletrónica','Community & Gatherings':'Comunidade e encontros','Family & Youth':'Famílias e miúdos'
+      'Concerts & Live Music':'Concertos e música ao vivo',
+      'Theatre & Comedy':'Teatro e comédia',
+      'Exhibitions & Visual Arts':'Exposições e artes visuais',
+      'Opera & Classical':'Ópera e música clássica',
+      'Cinema & Screenings':'Cinema e sessões',
+      'Nightlife & Electronic':'Noite e eletrónica',
+      'Community & Gatherings':'Mercados, oficinas e comunidade',
+      'Family & Youth':'Famílias e miúdos'
     };
     let rawEventsData = [], eventsData = [], filteredEvents = [], map = null, markersGroup = null, loadedData = null;
     let currentDaylightMode = 'ALL'; // 'SUN' | 'ALL' | 'MOON' (Task 7)
 
     const categoryColours = {'Concerts & Live Music':'#E63946','Theatre & Comedy':'#2A9D8F','Exhibitions & Visual Arts':'#1D3557','Opera & Classical':'#8338EC','Cinema & Screenings':'#06D6A0','Nightlife & Electronic':'#FB5607','Community & Gatherings':'#FFB703','Family & Youth':'#118AB2'};
     const categoryIcons = {'Concerts & Live Music':'🔴','Theatre & Comedy':'🟢','Exhibitions & Visual Arts':'🔵','Opera & Classical':'🟣','Cinema & Screenings':'🩷','Nightlife & Electronic':'🟠','Community & Gatherings':'🟡','Family & Youth':'🩵'};
-
-    // Task 4: Prior Velho & Oriente Nighttime Electronic Venues & Events (Saturday 31/10 Halloween)
-    const PRIOR_VELHO_SUPPLEMENT = [
-      {
-        "id": "pv-1875-mega-after-day-1-halloween-edition",
-        "title": "Mega After Day 1 — Halloween Edition (Du'Art, Inside Groove, Samuel K)",
-        "category": "Nightlife & Electronic",
-        "color": "#FB5607",
-        "icon": "🟠",
-        "venue": "NĀDA 3.0 (NADA Lisbon)",
-        "neighborhood": "Prior Velho / Oriente",
-        "corridor": "Eastern Corridor",
-        "lat": 38.7858,
-        "lng": -9.1238,
-        "time": "05:00",
-        "hour": 5,
-        "endTime": "12:00",
-        "endHour": 12,
-        "price": "15€",
-        "priceTier": "ACCESSIBLE",
-        "url": "https://www.lisabout.com/events/1875-mega-after-day-1-halloween-edition",
-        "description": "Afterhours de 7 horas sem pausas no NĀDA 3.0 (Rua Figo Maduro 3, Prior Velho) com Du'Art, Inside Groove e Samuel K. Horário: 05:00 – 12:00."
-      },
-      {
-        "id": "pv-1772-halloween-12h-festival-by-disturb-e-tutty-frutty",
-        "title": "Halloween 12h Festival by Disturb & Tutty Frutty",
-        "category": "Nightlife & Electronic",
-        "color": "#FB5607",
-        "icon": "🟠",
-        "venue": "Kømplex Lisbon",
-        "neighborhood": "Prior Velho / Oriente",
-        "corridor": "Eastern Corridor",
-        "lat": 38.7845,
-        "lng": -9.1192,
-        "time": "23:30",
-        "hour": 23,
-        "endTime": "11:30",
-        "endHour": 11,
-        "price": "10€ - 20€",
-        "priceTier": "ACCESSIBLE",
-        "url": "https://www.lisabout.com/events/1772-halloween-12h-festival-by-disturb-e-tutty-frutty",
-        "description": "Maratona de 12 horas de Techno, Hard Bounce e Rave no armazém KØMPLEX Lisbon (Praceta Domingos Rodrigues 5, Prior Velho). Horário: 23:30 – 11:30."
-      },
-      {
-        "id": "pv-1491-halloween-invdrs",
-        "title": "Halloween INVDRS @ Moon Club Prior Velho",
-        "category": "Nightlife & Electronic",
-        "color": "#FB5607",
-        "icon": "🟠",
-        "venue": "Moon Club",
-        "neighborhood": "Prior Velho / Oriente",
-        "corridor": "Eastern Corridor",
-        "lat": 38.7862,
-        "lng": -9.1245,
-        "time": "23:59",
-        "hour": 23,
-        "endTime": "08:00",
-        "endHour": 8,
-        "price": "18€",
-        "priceTier": "MID",
-        "url": "https://www.lisabout.com/events/1491-halloween-invdrs",
-        "description": "Noite de Halloween INVDRS no Moon Club (Rua Ary dos Santos 3, Prior Velho). Techno e hard techno das 23:59 até ao nascer do sol."
-      },
-      {
-        "id": "pv-1490-balagan-halloween",
-        "title": "Balagan Halloween @ NĀDA 3.0 (Prior Velho)",
-        "category": "Nightlife & Electronic",
-        "color": "#FB5607",
-        "icon": "🟠",
-        "venue": "NĀDA 3.0 (NADA Lisbon)",
-        "neighborhood": "Prior Velho / Oriente",
-        "corridor": "Eastern Corridor",
-        "lat": 38.78568,
-        "lng": -9.12365,
-        "time": "23:59",
-        "hour": 23,
-        "endTime": "07:00",
-        "endHour": 7,
-        "price": "13€",
-        "priceTier": "ACCESSIBLE",
-        "url": "https://www.lisabout.com/events/1490-balagan-halloween",
-        "description": "Festa eletrónica Balagan Halloween no armazém NĀDA 3.0 (Rua Figo Maduro 3 / Armazém 6, Prior Velho). Horário: 23:59 – 07:00."
-      }
-    ];
 
     // Filter out unmatched non-Lisbon RA area_id=51 entries
     const NON_LISBON_VENUES = new Set(['exit reality', 'rasa', 'mdlr', '66 chambers', 'earworm']);
@@ -464,7 +395,6 @@
       "Lisboa é um barco ancorado nas sete colinas, à espera que a maré da história volte a subir. — Urbano Tavares Rodrigues",
       "Cantar Lisboa é afinar a voz pela cor dos azulejos e pelo salitre que o vento traz do Cais das Colunas. — Camané",
       "O Tejo é a nossa estrada líquida para o mundo, mas Lisboa é o único sítio onde o coração quer meter âncora. — Proverbial Alfacinha",
-      // --- 50 NEW PHRASES ABOUT LISBON (Task 3) ---
       "Lisboa menina e moça, menina da luz que os meus olhos vêem tão pura. — Carlos do Carmo / Ary dos Santos",
       "Para mim, não há flores capazes de se compararem ao colorido de Lisboa ao sol. — Bernardo Soares (Fernando Pessoa)",
       "Lisboa com suas casas de várias cores, a sorrir na paisagem. — Cesário Verde",
@@ -619,8 +549,6 @@
     }
 
     function getLiveLisbonOperationalDateISO(){
-      // Shift back 4 hours so 00:00–03:59 belongs to the previous night's operational day,
-      // and 04:00+ immediately rolls over to today's operational date in Europe/Lisbon.
       const shifted = new Date(Date.now() - 4 * 60 * 60 * 1000);
       const parts = new Intl.DateTimeFormat('en-CA', {
         timeZone: 'Europe/Lisbon',
@@ -714,7 +642,6 @@
       if(endOpMins <= startOpMins){
         endOpMins += 24 * 60;
       }
-      // Task 5: If an event finishes at 16:00 (960), at 16:01 (961) nowOpMinutes > endOpMins -> finished!
       const isFinished = clock.opMinutes > endOpMins;
       const isHappeningNow = !isFinished && clock.opMinutes >= startOpMins && clock.opMinutes <= endOpMins;
       return {
@@ -734,11 +661,9 @@
       const startOpMins = parseHHMMToOpMinutes(event.time, event.hour ?? 21);
       const eighteenHundredMins = 18 * 60; // 18:00 (1080 operational minutes)
       if(mode === 'SUN'){
-        // On "Sun", events that begin after 18:00 (>= 18:00 / night) become dimmer
         return startOpMins >= eighteenHundredMins;
       }
       if(mode === 'MOON'){
-        // On "Moon", events that begin before 18:00 (< 18:00 / daytime) become dimmer
         return startOpMins < eighteenHundredMins;
       }
       return false;
@@ -757,17 +682,7 @@
     }
 
     function mergeAndCleanEvents(rawList){
-      // Filter out any cached non-Lisbon RA area_id=51 entries and merge Prior Velho electronic events
-      const cleaned = rawList.filter(ev => !NON_LISBON_VENUES.has(String(ev.venue || '').toLowerCase().trim()));
-      const existingIds = new Set(cleaned.map(ev => ev.id));
-      const existingKeys = new Set(cleaned.map(ev => `${String(ev.venue||'').toLowerCase()}|${String(ev.title||'').toLowerCase().slice(0,15)}`));
-      PRIOR_VELHO_SUPPLEMENT.forEach(pv => {
-        const key = `${pv.venue.toLowerCase()}|${pv.title.toLowerCase().slice(0,15)}`;
-        if(!existingIds.has(pv.id) && !existingKeys.has(key)){
-          cleaned.push(pv);
-        }
-      });
-      return cleaned;
+      return rawList.filter(ev => !NON_LISBON_VENUES.has(String(ev.venue || '').toLowerCase().trim()));
     }
 
     async function loadDailyEvents(showError=true){
@@ -873,7 +788,7 @@
       }
       document.getElementById('today-label').textContent = portugueseDate(loadedData && (loadedData.operational_date || loadedData.date_string));
 
-      // Task 5: Prune any event whose endTime has already passed (e.g. finishes at 16:00 -> removed at 16:01)
+      // Task 5: Prune any event whose endTime has already passed
       eventsData = rawEventsData.filter(event => !getEventTimingState(event, clock).isFinished);
 
       const search=document.getElementById('search-input').value.trim().toLocaleLowerCase('pt-PT');
@@ -939,7 +854,7 @@
       updateMapMarkers(filteredEvents);
     }
 
-    // Task 6: Moderated Suggestion Modal Logic
+    // Task 6: Moderated Suggestion Modal Logic (with optional URL & custom "Outro" category)
     function initSuggestionModal(){
       const modal = document.getElementById('suggest-modal');
       const openHeader = document.getElementById('open-suggest-header');
@@ -948,9 +863,24 @@
       const form = document.getElementById('suggest-form');
       const ghBtn = document.getElementById('suggest-github-btn');
       const feedback = document.getElementById('suggest-feedback');
+      const categorySelect = document.getElementById('sug-category');
+      const customCategoryWrap = document.getElementById('sug-category-custom-wrap');
+      const customCategoryInput = document.getElementById('sug-category-custom');
+
+      function syncCustomCategoryField(){
+        const isOutro = categorySelect.value === 'OUTRO';
+        customCategoryWrap.classList.toggle('is-visible', isOutro);
+        customCategoryInput.required = isOutro;
+        if(isOutro){
+          customCategoryInput.focus();
+        }
+      }
+
+      categorySelect.addEventListener('change', syncCustomCategoryField);
 
       function openModal(){
         modal.classList.add('is-open');
+        syncCustomCategoryField();
         document.getElementById('sug-venue').focus();
       }
       function closeModal(){
@@ -967,7 +897,9 @@
         const venue = document.getElementById('sug-venue').value.trim();
         const neighborhood = document.getElementById('sug-neighborhood').value.trim();
         const corridor = document.getElementById('sug-corridor').value;
-        const category = document.getElementById('sug-category').value;
+        const rawCategory = categorySelect.value;
+        const customCategory = customCategoryInput.value.trim();
+        const category = rawCategory === 'OUTRO' ? (customCategory || 'Outro (Comunidade)') : rawCategory;
         const url = document.getElementById('sug-url').value.trim();
         const notes = document.getElementById('sug-notes').value.trim();
         const venueJsonEntry = {
@@ -977,6 +909,7 @@
           lng: -9.1400,
           neighborhood: neighborhood || "Lisboa",
           corridor: corridor,
+          category_hint: category,
           url: url || "https://www.agendalx.pt"
         };
         return { venue, neighborhood, corridor, category, url, notes, venueJsonEntry };
@@ -990,7 +923,7 @@
           `- **Bairro / Zona:** ${payload.neighborhood}\n` +
           `- **Corredor:** ${payload.corridor}\n` +
           `- **Categoria principal:** ${payload.category}\n` +
-          `- **Link / Agenda:** ${payload.url}\n` +
+          `- **Link / Instagram (opcional):** ${payload.url || 'Não indicado'}\n` +
           `- **Notas / Horários:** ${payload.notes || 'N/A'}\n\n` +
           `#### Bloco pronto para \`venues.json\` / \`scraper.py\`:\n` +
           `\`\`\`json\n${JSON.stringify(payload.venueJsonEntry, null, 2)}\n\`\`\``
