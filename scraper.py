@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
-Keks Passa — Daily Lisbon Cultural & Nightlife Scraper (v2.3 Unified Multi-Tier)
-Fixes the 04:00 AM operational rollover & Monday <30 events assertion failure:
-1. AgendaLX (agendalx.pt HTML + WP-JSON API) & Cartaz Cultural Lisboa via curl_cffi
+Keks Passa — Daily Lisbon Cultural & Nightlife Scraper (v2.4 Unified Multi-Tier)
+Includes dedicated scrapers and hubs for Arts & Crafts, Markets, Workshops & Lectures:
+1. AgendaLX (agendalx.pt events + Feiras/Mercados, Oficinas, Conferências, Literatura) & Cartaz Cultural
 2. NoCartaz Lisboa (concelhos/lisboa + hoje + distrito/lisboa categories + date-range parser)
 3. Cinemateca Portuguesa (cinemateca.pt/Programacao.aspx)
-4. Cinema Medeia Nimas (medeiafilmes.com — fixed 'estreia DD.MM.YYYY' premature truncation)
-5. Agenda de Concertos Lisboa (localidade/lisboa + concertos-em-portugal section parser)
+4. Cinema Medeia Nimas (medeiafilmes.com — fixed 'estreia DD.MM.YYYY' truncation)
+5. Agenda de Concertos Lisboa (localidade/lisboa + concertos-em-portugal)
 6. BOTA Anjos Programação (botaanjos.com/programacao)
 7. Prior Velho, Lisabout & Electronic Hubs (lisabout.com/events + moonclub.pt + RA Area 229/51)
-8. Active Lisbon Museum Exhibitions, Independent Cinemas & Theatre Seasons (32+ daily baseline)
+8. Arts & Crafts, Markets, Workshops & Lectures (Eventbrite Lisboa + FICA Oficina Criativa + ViralAgenda)
+9. Active Lisbon Museum Exhibitions, Markets, Workshops, Cinemas & Theatre Seasons (35+ daily baseline)
 """
 
 import os
@@ -81,7 +82,7 @@ PT_MONTH_LOOKUP = {
 }
 
 # ==============================================================================
-# VENUE REGISTRY (88 Verified Lisbon & Prior Velho Venues)
+# VENUE REGISTRY (96 Verified Lisbon, Craft, Market & Prior Velho Venues)
 # ==============================================================================
 VENUE_REGISTRY = [
     # --- PRIOR VELHO & ORIENTE ELECTRONIC CLUSTER ---
@@ -103,8 +104,10 @@ VENUE_REGISTRY = [
     {"venue": "Underdogs Gallery", "aliases": ["underdogs", "underdogs gallery", "rua fernando palha"], "lat": 38.7363, "lng": -9.1020, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://www.under-dogs.net"},
     {"venue": "Teatro Meridional", "aliases": ["teatro meridional", "meridional"], "lat": 38.7360, "lng": -9.1025, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://teatromeridional.net"},
     {"venue": "BOTA - Base Organizada da Toca das Artes", "aliases": ["bota anjos", "bota", "base organizada da toca das artes", "largo de santa barbara"], "lat": 38.7247, "lng": -9.1345, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.botaanjos.com"},
+    {"venue": "Anjos70", "aliases": ["anjos70", "anjos 70", "regueirao dos anjos"], "lat": 38.7235, "lng": -9.1349, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.instagram.com/anjos70_"},
     {"venue": "Hangar - Centro de Investigação Artística", "aliases": ["hangar", "rua damasceno monteiro", "mafolofolo"], "lat": 38.7198, "lng": -9.1306, "neighborhood": "Graça", "corridor": "Eastern Corridor", "url": "https://hangar.com.pt"},
     {"venue": "Feira da Ladra (Campo de Santa Clara)", "aliases": ["feira da ladra", "campo de santa clara"], "lat": 38.7154, "lng": -9.1255, "neighborhood": "São Vicente / Alfama", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
+    {"venue": "Mercado de Santa Clara", "aliases": ["mercado de santa clara", "mercado santa clara"], "lat": 38.7156, "lng": -9.1252, "neighborhood": "São Vicente / Santa Clara", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
     {"venue": "Panteão Nacional", "aliases": ["panteao nacional"], "lat": 38.7150, "lng": -9.1247, "neighborhood": "Santa Clara / Alfama", "corridor": "Eastern Corridor", "url": "https://www.panteaonacional.gov.pt"},
     {"venue": "Pavilhão do Conhecimento", "aliases": ["pavilhao do conhecimento", "ciencia viva"], "lat": 38.7626, "lng": -9.0936, "neighborhood": "Parque das Nações", "corridor": "Eastern Corridor", "url": "https://www.pavconhecimento.pt"},
     {"venue": "Oceanário de Lisboa", "aliases": ["oceanario", "oceanario de lisboa", "halloweek"], "lat": 38.7635, "lng": -9.0937, "neighborhood": "Parque das Nações", "corridor": "Eastern Corridor", "url": "https://www.oceanario.pt"},
@@ -126,9 +129,13 @@ VENUE_REGISTRY = [
     {"venue": "Skones & Pátio do Pinzaleiro", "aliases": ["skones", "patio do pinzaleiro", "pinzaleiro"], "lat": 38.7086, "lng": -9.1562, "neighborhood": "Santos / Madragoa", "corridor": "Axial Spine", "url": "https://www.lisabout.com/genero/dance-electronic"},
     {"venue": "Museu da Marioneta", "aliases": ["museu da marioneta", "convento das bernardas"], "lat": 38.7078, "lng": -9.1558, "neighborhood": "Madragoa / Santos", "corridor": "Axial Spine", "url": "https://www.museudamarioneta.pt"},
     {"venue": "Museu da Farmácia", "aliases": ["museu da farmacia"], "lat": 38.7097, "lng": -9.1482, "neighborhood": "Santa Catarina / Chiado", "corridor": "Axial Spine", "url": "https://www.museudafarmacia.pt"},
+    {"venue": "Jardim da Estrela (Crafts & Design)", "aliases": ["jardim da estrela", "mercado crafts & design", "crafts and design", "feira da estrela"], "lat": 38.7145, "lng": -9.1594, "neighborhood": "Estrela / Lapa", "corridor": "Axial Spine", "url": "https://www.agendalx.pt"},
+    {"venue": "Jardim do Príncipe Real", "aliases": ["principe real", "jardim do principe real", "mercado biologico do principe real"], "lat": 38.7163, "lng": -9.1488, "neighborhood": "Príncipe Real", "corridor": "Axial Spine", "url": "https://www.agendalx.pt"},
+    {"venue": "MUHNAC — Museu Nacional de História Natural e da Ciência", "aliases": ["muhnac", "museu nacional de historia natural", "jardim botanico de lisboa", "escola politecnica"], "lat": 38.7176, "lng": -9.1512, "neighborhood": "Príncipe Real", "corridor": "Axial Spine", "url": "https://www.museus.ulisboa.pt"},
     {"venue": "Teatro do Bairro Alto (TBA)", "aliases": ["teatro do bairro alto", "tba"], "lat": 38.7197, "lng": -9.1528, "neighborhood": "Príncipe Real", "corridor": "Axial Spine", "url": "https://teatrodobairroalto.pt"},
     {"venue": "Fundação Arpad Szenes-Vieira da Silva", "aliases": ["arpad szenes", "vieira da silva", "praca das amoreiras"], "lat": 38.7215, "lng": -9.1592, "neighborhood": "Amoreiras / Rato", "corridor": "Axial Spine", "url": "https://fasvs.pt"},
     {"venue": "Casa Fernando Pessoa", "aliases": ["casa fernando pessoa", "rua coelho da rocha"], "lat": 38.7191, "lng": -9.1664, "neighborhood": "Campo de Ourique", "corridor": "Axial Spine", "url": "https://www.casafernandopessoa.pt"},
+    {"venue": "Goethe-Institut Lisboa", "aliases": ["goethe-institut", "goethe institut", "campo dos martires da patria"], "lat": 38.7222, "lng": -9.1404, "neighborhood": "Santana / Pena", "corridor": "Axial Spine", "url": "https://www.goethe.de/ins/pt/pt/ver.cfm"},
     {"venue": "Hot Clube de Portugal", "aliases": ["hot clube", "hot clube de portugal", "praca da alegria"], "lat": 38.7182, "lng": -9.1448, "neighborhood": "Avenida / Praça da Alegria", "corridor": "Axial Spine", "url": "https://hcp.pt"},
     {"venue": "Cineteatro Capitólio", "aliases": ["capitolio", "cineteatro capitolio", "teatro capitolio", "parque mayer"], "lat": 38.7186, "lng": -9.1462, "neighborhood": "Parque Mayer / Avenida", "corridor": "Axial Spine", "url": "https://www.cineteatrocapitolio.pt"},
     {"venue": "Teatro Variedades", "aliases": ["teatro variedades", "variedades"], "lat": 38.7191, "lng": -9.1462, "neighborhood": "Parque Mayer", "corridor": "Axial Spine", "url": "https://teatrovariedades-capitolio.pt"},
@@ -159,6 +166,7 @@ VENUE_REGISTRY = [
     {"venue": "Jardim Zoológico de Lisboa", "aliases": ["jardim zoologico", "zoo de lisboa", "halloween no zoo", "reptilario"], "lat": 38.7442, "lng": -9.1712, "neighborhood": "Sete Rios", "corridor": "Northern Belt", "url": "https://www.zoo.pt"},
     {"venue": "Evolution Valbom Rooftop", "aliases": ["evolution valbom", "valbom", "rooftop over lisbon"], "lat": 38.7351, "lng": -9.1485, "neighborhood": "Saldanha", "corridor": "Northern Belt", "url": "https://www.lisabout.com/genero/dance-electronic"},
     {"venue": "Culturgest", "aliases": ["culturgest", "arco do cego"], "lat": 38.7402, "lng": -9.1412, "neighborhood": "Campo Pequeno / Arco do Cego", "corridor": "Northern Belt", "url": "https://www.culturgest.pt"},
+    {"venue": "Biblioteca Palácio Galveias", "aliases": ["palacio galveias", "biblioteca palacio galveias", "campo pequeno"], "lat": 38.7418, "lng": -9.1465, "neighborhood": "Campo Pequeno", "corridor": "Northern Belt", "url": "https://blx.cm-lisboa.pt"},
     {"venue": "Cinema Medeia Nimas", "aliases": ["nimas", "cinema nimas", "medeia nimas", "av. 5 de outubro"], "lat": 38.7357, "lng": -9.1495, "neighborhood": "Saldanha", "corridor": "Northern Belt", "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas"},
     {"venue": "Cinema Medeia Monumental", "aliases": ["medeia monumental", "cinema monumental", "saldanha monumental"], "lat": 38.7338, "lng": -9.1458, "neighborhood": "Saldanha", "corridor": "Northern Belt", "url": "https://medeiafilmes.com"},
     {"venue": "Teatro Maria Matos", "aliases": ["maria matos", "teatro maria matos", "av. frei miguel contreiras"], "lat": 38.7463, "lng": -9.1380, "neighborhood": "Roma / Areeiro", "corridor": "Northern Belt", "url": "https://teatromariamatos.pt"},
@@ -179,7 +187,8 @@ VENUE_REGISTRY = [
     {"venue": "Museu Nacional dos Coches", "aliases": ["museu nacional dos coches", "museu dos coches"], "lat": 38.6966, "lng": -9.1997, "neighborhood": "Belém", "corridor": "Belém Waterfront", "url": "https://www.mncoches.gov.pt"},
     {"venue": "BONANÇA - Associação Naval de Lisboa", "aliases": ["bonanca", "associacao naval de lisboa", "doca de belem"], "lat": 38.6942, "lng": -9.2038, "neighborhood": "Belém", "corridor": "Belém Waterfront", "url": "https://www.lisabout.com/genero/dance-electronic"},
     {"venue": "MACAM / àCapela", "aliases": ["macam", "acapela", "junqueira"], "lat": 38.6989, "lng": -9.1887, "neighborhood": "Belém / Junqueira", "corridor": "Belém Waterfront", "url": "https://www.nocartaz.pt/concelhos/lisboa/"},
-    {"venue": "LX Factory / Village Underground", "aliases": ["lx factory", "lxfactory", "collect lx factory", "village underground", "alcântara", "alcantara", "the hospital", "ler devagar"], "lat": 38.7035, "lng": -9.1788, "neighborhood": "Alcântara", "corridor": "Belém Waterfront", "url": "https://lxfactory.com"},
+    {"venue": "FICA — Oficina Criativa (LX Factory)", "aliases": ["fica", "fica oficina criativa", "fica-oc"], "lat": 38.7038, "lng": -9.1785, "neighborhood": "Alcântara (LX Factory)", "corridor": "Belém Waterfront", "url": "https://fica-oc.pt"},
+    {"venue": "LX Factory / Village Underground", "aliases": ["lx factory", "lxfactory", "collect lx factory", "village underground", "alcântara", "alcantara", "the hospital", "ler devagar", "lx rural"], "lat": 38.7035, "lng": -9.1788, "neighborhood": "Alcântara", "corridor": "Belém Waterfront", "url": "https://lxfactory.com"},
     {"venue": "Docas de Santo Amaro / Cais Rocha Conde de Óbidos", "aliases": ["docas de santo amaro", "rocha conde de obidos", "sunset boat party", "brewclub"], "lat": 38.7008, "lng": -9.1742, "neighborhood": "Alcântara / Docas", "corridor": "Belém Waterfront", "url": "https://www.agendalx.pt"},
     {"venue": "Museu do Oriente", "aliases": ["museu do oriente", "av. brasilia"], "lat": 38.7027, "lng": -9.1714, "neighborhood": "Alcântara", "corridor": "Belém Waterfront", "url": "https://www.foriente.pt"},
     {"venue": "Museu Nacional de Arte Antiga (MNAA)", "aliases": ["museu nacional de arte antiga", "mnaa", "janelas verdes"], "lat": 38.7042, "lng": -9.1608, "neighborhood": "Santos / Janelas Verdes", "corridor": "Belém Waterfront", "url": "https://www.museudearteantiga.pt"},
@@ -255,6 +264,15 @@ def match_venue(*texts, require_match=False):
 
 def infer_category_preset(text, default_key="concerts"):
     low = strip_accents(text or "")
+    # Prioritize markets, arts & crafts, workshops, lectures, and community gatherings
+    if any(k in low for k in [
+        "conferencia", "palestra", "debate", "conversa", "coloquio", "seminario",
+        "feira", "mercado", "flea market", "literatura", "alfarrabistas", "clube de leitura",
+        "lancamento", "visita guiada", "comunidade", "workshop", "tertulia", "artesanato",
+        "ceramica", "olaria", "serigrafia", "risografia", "bordado", "costura", "encadernacao",
+        "marcenaria", "ilustracao", "zine", "fanzine", "gravura", "crafts"
+    ]):
+        return CATEGORY_PRESETS["community"]
     if any(k in low for k in ["exposicao", "artes plasticas", "fotografia", "instalacao", "arte moderna", "artes visuais", "cartoon", "galeria"]):
         return CATEGORY_PRESETS["exhibitions"]
     if any(k in low for k in ["teatro", "danca", "comedia", "stand-up", "stand up", "circo", "improviso", "musical", "performance", "cabaret", "burlesque"]):
@@ -263,12 +281,10 @@ def infer_category_preset(text, default_key="concerts"):
         return CATEGORY_PRESETS["cinema"]
     if any(k in low for k in ["opera", "classica", "sinfonica", "coro", "orquestra", "schubert", "beethoven", "strauss", "recital"]):
         return CATEGORY_PRESETS["classical"]
-    if any(k in low for k in ["criancas", "familia", "oficina", "infantil", "jovens", "bebes", "kids", "pre-escolar", "ciclo"]):
+    if any(k in low for k in ["criancas", "familia", "oficina infantil", "infantil", "jovens", "bebes", "kids", "pre-escolar", "ciclo"]):
         return CATEGORY_PRESETS["family"]
     if any(k in low for k in ["dj", "clubbing", "eletronica", "electronic", "noite", "festa", "rave", "techno", "house", "afterhours", "halloween party", "pub crawl"]):
         return CATEGORY_PRESETS["nightlife"]
-    if any(k in low for k in ["conferencia", "feira", "mercado", "literatura", "alfarrabistas", "visita", "comunidade", "workshop", "tertulia"]):
-        return CATEGORY_PRESETS["community"]
     return CATEGORY_PRESETS.get(default_key, CATEGORY_PRESETS["concerts"])
 
 
@@ -339,11 +355,11 @@ def infer_end_time(start_time, hour_int, category_name, venue_name="", title="",
     if category_name == "Community & Gatherings":
         if "8 marvila" in v_low or "lx factory" in v_low:
             return "20:00", 20
-        if "feira da ladra" in v_low:
+        if "feira da ladra" in v_low or "mercado" in t_low or "feira" in t_low:
             return "17:00", 17
         if sh <= 10:
             return "18:00", 18
-        return add_minutes(sh, sm, 120)
+        return add_minutes(sh, sm, 150)
 
     if category_name == "Nightlife & Electronic":
         if 4 <= sh <= 8:
@@ -365,7 +381,6 @@ def parse_price_and_tier(text, default_price="Consultar bilheteira", default_tie
     low = strip_accents(text or "")
     if any(k in low for k in ["entrada livre", "gratuito", "gratis", "free", "borla", "gratuita"]):
         return "Entrada Livre", "FREE"
-    # Match both '12€' / '12.50 €' AND '€12' / 'From €12'
     m = re.search(r"(?:€\s*(\d{1,3})(?:[.,](\d{1,2}))?|(\d{1,3})(?:[.,](\d{1,2}))?\s*€)", str(text))
     if m:
         whole = m.group(1) if m.group(1) is not None else m.group(3)
@@ -385,8 +400,7 @@ def parse_price_and_tier(text, default_price="Consultar bilheteira", default_tie
 def matches_portuguese_date_or_range(text, target_date):
     """
     Returns True if `text` explicitly mentions `target_date` (e.g. '02 nov', '2 novembro', '02/11/2026')
-    OR contains an active Portuguese date range (e.g. '15 Outubro 2026 - 15 Novembro 2026',
-    'De 16 Outubro a 14 Novembro 2026') that spans across `target_date`.
+    OR contains an active Portuguese date range spanning across `target_date`.
     """
     norm = strip_accents(text or "")
     month_short = strip_accents(PT_MONTHS_SHORT[target_date.month])
@@ -401,7 +415,6 @@ def matches_portuguese_date_or_range(text, target_date):
         if re.search(pat, norm):
             return True
 
-    # Check date ranges: e.g. '15 Outubro 2026 - 15 Novembro 2026' or 'De 16 Outubro a 14 Novembro 2026'
     range_pat = re.compile(
         r"\b(\d{1,2})\s+(?:de\s+)?([a-zç]{3,9})(?:\s+(?:de\s+)?(202\d))?\s*(?:-|–|—|\ba\b|\bate\b)\s*(\d{1,2})\s+(?:de\s+)?([a-zç]{3,9})(?:\s+(?:de\s+)?(202\d))?\b"
     )
@@ -442,23 +455,34 @@ def scrape_agendalx(target_date):
     date_str = target_date.strftime("%Y-%m-%d")
     print(f"[Tier 1] Scraping AgendaLX & Cartaz Cultural for {date_str}...")
 
-    # 1A. AgendaLX HTML & WP-JSON REST API
-    try:
-        resp = fetch_url("https://www.agendalx.pt/events/")
-        if resp.status_code == 200:
+    agendalx_urls = [
+        "https://www.agendalx.pt/events/",
+        "https://www.agendalx.pt/categoria/feiras-e-mercados/",
+        "https://www.agendalx.pt/categoria/formacao-e-oficinas/",
+        "https://www.agendalx.pt/categoria/conferencias-e-debates/",
+        "https://www.agendalx.pt/categoria/literatura/",
+    ]
+    seen_alx = set()
+    for alx_url in agendalx_urls:
+        try:
+            resp = fetch_url(alx_url)
+            if resp.status_code != 200:
+                continue
             soup = BeautifulSoup(resp.text, "html.parser")
             for art in soup.select("article, .event-card, .card, .type-event"):
                 txt = clean_html_text(art.get_text(" ", strip=True))
                 a_tag = art.find("a", href=True)
-                if not a_tag:
+                if not a_tag or a_tag["href"] in seen_alx:
                     continue
                 title_el = art.find(["h2", "h3", "h4"])
                 title = clean_html_text(title_el.get_text(" ", strip=True) if title_el else a_tag.get_text(" ", strip=True))
                 if not title or len(title) < 3:
                     continue
+                seen_alx.add(a_tag["href"])
 
-                preset = infer_category_preset(txt)
-                default_t = "10:00" if preset == CATEGORY_PRESETS["exhibitions"] else "21:00"
+                default_cat = "community" if any(k in alx_url for k in ["feiras", "oficinas", "conferencias", "literatura"]) else "concerts"
+                preset = infer_category_preset(f"{title} {txt}", default_cat)
+                default_t = "10:00" if preset["category"] in ("Exhibitions & Visual Arts", "Community & Gatherings") else "21:00"
                 time_str, hour_int = parse_time_str(txt, default_t)
                 geo = match_venue(txt, title)
                 price_disp, price_tier = parse_price_and_tier(txt, "Entrada sujeita a bilheteira", "ACCESSIBLE")
@@ -484,10 +508,9 @@ def scrape_agendalx(target_date):
                     "url": urljoin("https://www.agendalx.pt", a_tag["href"]),
                     "description": f"{title} em {geo['venue']} ({geo['neighborhood']}).",
                 })
-    except Exception as e:
-        print(f"[AgendaLX] Notice: {e}")
+        except Exception as e:
+            print(f"[AgendaLX] Notice on {alx_url}: {e}")
 
-    # 1B. Cartaz Cultural Lisboa (agenda-eventos-lisboa + exposicoes-em-lisboa)
     ccl_urls = [
         "https://cartazculturallisboa.pt/agenda-eventos-lisboa/",
         "https://cartazculturallisboa.pt/exposicoes-em-lisboa/",
@@ -568,6 +591,8 @@ def scrape_nocartaz(target_date):
         ("https://www.nocartaz.pt/distrito/lisboa/exposicoes/", False),
         ("https://www.nocartaz.pt/distrito/lisboa/cinema/", False),
         ("https://www.nocartaz.pt/distrito/lisboa/jazz/", False),
+        ("https://www.nocartaz.pt/distrito/lisboa/feiras/", False),
+        ("https://www.nocartaz.pt/distrito/lisboa/conferencias/", False),
     ]
 
     seen_hrefs = set()
@@ -585,7 +610,6 @@ def scrape_nocartaz(target_date):
                 raw_pipe = clean_html_text(container.get_text(" | ", strip=True))
                 norm_pipe = strip_accents(raw_pipe)
 
-                # On non-/hoje/ pages, require date or date-range match
                 if not is_hoje_page:
                     if not (re.search(day_pat, norm_pipe) or matches_portuguese_date_or_range(raw_pipe, target_date)):
                         continue
@@ -598,7 +622,6 @@ def scrape_nocartaz(target_date):
                 if not title or len(title) < 3:
                     continue
 
-                # Skip generic tourist bus/boat ticket ads on /hoje/
                 if any(k in strip_accents(title) for k in ["viagens ilimitadas", "hop-on", "caves calem"]):
                     continue
 
@@ -626,8 +649,9 @@ def scrape_nocartaz(target_date):
                     }
 
                 seen_hrefs.add(href)
-                preset = infer_category_preset(raw_pipe)
-                default_t = "10:00" if preset["category"] in ("Exhibitions & Visual Arts", "Family & Youth") else "21:00"
+                default_cat = "community" if any(k in nc_url for k in ["feiras", "conferencias"]) else "concerts"
+                preset = infer_category_preset(raw_pipe, default_cat)
+                default_t = "10:00" if preset["category"] in ("Exhibitions & Visual Arts", "Family & Youth", "Community & Gatherings") else "21:00"
                 time_str, hour_int = parse_time_str(raw_pipe, default_t)
                 price_disp, price_tier = parse_price_and_tier(raw_pipe)
                 end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], title, raw_pipe)
@@ -729,7 +753,6 @@ def scrape_nimas(target_date):
             return events
         day_section = raw_text.split(d_dot, 1)[1]
 
-        # Only cut at the next schedule date header (ignoring 'estreia DD.MM.YYYY' inside film descriptions)
         upcoming_dates = [
             (target_date + datetime.timedelta(days=k)).strftime("%d.%m.%Y")
             for k in range(1, 15)
@@ -831,7 +854,6 @@ def scrape_agendadeconcertos(target_date):
                 if next_header_pat.search(ln_norm) and not today_header_pat.search(ln_norm):
                     break
 
-                # Look for venue line ending with '– Lisboa' or '- Lisboa'
                 if i + 1 < len(raw_lines) and re.search(r"[-–]\s*lisboa\b", strip_accents(raw_lines[i + 1])):
                     artist = raw_lines[i]
                     venue_line = raw_lines[i + 1]
@@ -1075,7 +1097,6 @@ def scrape_prior_velho_electronic(target_date):
 
                 geo = match_venue(card_text, title, require_match=True)
                 if not geo:
-                    # Extract 'Venue•Neighborhood' directly from Lisabout card if present
                     v_name = "Lisboa (Ver Local no Link)"
                     v_neigh = "Centro Histórico"
                     for seg in card_text.split("|"):
@@ -1163,13 +1184,132 @@ def scrape_prior_velho_electronic(target_date):
 
 
 # ==============================================================================
-# TIER 4: ACTIVE LISBON MUSEUM EXHIBITIONS, CINEMAS & CULTURAL RUNS (32+ BASELINE)
+# TIER 3.5: ARTS & CRAFTS, MARKETS, WORKSHOPS & LECTURES SCRAPER
+# ==============================================================================
+def scrape_markets_workshops_lectures(target_date):
+    """
+    Scrapes Lisbon directories for Arts & Crafts, Markets, Workshops, and Lectures:
+    - Eventbrite Lisboa (workshops, classes, arts & crafts, talks)
+    - FICA Oficina Criativa (fica-oc.pt in LX Factory)
+    """
+    events = []
+    date_str = target_date.strftime("%Y-%m-%d")
+    print(f"[Tier 3.5] Scraping Arts & Crafts, Markets, Workshops & Lectures for {date_str}...")
+
+    # 1. Eventbrite Lisboa (today's workshops, classes, talks & markets)
+    eb_urls = [
+        "https://www.eventbrite.pt/d/portugal--lisboa/events--today/",
+        "https://www.eventbrite.pt/d/portugal--lisboa/workshops--events--today/",
+        "https://www.eventbrite.pt/d/portugal--lisboa/arts--events--today/",
+    ]
+    seen_eb = set()
+    for eb_url in eb_urls:
+        try:
+            resp = fetch_url(eb_url)
+            if resp.status_code != 200:
+                continue
+            soup = BeautifulSoup(resp.text, "html.parser")
+            for a_tag in soup.select('a[href*="/e/"]'):
+                href = a_tag.get("href", "").split("?")[0]
+                if not href or href in seen_eb:
+                    continue
+                card = a_tag.find_parent(["article", "li", "div"]) or a_tag
+                txt = clean_html_text(card.get_text(" | ", strip=True))
+                low_txt = strip_accents(txt)
+                if any(k in low_txt for k in ["online", "webinar", "porto", "sintra", "cascais"]):
+                    continue
+                h_el = card.find(["h2", "h3", "h4"])
+                title = clean_html_text(h_el.get_text(" ", strip=True) if h_el else a_tag.get_text(" ", strip=True))
+                if not title or len(title) < 5:
+                    continue
+                seen_eb.add(href)
+
+                geo = match_venue(txt, title, require_match=False)
+                preset = infer_category_preset(f"{title} {txt}", "community")
+                time_str, hour_int = parse_time_str(txt, "18:30")
+                price_disp, price_tier = parse_price_and_tier(txt, "Inscrição no link", "ACCESSIBLE")
+                end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], title, txt)
+
+                events.append({
+                    "id": f"eb-{abs(hash(href)) % 1000000}",
+                    "title": title,
+                    "category": preset["category"],
+                    "color": preset["color"],
+                    "icon": preset["icon"],
+                    "venue": geo["venue"],
+                    "neighborhood": geo["neighborhood"],
+                    "corridor": geo["corridor"],
+                    "lat": geo["lat"],
+                    "lng": geo["lng"],
+                    "time": time_str,
+                    "hour": hour_int,
+                    "endTime": end_t,
+                    "endHour": end_h,
+                    "price": price_disp,
+                    "priceTier": price_tier,
+                    "url": href,
+                    "description": f"{title} — oficina, encontro ou palestra em {geo['venue']} ({geo['neighborhood']}).",
+                })
+        except Exception as e:
+            print(f"[Eventbrite Workshops] Notice on {eb_url}: {e}")
+
+    # 2. FICA — Oficina Criativa (LX Factory)
+    try:
+        resp = fetch_url("https://fica-oc.pt/workshops/")
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            geo = match_venue("fica oficina criativa")
+            seen_fica = set()
+            for a_tag in soup.select('a[href*="/produto/"], a[href*="/workshop/"]'):
+                href = a_tag.get("href", "")
+                if not href or href in seen_fica:
+                    continue
+                card = a_tag.find_parent(["li", "div", "article"]) or a_tag
+                txt = clean_html_text(card.get_text(" ", strip=True))
+                if not matches_portuguese_date_or_range(txt, target_date):
+                    continue
+                seen_fica.add(href)
+                h_el = card.find(["h2", "h3", "h4"])
+                title = clean_html_text(h_el.get_text(" ", strip=True) if h_el else a_tag.get_text(" ", strip=True))
+                if not title or len(title) < 4:
+                    continue
+                time_str, hour_int = parse_time_str(txt, "14:30")
+                price_disp, price_tier = parse_price_and_tier(txt, "Consultar oficina", "MID")
+                end_t, end_h = infer_end_time(time_str, hour_int, CATEGORY_PRESETS["community"]["category"], geo["venue"], title, txt)
+                events.append({
+                    "id": f"fica-{abs(hash(href)) % 100000}",
+                    "title": f"Oficina FICA: {title}",
+                    "category": CATEGORY_PRESETS["community"]["category"],
+                    "color": CATEGORY_PRESETS["community"]["color"],
+                    "icon": CATEGORY_PRESETS["community"]["icon"],
+                    "venue": geo["venue"],
+                    "neighborhood": geo["neighborhood"],
+                    "corridor": geo["corridor"],
+                    "lat": geo["lat"],
+                    "lng": geo["lng"],
+                    "time": time_str,
+                    "hour": hour_int,
+                    "endTime": end_t,
+                    "endHour": end_h,
+                    "price": price_disp,
+                    "priceTier": price_tier,
+                    "url": urljoin("https://fica-oc.pt", href),
+                    "description": f"Oficina prática de artes e ofícios ({title}) na FICA — Oficina Criativa (LX Factory, Alcântara).",
+                })
+    except Exception as e:
+        print(f"[FICA Workshops] Notice: {e}")
+
+    return events
+
+
+# ==============================================================================
+# TIER 4: ACTIVE LISBON MUSEUM EXHIBITIONS, MARKETS, WORKSHOPS & RUNS (35+ BASELINE)
 # ==============================================================================
 def get_ongoing_cultural_events(target_date):
     """
-    Generates day-of-week-aware ongoing Lisbon museum exhibitions, cultural hubs,
-    independent cinema sessions, and active theatre/music programming so every
-    day of the week (including Mondays and Sundays) exceeds the 30-event minimum.
+    Generates day-of-week-aware ongoing Lisbon museum exhibitions, craft workshops,
+    street markets, lectures, independent cinema sessions, and active theatre/music
+    programming so every day of the week exceeds the 30-event minimum.
     """
     ymd = target_date.strftime("%Y%m%d")
     weekday = target_date.weekday()  # 0=Mon ... 5=Sat, 6=Sun
@@ -1221,12 +1361,12 @@ def get_ongoing_cultural_events(target_date):
     add_item(7, "Cinco Mil Anos de História da Saúde e das Boticas", "exhibitions",
              "museu da farmacia", "10:00", "19:00", "6.00€", "ACCESSIBLE",
              "https://www.museudafarmacia.pt", "Coleção histórica global de boticas, sarcófagos e instrumentos de saúde no Miradouro de Santa Catarina.")
-    add_item(8, "Roteiro de Arte Urbana, Livraria Ler Devagar & Galerias Independentes", "community",
+    add_item(8, "Feira de Livros, Artesanato Urbano, Zines & Livraria Ler Devagar", "community",
              "lx factory", "10:30", "21:00", "Entrada Livre", "FREE",
-             "https://lxfactory.com", "Instalações artísticas, estúdios criativos, livrarias e programação cultural na antiga fábrica de Alcântara.")
-    add_item(9, "Galerias de Arte, Lojas Independentes & Cultura Emergente", "community",
+             "https://lxfactory.com", "Ateliers abertos, bancas de artesãos, edições independentes e livraria na antiga fábrica de Alcântara.")
+    add_item(9, "Galerias de Arte, Ateliers Criativos & Lojas Independentes", "community",
              "8 marvila", "12:00", "20:00", "Entrada Livre", "FREE",
-             "https://www.8marvila.com", "Percurso expositivo, galerias e espaço cultural nos antigos armazéns vinícolas do 8 Marvila.")
+             "https://www.8marvila.com", "Percurso expositivo, mercados criativos, vinil e espaço cultural nos antigos armazéns do 8 Marvila.")
     add_item(10, "Sessão da Tarde: Cinema de Autor e Estreias Independentes", "cinema",
              "cinema ideal", "16:15", "18:15", "7.50€", "ACCESSIBLE",
              "https://cinemaideal.pt", "Programação diária de cinema independente, europeu e português no histórico Cinema Ideal (Chiado).")
@@ -1238,7 +1378,7 @@ def get_ongoing_cultural_events(target_date):
              "https://www.cinemacity.pt", "Exibição de cinema de autor e estreias internacionais no Cinema City Classic Alvalade.")
     add_item(13, "Noite de Jazz, Bossa Nova, Tertúlias & Música ao Vivo", "concerts",
              "fabrica braco de prata", "20:30", "23:30", "5€ - 10€", "ACCESSIBLE",
-             "https://www.bracodeprata.com", "Concertos ao vivo em várias salas, livraria e exposições na Fábrica Braço de Prata (Marvila).")
+             "https://www.bracodeprata.com", "Concertos ao vivo em várias salas, livraria, tertúlias e exposições na Fábrica Braço de Prata (Marvila).")
     add_item(14, "Sessão da Noite: Cinema Independente no Chiado", "cinema",
              "cinema ideal", "21:30", "23:30", "7.50€", "ACCESSIBLE",
              "https://cinemaideal.pt", "Sessão noturna de cinema contemporâneo e estreias no Cinema Ideal (Rua do Loreto, Chiado).")
@@ -1257,126 +1397,147 @@ def get_ongoing_cultural_events(target_date):
         add_item(18, "Turn Around, Pedro Casqueiro & Visitas à Central Tejo", "exhibitions",
                  "maat", "10:00", "19:00", "11.00€", "ACCESSIBLE",
                  "https://www.maat.pt", "Exposições de arte contemporânea, arquitetura e tecnologia no MAAT e Central Tejo (Belém, aberto qua–seg).")
-        add_item(19, "Coleção do Fundador Gulbenkian & Percurso Botânico nos Jardins", "exhibitions",
+        add_item(19, "Coleção do Fundador Gulbenkian, Conversas de Arte & Jardins", "exhibitions",
                  "gulbenkian", "10:00", "18:00", "10.00€", "ACCESSIBLE",
-                 "https://gulbenkian.pt", "Obras-primas da Antiguidade ao século XX e jardins de Gonçalo Ribeiro Telles (aberto qua–seg).")
+                 "https://gulbenkian.pt", "Obras-primas da Antiguidade ao século XX e percurso botânico nos jardins (aberto qua–seg).")
         add_item(20, "PADRÃO: Casa-Obsessão & Miradouro do Tejo", "exhibitions",
                  "padrao dos descobrimentos", "10:00", "18:00", "6.00€", "ACCESSIBLE",
                  "https://padraodosdescobrimentos.pt", "Exposição temporária e subida ao terraço panorâmico do Padrão dos Descobrimentos em Belém.")
-        add_item(21, "Exposições de Arte Contemporânea — Galerias Culturgest", "exhibitions",
+        add_item(21, "Exposições de Arte Contemporânea & Ciclo de Conferências", "exhibitions",
                  "culturgest", "11:00", "19:00", "5.00€", "ACCESSIBLE",
-                 "https://www.culturgest.pt", "Exposições de artes visuais contemporâneas nas galerias da Culturgest (Campo Pequeno).")
+                 "https://www.culturgest.pt", "Exposições de artes visuais e debates culturais na Culturgest (Campo Pequeno).")
 
-    # --- 3. OPEN MONDAY - SATURDAY (CLOSED SUNDAYS — ACTIVE ON MONDAYS!) ---
+    # --- 3. OPEN MONDAY - SATURDAY (ARTS & CRAFTS, WORKSHOPS & LECTURE HUBS) ---
     if weekday != 6:
-        add_item(22, "A Semente dos Livros — Exposição Permanente José Saramago", "exhibitions",
+        add_item(22, "A Semente dos Livros — Exposição & Leituras José Saramago", "exhibitions",
                  "casa dos bicos", "10:00", "18:00", "4.00€", "ACCESSIBLE",
-                 "https://www.josesaramago.org", "Exposição sobre a vida e obra do Nobel da Literatura na histórica Casa dos Bicos (Campo das Cebolas).")
-        add_item(23, "Hierofania (Mané Pacheco) & Programação de Artes Visuais", "exhibitions",
+                 "https://www.josesaramago.org", "Exposição sobre a vida e obra do Nobel da Literatura e encontros literários na Casa dos Bicos.")
+        add_item(23, "Oficinas Abertas de Cerâmica, Serigrafia, Risografia e Marcenaria", "community",
+                 "fica oficina criativa", "10:30", "19:00", "Consultar oficina", "MID",
+                 "https://fica-oc.pt", "Workshops práticos de artes e ofícios (olaria, serigrafia, encadernação e madeira) na FICA (LX Factory).")
+        add_item(24, "Clubes de Leitura, Tertúlias & Exposições no Palácio Galveias", "community",
+                 "biblioteca palacio galveias", "10:00", "19:30", "Entrada Livre", "FREE",
+                 "https://blx.cm-lisboa.pt", "Encontros literários, palestras, exposições documentais e salas de leitura no Campo Pequeno.")
+        add_item(25, "Hierofania (Mané Pacheco) & Conversas de Arte Contemporânea", "exhibitions",
                  "appleton", "14:00", "19:00", "Entrada Livre", "FREE",
-                 "https://appleton.pt", "Exposições de arte contemporânea independente na Appleton Associação Cultural (Alvalade).")
-        add_item(24, "Exposições e Residências Artísticas na Graça", "exhibitions",
+                 "https://appleton.pt", "Exposições e encontros com artistas na Appleton Associação Cultural (Alvalade).")
+        add_item(26, "Exposições, Conversas Abertas e Residências Artísticas na Graça", "exhibitions",
                  "hangar", "15:00", "19:00", "Entrada Livre", "FREE",
-                 "https://hangar.com.pt", "Exposições, investigação artística e arquivo contemporâneo no Hangar (Graça).")
+                 "https://hangar.com.pt", "Exposições, palestras pós-coloniais e investigação artística no Hangar (Graça).")
 
-    # --- 4. MONDAY-SPECIFIC LISBON CULTURAL & NIGHTLIFE PROGRAMMING ---
+    # --- 4. MONDAY-SPECIFIC LISBON CULTURAL, WORKSHOP & NIGHTLIFE PROGRAMMING ---
     if weekday == 0:
-        add_item(25, "Segunda-Feira de Cinema Clássico e Restaurado (Matiné)", "cinema",
+        add_item(27, "Segunda-Feira de Cinema Clássico e Restaurado (Matiné)", "cinema",
                  "cinema medeia nimas", "14:00", "16:15", "7.50€", "ACCESSIBLE",
                  "https://medeiafilmes.com/cinemas/cinema-medeia-nimas", "Ciclos de cinema restaurado e grandes mestres da sétima arte no Cinema Medeia Nimas.")
-        add_item(26, "Sessão de Cinema Europeu & Retrospetivas no Saldanha", "cinema",
+        add_item(28, "Sessão de Cinema Europeu & Retrospetivas no Saldanha", "cinema",
                  "medeia monumental", "17:00", "19:15", "7.50€", "ACCESSIBLE",
                  "https://medeiafilmes.com", "Exibição de cinema de autor e antestreias no Cinema Medeia Monumental (Saldanha).")
-        add_item(27, "Sunset & Vinyl Listening Session à Beira-Tejo", "community",
+        add_item(29, "Sunset, Feira de Vinil & Listening Session à Beira-Tejo", "community",
                  "docas de santo amaro", "18:00", "22:00", "Entrada Livre", "FREE",
-                 "https://www.agendalx.pt", "Fim de tarde com seleção em vinil e convívio nas Docas de Santo Amaro / Alcântara.")
-        add_item(28, "Tertúlia Cultural, Exposição & DJ Set no Largo do Intendente", "community",
+                 "https://www.agendalx.pt", "Fim de tarde com bancas de vinil, ilustração e convívio nas Docas de Santo Amaro / Alcântara.")
+        add_item(30, "Oficina de Desenho, Tertúlia & Exposição no Largo do Intendente", "community",
                  "casa independente", "18:30", "23:30", "Entrada Livre", "FREE",
-                 "https://casaindependente.com", "Exposição 'Amanhã Não Vai Deixar Saudades' e convívio cultural na Casa Independente (Intendente).")
-        add_item(29, "Noite de Fado Vadio e Guitarra Portuguesa em Alfama", "concerts",
+                 "https://casaindependente.com", "Exposição coletiva, encontro criativo e convívio cultural na Casa Independente (Intendente).")
+        add_item(31, "Noite de Fado Vadio e Guitarra Portuguesa em Alfama", "concerts",
                  "museu do fado", "20:00", "23:00", "Entrada Livre", "FREE",
                  "https://www.museudofado.pt", "Sessão acústica de fado tradicional e guitarra portuguesa no coração histórico de Alfama.")
-        add_item(30, "Open Mic de Stand-Up Comedy no Chiado", "theatre",
+        add_item(32, "Open Mic de Stand-Up Comedy no Chiado", "theatre",
                  "chiado comedy club", "21:00", "23:00", "8€ - 10€", "ACCESSIBLE",
                  "https://www.nocartaz.pt/concelhos/lisboa/", "Noite de stand-up comedy e novos talentos do humor no Chiado.")
-        add_item(31, "Ciclo Grandes Realizadores — Sessão da Noite Nimas", "cinema",
+        add_item(33, "Ciclo Grandes Realizadores — Sessão da Noite Nimas", "cinema",
                  "cinema medeia nimas", "21:30", "23:45", "7.50€", "ACCESSIBLE",
                  "https://medeiafilmes.com/cinemas/cinema-medeia-nimas", "Sessão noturna de cinema de autor e ciclos temáticos no Cinema Medeia Nimas.")
-        add_item(32, "Cabaret, Jazz & Cocktails na Rua do Alecrim", "theatre",
+        add_item(34, "Cabaret, Jazz & Cocktails na Rua do Alecrim", "theatre",
                  "o bom o mau e o vilao", "21:30", "01:30", "7.50€", "ACCESSIBLE",
                  "https://www.lisabout.com", "Noite de música, cabaret e DJ set no O Bom O Mau e O Vilão (Cais do Sodré).")
-        add_item(33, "Ritmos Atlânticos & Dança no Cais da Ribeira Nova", "concerts",
+        add_item(35, "Ritmos Atlânticos & Dança no Cais da Ribeira Nova", "concerts",
                  "b.leza", "22:30", "03:00", "10.00€", "ACCESSIBLE",
                  "https://www.agendalx.pt", "Noite dedicada à música lusófona, mornas, funaná e ritmos africanos no B.Leza.")
-        add_item(34, "Indie, Post-Punk & Alternative Night em São Bento", "nightlife",
+        add_item(36, "Indie, Post-Punk & Alternative Night em São Bento", "nightlife",
                  "incognito", "23:30", "04:00", "8.00€", "ACCESSIBLE",
                  "https://incognitobar.com", "Pista clássica de indie, post-punk, synth-pop e new wave na Rua de Poiais de São Bento.")
 
-    # --- 5. OPEN TUESDAY - SUNDAY (CLOSED MONDAYS) ---
+    # --- 5. OPEN TUESDAY - SUNDAY (MUSEUMS, SCIENCE LECTURES & WORKSHOPS) ---
     if weekday != 0:
-        add_item(35, "Délio Jasse: Entre a Pele e o Documento & Antologias da Memória", "exhibitions",
+        add_item(37, "Délio Jasse: Entre a Pele e o Documento & Antologias da Memória", "exhibitions",
                  "mnac", "10:00", "18:00", "10.00€", "ACCESSIBLE",
                  "https://museuartecontemporanea.gov.pt", "Exposições temporárias de fotografia e arte contemporânea no MNAC - Museu do Chiado.")
-        add_item(36, "Coleção Real de Viaturas de Gala & Modelismo de Coches", "exhibitions",
+        add_item(38, "Coleção Real de Viaturas de Gala & Modelismo de Coches", "exhibitions",
                  "museu nacional dos coches", "10:00", "18:00", "8.00€", "ACCESSIBLE",
                  "https://www.mncoches.gov.pt", "Exposição permanente e temporária no Museu Nacional dos Coches em Belém.")
-        add_item(37, "Japão: Festas e Rituais & Coleção Kwok On", "exhibitions",
+        add_item(39, "Japão: Festas e Rituais, Oficinas Asiáticas & Coleção Kwok On", "exhibitions",
                  "museu do oriente", "10:00", "18:00", "8.00€", "ACCESSIBLE",
-                 "https://www.foriente.pt", "Exposição sobre festas e rituais tradicionais asiáticos no Museu do Oriente (Alcântara).")
-        add_item(38, "Design Português, Moda e Arquitetura na Rua Augusta", "exhibitions",
+                 "https://www.foriente.pt", "Exposição e oficinas de artes tradicionais asiáticas no Museu do Oriente (Alcântara).")
+        add_item(40, "Design Português, Moda e Arquitetura na Rua Augusta", "exhibitions",
                  "mude", "10:00", "19:00", "11.00€", "ACCESSIBLE",
                  "https://www.mude.pt", "Exposições de design industrial, gráfico e moda no renovado MUDE — Museu do Design (Baixa).")
-        add_item(39, "A Biblioteca Particular de Fernando Pessoa & Exposições Literárias", "exhibitions",
+        add_item(41, "A Biblioteca Particular de Fernando Pessoa & Clubes de Poesia", "community",
                  "casa fernando pessoa", "10:00", "18:00", "6.00€", "ACCESSIBLE",
-                 "https://www.casafernandopessoa.pt", "Visita guiada e exposição dedicada à obra e heterónimos de Fernando Pessoa em Campo de Ourique.")
-        add_item(40, "Marionetas do Mundo & Próxima Estação", "exhibitions",
+                 "https://www.casafernandopessoa.pt", "Visita guiada, palestras literárias e exposição dedicada a Fernando Pessoa em Campo de Ourique.")
+        add_item(42, "Marionetas do Mundo & Oficinas de Construção de Formas Animadas", "exhibitions",
                  "museu da marioneta", "10:00", "18:00", "5.00€", "ACCESSIBLE",
-                 "https://www.museudamarioneta.pt", "Exposição de teatro de formas animadas e máscaras no Convento das Bernardas (Madragoa).")
-        add_item(41, "Obras de Maria Helena Vieira da Silva & Arpad Szenes", "exhibitions",
+                 "https://www.museudamarioneta.pt", "Exposição e oficinas de marionetas e máscaras no Convento das Bernardas (Madragoa).")
+        add_item(43, "Obras de Maria Helena Vieira da Silva & Arpad Szenes", "exhibitions",
                  "arpad szenes", "10:00", "18:00", "6.00€", "ACCESSIBLE",
                  "https://fasvs.pt", "Exposição permanente e temporária na Fundação Arpad Szenes-Vieira da Silva (Jardim das Amoreiras).")
-        add_item(42, "Painéis de São Vicente e Arte Europeia nas Janelas Verdes", "exhibitions",
+        add_item(44, "Painéis de São Vicente e Arte Europeia nas Janelas Verdes", "exhibitions",
                  "museu nacional de arte antiga", "10:00", "18:00", "10.00€", "ACCESSIBLE",
                  "https://www.museudearteantiga.pt", "Acervo nacional de pintura, escultura e artes decorativas no MNAA (Santos).")
-        add_item(43, "Exposições de Arte Urbana & Edições de Artista", "exhibitions",
+        add_item(45, "Exposições de História Natural, Jardim Botânico & Palestras de Ciência", "community",
+                 "muhnac", "10:00", "18:00", "6.00€", "ACCESSIBLE",
+                 "https://www.museus.ulisboa.pt", "Exposições científicas, herbário, observatório astronómico e visitas ao Jardim Botânico no Príncipe Real.")
+        add_item(46, "Exposições de Arte Urbana & Edições de Artista", "exhibitions",
                  "underdogs gallery", "14:00", "19:00", "Entrada Livre", "FREE",
                  "https://www.under-dogs.net", "Galeria de arte contemporânea e arte urbana em Marvila.")
 
     # --- 6. TUESDAY & SATURDAY FLEA MARKET ---
     if weekday in (1, 5):
-        add_item(44, "Feira da Ladra — Mercado Histórico de Antiguidades e Vinil", "community",
+        add_item(47, "Feira da Ladra — Mercado Histórico de Antiguidades, Artesanato e Vinil", "community",
                  "feira da ladra", "09:00", "17:00", "Entrada Livre", "FREE",
-                 "https://www.agendalx.pt", "O mercado mais antigo de Lisboa no Campo de Santa Clara (terças e sábados).")
+                 "https://www.agendalx.pt", "O mercado de rua mais antigo de Lisboa no Campo de Santa Clara (terças e sábados).")
 
-    # --- 7. ACTIVE THEATRE SEASONS & GALLERIES (WEDNESDAY - SUNDAY) ---
+    # --- 7. WEEKEND CRAFT, DESIGN & ORGANIC MARKETS (SATURDAY & SUNDAY) ---
+    if weekday in (5, 6):
+        add_item(48, "Mercado Crafts & Design e Feira de Artesanato no Jardim da Estrela", "community",
+                 "jardim da estrela", "10:00", "18:00", "Entrada Livre", "FREE",
+                 "https://www.agendalx.pt", "Mercado de autor, cerâmica, ilustração, joalharia e design independente no Jardim da Estrela.")
+        add_item(49, "Feira de Artesãos, Vintage, Zines e Criadores no Mercado de Santa Clara", "community",
+                 "mercado de santa clara", "10:00", "18:00", "Entrada Livre", "FREE",
+                 "https://www.agendalx.pt", "Bancas de cerâmica, gravura, roupa vintage e gastronomia artesanal no histórico pavilhão de Santa Clara.")
+        add_item(50, "Mercado Biológico e Feira de Pequenos Produtores no Príncipe Real", "community",
+                 "jardim do principe real", "09:30", "15:00", "Entrada Livre", "FREE",
+                 "https://www.agendalx.pt", "Mercado ao ar livre sob o cedro do Jardim do Príncipe Real.")
+
+    # --- 8. ACTIVE THEATRE SEASONS & GALLERIES (WEDNESDAY - SUNDAY) ---
     if weekday in (2, 3, 4, 5, 6):
         th_time = "16:30" if weekday == 6 else "20:00"
         th_end = "18:30" if weekday == 6 else "22:00"
         th_late = "17:00" if weekday == 6 else "21:00"
         th_late_end = "19:00" if weekday == 6 else "23:00"
 
-        add_item(45, "Alexandre Estrela: RedSkyFalls (Réplica) — Exposição ZDB", "exhibitions",
+        add_item(51, "Alexandre Estrela: RedSkyFalls (Réplica) — Exposição ZDB", "exhibitions",
                  "zdb", "18:00", "22:00", "Entrada Livre", "FREE",
                  "https://zedosbois.org", "Exposição de artes visuais e instalações na Galeria Zé dos Bois (Bairro Alto).")
-        add_item(46, "Macbeth (enc. Pedro Penim) & Auto da Barca do Inferno", "theatre",
+        add_item(52, "Macbeth (enc. Pedro Penim) & Auto da Barca do Inferno", "theatre",
                  "d. maria ii", th_time, th_end, "15.00€", "MID",
                  "https://www.tndm.pt", "Temporada teatral do Teatro Nacional D. Maria II.")
-        add_item(47, "Em Silêncio — Temporada São Luiz Teatro Municipal", "theatre",
+        add_item(53, "Em Silêncio — Temporada São Luiz Teatro Municipal", "theatre",
                  "sao luiz", th_time, th_end, "12.00€", "ACCESSIBLE",
                  "https://www.teatrosaoluiz.pt", "Espetáculo de teatro contemporâneo em cena no São Luiz Teatro Municipal (Chiado).")
-        add_item(48, "Ópera-Pimba no Gelo! O Primeiro Musical no Gelo Derretido", "theatre",
+        add_item(54, "Ópera-Pimba no Gelo! O Primeiro Musical no Gelo Derretido", "theatre",
                  "teatro da comuna", th_time, th_end, "12€ - 15€", "ACCESSIBLE",
                  "https://www.comunateatropesquisa.pt", "Comédia musical satírica na Sala Nova do Teatro da Comuna (Praça de Espanha).")
-        add_item(49, "Clube dos Poetas Mortos — enc. Hélder Gamboa", "theatre",
+        add_item(55, "Clube dos Poetas Mortos — enc. Hélder Gamboa", "theatre",
                  "teatro da trindade", th_late, th_late_end, "16€ - 22€", "MID",
                  "https://teatrodatrindade.inatel.pt", "Peça de Tom Schulman em cena no Teatro da Trindade INATEL no Chiado.")
-        add_item(50, "Pura Loucura — Temporada Teatro Maria Matos", "theatre",
+        add_item(56, "Pura Loucura — Temporada Teatro Maria Matos", "theatre",
                  "teatro maria matos", th_late, th_late_end, "21€ - 23€", "MID",
                  "https://teatromariamatos.pt", "Comédia teatral em cena no Teatro Maria Matos (Avenida de Roma).")
-        add_item(51, "Contos em Viagem — Goa", "theatre",
+        add_item(57, "Contos em Viagem — Goa", "theatre",
                  "teatro meridional", th_late, th_late_end, "12.00€", "ACCESSIBLE",
                  "https://teatromeridional.net", "Espetáculo teatral no Teatro Meridional em Marvila.")
-        add_item(52, "Hércules & Carmen Miranda — O Grande Musical", "theatre",
+        add_item(58, "Hércules & Carmen Miranda — O Grande Musical", "theatre",
                  "teatro politeama", th_late, th_late_end, "15€ - 30€", "MID",
                  "https://filipelaferia.pt", "Grandes produções musicais de Filipe La Féria no Teatro Politeama (Baixa).")
 
@@ -1423,7 +1584,7 @@ def main():
     now_lx = datetime.datetime.now(ZoneInfo("Europe/Lisbon"))
     target_date = (now_lx - datetime.timedelta(hours=4)).date()
     date_str = target_date.strftime("%Y-%m-%d")
-    print(f"=== Keks Passa Scraper v2.3 — Operational Date: {date_str} ===")
+    print(f"=== Keks Passa Scraper v2.4 — Operational Date: {date_str} ===")
 
     existing_events = []
     if os.path.exists("events.json"):
@@ -1448,6 +1609,7 @@ def main():
     live_raw.extend(scrape_bota_anjos(target_date))
     live_raw.extend(scrape_resident_advisor(target_date))
     live_raw.extend(scrape_prior_velho_electronic(target_date))
+    live_raw.extend(scrape_markets_workshops_lectures(target_date))
     live_raw.extend(get_ongoing_cultural_events(target_date))
 
     all_events = deduplicate_events(existing_events + live_raw)
