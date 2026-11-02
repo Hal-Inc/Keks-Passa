@@ -223,6 +223,9 @@ def load_external_venues():
                             VENUE_REGISTRY.append(item)
         except Exception as e:
             print(f"[Venue Loader] Notice reading venues.json: {e}")
+        # Rebuild compiled patterns to include any newly loaded external venues
+        _VENUE_PATTERNS.clear()
+        _build_venue_patterns()
 
 
 def fix_mojibake(text):
@@ -256,11 +259,35 @@ def strip_accents(text):
     return "".join(ch for ch in norm if unicodedata.category(ch) != "Mn").lower()
 
 
+# Pre-compiled venue patterns (built once at import time for O(n) matching per call).
+# Each entry is (compiled_regex, registry_entry, alias_length); sorted longest-first
+# so the first match is always the most specific one — no inner best_len tracking needed.
+_VENUE_PATTERNS: list = []
+
+
+def _build_venue_patterns() -> None:
+    """Compile every venue alias into a regex once, sorted longest-alias-first."""
+    rows = []
+    for entry in VENUE_REGISTRY:
+        candidates = [entry["venue"]] + list(entry.get("aliases", []))
+        for cand in candidates:
+            c_norm = strip_accents(cand).strip()
+            if not c_norm or len(c_norm) < 3 or c_norm in AMBIGUOUS_ALIAS_TOKENS:
+                continue
+            pat = re.compile(rf"(?<![a-z0-9]){re.escape(c_norm)}(?![a-z0-9])")
+            rows.append((pat, entry, len(c_norm)))
+    rows.sort(key=lambda r: r[2], reverse=True)
+    _VENUE_PATTERNS.extend(rows)
+
+
 def match_venue(*texts, require_match=False):
     """
     Matches venue by checking each text argument in priority order (e.g., venue_candidate first,
     then title, then full card text), requiring strict word boundaries and preferring the longest
     matching alias so short tokens never hijack unrelated events.
+
+    Uses pre-compiled _VENUE_PATTERNS (built at startup) instead of rebuilding regexes on
+    every call — eliminates the inner O(aliases) re.compile loop that ran on every scraped item.
     """
     for raw_t in texts:
         if not raw_t:
@@ -268,20 +295,9 @@ def match_venue(*texts, require_match=False):
         norm_t = strip_accents(fix_mojibake(raw_t))
         if not norm_t:
             continue
-        best_entry = None
-        best_len = 0
-        for entry in VENUE_REGISTRY:
-            candidates = [entry["venue"]] + list(entry.get("aliases", []))
-            for cand in candidates:
-                c_norm = strip_accents(cand).strip()
-                if not c_norm or len(c_norm) < 3 or c_norm in AMBIGUOUS_ALIAS_TOKENS:
-                    continue
-                if re.search(rf"(?<![a-z0-9]){re.escape(c_norm)}(?![a-z0-9])", norm_t):
-                    if len(c_norm) > best_len:
-                        best_len = len(c_norm)
-                        best_entry = entry
-        if best_entry is not None:
-            return best_entry
+        for pat, entry, _alias_len in _VENUE_PATTERNS:
+            if pat.search(norm_t):
+                return entry
 
     if require_match:
         return None
@@ -293,6 +309,10 @@ def match_venue(*texts, require_match=False):
         "corridor": "Axial Spine",
         "url": "https://www.agendalx.pt",
     }
+
+
+# Build pattern table at import time (runs once; re-runs inside load_external_venues if needed)
+_build_venue_patterns()
 
 
 def infer_category_preset(text, default_key="concerts"):
