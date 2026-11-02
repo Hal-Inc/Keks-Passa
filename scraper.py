@@ -49,14 +49,14 @@ DEFAULT_HEADERS = {
 }
 
 CATEGORY_PRESETS = {
-    "concerts": {"category": "Concerts & Live Music", "color": "#E63946", "icon": "🔴"},
-    "theatre": {"category": "Theatre & Comedy", "color": "#2A9D8F", "icon": "🟢"},
-    "exhibitions": {"category": "Exhibitions & Visual Arts", "color": "#1D3557", "icon": "🔵"},
-    "classical": {"category": "Opera & Classical", "color": "#8338EC", "icon": "🟣"},
-    "cinema": {"category": "Cinema & Screenings", "color": "#06D6A0", "icon": "🩷"},
-    "nightlife": {"category": "Nightlife & Electronic", "color": "#FB5607", "icon": "🟠"},
-    "community": {"category": "Community & Gatherings", "color": "#FFB703", "icon": "🟡"},
-    "family": {"category": "Family & Youth", "color": "#118AB2", "icon": "🩵"},
+    "concerts": {"category": "Concerts & Live Music", "color": "#E63946", "icon": "🎤"},
+    "theatre": {"category": "Theatre & Comedy", "color": "#2A9D8F", "icon": "🎭"},
+    "exhibitions": {"category": "Exhibitions & Visual Arts", "color": "#1D3557", "icon": "🎨"},
+    "classical": {"category": "Opera & Classical", "color": "#8338EC", "icon": "🎻"},
+    "cinema": {"category": "Cinema & Screenings", "color": "#06D6A0", "icon": "🍿"},
+    "nightlife": {"category": "Nightlife & Electronic", "color": "#FB5607", "icon": "🔊"},
+    "community": {"category": "Community & Gatherings", "color": "#FFB703", "icon": "🛍️"},
+    "family": {"category": "Family & Youth", "color": "#118AB2", "icon": "🎠"},
 }
 
 PT_MONTHS_SHORT = {
