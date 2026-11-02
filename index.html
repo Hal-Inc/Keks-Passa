@@ -32,7 +32,7 @@
     .suggest-trigger-btn{border:1px solid var(--yellow);background:var(--ink2);color:var(--yellow);padding:7px 11px;font:700 11px/1 var(--mono);text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 var(--red);transition:transform .12s,background .12s,color .12s;white-space:nowrap}
     .suggest-trigger-btn:hover{background:var(--yellow);color:var(--ink);transform:translate(-1px,-1px)}
 
-    main{width:min(1600px,100%);margin:0 auto;padding:26px 22px 48px}.hero{position:relative;overflow:hidden;padding:clamp(24px,4vw,52px);background:var(--red);color:var(--ink);border:2px solid var(--paper);box-shadow:8px 8px 0 var(--yellow)}.hero-topline{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:1.2px}.hero h1{position:relative;z-index:1;margin:12px 0 0;font:900 clamp(68px,11.2vw,160px)/.78 var(--display);letter-spacing:-.045em;text-transform:uppercase}.hero h1 span{color:var(--paper);-webkit-text-stroke:1px var(--ink);text-shadow:5px 5px 0 var(--ink)}.hero-bottom{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-top:26px}.hero-copy{max-width:520px;margin:0;font-size:clamp(14px,1.35vw,18px);font-weight:600;line-height:1.5}.hero-count{display:flex;flex-direction:column;align-items:flex-end;min-width:125px}.hero-count strong{font:900 42px/.9 var(--display)}.hero-count span{margin-top:8px;font:500 10px/1.6 var(--mono);text-align:right;text-transform:uppercase}
+    main{width:min(1600px,100%);margin:0 auto;padding:26px 22px 48px}.hero{position:relative;overflow:hidden;padding:clamp(24px,4vw,52px);background:var(--red);color:var(--ink);border:2px solid var(--paper);box-shadow:8px 8px 0 var(--yellow)}.hero-topline{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:1.2px}.hero h1{position:relative;z-index:1;margin:12px 0 0;font:900 clamp(68px,11.2vw,160px)/.78 var(--display);letter-spacing:-.045em;text-transform:uppercase}.hero h1 span{color:var(--paper);-webkit-text-stroke:1px var(--ink);text-shadow:5px 5px 0 var(--ink)}.hero-bottom{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;margin-top:22px}.hero-copy{max-width:520px;margin:0;font-size:clamp(14px,1.35vw,18px);font-weight:600;line-height:1.5}.hero-count{display:flex;flex-direction:column;align-items:flex-start;min-width:125px;margin-top:14px;margin-left:clamp(260px,22vw,325px)}.hero-count strong{font:900 42px/.9 var(--display)}.hero-count span{margin-top:6px;font:500 10px/1.5 var(--mono);text-align:left;text-transform:uppercase}
     
     /* Interactive Draggable Marquee Ticker (1800s for 150 quotes = identical reading speed) */
     .ticker-wrap{overflow:hidden;width:100%;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0 18px;cursor:grab;user-select:none;-webkit-user-select:none}
@@ -128,7 +128,10 @@
     .tasca [hidden]{display:none!important}
     .tasca-rod{position:absolute;top:0;left:0;right:0;height:9px;z-index:12;background:var(--ink);border-bottom:2px solid var(--yellow);pointer-events:none}
     .tasca-inner{position:relative;flex:1;display:flex;flex-direction:column;padding-top:9px}
-    .tasca-hud{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:7px 10px;background:var(--ink2);border-bottom:2px solid var(--line);font:700 10px/1.2 var(--mono);text-transform:uppercase}
+    .tasca-hud{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:7px 10px;background:var(--ink2);border-bottom:2px solid var(--line);font:700 10px/1.2 var(--mono);text-transform:uppercase;transition:padding-right .35s ease}
+    .tasca.is-open .tasca-hud{padding-right:clamp(62px,14cqi,82px)}
+    #tasca-toggle-curtain{position:relative;z-index:12;transition:background .2s,color .2s,border-color .2s}
+    .tasca.is-open #tasca-toggle-curtain{background:var(--yellow);color:var(--ink);border-color:var(--paper)}
     .turn-pill{padding:4px 8px;border:1px solid var(--ink);white-space:nowrap}
     .turn-pill[data-turn="w"]{background:var(--paper);color:var(--ink)}
     .turn-pill[data-turn="b"]{background:var(--ink);color:var(--paper);border-color:var(--yellow)}
@@ -218,10 +221,10 @@
     .tasca:not(.is-open):not(.is-dragging) .curtain-tab{animation:tabNudge 2.6s ease-in-out infinite}
     @keyframes tabNudge{0%,70%,100%{transform:translateY(-50%)}80%{transform:translate(8px,-50%)}90%{transform:translate(0,-50%)}}
     .tasca.is-open .curtain-tab{transform:translateY(-50%) scaleX(-1)}
-    .curtain-sign{position:absolute;top:50%;left:50%;display:flex;flex-direction:column;gap:6px;width:min(76%,300px);padding:14px 16px;transform:translate(-50%,-50%) rotate(-2.5deg);background:var(--ink);border:2px solid var(--paper);box-shadow:5px 5px 0 var(--yellow);text-align:center;opacity:calc(1 - var(--p) * 3);pointer-events:none}
-    .curtain-sign strong{font:900 32px/.9 var(--display);color:var(--yellow);text-transform:uppercase}
-    .curtain-sign span{font:700 12px/1.2 var(--mono);color:var(--paper);text-transform:uppercase}
-    .curtain-sign em{font:500 10px/1.45 var(--mono);font-style:normal;color:var(--muted);text-transform:uppercase}
+    .curtain-sign{position:absolute;top:50%;left:50%;display:flex;flex-direction:column;gap:8px;width:min(84%,320px);padding:16px 18px;transform:translate(-50%,-50%) rotate(-2deg);background:var(--ink);border:2px solid var(--paper);box-shadow:6px 6px 0 var(--yellow);text-align:center;opacity:calc(1 - var(--p) * 3);pointer-events:none}
+    .curtain-sign strong{font:900 30px/.95 var(--display);color:var(--yellow);text-transform:uppercase;letter-spacing:.3px}
+    .curtain-sign span{font:700 11px/1.3 var(--mono);color:var(--paper);text-transform:uppercase;letter-spacing:.4px}
+    .curtain-sign em{font:600 11px/1.4 var(--mono);font-style:normal;color:var(--yellow);text-transform:none}
 
     /* Narrow stage: stack the caneca under the board */
     @container (max-width:430px){
@@ -231,7 +234,7 @@
       .beer-area{flex-direction:row;flex-wrap:wrap;justify-content:center;min-width:0;gap:10px 14px}
       .beer-coaster{display:none}
     }
-    @media(max-width:960px){.hero-grid{grid-template-columns:1fr}.hero-topline-hint{display:none}}
+    @media(max-width:960px){.hero-grid{grid-template-columns:1fr}.hero-topline-hint{display:none}.hero-count{margin-left:0;margin-top:14px}}
     @media(prefers-reduced-motion:reduce){.tasca{transition:none}.curtain-tab,.beer-bubbles i,.beer-mug.is-sip,.tasca-badge.is-pulse{animation:none!important}}
 
     @media(max-width:900px){.header-inner{padding:11px 16px}main{padding:18px 16px 36px}.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.content-grid{grid-template-columns:1fr}.map-toggle{display:block}.map-panel{display:none;position:static}.map-panel.is-open{display:block}#map{height:48vh;min-height:360px}.events-column{position:static}#events-card-list{max-height:65vh}.list-heading{margin-top:3px}}
@@ -266,7 +269,7 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-topline">
         <span>Agenda de rua · cultura · mercados · oficinas · noite · em tempo real</span>
-        <span class="hero-topline-hint">🎪 Puxa a cortina · Mesa de Xadrez & Imperial</span>
+        <span class="hero-topline-hint">🎪 Puxa a cortina · Mesa de Xadrez & Caneca</span>
       </div>
       <div class="hero-grid">
         <div class="hero-left">
@@ -277,8 +280,8 @@
           </div>
         </div>
 
-        <!-- MESA DA TASCA: XADREZ COMUNITÁRIO + IMPERIAL 40 GOLES + CORTINA DE CIRCO -->
-        <div class="tasca" id="tasca-stage" aria-label="Mesa de Xadrez e Imperial da Tasca">
+        <!-- MESA DA TASCA: XADREZ COMUNITÁRIO + CANECA 40 GOLES + CORTINA DE CIRCO -->
+        <div class="tasca" id="tasca-stage" aria-label="Mesa de Xadrez e Caneca da Tasca">
           <div class="tasca-rod" aria-hidden="true"></div>
           
           <div class="tasca-inner">
@@ -327,8 +330,8 @@
                   <span class="beer-handle" aria-hidden="true"></span>
                 </button>
                 <span class="beer-coaster" aria-hidden="true"></span>
-                <button type="button" class="tasca-cta" id="beer-refill-btn" hidden>🍺 Outra imperial</button>
-                <span class="beer-tally" id="beer-tally">Imperial da Tasca</span>
+                <button type="button" class="tasca-cta" id="beer-refill-btn" hidden>🍺 Outra caneca</button>
+                <span class="beer-tally" id="beer-tally">Caneca da Tasca</span>
               </div>
             </div>
           </div>
@@ -338,8 +341,8 @@
             <div class="curtain-tab" aria-hidden="true">➔</div>
             <div class="curtain-sign" aria-hidden="true">
               <strong>Mesa da Tasca</strong>
-              <span>Xadrez comunitário & Imperial</span>
-              <em>Arrasta a cortina para a direita ➔</em>
+              <span>XADREZ COMUNITARIO &amp; CANECA SOLITARIA</span>
+              <em>Se não queres ir para a rua, entre.</em>
             </div>
           </div>
         </div>
@@ -508,7 +511,7 @@
 
     // Task 3: 150 Unique Lisbon Quotes (100 original + 50 new, 0 duplicates)
     // =========================================================================
-    // MESA DA TASCA: XADREZ COMUNITÁRIO + IMPERIAL 40 GOLES + CORTINA DE CIRCO
+    // MESA DA TASCA: XADREZ COMUNITÁRIO + CANECA 40 GOLES + CORTINA DE CIRCO
     // =========================================================================
     function initTascaMinigame(){
       const tasca = document.getElementById('tasca-stage');
@@ -526,10 +529,15 @@
 
       function setCurtainP(p, animate = true){
         curtainP = Math.max(0, Math.min(1, p));
+        const isOpen = curtainP >= 0.7;
         tasca.classList.toggle('is-dragging', !animate);
         tasca.style.setProperty('--p', curtainP.toFixed(3));
-        tasca.classList.toggle('is-open', curtainP >= 0.7);
-        curtain.setAttribute('aria-expanded', String(curtainP >= 0.7));
+        tasca.classList.toggle('is-open', isOpen);
+        curtain.setAttribute('aria-expanded', String(isOpen));
+        if(toggleCurtainBtn){
+          toggleCurtainBtn.textContent = isOpen ? '🎪 Fechar' : '🎪 Cortina';
+          toggleCurtainBtn.title = isOpen ? 'Fechar cortina' : 'Puxar cortina';
+        }
       }
 
       function onCurtainPointerDown(e){
@@ -659,7 +667,7 @@
 
         if(beerTally){
           const count = beerData.totalPoured || 0;
-          beerTally.textContent = count > 0 ? `${count} imperial(is) bebidas` : 'Imperial da Tasca';
+          beerTally.textContent = count > 0 ? `${count} caneca(s) bebidas` : 'Caneca da Tasca';
         }
 
         try{
