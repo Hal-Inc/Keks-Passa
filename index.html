@@ -181,8 +181,6 @@
 
     /* Single-player caneca: 40 sips × 2.5% */
     .beer-area{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:100px}
-    .beer-readout{text-align:center;font:700 10px/1.25 var(--mono);text-transform:uppercase;text-shadow:0 1px 0 var(--ink)}
-    .beer-readout strong{display:block;font:900 28px/.9 var(--display);color:var(--yellow)}
     .beer-mug{position:relative;display:flex;align-items:flex-start;padding:0;margin:0;border:0;background:none;cursor:pointer;transform-origin:30% 100%;transition:transform .12s}
     .beer-mug:hover{transform:translateY(-2px)}
     .beer-mug.is-sip{animation:beerSip .3s ease}
@@ -231,7 +229,6 @@
       .board-frame{width:clamp(200px,calc(100cqi - 78px),320px)}
       .sq{font-size:clamp(19px,8.4cqi,32px)}
       .beer-area{flex-direction:row;flex-wrap:wrap;justify-content:center;min-width:0;gap:10px 14px}
-      .beer-area .beer-readout{order:2;text-align:left}
       .beer-coaster{display:none}
     }
     @media(max-width:960px){.hero-grid{grid-template-columns:1fr}.hero-topline-hint{display:none}}
@@ -316,10 +313,6 @@
 
               <!-- 40-Click Beer Glass -->
               <div class="beer-area">
-                <div class="beer-readout">
-                  <strong id="beer-pct">100.0%</strong>
-                  <span id="beer-sips">40/40 goles</span>
-                </div>
                 <button type="button" class="beer-mug" id="beer-mug" aria-label="Dar um golo na cerveja">
                   <span class="beer-glass">
                     <span class="beer-ticks" aria-hidden="true"></span>
@@ -591,8 +584,6 @@
       // -----------------------------------------------------------------------
       const beerMug = document.getElementById('beer-mug');
       const beerLiquid = document.getElementById('beer-liquid');
-      const beerPct = document.getElementById('beer-pct');
-      const beerSips = document.getElementById('beer-sips');
       const beerRefillBtn = document.getElementById('beer-refill-btn');
       const beerTally = document.getElementById('beer-tally');
 
@@ -654,11 +645,8 @@
       function renderBeer(){
         const clicks = Math.max(0, Math.min(40, beerData.clicks || 0));
         const remainingPct = Math.max(0, +(100 - clicks * 2.5).toFixed(1));
-        const sipsLeft = 40 - clicks;
 
         beerLiquid.style.setProperty('--level', remainingPct);
-        beerPct.textContent = `${remainingPct.toFixed(1)}%`;
-        beerSips.textContent = `${sipsLeft}/40 goles`;
 
         if(clicks >= 40){
           beerMug.classList.add('is-empty');
