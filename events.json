@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T21:22:59.209884+00:00",
+  "generated_at": "2026-11-02T21:51:49.823300+00:00",
   "operational_date": "2026-11-02",
   "date_string": "2026-11-02",
   "total_events": 61,
@@ -485,7 +485,7 @@
       "description": "Sessão na Sala M. Félix Ribeiro da Cinemateca Portuguesa (Ciclo)."
     },
     {
-      "id": "bota-20261102-6930",
+      "id": "bota-20261102-5823",
       "title": "O movimento do som",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -865,7 +865,7 @@
       "description": "IamChino @ MEO Arena em MEO Arena (Parque das Nações)."
     },
     {
-      "id": "bota-20261102-92",
+      "id": "bota-20261102-7936",
       "title": "Mar & Ilha",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -985,7 +985,7 @@
       "description": "Sooshi Mango | Home Made World Tour em Teatro Tivoli BBVA (Avenida da Liberdade)."
     },
     {
-      "id": "bota-20261102-4094",
+      "id": "bota-20261102-9063",
       "title": "Vento e botas",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -1045,7 +1045,7 @@
       "description": "Sessão noturna de cinema de autor e ciclos temáticos no Cinema Medeia Nimas."
     },
     {
-      "id": "adc-20261102-9037",
+      "id": "adc-20261102-1404",
       "title": "Lil Jon • Pitbull",
       "category": "Concerts & Live Music",
       "color": "#E63946",
