@@ -69,6 +69,7 @@
     .marker-pin-inner.is-dimmed{opacity:.22;filter:grayscale(70%) brightness(.75);transform:scale(.82)}
     .marker-pin-inner.is-highlighted{opacity:1;transform:scale(1.06);box-shadow:3px 3px 0 var(--yellow)}
     .marker-pin-wrapper:hover .marker-pin-inner.is-dimmed{opacity:.85;filter:none;transform:scale(1)}
+    .rossio-tent-pin{display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 3px rgba(0,0,0,.65))}.rossio-tent-pin img{display:block;width:30px;height:28px;object-fit:contain}
 
     .map-caption{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 5px 3px;color:var(--muted);font:10px/1.5 var(--mono)}.map-caption span:first-child{color:var(--paper)}
     
@@ -359,12 +360,11 @@
       <div class="field"><label for="search-input">À procura de quê?</label><input type="search" id="search-input" placeholder="Cerâmica, Feira, Prior Velho, ZDB, Belém…" autocomplete="off"></div>
       <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">Tudo um pouco</option><option value="Concerts & Live Music">Concertos e música ao vivo</option><option value="Theatre & Comedy">Teatro e comédia</option><option value="Exhibitions & Visual Arts">Exposições e artes visuais</option><option value="Opera & Classical">Ópera e música clássica</option><option value="Cinema & Screenings">Cinema e sessões</option><option value="Nightlife & Electronic">Noite e eletrónica</option><option value="Community & Gatherings">Mercados, oficinas, conversas e comunidade</option><option value="Family & Youth">Famílias e miúdos</option></select></div>
       <div class="field"><label for="price-filter">Quanto custa?</label><select id="price-filter"><option value="ALL">Qualquer preço</option><option value="FREE">À borla</option><option value="ACCESSIBLE">Até 15 €</option><option value="MID">15 € a 30 €</option><option value="PREMIUM">Mais de 30 €</option></select></div>
-      <div class="field"><label for="corridor-filter">Por onde andas?</label><select id="corridor-filter"><option value="ALL">Lisboa inteira (tudo ao molho)</option><option value="Axial Spine">Centro e Sobe-e-Desce (Baixa, Chiado, Bairro Alto, Cais e Intendente)</option><option value="Belém Waterfront">Beira-Rio a Oeste (Santos, Alcântara, Docas e Belém)</option><option value="Northern Belt">Lá p'ra Cima (Avenidas Novas, Saldanha, Alvalade e Sete Rios)</option><option value="Eastern Corridor">Lado Oriental e Armazéns (Anjos, Graça, Beato, Marvila, Oriente e Prior Velho)</option></select></div>
+      <div class="field"><label for="corridor-filter">Por onde andas?</label><select id="corridor-filter"><option value="ALL">Lisboa inteira (tudo ao molho)</option><option value="Eastern Corridor">Lado Leste &amp; Armazéns</option><option value="Axial Spine">Baixa &amp; Almirante Reis</option><option value="Northern Belt">Zona Central</option><option value="Belém Waterfront">Pelo Rio</option></select></div>
     </div>
     <div class="toolbar-bottom">
       <span id="results-count"><strong>—</strong> eventos ativos para descobrir</span>
       <div class="toolbar-actions">
-        <button type="button" class="text-button" id="open-suggest-toolbar">＋ Conheces um espaço que falta aqui? Sugere-nos</button>
         <button type="button" class="text-button" id="reset-filters">Limpar filtros ↺</button>
       </div>
     </div></section>
@@ -400,7 +400,7 @@
       <div class="suggest-modal-header">
         <div>
           <h2 id="suggest-modal-title">Sugerir um sítio ou plano</h2>
-          <p>Sem murais públicos caóticos: a tua sugestão vai direta para a curadoria do Keks Passa.</p>
+          <p>A tua sugestão vai direta para nós</p>
         </div>
         <button type="button" class="modal-close-btn" id="close-suggest-modal" aria-label="Fechar janela">✕</button>
       </div>
@@ -416,17 +416,7 @@
             <label for="sug-neighborhood">Bairro / Zona *</label>
             <input type="text" id="sug-neighborhood" required placeholder="Ex: Prior Velho, Marvila, Anjos, Alcântara…">
           </div>
-          <div class="field">
-            <label for="sug-corridor">Por que lados fica?</label>
-            <select id="sug-corridor">
-              <option value="Eastern Corridor">Lado Oriental e Armazéns (Anjos, Graça, Beato, Marvila, Oriente e Prior Velho)</option>
-              <option value="Axial Spine">Centro e Sobe-e-Desce (Baixa, Chiado, Bairro Alto, Cais e Intendente)</option>
-              <option value="Northern Belt">Lá p'ra Cima (Avenidas Novas, Saldanha, Alvalade e Sete Rios)</option>
-              <option value="Belém Waterfront">Beira-Rio a Oeste (Santos, Alcântara, Docas e Belém)</option>
-              <option value="OUTRO">Outro (escrever localização abaixo…)</option>
-            </select>
-          </div>
-          <div class="field">
+          <div class="field full-span">
             <label for="sug-category">Tipo de programação</label>
             <select id="sug-category">
               <option value="Nightlife & Electronic">Noite, Clubbing e Eletrónica</option>
@@ -438,10 +428,6 @@
               <option value="Family & Youth">Famílias e Miúdos</option>
               <option value="OUTRO">Outro (escrever abaixo…)</option>
             </select>
-          </div>
-          <div class="field full-span custom-category-wrap" id="sug-corridor-custom-wrap">
-            <label for="sug-corridor-custom">Em que zona ou localização fica? *</label>
-            <input type="text" id="sug-corridor-custom" placeholder="Ex: Almada, Cacilhas, Restelo, Benfica, Carnide, Margem Sul…">
           </div>
           <div class="field full-span custom-category-wrap" id="sug-category-custom-wrap">
             <label for="sug-category-custom">Qual é o tipo de programação? *</label>
@@ -455,9 +441,6 @@
             <label for="sug-notes">Morada, horários habituais ou nota para a equipa</label>
             <textarea id="sug-notes" rows="2" placeholder="Ex: Atelier na Rua da Artilharia, oficinas aos sábados às 15h00…"></textarea>
           </div>
-        </div>
-        <div class="moderation-note">
-          🛡️ <strong>Curadoria moderada:</strong> Para evitar spam e confusão, cada sugestão é revista antes de entrar no motor diário (<code>venues.json</code> / <code>scraper.py</code>).
         </div>
         <div class="suggest-actions">
           <button type="button" class="btn-secondary" id="suggest-github-btn">Abrir Issue no GitHub ↗</button>
@@ -676,8 +659,16 @@
         }catch(_){}
       }
 
+      const BEER_EMPTY_TRACKS = [
+        './beer-empty.mp3',
+        './beer-empty2.mp3',
+        './beer-empty3.mp3',
+        './beer-empty4.mp3'
+      ];
+
       function playBeerEmptyAudio(cycleCount){
-        const src = (cycleCount % 2 === 0) ? './beer-empty2.mp3' : './beer-empty.mp3';
+        const idx = Math.max(0, (cycleCount - 1)) % BEER_EMPTY_TRACKS.length;
+        const src = BEER_EMPTY_TRACKS[idx];
         const audio = new Audio(src);
         audio.volume = 0.9;
         audio.play().catch(() => {
@@ -1533,6 +1524,14 @@
       if(!window.L||map)return;
       map=L.map('map',{center:[38.732,-9.138],zoom:12,zoomControl:true});
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+      // Permanent small tent on Praça Dom Pedro IV (Rossio)
+      const rossioTentIcon=L.divIcon({
+        className:'rossio-tent-wrapper',
+        html:'<div class="rossio-tent-pin"><img src="./tent.svg" alt="Rossio"></div>',
+        iconSize:[30,28],
+        iconAnchor:[15,24]
+      });
+      L.marker([38.7138,-9.1394],{icon:rossioTentIcon,interactive:false,zIndexOffset:600}).addTo(map);
       markersGroup=L.layerGroup().addTo(map);
       updateMapMarkers(filteredEvents);
       setTimeout(()=>map&&map.invalidateSize(),250);
@@ -1677,30 +1676,17 @@
       updateMapMarkers(filteredEvents);
     }
 
-    // Task 6: Moderated Suggestion Modal Logic (with optional URL & custom "Outro" corridor/category)
+    // Task 6: Moderated Suggestion Modal Logic (with optional URL & custom "Outro" category)
     function initSuggestionModal(){
       const modal = document.getElementById('suggest-modal');
       const openHeader = document.getElementById('open-suggest-header');
-      const openToolbar = document.getElementById('open-suggest-toolbar');
       const closeBtn = document.getElementById('close-suggest-modal');
       const form = document.getElementById('suggest-form');
       const ghBtn = document.getElementById('suggest-github-btn');
       const feedback = document.getElementById('suggest-feedback');
-      const corridorSelect = document.getElementById('sug-corridor');
-      const customCorridorWrap = document.getElementById('sug-corridor-custom-wrap');
-      const customCorridorInput = document.getElementById('sug-corridor-custom');
       const categorySelect = document.getElementById('sug-category');
       const customCategoryWrap = document.getElementById('sug-category-custom-wrap');
       const customCategoryInput = document.getElementById('sug-category-custom');
-
-      function syncCustomCorridorField(shouldFocus = false){
-        const isOutro = corridorSelect.value === 'OUTRO';
-        customCorridorWrap.classList.toggle('is-visible', isOutro);
-        customCorridorInput.required = isOutro;
-        if(isOutro && shouldFocus){
-          customCorridorInput.focus();
-        }
-      }
 
       function syncCustomCategoryField(shouldFocus = false){
         const isOutro = categorySelect.value === 'OUTRO';
@@ -1711,12 +1697,10 @@
         }
       }
 
-      corridorSelect.addEventListener('change', () => syncCustomCorridorField(true));
       categorySelect.addEventListener('change', () => syncCustomCategoryField(true));
 
       function openModal(){
         modal.classList.add('is-open');
-        syncCustomCorridorField(false);
         syncCustomCategoryField(false);
         document.getElementById('sug-venue').focus();
       }
@@ -1724,8 +1708,7 @@
         modal.classList.remove('is-open');
       }
 
-      openHeader.addEventListener('click', openModal);
-      openToolbar.addEventListener('click', openModal);
+      if(openHeader) openHeader.addEventListener('click', openModal);
       closeBtn.addEventListener('click', closeModal);
       modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
       window.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
@@ -1733,9 +1716,7 @@
       function buildPayload(){
         const venue = document.getElementById('sug-venue').value.trim();
         const neighborhood = document.getElementById('sug-neighborhood').value.trim();
-        const rawCorridor = corridorSelect.value;
-        const customCorridor = customCorridorInput.value.trim();
-        const corridor = rawCorridor === 'OUTRO' ? (customCorridor || 'Outro (Localização personalizada)') : rawCorridor;
+        const corridor = neighborhood || 'Lisboa';
         const rawCategory = categorySelect.value;
         const customCategory = customCategoryInput.value.trim();
         const category = rawCategory === 'OUTRO' ? (customCategory || 'Outro (Comunidade)') : rawCategory;
