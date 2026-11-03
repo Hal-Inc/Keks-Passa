@@ -9,6 +9,12 @@
   <!-- Task 2: High-visibility full-bleed KP SVG favicon (inline data URI + external file) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' fill='%23f04432' stroke='%23f0eddf' stroke-width='2'/%3E%3Cg fill='%23111713' stroke='%23f0eddf' stroke-width='3' stroke-linejoin='miter' paint-order='stroke fill'%3E%3Cpath d='M3 3 H13 V25 L21 3 H31 L20 31 L31 61 H21 L13 37 V61 H3 Z'/%3E%3Cpath fill-rule='evenodd' d='M34 3 H51 C57.8 3 61 7.5 61 15.5 V24.5 C61 32.5 57.8 37 51 37 H44 V61 H34 Z M44 12 V28 H49.5 C51.2 28 52 26.8 52 24 V16 C52 13.2 51.2 12 49.5 12 Z'/%3E%3C/g%3E%3C/svg%3E">
   <link rel="alternate icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="apple-touch-icon" href="./favicon.svg">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Keks Passa">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -85,7 +91,14 @@
     #events-card-list::-webkit-scrollbar-thumb{background:var(--yellow)}
 
     .event-card{display:flex;flex-direction:column;justify-content:space-between;gap:16px;margin-bottom:12px;padding:16px;background:var(--ink2);border:1px solid var(--line);border-left:4px solid var(--red);transition:transform .15s,border-color .15s,opacity .2s}.event-card:hover{transform:translateY(-2px);border-color:var(--yellow)}.event-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}.category-tag{display:inline-block;max-width:65%;padding:4px 7px;color:var(--ink);font:700 9px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.3px}.event-time-wrap{display:flex;align-items:center;gap:6px;white-space:nowrap}.event-time{color:var(--yellow);font:500 11px var(--mono)}.live-now-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;background:rgba(154,197,123,.16);border:1px solid var(--green);color:var(--green);font:700 9px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.4px}
-    .event-title{margin:0 0 7px;font-size:19px;font-weight:800;line-height:1.2;letter-spacing:-.3px}.event-location{margin:0 0 9px;color:var(--muted);font-size:12px;line-height:1.5}.event-location strong{color:var(--paper);font-weight:600}.event-description{margin:0;color:#d0d3c8;font-size:12px;line-height:1.55}.event-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid var(--line)}.event-price{color:var(--green);font:500 11px var(--mono)}.event-actions{display:flex;gap:6px}.event-actions button, .event-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:30px;border:1px solid #556153;padding:6px 9px;font:600 10px var(--mono);text-decoration:none;cursor:pointer;transition:.15s}.event-actions button{background:transparent;color:var(--paper)}.event-actions button:hover{border-color:var(--green);color:var(--green)}.event-actions button:disabled{opacity:.45;cursor:not-allowed}.event-actions a{color:var(--ink);background:var(--red);border-color:var(--red);font-weight:700}.event-actions a:hover{background:var(--yellow);border-color:var(--yellow)}.empty-state{padding:28px 18px;text-align:center;border:1px dashed var(--line);background:var(--ink2);color:var(--muted);font-size:13px;line-height:1.6}.empty-state button{margin-top:8px}
+    .event-title{margin:0 0 7px;font-size:19px;font-weight:800;line-height:1.2;letter-spacing:-.3px}.event-location{margin:0 0 9px;color:var(--muted);font-size:12px;line-height:1.5}.event-location strong{color:var(--paper);font-weight:600}.event-description{margin:0;color:#d0d3c8;font-size:12px;line-height:1.55}.event-card-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:12px;border-top:1px solid var(--line)}.event-price{color:var(--green);font:500 11px var(--mono)}.event-actions{display:flex;flex-wrap:wrap;gap:6px}.event-actions button, .event-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:30px;border:1px solid #556153;padding:6px 9px;font:600 10px var(--mono);text-decoration:none;cursor:pointer;transition:.15s}.event-actions button{background:transparent;color:var(--paper)}.event-actions button:hover{border-color:var(--green);color:var(--green)}.event-actions button:disabled{opacity:.45;cursor:not-allowed}.event-actions a{color:var(--ink);background:var(--red);border-color:var(--red);font-weight:700}.event-actions a:hover{background:var(--yellow);border-color:var(--yellow)}.empty-state{padding:28px 18px;text-align:center;border:1px dashed var(--line);background:var(--ink2);color:var(--muted);font-size:13px;line-height:1.6}.empty-state button{margin-top:8px}
+    .quick-pill{border:1px solid #556153;background:var(--ink);color:var(--paper);padding:5px 10px;font:600 10px/1.2 var(--mono);text-transform:uppercase;cursor:pointer;transition:.14s;display:inline-flex;align-items:center;gap:5px}
+    .quick-pill:hover{border-color:var(--yellow);color:var(--yellow)}
+    .quick-pill.is-active{background:var(--yellow);color:var(--ink);border-color:var(--paper);box-shadow:2px 2px 0 var(--red);font-weight:700}
+    .distance-pill{display:inline-block;margin-left:6px;padding:1px 6px;background:rgba(244,206,70,.14);border:1px solid var(--yellow);color:var(--yellow);font:600 10px/1.3 var(--mono);font-style:normal}
+    .save-plan-btn.is-saved{border-color:var(--yellow)!important;color:var(--yellow)!important;background:rgba(244,206,70,.14)!important}
+    .share-btn.is-copied{border-color:var(--green)!important;color:var(--green)!important}
+    .user-gps-dot{width:18px;height:18px;border-radius:50%;background:#38bdf8;border:3px solid #fff;box-shadow:0 0 0 6px rgba(56,189,248,.32),2px 2px 4px rgba(0,0,0,.6)}
     
     /* Task 6: Moderated Suggestion Slide-Out Drawer */
     .modal-backdrop{position:fixed;inset:0;z-index:2000;background:rgba(11,15,12,.82);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:18px}
@@ -398,6 +411,9 @@
     <div class="toolbar-bottom">
       <span id="results-count"><strong>—</strong> eventos ativos para descobrir</span>
       <div class="toolbar-actions">
+        <button type="button" class="quick-pill" id="btn-near-me" title="Ordenar eventos dos mais próximos para os mais distantes">📍 Perto de mim</button>
+        <button type="button" class="quick-pill" id="btn-starting-soon" title="Ver apenas eventos a decorrer agora ou que começam nas próximas 2 horas">⚡ Agora / Próx. 2h</button>
+        <button type="button" class="quick-pill" id="btn-saved-only" title="Ver apenas os eventos que guardaste">☆ Guardados (0)</button>
         <button type="button" class="text-button" id="reset-filters">Limpar filtros ↺</button>
       </div>
     </div></section>
@@ -476,7 +492,6 @@
           </div>
         </div>
         <div class="suggest-actions">
-          <button type="button" class="btn-secondary" id="suggest-github-btn">Abrir Issue no GitHub ↗</button>
           <button type="submit" class="btn-primary">Enviar sugestão →</button>
         </div>
         <div class="suggest-feedback" id="suggest-feedback"></div>
@@ -993,14 +1008,12 @@
 
       function updateLastMoveLabel(){
         if(!chessLastMoveEl) return;
-        if(!lastMove || !lastMove.from || !lastMove.to){
+        if(!lastMoveAt && (!lastMove || !lastMove.from)){
           chessLastMoveEl.textContent = 'Tabuleiro pronto para o 1.º lance';
           return;
         }
-        const mover = lastMove.color === 'b' ? 'Pretas' : (lastMove.color === 'w' ? 'Brancas' : (game.turn() === 'w' ? 'Pretas' : 'Brancas'));
-        const notation = lastMove.san ? `${lastMove.from} → ${lastMove.to} (${lastMove.san})` : `${lastMove.from} → ${lastMove.to}`;
-        const rel = lastMoveAt ? ` · <span>${formatRelativeTimePt(lastMoveAt)}</span>` : '';
-        chessLastMoveEl.innerHTML = `Último: <strong>${mover}</strong> ${notation}${rel}`;
+        const rel = lastMoveAt ? formatRelativeTimePt(lastMoveAt) : 'recentemente';
+        chessLastMoveEl.innerHTML = `Último lance: <span>${rel}</span>`;
       }
 
       function getCooldownRemaining(){
@@ -1795,9 +1808,172 @@
       window.addEventListener('resize',()=>map&&map.invalidateSize());
     }
 
+    // =========================================================================
+    // FEATURES 4, 5, 6, 7: PERTO DE MIM (GPS), AGORA/2H, PARTILHAR & GUARDADOS
+    // =========================================================================
+    const SAVED_EVENTS_KEY = 'keks_saved_events_v1';
+    let savedEventIds = new Set();
+    try{
+      const rawSaved = localStorage.getItem(SAVED_EVENTS_KEY);
+      if(rawSaved) savedEventIds = new Set(JSON.parse(rawSaved));
+    }catch(_){}
+
+    let userCoords = null; // { lat, lng }
+    let userGpsMarker = null;
+    let isNearMeActive = false;
+    let isStartingSoonActive = false;
+    let isSavedOnlyActive = false;
+
+    function getEventKey(event){
+      return String(event.id || `${event.venue || ''}|${event.title || ''}|${event.time || ''}`);
+    }
+
+    function computeDistanceKm(lat1, lng1, lat2, lng2){
+      const R = 6371;
+      const toRad = d => (d * Math.PI) / 180;
+      const dLat = toRad(lat2 - lat1);
+      const dLng = toRad(lng2 - lng1);
+      const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function formatDistancePt(km){
+      if(!Number.isFinite(km)) return '';
+      if(km < 1) return `a ${Math.max(20, Math.round(km * 1000 / 10) * 10)} m`;
+      return `a ${km.toFixed(1)} km`;
+    }
+
+    function updateQuickFilterPillsUI(){
+      const btnNear = document.getElementById('btn-near-me');
+      const btnSoon = document.getElementById('btn-starting-soon');
+      const btnSaved = document.getElementById('btn-saved-only');
+      if(btnNear) btnNear.classList.toggle('is-active', isNearMeActive);
+      if(btnSoon) btnSoon.classList.toggle('is-active', isStartingSoonActive);
+      if(btnSaved){
+        btnSaved.classList.toggle('is-active', isSavedOnlyActive);
+        const count = savedEventIds.size;
+        btnSaved.textContent = `${count > 0 ? '★' : '☆'} Guardados (${count})`;
+      }
+    }
+
+    function updateUserGpsMarkerOnMap(){
+      if(!map || !userCoords) return;
+      if(userGpsMarker){
+        userGpsMarker.setLatLng([userCoords.lat, userCoords.lng]);
+      }else{
+        const gpsIcon = L.divIcon({
+          className: 'user-gps-wrapper',
+          html: '<div class="user-gps-dot" title="A tua localização"></div>',
+          iconSize: [18, 18],
+          iconAnchor: [9, 9]
+        });
+        userGpsMarker = L.marker([userCoords.lat, userCoords.lng], { icon: gpsIcon, zIndexOffset: 900 }).addTo(map);
+        userGpsMarker.bindPopup('<strong>📍 Estás aqui</strong><br><span class="popup-detail">Eventos ordenados pela distância a ti.</span>');
+      }
+    }
+
+    function toggleNearMe(){
+      const btnNear = document.getElementById('btn-near-me');
+      if(isNearMeActive){
+        isNearMeActive = false;
+        updateQuickFilterPillsUI();
+        applyFilters();
+        return;
+      }
+      if(userCoords){
+        isNearMeActive = true;
+        updateQuickFilterPillsUI();
+        applyFilters();
+        if(map) map.flyTo([userCoords.lat, userCoords.lng], 14, { duration: 0.9 });
+        return;
+      }
+      if(!navigator.geolocation){
+        alert('O teu navegador não suporta geolocalização.');
+        return;
+      }
+      if(btnNear) btnNear.textContent = '📍 A localizar…';
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          userCoords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          isNearMeActive = true;
+          if(btnNear) btnNear.textContent = '📍 Perto de mim';
+          updateQuickFilterPillsUI();
+          if(!map && window.innerWidth <= 900){ toggleMap(true); }
+          initMap();
+          updateUserGpsMarkerOnMap();
+          if(map) map.flyTo([userCoords.lat, userCoords.lng], 14, { duration: 0.9 });
+          applyFilters();
+        },
+        () => {
+          if(btnNear) btnNear.textContent = '📍 Perto de mim';
+          alert('Não foi possível obter a tua localização. Verifica as permissões de GPS do navegador.');
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+      );
+    }
+
+    function toggleSaveEvent(evKey){
+      if(!evKey) return;
+      if(savedEventIds.has(evKey)){
+        savedEventIds.delete(evKey);
+      }else{
+        savedEventIds.add(evKey);
+      }
+      try{
+        localStorage.setItem(SAVED_EVENTS_KEY, JSON.stringify(Array.from(savedEventIds)));
+      }catch(_){}
+      if(isSavedOnlyActive && savedEventIds.size === 0){
+        isSavedOnlyActive = false;
+      }
+      updateQuickFilterPillsUI();
+      applyFilters();
+    }
+
+    async function shareEventPlan(evKey, btnEl){
+      const event = eventsData.find(e => getEventKey(e) === evKey) || rawEventsData.find(e => getEventKey(e) === evKey);
+      if(!event) return;
+      const clock = getLisbonClock();
+      const timing = getEventTimingState(event, clock);
+      const url = safeUrl(event.url);
+      const shareText = `🎪 ${event.title} — Hoje (${event.time || '21:00'}–${timing.endTimeStr}) @ ${event.venue || 'Lisboa'} (${event.neighborhood || 'Lisboa'}) · ${event.price || 'Consultar'}\n${url}`;
+
+      if(navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){
+        try{
+          await navigator.share({
+            title: `${event.title} · Keks Passa`,
+            text: `🎪 ${event.title} — Hoje (${event.time || '21:00'}–${timing.endTimeStr}) @ ${event.venue || 'Lisboa'} (${event.price || ''})`,
+            url: url
+          });
+          return;
+        }catch(_){}
+      }
+
+      try{
+        await navigator.clipboard.writeText(shareText);
+      }catch(_){
+        const ta = document.createElement('textarea');
+        ta.value = shareText;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+
+      if(btnEl){
+        const orig = btnEl.innerHTML;
+        btnEl.classList.add('is-copied');
+        btnEl.textContent = '✓ Copiado!';
+        setTimeout(() => {
+          btnEl.classList.remove('is-copied');
+          btnEl.innerHTML = orig;
+        }, 1800);
+      }
+    }
+
     function updateMapMarkers(events){
       if(!markersGroup)return;
       markersGroup.clearLayers();
+      updateUserGpsMarkerOnMap();
       const clock = getLisbonClock();
       events.forEach(event=>{
         if(!hasCoords(event))return;
@@ -1807,6 +1983,7 @@
         const isDimmed = isDimmedByDaylightMode(event, currentDaylightMode);
         const stateClass = currentDaylightMode === 'ALL' ? '' : (isDimmed ? 'is-dimmed' : 'is-highlighted');
         const zOffset = currentDaylightMode === 'ALL' ? 0 : (isDimmed ? -200 : 500);
+        const distTxt = Number.isFinite(event._distanceKm) ? ` · <strong style="color:#f4ce46">${escapeHtml(formatDistancePt(event._distanceKm))}</strong>` : '';
 
         const pin=L.divIcon({
           className:'marker-pin-wrapper',
@@ -1816,7 +1993,7 @@
           popupAnchor:[0,-16]
         });
         const marker=L.marker([Number(event.lat),Number(event.lng)],{icon:pin, zIndexOffset: zOffset});
-        marker.bindPopup(`<div style="min-width:195px;max-width:255px"><span class="popup-tag" style="background:${escapeHtml(colour)}">${escapeHtml(categoryLabels[event.category]||event.category||'Evento')}</span><div class="popup-title">${escapeHtml(event.title)}</div><p class="popup-detail">⌚ ${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}${timing.isHappeningNow?' · <strong style="color:#9ac57b">A DECORRER</strong>':''}</p><p class="popup-detail">📍 ${escapeHtml(event.venue||'Local a confirmar')} · ${escapeHtml(event.neighborhood||'Lisboa')}</p><p class="popup-detail">€ ${escapeHtml(event.price||'Preço a confirmar')}</p><a class="popup-link" href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div>`);
+        marker.bindPopup(`<div style="min-width:195px;max-width:255px"><span class="popup-tag" style="background:${escapeHtml(colour)}">${escapeHtml(categoryLabels[event.category]||event.category||'Evento')}</span><div class="popup-title">${escapeHtml(event.title)}</div><p class="popup-detail">⌚ ${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}${timing.isHappeningNow?' · <strong style="color:#9ac57b">A DECORRER</strong>':''}</p><p class="popup-detail">📍 ${escapeHtml(event.venue||'Local a confirmar')} · ${escapeHtml(event.neighborhood||'Lisboa')}${distTxt}</p><p class="popup-detail">€ ${escapeHtml(event.price||'Preço a confirmar')}</p><a class="popup-link" href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div>`);
         markersGroup.addLayer(marker);
       });
     }
@@ -1829,13 +2006,22 @@
       }else{
         events.forEach(event=>{
           const timing = getEventTimingState(event, clock);
+          const evKey = getEventKey(event);
+          const isSaved = savedEventIds.has(evKey);
           const card=document.createElement('article');
           card.className='event-card';
           const colour=event.color||categoryColours[event.category]||'#f04432';
           const tag=categoryLabels[event.category]||event.category||'Evento';
           const button=hasCoords(event)?`<button type="button" onclick="flyToEvent(${Number(event.lat)},${Number(event.lng)})">📍 Mapa</button>`:'<button type="button" disabled title="Sem localização no mapa">📍 Sem mapa</button>';
+          const saveBtn=`<button type="button" class="save-plan-btn ${isSaved?'is-saved':''}" data-save-key="${escapeHtml(evKey)}" title="${isSaved?'Remover dos guardados':'Guardar plano para hoje'}">${isSaved?'★ Guardado':'☆ Guardar'}</button>`;
+          const shareBtn=`<button type="button" class="share-btn" data-share-key="${escapeHtml(evKey)}" title="Partilhar ou copiar plano">📲 Partilhar</button>`;
           const liveBadge = timing.isHappeningNow ? `<span class="live-now-badge" title="Este evento está a acontecer agora">● A decorrer</span>` : '';
-          card.innerHTML=`<div><div class="event-card-top"><span class="category-tag" style="background:${escapeHtml(colour)}">${escapeHtml(tag)}</span><div class="event-time-wrap">${liveBadge}<span class="event-time">${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}</span></div></div><h3 class="event-title">${escapeHtml(event.title||'Evento')}</h3><p class="event-location">📍 <strong>${escapeHtml(event.venue||'Local a confirmar')}</strong> — <em>${escapeHtml(event.neighborhood||'Lisboa')}</em></p><p class="event-description">${escapeHtml(event.description||'Consulta a página oficial para mais detalhes.')}</p></div><div class="event-card-bottom"><span class="event-price">🏷 ${escapeHtml(event.price||'Preço a confirmar')}</span><div class="event-actions">${button}<a href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div></div>`;
+          const distBadge = Number.isFinite(event._distanceKm) ? `<span class="distance-pill" title="Distância em linha reta até ti">${escapeHtml(formatDistancePt(event._distanceKm))}</span>` : '';
+          card.innerHTML=`<div><div class="event-card-top"><span class="category-tag" style="background:${escapeHtml(colour)}">${escapeHtml(tag)}</span><div class="event-time-wrap">${liveBadge}<span class="event-time">${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}</span></div></div><h3 class="event-title">${escapeHtml(event.title||'Evento')}</h3><p class="event-location">📍 <strong>${escapeHtml(event.venue||'Local a confirmar')}</strong> — <em>${escapeHtml(event.neighborhood||'Lisboa')}</em>${distBadge}</p><p class="event-description">${escapeHtml(event.description||'Consulta a página oficial para mais detalhes.')}</p></div><div class="event-card-bottom"><span class="event-price">🏷 ${escapeHtml(event.price||'Preço a confirmar')}</span><div class="event-actions">${saveBtn}${shareBtn}${button}<a href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div></div>`;
+          const saveEl = card.querySelector('[data-save-key]');
+          if(saveEl) saveEl.addEventListener('click', () => toggleSaveEvent(evKey));
+          const shareEl = card.querySelector('[data-share-key]');
+          if(shareEl) shareEl.addEventListener('click', () => shareEventPlan(evKey, shareEl));
           container.appendChild(card);
         });
       }
@@ -1870,6 +2056,19 @@
       // Task 5: Prune any event whose endTime has already passed
       eventsData = rawEventsData.filter(event => !getEventTimingState(event, clock).isFinished);
 
+      // Compute GPS distance if userCoords is available
+      if(userCoords){
+        eventsData.forEach(event => {
+          if(hasCoords(event)){
+            event._distanceKm = computeDistanceKm(userCoords.lat, userCoords.lng, Number(event.lat), Number(event.lng));
+          }else{
+            event._distanceKm = Infinity;
+          }
+        });
+      }else{
+        eventsData.forEach(event => { delete event._distanceKm; });
+      }
+
       const search=document.getElementById('search-input').value.trim().toLocaleLowerCase('pt-PT');
       const category=document.getElementById('category-filter').value;
       const price=document.getElementById('price-filter').value;
@@ -1885,8 +2084,27 @@
         if(price==='ACCESSIBLE')matchesPrice=event.priceTier==='ACCESSIBLE'||event.priceTier==='FREE';
         if(price==='MID')matchesPrice=event.priceTier==='MID';
         if(price==='PREMIUM')matchesPrice=event.priceTier==='PREMIUM';
-        return matchesSearch&&matchesCategory&&matchesCorridor&&matchesPrice;
+
+        let matchesSoon = true;
+        if(isStartingSoonActive){
+          const timing = getEventTimingState(event, clock);
+          const minsUntilStart = timing.startOpMins - clock.opMinutes;
+          matchesSoon = timing.isHappeningNow || (minsUntilStart >= 0 && minsUntilStart <= 120);
+        }
+
+        let matchesSaved = true;
+        if(isSavedOnlyActive){
+          matchesSaved = savedEventIds.has(getEventKey(event));
+        }
+
+        return matchesSearch&&matchesCategory&&matchesCorridor&&matchesPrice&&matchesSoon&&matchesSaved;
       });
+
+      if(isNearMeActive && userCoords){
+        filteredEvents.sort((a, b) => (a._distanceKm ?? Infinity) - (b._distanceKm ?? Infinity));
+      }
+
+      updateQuickFilterPillsUI();
       renderEventsList(filteredEvents, clock);
       updateMapMarkers(filteredEvents);
     }
@@ -1896,6 +2114,9 @@
       document.getElementById('category-filter').value='ALL';
       document.getElementById('price-filter').value='ALL';
       document.getElementById('corridor-filter').value='ALL';
+      isNearMeActive = false;
+      isStartingSoonActive = false;
+      isSavedOnlyActive = false;
       setDaylightMode('ALL');
       applyFilters();
       if(map)map.setView([38.732,-9.138],12);
@@ -1933,13 +2154,12 @@
       updateMapMarkers(filteredEvents);
     }
 
-    // Task 6: Moderated Suggestion Modal Logic (with optional URL & custom "Outro" category)
+    // Feature #9: Direct Suggestion Box via Firebase (No GitHub login needed)
     function initSuggestionModal(){
       const modal = document.getElementById('suggest-modal');
       const openHeader = document.getElementById('open-suggest-header');
       const closeBtn = document.getElementById('close-suggest-modal');
       const form = document.getElementById('suggest-form');
-      const ghBtn = document.getElementById('suggest-github-btn');
       const feedback = document.getElementById('suggest-feedback');
       const categorySelect = document.getElementById('sug-category');
       const customCategoryWrap = document.getElementById('sug-category-custom-wrap');
@@ -1958,6 +2178,7 @@
 
       function openModal(){
         modal.classList.add('is-open');
+        feedback.classList.remove('is-visible');
         syncCustomCategoryField(false);
         document.getElementById('sug-venue').focus();
       }
@@ -1989,34 +2210,40 @@
           category_hint: category,
           url: url || "https://www.agendalx.pt"
         };
-        return { venue, neighborhood, corridor, category, url, notes, venueJsonEntry };
+        return {
+          venue,
+          neighborhood,
+          corridor,
+          category,
+          url,
+          notes,
+          venueJsonEntry,
+          submittedAt: new Date().toISOString()
+        };
       }
-
-      function openGitHubIssue(payload){
-        const title = encodeURIComponent(`[Sugestão de Espaço] ${payload.venue} (${payload.neighborhood})`);
-        const body = encodeURIComponent(
-          `### Sugestão para a Curadoria Keks Passa\n\n` +
-          `- **Espaço / Coletivo:** ${payload.venue}\n` +
-          `- **Bairro / Zona:** ${payload.neighborhood}\n` +
-          `- **Corredor:** ${payload.corridor}\n` +
-          `- **Categoria principal:** ${payload.category}\n` +
-          `- **Link / Instagram (opcional):** ${payload.url || 'Não indicado'}\n` +
-          `- **Notas / Horários:** ${payload.notes || 'N/A'}\n\n` +
-          `#### Bloco pronto para \`venues.json\` / \`scraper.py\`:\n` +
-          `\`\`\`json\n${JSON.stringify(payload.venueJsonEntry, null, 2)}\n\`\`\``
-        );
-        window.open(`https://github.com/Hal-Inc/Keks-Passa/issues/new?title=${title}&body=${body}`, '_blank', 'noopener,noreferrer');
-      }
-
-      ghBtn.addEventListener('click', () => {
-        if(!form.reportValidity()) return;
-        openGitHubIssue(buildPayload());
-      });
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if(document.getElementById('suggest-hp').value) return; // Honeypot check
         const payload = buildPayload();
+
+        let savedToFirebase = false;
+        if(typeof firebase !== 'undefined' && FIREBASE_CONFIG && FIREBASE_CONFIG.databaseURL){
+          try{
+            if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+            await firebase.database().ref('keks_suggestions').push(payload);
+            savedToFirebase = true;
+          }catch(_){
+            try{
+              const r = await fetch(`${FIREBASE_CONFIG.databaseURL}/keks_suggestions.json`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if(r.ok) savedToFirebase = true;
+            }catch(__){}
+          }
+        }
 
         if(SUGGESTION_ENDPOINT){
           try{
@@ -2025,16 +2252,15 @@
               headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
               body: JSON.stringify(payload)
             });
-          }catch(err){
-            console.warn('Webhook fallback:', err);
-          }
+          }catch(_){}
         }
 
-        feedback.innerHTML = `<strong>✓ Sugestão preparada para a curadoria!</strong> Como não usamos murais públicos caóticos, podes enviar diretamente para a nossa fila moderada no GitHub ou copiar o bloco <code>venues.json</code> abaixo:<pre>${escapeHtml(JSON.stringify(payload.venueJsonEntry, null, 2))}</pre>`;
+        feedback.innerHTML = savedToFirebase
+          ? `<strong>✓ Sugestão enviada diretamente para nós!</strong> Obrigado pela dica — vamos espreitar <strong>${escapeHtml(payload.venue)}</strong> (${escapeHtml(payload.neighborhood)}).`
+          : `<strong>✓ Sugestão registada!</strong> Obrigado pela dica sobre <strong>${escapeHtml(payload.venue)}</strong>.`;
         feedback.classList.add('is-visible');
-        if(!SUGGESTION_ENDPOINT){
-          openGitHubIssue(payload);
-        }
+        form.reset();
+        syncCustomCategoryField(false);
       });
     }
     
@@ -2043,11 +2269,33 @@
       initTicker();
       initDraggableTicker();
       initSuggestionModal();
+      updateQuickFilterPillsUI();
 
       document.getElementById('search-input').addEventListener('input',applyFilters);
       ['category-filter','price-filter','corridor-filter'].forEach(id=>document.getElementById(id).addEventListener('change',applyFilters));
       document.getElementById('reset-filters').addEventListener('click',resetFilters);
       document.getElementById('map-toggle').addEventListener('click',()=>toggleMap());
+
+      const btnNear = document.getElementById('btn-near-me');
+      if(btnNear) btnNear.addEventListener('click', toggleNearMe);
+
+      const btnSoon = document.getElementById('btn-starting-soon');
+      if(btnSoon) btnSoon.addEventListener('click', () => {
+        isStartingSoonActive = !isStartingSoonActive;
+        updateQuickFilterPillsUI();
+        applyFilters();
+      });
+
+      const btnSaved = document.getElementById('btn-saved-only');
+      if(btnSaved) btnSaved.addEventListener('click', () => {
+        if(!isSavedOnlyActive && savedEventIds.size === 0){
+          alert('Ainda não guardaste nenhum plano hoje. Toca em "☆ Guardar" nos cartões que te interessam!');
+          return;
+        }
+        isSavedOnlyActive = !isSavedOnlyActive;
+        updateQuickFilterPillsUI();
+        applyFilters();
+      });
 
       // Task 7: Bind Sun / All / Moon buttons
       document.querySelectorAll('.daylight-btn').forEach(btn => {
