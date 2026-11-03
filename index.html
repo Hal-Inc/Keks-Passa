@@ -69,7 +69,7 @@
     .marker-pin-inner.is-dimmed{opacity:.22;filter:grayscale(70%) brightness(.75);transform:scale(.82)}
     .marker-pin-inner.is-highlighted{opacity:1;transform:scale(1.06);box-shadow:3px 3px 0 var(--yellow)}
     .marker-pin-wrapper:hover .marker-pin-inner.is-dimmed{opacity:.85;filter:none;transform:scale(1)}
-    .rossio-tent-pin{display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 3px rgba(0,0,0,.65))}.rossio-tent-pin img{display:block;width:30px;height:28px;object-fit:contain}
+    .rossio-tent-pin{display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 3px 4px rgba(0,0,0,.7))}.rossio-tent-pin img{display:block;width:45px;height:42px;object-fit:contain}
 
     .map-caption{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 5px 3px;color:var(--muted);font:10px/1.5 var(--mono)}.map-caption span:first-child{color:var(--paper)}
     
@@ -181,8 +181,10 @@
     .promo-choices{display:flex;gap:6px}
     .promo-choices button{display:flex;align-items:center;justify-content:center;width:46px;height:46px;padding:3px;border:2px solid var(--paper);background:#f0d9b5;line-height:1;cursor:pointer;box-shadow:3px 3px 0 var(--yellow)}
     .promo-choices button:hover,.promo-choices button:focus-visible{background:var(--yellow);outline:none}
-    .chess-status{max-width:300px;min-height:28px;margin:0;text-align:center;font:600 10px/1.4 var(--mono);color:var(--paper);text-transform:uppercase;text-shadow:0 1px 0 var(--ink)}
+    .chess-status{max-width:300px;min-height:24px;margin:0;text-align:center;font:600 10px/1.35 var(--mono);color:var(--paper);text-transform:uppercase;text-shadow:0 1px 0 var(--ink)}
     .chess-status strong{color:var(--yellow)}
+    .chess-lastmove{max-width:300px;margin:-4px 0 0;text-align:center;font:500 9px/1.3 var(--mono);color:var(--muted);text-transform:uppercase}
+    .chess-lastmove span{color:var(--green)}
 
     /* Single-player caneca: 40 sips × 2.5% */
     .beer-area{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:100px}
@@ -211,7 +213,29 @@
     .beer-gloss{position:absolute;top:8px;bottom:8px;left:8px;z-index:2;width:6px;background:rgba(255,255,255,.22);pointer-events:none}
     .beer-handle{display:block;width:22px;height:80px;margin-top:30px;border:4px solid var(--paper);border-left:0;border-radius:0 18px 18px 0;box-shadow:3px 3px 0 var(--ink)}
     .beer-coaster{display:block;width:104px;height:10px;margin-top:-6px;background:var(--red);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--yellow)}
-    .beer-tally{max-width:120px;text-align:center;font:500 9px/1.35 var(--mono);color:var(--muted);text-transform:uppercase}
+    .beer-tally{max-width:136px;text-align:center;font:600 9px/1.35 var(--mono);color:var(--muted);text-transform:uppercase}
+    .beer-tally strong{color:var(--yellow);font-weight:700}
+
+    /* Plate of Tremoços Easter Egg */
+    .tremocos-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:2px}
+    .tremocos-plate{position:relative;display:flex;align-items:center;justify-content:center;width:68px;height:26px;padding:0;border:2px solid var(--ink);border-radius:50%;background:radial-gradient(ellipse at center,#f0eddf 0%,#f0eddf 58%,#d8d3c0 60%,#f04432 68%,#f0eddf 74%);box-shadow:2px 3px 0 var(--ink);cursor:pointer;transition:transform .12s}
+    .tremocos-plate:hover{transform:translateY(-1px) scale(1.04)}
+    .tremocos-plate.is-pop{animation:tremocoPop .22s ease}
+    @keyframes tremocoPop{50%{transform:scale(.92) rotate(-4deg)}}
+    .tremocos-beans{position:relative;width:44px;height:14px;pointer-events:none}
+    .tremocos-beans i{position:absolute;width:9px;height:7px;border-radius:52% 48% 46% 54%;background:radial-gradient(circle at 35% 35%,#ffe869,#f0a316 75%,#b86b04);border:1px solid var(--ink);transition:transform .18s,opacity .18s}
+    .tremocos-beans i.is-eaten{opacity:0;transform:translateY(-10px) scale(.3)}
+    .tremocos-beans i:nth-child(1){left:2px;top:3px;transform:rotate(-15deg)}
+    .tremocos-beans i:nth-child(2){left:10px;top:0px;transform:rotate(12deg)}
+    .tremocos-beans i:nth-child(3){left:19px;top:2px;transform:rotate(-8deg)}
+    .tremocos-beans i:nth-child(4){left:28px;top:1px;transform:rotate(22deg)}
+    .tremocos-beans i:nth-child(5){left:34px;top:4px;transform:rotate(-18deg)}
+    .tremocos-beans i:nth-child(6){left:6px;top:6px;transform:rotate(8deg)}
+    .tremocos-beans i:nth-child(7){left:15px;top:6px;transform:rotate(-20deg)}
+    .tremocos-beans i:nth-child(8){left:24px;top:6px;transform:rotate(14deg)}
+    .tremocos-beans i:nth-child(9){left:12px;top:3px;transform:rotate(5deg)}
+    .tremocos-beans i:nth-child(10){left:21px;top:4px;transform:rotate(-10deg)}
+    .tremocos-label{font:500 8px/1.1 var(--mono);color:var(--yellow);text-transform:uppercase;letter-spacing:.3px}
 
     /* Blue & white circus curtain — drag right to gather it against the pole */
     .curtain{--sw:calc(60px - var(--p) * 38px);position:absolute;top:7px;right:0;bottom:0;z-index:10;width:calc(100% - var(--p) * 92%);min-width:36px;overflow:hidden;cursor:grab;touch-action:pan-y;outline:none;border-left:3px solid var(--ink);box-shadow:-10px 0 22px rgba(0,0,0,.55);background:linear-gradient(90deg,rgba(17,23,19,.4),transparent 18px),repeating-linear-gradient(90deg,rgba(17,23,19,.34) 0,rgba(17,23,19,0) calc(var(--sw) * .22),rgba(255,255,255,.08) calc(var(--sw) * .5),rgba(17,23,19,0) calc(var(--sw) * .78),rgba(17,23,19,.34) var(--sw)),repeating-linear-gradient(90deg,var(--circus-blue) 0 calc(var(--sw) * .46),var(--circus-cyan) calc(var(--sw) * .46) calc(var(--sw) * .5),var(--paper) calc(var(--sw) * .5) calc(var(--sw) * .96),#d8d3c0 calc(var(--sw) * .96) var(--sw))}
@@ -314,9 +338,10 @@
                   </div>
                 </div>
                 <p class="chess-status" id="chess-status">Carregando tabuleiro...</p>
+                <p class="chess-lastmove" id="chess-lastmove">Tabuleiro pronto para o 1.º lance</p>
               </div>
 
-              <!-- 40-Click Beer Glass -->
+              <!-- 40-Click Beer Glass & Plate of Tremoços -->
               <div class="beer-area">
                 <button type="button" class="beer-mug" id="beer-mug" aria-label="Dar um golo na cerveja">
                   <span class="beer-glass">
@@ -332,6 +357,14 @@
                   <span class="beer-handle" aria-hidden="true"></span>
                 </button>
                 <span class="beer-coaster" aria-hidden="true"></span>
+                <div class="tremocos-wrap">
+                  <button type="button" class="tremocos-plate" id="tremocos-plate" title="Petiscar um tremoço" aria-label="Pratinho de tremoços">
+                    <span class="tremocos-beans" id="tremocos-beans" aria-hidden="true">
+                      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </span>
+                  </button>
+                  <span class="tremocos-label" id="tremocos-label">Tremoços</span>
+                </div>
                 <button type="button" class="tasca-cta" id="beer-refill-btn" hidden>🍺 Outra caneca</button>
                 <span class="beer-tally" id="beer-tally">Caneca da Tasca</span>
               </div>
@@ -605,25 +638,47 @@
       }
 
       // -----------------------------------------------------------------------
-      // 2. CANECA DE CERVEJA (Single Player: 40 goles de 2.5% até 0.0%)
+      // 2. CANECA DE CERVEJA (40 goles) + PRATINHO DE TREMOÇOS + CONTADOR GLOBAL
       // -----------------------------------------------------------------------
       const beerMug = document.getElementById('beer-mug');
       const beerLiquid = document.getElementById('beer-liquid');
       const beerRefillBtn = document.getElementById('beer-refill-btn');
       const beerTally = document.getElementById('beer-tally');
+      const tremocosPlate = document.getElementById('tremocos-plate');
+      const tremocosBeans = document.getElementById('tremocos-beans');
+      const tremocosLabel = document.getElementById('tremocos-label');
 
       const BEER_KEY = 'keks_beer_v2';
-      let beerData = { clicks: 0, totalPoured: 0 };
+      let beerData = { clicks: 0, totalPoured: 0, audioCycle: 0, tremocosEaten: 0 };
+      let communityBeers = 0;
+      let firebaseBeerRef = null;
       try{
         const savedBeer = localStorage.getItem(BEER_KEY);
-        if(savedBeer) beerData = JSON.parse(savedBeer);
+        if(savedBeer) beerData = Object.assign(beerData, JSON.parse(savedBeer));
       }catch(_){}
+
+      // Single shared Web Audio context (prevents Chrome's ~64 AudioContext limit after 2 beers!)
+      let sharedAudioCtx = null;
+      function getSharedAudioCtx(){
+        try{
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if(!AudioCtx) return null;
+          if(!sharedAudioCtx || sharedAudioCtx.state === 'closed'){
+            sharedAudioCtx = new AudioCtx();
+          }
+          if(sharedAudioCtx.state === 'suspended'){
+            sharedAudioCtx.resume().catch(() => {});
+          }
+          return sharedAudioCtx;
+        }catch(_){
+          return null;
+        }
+      }
 
       function playWebAudioFanfare(){
         try{
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          if(!AudioContext) return;
-          const ctx = new AudioContext();
+          const ctx = getSharedAudioCtx();
+          if(!ctx) return;
           const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
           notes.forEach((freq, i) => {
             const osc = ctx.createOscillator();
@@ -642,9 +697,8 @@
 
       function playSipSound(){
         try{
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          if(!AudioContext) return;
-          const ctx = new AudioContext();
+          const ctx = getSharedAudioCtx();
+          if(!ctx) return;
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.type = 'sine';
@@ -659,21 +713,77 @@
         }catch(_){}
       }
 
+      function playTremocoSound(isRefill = false){
+        try{
+          const ctx = getSharedAudioCtx();
+          if(!ctx) return;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = isRefill ? 'triangle' : 'sine';
+          const startFreq = isRefill ? 440 : 480 + Math.random() * 140;
+          const endFreq = isRefill ? 740 : 880;
+          osc.frequency.setValueAtTime(startFreq, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(endFreq, ctx.currentTime + 0.065);
+          gain.gain.setValueAtTime(0.09, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime);
+          osc.stop(ctx.currentTime + 0.075);
+        }catch(_){}
+      }
+
       const BEER_EMPTY_TRACKS = [
-        './beer-empty.mp3',
-        './beer-empty2.mp3',
-        './beer-empty3.mp3',
-        './beer-empty4.mp3'
+        { mp3: './beer-empty.mp3?v=2',  fallback: './beer-empty.mp3' },
+        { mp3: './beer-empty2.mp3?v=2', fallback: './beer-empty2.mp3' },
+        { mp3: './beer-empty3.mp3?v=2', fallback: './beer-empty3.ogg?v=2' },
+        { mp3: './beer-empty4.mp3?v=2', fallback: './beer-empty4.ogg?v=2' }
       ];
 
-      function playBeerEmptyAudio(cycleCount){
-        const idx = Math.max(0, (cycleCount - 1)) % BEER_EMPTY_TRACKS.length;
-        const src = BEER_EMPTY_TRACKS[idx];
-        const audio = new Audio(src);
-        audio.volume = 0.9;
-        audio.play().catch(() => {
+      // Preload all 4 tracks so there is zero network lag on the 40th sip
+      const preloadedBeerAudios = BEER_EMPTY_TRACKS.map(track => {
+        const a = new Audio(track.mp3);
+        a.preload = 'auto';
+        a.volume = 0.92;
+        return { audio: a, track };
+      });
+
+      async function playAudioBufferFallback(url){
+        try{
+          const ctx = getSharedAudioCtx();
+          if(!ctx) return playWebAudioFanfare();
+          const resp = await fetch(url);
+          if(!resp.ok) throw new Error('HTTP ' + resp.status);
+          const buf = await resp.arrayBuffer();
+          const audioBuf = await ctx.decodeAudioData(buf);
+          const srcNode = ctx.createBufferSource();
+          srcNode.buffer = audioBuf;
+          const gainNode = ctx.createGain();
+          gainNode.gain.value = 0.95;
+          srcNode.connect(gainNode);
+          gainNode.connect(ctx.destination);
+          srcNode.start(0);
+        }catch(_){
           playWebAudioFanfare();
-        });
+        }
+      }
+
+      function playBeerEmptyAudio(cycleCount){
+        const idx = Math.max(0, (cycleCount - 1)) % preloadedBeerAudios.length;
+        const entry = preloadedBeerAudios[idx];
+        try{
+          entry.audio.currentTime = 0;
+          const playPromise = entry.audio.play();
+          if(playPromise && typeof playPromise.catch === 'function'){
+            playPromise.catch(() => {
+              const alt = new Audio(entry.track.fallback);
+              alt.volume = 0.92;
+              alt.play().catch(() => playAudioBufferFallback(entry.track.mp3));
+            });
+          }
+        }catch(_){
+          playAudioBufferFallback(entry.track.mp3);
+        }
       }
 
       function renderBeer(){
@@ -692,8 +802,14 @@
         }
 
         if(beerTally){
-          const count = beerData.totalPoured || 0;
-          beerTally.textContent = count > 0 ? `${count} caneca(s) bebidas` : 'Caneca da Tasca';
+          const myCount = beerData.totalPoured || 0;
+          const totalTasca = Math.max(myCount, communityBeers || 0);
+          if(totalTasca > 0 || myCount > 0){
+            beerTally.innerHTML = `Tu: <strong>${myCount}</strong> · Tasca: <strong>${totalTasca}</strong> 🍺`;
+            beerTally.title = `Bebeste ${myCount} caneca(s) · A malta na Tasca já bebeu ${totalTasca} caneca(s)`;
+          }else{
+            beerTally.textContent = 'Caneca da Tasca';
+          }
         }
 
         try{
@@ -714,6 +830,9 @@
           beerData.totalPoured = (beerData.totalPoured || 0) + 1;
           beerData.audioCycle = (beerData.audioCycle || 0) + 1;
           playBeerEmptyAudio(beerData.audioCycle);
+          if(firebaseBeerRef){
+            firebaseBeerRef.transaction(curr => (Number(curr) || 0) + 1).catch(() => {});
+          }
         }
         renderBeer();
       });
@@ -726,6 +845,42 @@
           beerLiquid.classList.remove('is-pouring');
         }, 1100);
       });
+
+      // Pratinho de Tremoços Easter Egg
+      if(tremocosPlate && tremocosBeans){
+        const beanEls = Array.from(tremocosBeans.querySelectorAll('i'));
+        let beansLeft = beanEls.length;
+
+        tremocosPlate.addEventListener('click', () => {
+          tremocosPlate.classList.remove('is-pop');
+          void tremocosPlate.offsetWidth;
+          tremocosPlate.classList.add('is-pop');
+
+          if(beansLeft <= 0){
+            // Enche o pratinho de tremoços outra vez
+            beanEls.forEach(b => b.classList.remove('is-eaten'));
+            beansLeft = beanEls.length;
+            playTremocoSound(true);
+            if(tremocosLabel) tremocosLabel.textContent = `Tremoços (${beerData.tremocosEaten || 0})`;
+            return;
+          }
+
+          const targetBean = beanEls[beanEls.length - beansLeft];
+          if(targetBean) targetBean.classList.add('is-eaten');
+          beansLeft--;
+          beerData.tremocosEaten = (beerData.tremocosEaten || 0) + 1;
+          playTremocoSound(false);
+          try{ localStorage.setItem(BEER_KEY, JSON.stringify(beerData)); }catch(_){}
+
+          if(tremocosLabel){
+            tremocosLabel.textContent = beansLeft === 0 ? '➕ Mais tremoços' : `Tremoços (${beerData.tremocosEaten})`;
+          }
+        });
+
+        if(tremocosLabel && (beerData.tremocosEaten || 0) > 0){
+          tremocosLabel.textContent = `Tremoços (${beerData.tremocosEaten})`;
+        }
+      }
 
       renderBeer();
 
@@ -779,6 +934,74 @@
       let selectedSquare = null;
       let pendingPromotionMove = null;
       let lastMove = null;
+      let lastMoveAt = 0;
+      const chessLastMoveEl = document.getElementById('chess-lastmove');
+
+      function playChessSound(kind = 'move'){
+        try{
+          const ctx = getSharedAudioCtx();
+          if(!ctx) return;
+          const now = ctx.currentTime;
+
+          // Warm wooden board tap
+          const tap = (offset, fStart, fEnd, vol) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(fStart, now + offset);
+            osc.frequency.exponentialRampToValueAtTime(fEnd, now + offset + 0.045);
+            gain.gain.setValueAtTime(vol, now + offset);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.05);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + offset);
+            osc.stop(now + offset + 0.055);
+          };
+
+          if(kind === 'capture'){
+            tap(0, 260, 75, 0.22);
+            tap(0.022, 340, 95, 0.25);
+          }else if(kind === 'check'){
+            tap(0, 220, 70, 0.2);
+            const bell = ctx.createOscillator();
+            const bGain = ctx.createGain();
+            bell.type = 'sine';
+            bell.frequency.setValueAtTime(659.25, now + 0.03);
+            bell.frequency.setValueAtTime(880, now + 0.11);
+            bGain.gain.setValueAtTime(0.12, now + 0.03);
+            bGain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+            bell.connect(bGain);
+            bGain.connect(ctx.destination);
+            bell.start(now + 0.03);
+            bell.stop(now + 0.29);
+          }else{
+            tap(0, 210, 68, 0.2);
+          }
+        }catch(_){}
+      }
+
+      function formatRelativeTimePt(ts){
+        if(!ts) return '';
+        const diffSec = Math.max(0, Math.floor((Date.now() - Number(ts)) / 1000));
+        if(diffSec < 45) return 'agora mesmo';
+        const mins = Math.floor(diffSec / 60);
+        if(mins < 60) return `há ${mins} min`;
+        const hrs = Math.floor(mins / 60);
+        if(hrs < 24) return `há ${hrs} h`;
+        return `há ${Math.floor(hrs / 24)} d`;
+      }
+
+      function updateLastMoveLabel(){
+        if(!chessLastMoveEl) return;
+        if(!lastMove || !lastMove.from || !lastMove.to){
+          chessLastMoveEl.textContent = 'Tabuleiro pronto para o 1.º lance';
+          return;
+        }
+        const mover = lastMove.color === 'b' ? 'Pretas' : (lastMove.color === 'w' ? 'Brancas' : (game.turn() === 'w' ? 'Pretas' : 'Brancas'));
+        const notation = lastMove.san ? `${lastMove.from} → ${lastMove.to} (${lastMove.san})` : `${lastMove.from} → ${lastMove.to}`;
+        const rel = lastMoveAt ? ` · <span>${formatRelativeTimePt(lastMoveAt)}</span>` : '';
+        chessLastMoveEl.innerHTML = `Último: <strong>${mover}</strong> ${notation}${rel}`;
+      }
 
       function getCooldownRemaining(){
         const lockUntil = Number(localStorage.getItem(COOLDOWN_KEY) || 0);
@@ -850,6 +1073,7 @@
         boardFrame.classList.toggle('is-black-pov', isBlackTurn);
 
         updateCooldownBadge();
+        updateLastMoveLabel();
         const isOver = checkGameOver();
 
         if(!isOver){
@@ -1018,7 +1242,16 @@
 
       function onSuccessfulMove(move){
         selectedSquare = null;
-        lastMove = { from: move.from, to: move.to };
+        lastMove = { from: move.from, to: move.to, san: move.san, color: move.color };
+        lastMoveAt = Date.now();
+
+        if(game.in_check() || game.in_checkmate()){
+          playChessSound('check');
+        }else if(move.captured){
+          playChessSound('capture');
+        }else{
+          playChessSound('move');
+        }
 
         // Animação de rotação da mesa para o próximo jogador
         boardFrame.classList.add('is-turning');
@@ -1032,7 +1265,7 @@
           pgn: game.pgn(),
           lastMove: lastMove,
           by: clientId,
-          updatedAt: Date.now()
+          updatedAt: lastMoveAt
         };
 
         saveAndSyncState(state);
@@ -1042,8 +1275,10 @@
       newGameBtn.addEventListener('click', () => {
         game.reset();
         lastMove = null;
+        lastMoveAt = 0;
         selectedSquare = null;
         clearCooldowns();
+        playChessSound('move');
         const state = {
           fen: game.fen(),
           pgn: '',
@@ -1064,14 +1299,18 @@
       function applyIncomingState(data, isRemote = false){
         if(!data || !data.fen) return;
         const fenChanged = game.fen() !== data.fen;
+        if(data.updatedAt) lastMoveAt = Number(data.updatedAt);
         if(fenChanged){
           game.load(data.fen);
           lastMove = data.lastMove || null;
           selectedSquare = null;
           if(isRemote && hasInitialFirebaseLoad){
+            playChessSound(game.in_check() ? 'check' : 'move');
             boardFrame.classList.add('is-turning');
             setTimeout(() => boardFrame.classList.remove('is-turning'), 700);
           }
+        }else if(data.lastMove){
+          lastMove = data.lastMove;
         }
         if(isRemote){
           try{ localStorage.setItem(LOCAL_STATE_KEY, JSON.stringify(data)); }catch(_){}
@@ -1081,6 +1320,8 @@
         }
         if(fenChanged || isRemote){
           renderBoard();
+        }else{
+          updateLastMoveLabel();
         }
       }
 
@@ -1122,9 +1363,22 @@
         try{
           if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
           firebaseDbRef = firebase.database().ref('keks_chess_game');
+          firebaseBeerRef = firebase.database().ref('keks_tasca_beers/total');
           syncBadge.textContent = '🌐 Online';
           syncBadge.title = 'Ligado em tempo real via Firebase (Europa)';
           syncBadge.classList.add('is-live');
+
+          firebaseBeerRef.on('value', snap => {
+            const val = Number(snap.val() || 0);
+            const myCount = Number(beerData.totalPoured || 0);
+            if(val === 0 && myCount > 0){
+              firebaseBeerRef.set(myCount).catch(() => {});
+              communityBeers = myCount;
+            }else{
+              communityBeers = val;
+            }
+            renderBeer();
+          });
 
           firebaseDbRef.on('value', snap => {
             const val = snap.val();
@@ -1150,8 +1404,11 @@
         syncBadge.textContent = '💻 Local (Multi-tab)';
       }
 
-      // Atualiza o relógio de cooldown a cada segundo
-      setInterval(updateCooldownBadge, 1000);
+      // Atualiza o relógio de cooldown e o tempo do último lance
+      setInterval(() => {
+        updateCooldownBadge();
+        updateLastMoveLabel();
+      }, 1000);
 
       renderBoard();
     }
@@ -1524,12 +1781,12 @@
       if(!window.L||map)return;
       map=L.map('map',{center:[38.732,-9.138],zoom:12,zoomControl:true});
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
-      // Permanent small tent on Praça Dom Pedro IV (Rossio)
+      // Permanent tent on Praça Dom Pedro IV (Rossio) — 50% larger (45x42)
       const rossioTentIcon=L.divIcon({
         className:'rossio-tent-wrapper',
         html:'<div class="rossio-tent-pin"><img src="./tent.svg" alt="Rossio"></div>',
-        iconSize:[30,28],
-        iconAnchor:[15,24]
+        iconSize:[45,42],
+        iconAnchor:[22,36]
       });
       L.marker([38.7138,-9.1394],{icon:rossioTentIcon,interactive:false,zIndexOffset:600}).addTo(map);
       markersGroup=L.layerGroup().addTo(map);
