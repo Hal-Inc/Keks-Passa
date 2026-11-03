@@ -108,7 +108,7 @@ VENUE_REGISTRY = [
     {"venue": "Casa Capitão", "aliases": ["casa capitao", "casa do capitao", "convento do beato", "rua do grilo"], "lat": 38.73295, "lng": -9.10595, "neighborhood": "Beato", "corridor": "Eastern Corridor", "url": "https://casa-capitao.com"},
     {"venue": "Musa de Marvila", "aliases": ["musa de marvila", "musa marvila"], "lat": 38.73925, "lng": -9.10125, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://cervejamusa.com"},
     {"venue": "Arroz Estúdios", "aliases": ["arroz estudios"], "lat": 38.73365, "lng": -9.10385, "neighborhood": "Beato", "corridor": "Eastern Corridor", "url": "https://arrozestudios.pt"},
-    {"venue": "Fábrica Braço de Prata", "aliases": ["fabrica do braco de prata", "fabrica braco de prata", "braco de prata"], "lat": 38.74295, "lng": -9.09885, "neighborhood": "Marvila / Braço de Prata", "corridor": "Eastern Corridor", "url": "https://www.bracodeprata.com"},
+    {"venue": "Fábrica Braço de Prata", "aliases": ["fabrica do braco de prata", "fabrica braco de prata", "braco de prata"], "lat": 38.74379, "lng": -9.10124, "neighborhood": "Marvila / Braço de Prata", "corridor": "Eastern Corridor", "url": "https://www.bracodeprata.com"},
     {"venue": "Underdogs Gallery", "aliases": ["underdogs", "underdogs gallery", "rua fernando palha"], "lat": 38.73995, "lng": -9.10035, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://www.under-dogs.net"},
     {"venue": "Teatro Meridional", "aliases": ["teatro meridional", "meridional"], "lat": 38.73785, "lng": -9.10165, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://teatromeridional.net"},
     {"venue": "BOTA - Base Organizada da Toca das Artes", "aliases": ["bota anjos", "base organizada da toca das artes", "largo de santa barbara"], "lat": 38.72468, "lng": -9.13455, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.botaanjos.com"},
@@ -537,11 +537,17 @@ def scrape_agendalx(target_date):
     print(f"[Tier 1] Scraping AgendaLX & Cartaz Cultural for {date_str}...")
 
     agendalx_urls = [
+        "https://www.agendalx.pt/?s=&type=event&archive=agenda",
+        "https://www.agendalx.pt/?s=&type=event&archive=agenda&paged=2",
         "https://www.agendalx.pt/events/",
         "https://www.agendalx.pt/categoria/feiras-e-mercados/",
         "https://www.agendalx.pt/categoria/formacao-e-oficinas/",
         "https://www.agendalx.pt/categoria/conferencias-e-debates/",
         "https://www.agendalx.pt/categoria/literatura/",
+        "https://www.agendalx.pt/categoria/artes/",
+        "https://www.agendalx.pt/categoria/musica/",
+        "https://www.agendalx.pt/categoria/teatro/",
+        "https://www.agendalx.pt/categoria/cinema/",
     ]
     seen_alx = set()
     for alx_url in agendalx_urls:
@@ -550,18 +556,33 @@ def scrape_agendalx(target_date):
             if resp.status_code != 200:
                 continue
             soup = BeautifulSoup(resp.text, "html.parser")
-            for art in soup.select("article, .event-card, .card, .type-event"):
+            for art in soup.select("article, .event-card, .card, .type-event, .search-result, .post-item"):
                 txt = clean_html_text(art.get_text(" ", strip=True))
                 a_tag = art.find("a", href=True)
                 if not a_tag or a_tag["href"] in seen_alx:
                     continue
-                title_el = art.find(["h2", "h3", "h4"])
+                href = a_tag["href"]
+                if "/events/event/" not in href and "agendalx.pt" in href and "archive=agenda" in alx_url:
+                    # Skip non-event navigation links on the archive search page
+                    if any(skip in href for skip in ["/categoria/", "/local/", "/tag/", "/author/", "/page/", "?s="]):
+                        continue
+                title_el = art.find(["h1", "h2", "h3", "h4", ".entry-title", ".card-title"])
                 title = clean_html_text(title_el.get_text(" ", strip=True) if title_el else a_tag.get_text(" ", strip=True))
                 if not title or len(title) < 3:
                     continue
-                seen_alx.add(a_tag["href"])
+                # If the card explicitly shows a date or range, verify it includes target_date
+                if re.search(r"\b\d{1,2}\s+(?:de\s+)?(?:jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)", strip_accents(txt)):
+                    if not matches_portuguese_date_or_range(txt, target_date):
+                        continue
+                seen_alx.add(href)
 
-                default_cat = "community" if any(k in alx_url for k in ["feiras", "oficinas", "conferencias", "literatura"]) else "concerts"
+                default_cat = "community" if any(k in alx_url for k in ["feiras", "oficinas", "conferencias", "literatura"]) else (
+                    "exhibitions" if "artes" in alx_url else (
+                        "theatre" if "teatro" in alx_url else (
+                            "cinema" if "cinema" in alx_url else "concerts"
+                        )
+                    )
+                )
                 preset = infer_category_preset(f"{title} {txt}", default_cat)
                 default_t = "10:00" if preset["category"] in ("Exhibitions & Visual Arts", "Community & Gatherings", "Family & Youth") else "21:00"
                 time_str, hour_int = parse_time_str(txt, default_t)
@@ -586,7 +607,7 @@ def scrape_agendalx(target_date):
                     "endHour": end_h,
                     "price": price_disp,
                     "priceTier": price_tier,
-                    "url": urljoin("https://www.agendalx.pt", a_tag["href"]),
+                    "url": urljoin("https://www.agendalx.pt", href),
                     "description": f"{title} em {geo['venue']} ({geo['neighborhood']}).",
                 })
         except Exception as e:
@@ -1888,14 +1909,98 @@ def apply_coordinate_jitter(events):
     return events
 
 
+_DEDUP_STOPWORDS = {
+    "a", "o", "as", "os", "de", "da", "do", "das", "dos", "em", "no", "na", "nos", "nas",
+    "para", "com", "por", "um", "uma", "e", "ou", "ao", "aos", "vivo", "live", "concerto",
+    "unico", "regressa", "regressam", "portugal", "lisboa", "apresenta", "apresentam",
+    "novo", "nova", "disco", "album", "tour", "digressao", "espetaculo", "sessao",
+    "teatro", "arena", "meo", "altice", "club", "clube", "festival", "edicao",
+}
+
+
+def _core_title_signature(title, venue=""):
+    norm_t = re.sub(r"[^a-z0-9\s]", " ", strip_accents(title or ""))
+    norm_v = re.sub(r"[^a-z0-9\s]", " ", strip_accents(venue or ""))
+    venue_tokens = {w for w in norm_v.split() if len(w) > 2}
+    tokens = [
+        w for w in norm_t.split()
+        if len(w) >= 2 and w not in _DEDUP_STOPWORDS and w not in venue_tokens
+    ]
+    if not tokens:
+        tokens = [w for w in norm_t.split() if w]
+    return " ".join(tokens)
+
+
+def _event_op_minutes(ev):
+    t = str(ev.get("time", "21:00"))
+    parts = t.split(":")
+    try:
+        h = int(parts[0]) % 24
+        m = int(parts[1]) if len(parts) > 1 else 0
+    except Exception:
+        h = int(ev.get("hour", 21)) % 24
+        m = 0
+    if h < 4:
+        h += 24
+    return h * 60 + m
+
+
+def _event_quality_score(ev):
+    score = 0
+    price = str(ev.get("price", "")).lower()
+    if "€" in price or "livre" in price:
+        score += 3
+    desc = str(ev.get("description", ""))
+    if len(desc) > 55 and not desc.endswith(")."):
+        score += 2
+    title = str(ev.get("title", ""))
+    if not title.isupper() and "@" not in title:
+        score += 1
+    if ev.get("category") == "Concerts & Live Music" and 20 <= int(ev.get("hour", 21)) <= 23:
+        score += 2
+    return score
+
+
 def deduplicate_events(events):
-    seen_keys = set()
+    seen_exact = set()
     unique = []
+    non_lisbon_markers = ("queer porto", "no porto", "em coimbra", "em braga", "em faro", "em aveiro")
+
     for ev in events:
-        k = f"{strip_accents(ev.get('venue', ''))}|{strip_accents(ev.get('title', ''))[:22]}|{ev.get('time', '')}"
-        if k not in seen_keys:
-            seen_keys.add(k)
+        norm_title = strip_accents(ev.get("title", ""))
+        if any(m in norm_title for m in non_lisbon_markers):
+            continue
+
+        venue_norm = strip_accents(ev.get("venue", "")).strip()
+        exact_key = f"{venue_norm}|{norm_title[:24]}|{ev.get('time', '')}"
+        if exact_key in seen_exact:
+            continue
+        seen_exact.add(exact_key)
+
+        sig = _core_title_signature(ev.get("title", ""), ev.get("venue", ""))
+        ev_mins = _event_op_minutes(ev)
+
+        duplicate_idx = None
+        for idx, existing in enumerate(unique):
+            ex_venue = strip_accents(existing.get("venue", "")).strip()
+            if ex_venue != venue_norm:
+                continue
+            ex_mins = _event_op_minutes(existing)
+            if abs(ev_mins - ex_mins) > 300:
+                continue
+            ex_sig = _core_title_signature(existing.get("title", ""), existing.get("venue", ""))
+            if not sig or not ex_sig:
+                continue
+            if sig == ex_sig or (len(sig) >= 4 and len(ex_sig) >= 4 and (sig in ex_sig or ex_sig in sig)):
+                duplicate_idx = idx
+                break
+
+        if duplicate_idx is not None:
+            if _event_quality_score(ev) > _event_quality_score(unique[duplicate_idx]):
+                unique[duplicate_idx] = ev
+        else:
             unique.append(ev)
+
     return unique
 
 
