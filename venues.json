@@ -92,8 +92,8 @@
       "lux fragil",
       "av. infante d. henrique"
     ],
-    "lat": 38.7158,
-    "lng": -9.1213,
+    "lat": 38.71575,
+    "lng": -9.12135,
     "neighborhood": "Santa Apolónia",
     "corridor": "Eastern Corridor",
     "url": "https://www.luxfragil.com"
@@ -105,8 +105,8 @@
       "oito marvila",
       "praca david leandro da silva"
     ],
-    "lat": 38.742,
-    "lng": -9.1026,
+    "lat": 38.74215,
+    "lng": -9.10195,
     "neighborhood": "Marvila",
     "corridor": "Eastern Corridor",
     "url": "https://www.8marvila.com"
@@ -118,8 +118,8 @@
       "lav - lisboa ao vivo",
       "av. marechal gomes da costa"
     ],
-    "lat": 38.7475,
-    "lng": -9.1026,
+    "lat": 38.75485,
+    "lng": -9.10285,
     "neighborhood": "Marvila / Cabo Ruivo",
     "corridor": "Eastern Corridor",
     "url": "https://lisboaaovivo.com"
@@ -132,8 +132,8 @@
       "convento do beato",
       "rua do grilo"
     ],
-    "lat": 38.7305,
-    "lng": -9.1082,
+    "lat": 38.73295,
+    "lng": -9.10595,
     "neighborhood": "Beato",
     "corridor": "Eastern Corridor",
     "url": "https://casa-capitao.com"
@@ -144,8 +144,8 @@
       "musa de marvila",
       "musa marvila"
     ],
-    "lat": 38.7418,
-    "lng": -9.1032,
+    "lat": 38.73925,
+    "lng": -9.10125,
     "neighborhood": "Marvila",
     "corridor": "Eastern Corridor",
     "url": "https://cervejamusa.com"
@@ -155,8 +155,8 @@
     "aliases": [
       "arroz estudios"
     ],
-    "lat": 38.7327,
-    "lng": -9.1086,
+    "lat": 38.73365,
+    "lng": -9.10385,
     "neighborhood": "Beato",
     "corridor": "Eastern Corridor",
     "url": "https://arrozestudios.pt"
@@ -168,8 +168,8 @@
       "fabrica braco de prata",
       "braco de prata"
     ],
-    "lat": 38.7428,
-    "lng": -9.0988,
+    "lat": 38.74295,
+    "lng": -9.09885,
     "neighborhood": "Marvila / Braço de Prata",
     "corridor": "Eastern Corridor",
     "url": "https://www.bracodeprata.com"
@@ -181,8 +181,8 @@
       "underdogs gallery",
       "rua fernando palha"
     ],
-    "lat": 38.7363,
-    "lng": -9.102,
+    "lat": 38.73995,
+    "lng": -9.10035,
     "neighborhood": "Marvila",
     "corridor": "Eastern Corridor",
     "url": "https://www.under-dogs.net"
@@ -193,8 +193,8 @@
       "teatro meridional",
       "meridional"
     ],
-    "lat": 38.736,
-    "lng": -9.1025,
+    "lat": 38.73785,
+    "lng": -9.10165,
     "neighborhood": "Marvila",
     "corridor": "Eastern Corridor",
     "url": "https://teatromeridional.net"
@@ -206,8 +206,8 @@
       "base organizada da toca das artes",
       "largo de santa barbara"
     ],
-    "lat": 38.7247,
-    "lng": -9.1345,
+    "lat": 38.72468,
+    "lng": -9.13455,
     "neighborhood": "Anjos",
     "corridor": "Eastern Corridor",
     "url": "https://www.botaanjos.com"
@@ -221,8 +221,8 @@
       "rua gomes freire",
       "jardim do bombarda"
     ],
-    "lat": 38.7252,
-    "lng": -9.1388,
+    "lat": 38.72515,
+    "lng": -9.13915,
     "neighborhood": "Arroios / Gomes Freire",
     "corridor": "Eastern Corridor",
     "url": "https://www.jardinsdobombarda.pt"
@@ -262,8 +262,8 @@
       "anjos 70",
       "regueirao dos anjos"
     ],
-    "lat": 38.7235,
-    "lng": -9.1349,
+    "lat": 38.72595,
+    "lng": -9.13535,
     "neighborhood": "Anjos",
     "corridor": "Eastern Corridor",
     "url": "https://www.instagram.com/anjos70_"
@@ -276,8 +276,8 @@
       "rua damasceno monteiro",
       "mafolofolo"
     ],
-    "lat": 38.7198,
-    "lng": -9.1306,
+    "lat": 38.71975,
+    "lng": -9.13285,
     "neighborhood": "Graça",
     "corridor": "Eastern Corridor",
     "url": "https://hangar.com.pt"
@@ -365,8 +365,8 @@
       "rua da barrosa",
       "rua da barroca"
     ],
-    "lat": 38.7124,
-    "lng": -9.1444,
+    "lat": 38.71202,
+    "lng": -9.14438,
     "neighborhood": "Bairro Alto",
     "corridor": "Axial Spine",
     "url": "https://zedosbois.org"
@@ -377,8 +377,8 @@
       "musicbox",
       "music box"
     ],
-    "lat": 38.7072,
-    "lng": -9.1436,
+    "lat": 38.70718,
+    "lng": -9.14338,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://musicboxlisboa.com"
@@ -389,8 +389,8 @@
       "ministerium",
       "ministerium club"
     ],
-    "lat": 38.7082,
-    "lng": -9.136,
+    "lat": 38.70828,
+    "lng": -9.13578,
     "neighborhood": "Terreiro do Paço",
     "corridor": "Axial Spine",
     "url": "https://pt.ra.co/clubs/66945"
@@ -413,8 +413,8 @@
       "estudio time out",
       "mercado da ribeira"
     ],
-    "lat": 38.7069,
-    "lng": -9.1458,
+    "lat": 38.70695,
+    "lng": -9.14585,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://www.lisabout.com/genero/dance-electronic"
@@ -424,8 +424,8 @@
     "aliases": [
       "tokyo lisboa"
     ],
-    "lat": 38.7063,
-    "lng": -9.1456,
+    "lat": 38.70712,
+    "lng": -9.14315,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://tokyolisboa.com"
@@ -437,8 +437,8 @@
       "bleza",
       "cais da ribeira nova"
     ],
-    "lat": 38.7062,
-    "lng": -9.1465,
+    "lat": 38.70555,
+    "lng": -9.14565,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://www.agendalx.pt"
@@ -450,8 +450,8 @@
       "lisboa rio",
       "cais do gas"
     ],
-    "lat": 38.706,
-    "lng": -9.1472,
+    "lat": 38.70572,
+    "lng": -9.14678,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://www.agendalx.pt"
@@ -461,8 +461,8 @@
     "aliases": [
       "o bom o mau e o vilao"
     ],
-    "lat": 38.7082,
-    "lng": -9.1438,
+    "lat": 38.70762,
+    "lng": -9.14348,
     "neighborhood": "Cais do Sodré / Chiado",
     "corridor": "Axial Spine",
     "url": "https://www.lisabout.com"
@@ -473,8 +473,8 @@
       "patio da gale",
       "monkey project"
     ],
-    "lat": 38.7078,
-    "lng": -9.1376,
+    "lat": 38.70795,
+    "lng": -9.13772,
     "neighborhood": "Baixa / Terreiro do Paço",
     "corridor": "Axial Spine",
     "url": "https://www.lisabout.com/genero/dance-electronic"
@@ -484,8 +484,8 @@
     "aliases": [
       "palacio chiado"
     ],
-    "lat": 38.7091,
-    "lng": -9.1432,
+    "lat": 38.70912,
+    "lng": -9.14325,
     "neighborhood": "Chiado",
     "corridor": "Axial Spine",
     "url": "https://palaciochiado.pt"
@@ -521,8 +521,8 @@
       "museu da marioneta",
       "convento das bernardas"
     ],
-    "lat": 38.7078,
-    "lng": -9.1558,
+    "lat": 38.70792,
+    "lng": -9.15615,
     "neighborhood": "Madragoa / Santos",
     "corridor": "Axial Spine",
     "url": "https://www.museudamarioneta.pt"
@@ -532,8 +532,8 @@
     "aliases": [
       "museu da farmacia"
     ],
-    "lat": 38.7097,
-    "lng": -9.1482,
+    "lat": 38.70972,
+    "lng": -9.14815,
     "neighborhood": "Santa Catarina / Chiado",
     "corridor": "Axial Spine",
     "url": "https://www.museudafarmacia.pt"
@@ -546,8 +546,8 @@
       "crafts and design",
       "feira da estrela"
     ],
-    "lat": 38.7145,
-    "lng": -9.1594,
+    "lat": 38.71455,
+    "lng": -9.15935,
     "neighborhood": "Estrela / Lapa",
     "corridor": "Axial Spine",
     "url": "https://www.agendalx.pt"
@@ -558,8 +558,8 @@
       "jardim do principe real",
       "mercado biologico do principe real"
     ],
-    "lat": 38.7163,
-    "lng": -9.1488,
+    "lat": 38.71645,
+    "lng": -9.14875,
     "neighborhood": "Príncipe Real",
     "corridor": "Axial Spine",
     "url": "https://www.agendalx.pt"
@@ -572,8 +572,8 @@
       "jardim botanico de lisboa",
       "escola politecnica"
     ],
-    "lat": 38.7176,
-    "lng": -9.1512,
+    "lat": 38.71765,
+    "lng": -9.15125,
     "neighborhood": "Príncipe Real",
     "corridor": "Axial Spine",
     "url": "https://www.museus.ulisboa.pt"
@@ -584,8 +584,8 @@
       "teatro do bairro alto",
       "tba"
     ],
-    "lat": 38.7197,
-    "lng": -9.1528,
+    "lat": 38.71968,
+    "lng": -9.15278,
     "neighborhood": "Príncipe Real",
     "corridor": "Axial Spine",
     "url": "https://teatrodobairroalto.pt"
@@ -597,8 +597,8 @@
       "vieira da silva",
       "fundacao arpad szenes"
     ],
-    "lat": 38.7215,
-    "lng": -9.1592,
+    "lat": 38.72148,
+    "lng": -9.15915,
     "neighborhood": "Amoreiras / Rato",
     "corridor": "Axial Spine",
     "url": "https://fasvs.pt"
@@ -609,8 +609,8 @@
       "casa fernando pessoa",
       "rua coelho da rocha"
     ],
-    "lat": 38.7191,
-    "lng": -9.1664,
+    "lat": 38.71592,
+    "lng": -9.16645,
     "neighborhood": "Campo de Ourique",
     "corridor": "Axial Spine",
     "url": "https://www.casafernandopessoa.pt"
@@ -622,8 +622,8 @@
       "goethe institut",
       "campo dos martires da patria"
     ],
-    "lat": 38.7222,
-    "lng": -9.1404,
+    "lat": 38.72205,
+    "lng": -9.14058,
     "neighborhood": "Santana / Pena",
     "corridor": "Axial Spine",
     "url": "https://www.goethe.de/ins/pt/pt/ver.cfm"
@@ -635,8 +635,8 @@
       "hot clube de portugal",
       "praca da alegria"
     ],
-    "lat": 38.7182,
-    "lng": -9.1448,
+    "lat": 38.71818,
+    "lng": -9.14468,
     "neighborhood": "Avenida / Praça da Alegria",
     "corridor": "Axial Spine",
     "url": "https://hcp.pt"
@@ -648,8 +648,8 @@
       "cineteatro capitolio",
       "teatro capitolio"
     ],
-    "lat": 38.7186,
-    "lng": -9.1462,
+    "lat": 38.71855,
+    "lng": -9.14635,
     "neighborhood": "Parque Mayer / Avenida",
     "corridor": "Axial Spine",
     "url": "https://www.cineteatrocapitolio.pt"
@@ -659,8 +659,8 @@
     "aliases": [
       "teatro variedades"
     ],
-    "lat": 38.7191,
-    "lng": -9.1462,
+    "lat": 38.71832,
+    "lng": -9.14592,
     "neighborhood": "Parque Mayer",
     "corridor": "Axial Spine",
     "url": "https://teatrovariedades-capitolio.pt"
@@ -671,8 +671,8 @@
       "teatro politeama",
       "politeama"
     ],
-    "lat": 38.7161,
-    "lng": -9.1408,
+    "lat": 38.71642,
+    "lng": -9.14065,
     "neighborhood": "Baixa / Rossio",
     "corridor": "Axial Spine",
     "url": "https://filipelaferia.pt"
@@ -684,8 +684,8 @@
       "coliseu de lisboa",
       "rua das portas de santo antao"
     ],
-    "lat": 38.7168,
-    "lng": -9.1408,
+    "lat": 38.71662,
+    "lng": -9.14082,
     "neighborhood": "Baixa / Rossio",
     "corridor": "Axial Spine",
     "url": "https://www.coliseulisboa.com"
@@ -698,8 +698,8 @@
       "dona maria ii",
       "tndmii"
     ],
-    "lat": 38.7146,
-    "lng": -9.1396,
+    "lat": 38.71462,
+    "lng": -9.13968,
     "neighborhood": "Rossio",
     "corridor": "Axial Spine",
     "url": "https://www.tndm.pt"
@@ -712,8 +712,8 @@
       "sao luis",
       "teatro municipal sao luiz"
     ],
-    "lat": 38.7095,
-    "lng": -9.1426,
+    "lat": 38.70948,
+    "lng": -9.14258,
     "neighborhood": "Chiado",
     "corridor": "Axial Spine",
     "url": "https://www.teatrosaoluiz.pt"
@@ -724,8 +724,8 @@
       "sao carlos",
       "teatro nacional de sao carlos"
     ],
-    "lat": 38.7097,
-    "lng": -9.1415,
+    "lat": 38.70958,
+    "lng": -9.14162,
     "neighborhood": "Chiado",
     "corridor": "Axial Spine",
     "url": "https://saocarlos.pt"
@@ -736,8 +736,8 @@
       "teatro da trindade",
       "trindade inatel"
     ],
-    "lat": 38.7128,
-    "lng": -9.1425,
+    "lat": 38.71265,
+    "lng": -9.14242,
     "neighborhood": "Chiado / Bairro Alto",
     "corridor": "Axial Spine",
     "url": "https://teatrodatrindade.inatel.pt"
@@ -748,8 +748,8 @@
       "tivoli bbva",
       "teatro tivoli"
     ],
-    "lat": 38.7209,
-    "lng": -9.1456,
+    "lat": 38.71962,
+    "lng": -9.14448,
     "neighborhood": "Avenida da Liberdade",
     "corridor": "Axial Spine",
     "url": "https://www.teatrotivolibbva.pt"
@@ -761,8 +761,8 @@
       "cinemateca portuguesa",
       "rua barata salgueiro"
     ],
-    "lat": 38.7219,
-    "lng": -9.1482,
+    "lat": 38.72168,
+    "lng": -9.14828,
     "neighborhood": "Avenida / Marquês",
     "corridor": "Axial Spine",
     "url": "https://www.cinemateca.pt"
@@ -772,8 +772,8 @@
     "aliases": [
       "cinema sao jorge"
     ],
-    "lat": 38.7212,
-    "lng": -9.1453,
+    "lat": 38.71915,
+    "lng": -9.14502,
     "neighborhood": "Avenida da Liberdade",
     "corridor": "Axial Spine",
     "url": "https://cinemasaojorge.pt"
@@ -784,8 +784,8 @@
       "cinema ideal",
       "rua do loreto"
     ],
-    "lat": 38.7107,
-    "lng": -9.1449,
+    "lat": 38.71088,
+    "lng": -9.14442,
     "neighborhood": "Chiado / Camões",
     "corridor": "Axial Spine",
     "url": "https://cinemaideal.pt"
@@ -797,8 +797,8 @@
       "museu do chiado",
       "museu nacional de arte contemporanea"
     ],
-    "lat": 38.7088,
-    "lng": -9.1412,
+    "lat": 38.70882,
+    "lng": -9.14122,
     "neighborhood": "Chiado",
     "corridor": "Axial Spine",
     "url": "https://museuartecontemporanea.gov.pt"
@@ -809,8 +809,8 @@
       "mude",
       "museu do design"
     ],
-    "lat": 38.7094,
-    "lng": -9.137,
+    "lat": 38.70922,
+    "lng": -9.13695,
     "neighborhood": "Baixa",
     "corridor": "Axial Spine",
     "url": "https://www.mude.pt"
@@ -858,8 +858,8 @@
       "incognito bar",
       "rua de poiais de sao bento"
     ],
-    "lat": 38.7135,
-    "lng": -9.1528,
+    "lat": 38.71095,
+    "lng": -9.15035,
     "neighborhood": "São Bento",
     "corridor": "Axial Spine",
     "url": "https://incognitobar.com"
@@ -870,8 +870,8 @@
       "casa independente",
       "largo do intendente"
     ],
-    "lat": 38.7214,
-    "lng": -9.1354,
+    "lat": 38.72138,
+    "lng": -9.13538,
     "neighborhood": "Intendente",
     "corridor": "Axial Spine",
     "url": "https://casaindependente.com"
@@ -898,8 +898,8 @@
       "cam gulbenkian",
       "centro de arte moderna"
     ],
-    "lat": 38.7376,
-    "lng": -9.1545,
+    "lat": 38.73645,
+    "lng": -9.15465,
     "neighborhood": "Avenidas Novas / Praça de Espanha",
     "corridor": "Northern Belt",
     "url": "https://gulbenkian.pt"
@@ -961,8 +961,8 @@
       "evolution valbom",
       "rooftop over lisbon"
     ],
-    "lat": 38.7351,
-    "lng": -9.1485,
+    "lat": 38.73485,
+    "lng": -9.14525,
     "neighborhood": "Picoas / Saldanha",
     "corridor": "Northern Belt",
     "url": "https://www.lisabout.com/genero/dance-electronic"
@@ -975,8 +975,8 @@
       "galeria forum picoas",
       "fontes pereira de melo"
     ],
-    "lat": 38.7306,
-    "lng": -9.1466,
+    "lat": 38.73068,
+    "lng": -9.14692,
     "neighborhood": "Picoas",
     "corridor": "Northern Belt",
     "url": "https://www.agendalx.pt"
@@ -988,8 +988,8 @@
       "casa-museu dr. anastacio goncalves",
       "casa museu anastacio goncalves"
     ],
-    "lat": 38.7314,
-    "lng": -9.1476,
+    "lat": 38.73145,
+    "lng": -9.14765,
     "neighborhood": "Picoas",
     "corridor": "Northern Belt",
     "url": "https://www.museusemonumentos.pt"
@@ -1011,8 +1011,8 @@
       "mercado 31 de janeiro",
       "rua engenheiro vieira da silva"
     ],
-    "lat": 38.7319,
-    "lng": -9.1436,
+    "lat": 38.73188,
+    "lng": -9.14362,
     "neighborhood": "Picoas",
     "corridor": "Northern Belt",
     "url": "https://www.agendalx.pt"
@@ -1025,8 +1025,8 @@
       "casa da moeda",
       "biblioteca da imprensa nacional"
     ],
-    "lat": 38.7272,
-    "lng": -9.1494,
+    "lat": 38.7278,
+    "lng": -9.1486,
     "neighborhood": "Picoas / Marquês",
     "corridor": "Northern Belt",
     "url": "https://imprensanacional.pt"
@@ -1037,8 +1037,8 @@
       "culturgest",
       "fundacao caixa geral de depositos"
     ],
-    "lat": 38.7402,
-    "lng": -9.1412,
+    "lat": 38.74165,
+    "lng": -9.14345,
     "neighborhood": "Campo Pequeno / Arco do Cego",
     "corridor": "Northern Belt",
     "url": "https://www.culturgest.pt"
@@ -1049,8 +1049,8 @@
       "palacio galveias",
       "biblioteca palacio galveias"
     ],
-    "lat": 38.7418,
-    "lng": -9.1465,
+    "lat": 38.74175,
+    "lng": -9.14685,
     "neighborhood": "Campo Pequeno",
     "corridor": "Northern Belt",
     "url": "https://blx.cm-lisboa.pt"
@@ -1063,8 +1063,8 @@
       "espaco nimas",
       "nimas"
     ],
-    "lat": 38.7357,
-    "lng": -9.1495,
+    "lat": 38.73342,
+    "lng": -9.14798,
     "neighborhood": "Picoas / Saldanha",
     "corridor": "Northern Belt",
     "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas"
@@ -1076,8 +1076,8 @@
       "cinema monumental",
       "saldanha monumental"
     ],
-    "lat": 38.7338,
-    "lng": -9.1458,
+    "lat": 38.73355,
+    "lng": -9.14545,
     "neighborhood": "Picoas / Saldanha",
     "corridor": "Northern Belt",
     "url": "https://medeiafilmes.com"
@@ -1088,8 +1088,8 @@
       "maria matos",
       "teatro maria matos"
     ],
-    "lat": 38.7463,
-    "lng": -9.138,
+    "lat": 38.74632,
+    "lng": -9.13808,
     "neighborhood": "Roma / Areeiro",
     "corridor": "Northern Belt",
     "url": "https://teatromariamatos.pt"
@@ -1113,8 +1113,8 @@
       "appleton associacao cultural",
       "rua acacio paiva"
     ],
-    "lat": 38.7495,
-    "lng": -9.1412,
+    "lat": 38.75015,
+    "lng": -9.14145,
     "neighborhood": "Alvalade",
     "corridor": "Northern Belt",
     "url": "https://appleton.pt"
@@ -1126,8 +1126,8 @@
       "cinema city alvalade",
       "classic alvalade"
     ],
-    "lat": 38.7534,
-    "lng": -9.1442,
+    "lat": 38.75185,
+    "lng": -9.14365,
     "neighborhood": "Alvalade",
     "corridor": "Northern Belt",
     "url": "https://www.cinemacity.pt"
@@ -1137,8 +1137,8 @@
     "aliases": [
       "republica da musica"
     ],
-    "lat": 38.7562,
-    "lng": -9.1456,
+    "lat": 38.75545,
+    "lng": -9.14295,
     "neighborhood": "Alvalade",
     "corridor": "Northern Belt",
     "url": "https://www.agendalx.pt"
@@ -1149,8 +1149,8 @@
       "rca club",
       "rua joao saraiva"
     ],
-    "lat": 38.7502,
-    "lng": -9.1261,
+    "lat": 38.75245,
+    "lng": -9.14085,
     "neighborhood": "Alvalade",
     "corridor": "Northern Belt",
     "url": "https://www.rcaclub.com"
@@ -1173,8 +1173,8 @@
       "museu bordalo pinheiro",
       "bordalo pinheiro"
     ],
-    "lat": 38.7568,
-    "lng": -9.1524,
+    "lat": 38.75812,
+    "lng": -9.15285,
     "neighborhood": "Campo Grande",
     "corridor": "Northern Belt",
     "url": "https://museubordalopinheiro.pt"
@@ -1185,8 +1185,8 @@
       "sagres campo pequeno",
       "arena campo pequeno"
     ],
-    "lat": 38.7425,
-    "lng": -9.1452,
+    "lat": 38.74258,
+    "lng": -9.14532,
     "neighborhood": "Campo Pequeno",
     "corridor": "Northern Belt",
     "url": "https://www.campopequeno.com"
@@ -1196,8 +1196,8 @@
     "aliases": [
       "pavilhao carlos lopes"
     ],
-    "lat": 38.7289,
-    "lng": -9.1518,
+    "lat": 38.72892,
+    "lng": -9.15175,
     "neighborhood": "Parque Eduardo VII",
     "corridor": "Northern Belt",
     "url": "https://www.agendalx.pt"
@@ -1210,8 +1210,8 @@
       "mac/ccb",
       "museu de arte contemporanea ccb"
     ],
-    "lat": 38.6956,
-    "lng": -9.2064,
+    "lat": 38.69558,
+    "lng": -9.20642,
     "neighborhood": "Belém",
     "corridor": "Belém Waterfront",
     "url": "https://www.ccb.pt"
@@ -1222,8 +1222,8 @@
       "maat",
       "central tejo"
     ],
-    "lat": 38.6959,
-    "lng": -9.1945,
+    "lat": 38.69588,
+    "lng": -9.19448,
     "neighborhood": "Belém",
     "corridor": "Belém Waterfront",
     "url": "https://www.maat.pt"
@@ -1282,8 +1282,8 @@
       "fica oficina criativa",
       "fica-oc"
     ],
-    "lat": 38.7038,
-    "lng": -9.1785,
+    "lat": 38.70378,
+    "lng": -9.17865,
     "neighborhood": "Alcântara (LX Factory)",
     "corridor": "Belém Waterfront",
     "url": "https://fica-oc.pt"
@@ -1298,8 +1298,8 @@
       "ler devagar",
       "lx rural"
     ],
-    "lat": 38.7035,
-    "lng": -9.1788,
+    "lat": 38.70355,
+    "lng": -9.17885,
     "neighborhood": "Alcântara",
     "corridor": "Belém Waterfront",
     "url": "https://lxfactory.com"
@@ -1322,8 +1322,8 @@
     "aliases": [
       "museu do oriente"
     ],
-    "lat": 38.7027,
-    "lng": -9.1714,
+    "lat": 38.70278,
+    "lng": -9.17135,
     "neighborhood": "Alcântara",
     "corridor": "Belém Waterfront",
     "url": "https://www.foriente.pt"
@@ -1335,8 +1335,8 @@
       "mnaa",
       "janelas verdes"
     ],
-    "lat": 38.7042,
-    "lng": -9.1608,
+    "lat": 38.70435,
+    "lng": -9.16085,
     "neighborhood": "Santos / Janelas Verdes",
     "corridor": "Belém Waterfront",
     "url": "https://www.museudearteantiga.pt"
@@ -1347,8 +1347,8 @@
       "lu.ca",
       "teatro luis de camoes"
     ],
-    "lat": 38.7005,
-    "lng": -9.2015,
+    "lat": 38.70048,
+    "lng": -9.20075,
     "neighborhood": "Belém / Ajuda",
     "corridor": "Belém Waterfront",
     "url": "https://lucateatroluisdecamoes.pt"

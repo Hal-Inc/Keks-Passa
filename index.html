@@ -314,7 +314,7 @@
         <div class="hero-left">
           <h1 id="hero-title">Que temos<br><span>hoje?</span></h1>
           <div class="hero-bottom">
-            <p class="hero-copy">Concertos, exposições, cinema, teatro, mercados de rua, oficinas de artes, palestras e raves no Prior Velho. Quando um evento acaba, sai da lista: aqui só vês o que está a acontecer ou ainda vai começar hoje.</p>
+            <p class="hero-copy">Concertos, exposições, cinema, teatro, mercados de rua, oficinas de artes, palestras e festas no Prior Velho. Quando um evento acaba, sai da lista: aqui só vês o que está a acontecer ou ainda vai começar hoje.</p>
             <div class="hero-count"><strong id="total-count">—</strong><span>planos ativos hoje<br>à tua espera</span></div>
           </div>
         </div>
@@ -600,7 +600,7 @@
         }
         if(toplineHint){
           toplineHint.textContent = isOpen
-            ? '🎪 O xadrez é entre todos, a caneca é para ti 🎪'
+            ? '🎪 O xadrez é entre todos, a caneca e os tremoços são para ti 🎪'
             : 'Puxa a cortina, não tejas medo';
         }
       }
@@ -653,7 +653,7 @@
       }
 
       // -----------------------------------------------------------------------
-      // 2. CANECA DE CERVEJA (40 goles) + PRATINHO DE TREMOÇOS + CONTADOR GLOBAL
+      // 2. CANECA DE CERVEJA (25 goles · 4% cada) + PRATINHO DE TREMOÇOS + CONTADOR GLOBAL
       // -----------------------------------------------------------------------
       const beerMug = document.getElementById('beer-mug');
       const beerLiquid = document.getElementById('beer-liquid');
@@ -802,12 +802,12 @@
       }
 
       function renderBeer(){
-        const clicks = Math.max(0, Math.min(40, beerData.clicks || 0));
-        const remainingPct = Math.max(0, +(100 - clicks * 2.5).toFixed(1));
+        const clicks = Math.max(0, Math.min(25, beerData.clicks || 0));
+        const remainingPct = Math.max(0, +(100 - clicks * 4).toFixed(1));
 
         beerLiquid.style.setProperty('--level', remainingPct);
 
-        if(clicks >= 40){
+        if(clicks >= 25){
           beerMug.classList.add('is-empty');
           beerRefillBtn.hidden = false;
           beerRefillBtn.focus?.();
@@ -833,7 +833,7 @@
       }
 
       beerMug.addEventListener('click', () => {
-        if((beerData.clicks || 0) >= 40) return;
+        if((beerData.clicks || 0) >= 25) return;
         beerData.clicks = (beerData.clicks || 0) + 1;
         playSipSound();
 
@@ -841,7 +841,7 @@
         void beerMug.offsetWidth; // trigger reflow
         beerMug.classList.add('is-sip');
 
-        if(beerData.clicks === 40){
+        if(beerData.clicks >= 25){
           beerData.totalPoured = (beerData.totalPoured || 0) + 1;
           beerData.audioCycle = (beerData.audioCycle || 0) + 1;
           playBeerEmptyAudio(beerData.audioCycle);
