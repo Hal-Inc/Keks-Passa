@@ -482,13 +482,8 @@
     // do teu projeto Firebase gratuito abaixo (Firebase Console -> Realtime Database).
     // Se deixares vazio, o jogo funciona localmente e sincroniza entre separadores (BroadcastChannel)!
     const FIREBASE_CONFIG = {
-      // apiKey: "...",
-      // authDomain: "...",
-      // databaseURL: "https://SEU-PROJETO-default-rtdb.firebaseio.com",
-      // projectId: "...",
-      // storageBucket: "...",
-      // messagingSenderId: "...",
-      // appId: "..."
+      databaseURL: "https://keks-passa-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "keks-passa"
     };
 
     const categoryLabels = {
@@ -990,6 +985,18 @@
         promoOverlay.hidden = false;
       }
 
+      const CLIENT_ID_KEY = 'keks_chess_client_id';
+      let clientId = '';
+      try{
+        clientId = localStorage.getItem(CLIENT_ID_KEY) || '';
+        if(!clientId){
+          clientId = 'kp_' + Math.random().toString(36).slice(2, 10);
+          localStorage.setItem(CLIENT_ID_KEY, clientId);
+        }
+      }catch(_){
+        clientId = 'kp_' + Math.random().toString(36).slice(2, 10);
+      }
+
       function onSuccessfulMove(move){
         selectedSquare = null;
         lastMove = { from: move.from, to: move.to };
@@ -1005,6 +1012,7 @@
           fen: game.fen(),
           pgn: game.pgn(),
           lastMove: lastMove,
+          by: clientId,
           updatedAt: Date.now()
         };
 
@@ -1021,6 +1029,7 @@
           fen: game.fen(),
           pgn: '',
           lastMove: null,
+          by: clientId,
           updatedAt: Date.now()
         };
         saveAndSyncState(state);
@@ -1031,13 +1040,27 @@
       // 4. SINCRONIZAÇÃO: BROADCASTCHANNEL + FIREBASE REALTIME DATABASE
       // -----------------------------------------------------------------------
       let firebaseDbRef = null;
+      let hasInitialFirebaseLoad = false;
 
-      function applyIncomingState(data){
+      function applyIncomingState(data, isRemote = false){
         if(!data || !data.fen) return;
-        if(game.fen() !== data.fen){
+        const fenChanged = game.fen() !== data.fen;
+        if(fenChanged){
           game.load(data.fen);
           lastMove = data.lastMove || null;
           selectedSquare = null;
+          if(isRemote && hasInitialFirebaseLoad){
+            boardFrame.classList.add('is-turning');
+            setTimeout(() => boardFrame.classList.remove('is-turning'), 700);
+          }
+        }
+        if(isRemote){
+          try{ localStorage.setItem(LOCAL_STATE_KEY, JSON.stringify(data)); }catch(_){}
+          if(data.by && data.by !== clientId){
+            clearCooldowns();
+          }
+        }
+        if(fenChanged || isRemote){
           renderBoard();
         }
       }
@@ -1052,28 +1075,53 @@
         }
 
         if(firebaseDbRef){
-          firebaseDbRef.set(state).catch(err => console.warn('[Firebase Sync]', err));
+          firebaseDbRef.set(state).catch(() => {
+            fetch(`${FIREBASE_CONFIG.databaseURL}/keks_chess_game.json`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(state)
+            }).catch(() => {});
+          });
         }
       }
 
       // Sincronização entre separadores locais
       if(broadcast){
         broadcast.onmessage = (e) => {
-          if(e.data) applyIncomingState(e.data);
+          if(e.data) applyIncomingState(e.data, true);
         };
       }
+
+      // Carrega estado inicial guardado localmente antes do Firebase responder
+      try{
+        const saved = localStorage.getItem(LOCAL_STATE_KEY);
+        if(saved) applyIncomingState(JSON.parse(saved), false);
+      }catch(_){}
 
       // Inicialização do Firebase Realtime Database se configurado
       if(typeof firebase !== 'undefined' && FIREBASE_CONFIG && FIREBASE_CONFIG.databaseURL){
         try{
           if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
           firebaseDbRef = firebase.database().ref('keks_chess_game');
-          syncBadge.textContent = '🌐 Online (Firebase)';
+          syncBadge.textContent = '🌐 Online';
+          syncBadge.title = 'Ligado em tempo real via Firebase (Europa)';
           syncBadge.classList.add('is-live');
 
           firebaseDbRef.on('value', snap => {
             const val = snap.val();
-            if(val) applyIncomingState(val);
+            if(val){
+              applyIncomingState(val, true);
+            }else if(!hasInitialFirebaseLoad){
+              // Inicializa o nó remoto se a base de dados estiver vazia
+              firebaseDbRef.set({
+                fen: game.fen(),
+                pgn: game.pgn(),
+                lastMove: lastMove,
+                by: clientId,
+                updatedAt: Date.now()
+              }).catch(() => {});
+            }
+            hasInitialFirebaseLoad = true;
           });
         }catch(err){
           console.warn('[Firebase Connect]', err);
@@ -1082,12 +1130,6 @@
       }else{
         syncBadge.textContent = '💻 Local (Multi-tab)';
       }
-
-      // Carrega estado inicial guardado localmente
-      try{
-        const saved = localStorage.getItem(LOCAL_STATE_KEY);
-        if(saved) applyIncomingState(JSON.parse(saved));
-      }catch(_){}
 
       // Atualiza o relógio de cooldown a cada segundo
       setInterval(updateCooldownBadge, 1000);
