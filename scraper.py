@@ -112,6 +112,9 @@ VENUE_REGISTRY = [
     {"venue": "Underdogs Gallery", "aliases": ["underdogs", "underdogs gallery", "rua fernando palha"], "lat": 38.7363, "lng": -9.1020, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://www.under-dogs.net"},
     {"venue": "Teatro Meridional", "aliases": ["teatro meridional", "meridional"], "lat": 38.7360, "lng": -9.1025, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://teatromeridional.net"},
     {"venue": "BOTA - Base Organizada da Toca das Artes", "aliases": ["bota anjos", "base organizada da toca das artes", "largo de santa barbara"], "lat": 38.7247, "lng": -9.1345, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.botaanjos.com"},
+    {"venue": "Jardins do Bombarda (LARGO Residências)", "aliases": ["jardins do bombarda", "largo residencias", "hospital miguel bombarda", "rua gomes freire", "jardim do bombarda"], "lat": 38.7252, "lng": -9.1388, "neighborhood": "Arroios / Gomes Freire", "corridor": "Eastern Corridor", "url": "https://www.jardinsdobombarda.pt"},
+    {"venue": "Caulino Ceramics & Ateliers de Olaria", "aliases": ["caulino ceramics", "caulino", "atelier de ceramica arroios", "olaria arroios"], "lat": 38.7278, "lng": -9.1342, "neighborhood": "Arroios", "corridor": "Eastern Corridor", "url": "https://www.caulinoceramics.com"},
+    {"venue": "Contraprova — Atelier de Gravura e Risografia", "aliases": ["contraprova", "atelier de gravura", "oficina de serigrafia anjos", "risografia lisboa"], "lat": 38.7231, "lng": -9.1361, "neighborhood": "Anjos / Intendente", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
     {"venue": "Anjos70", "aliases": ["anjos70", "anjos 70", "regueirao dos anjos"], "lat": 38.7235, "lng": -9.1349, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.instagram.com/anjos70_"},
     {"venue": "Hangar - Centro de Investigação Artística", "aliases": ["hangar", "centro de investigacao artistica", "rua damasceno monteiro", "mafolofolo"], "lat": 38.7198, "lng": -9.1306, "neighborhood": "Graça", "corridor": "Eastern Corridor", "url": "https://hangar.com.pt"},
     {"venue": "Feira da Ladra (Campo de Santa Clara)", "aliases": ["feira da ladra", "campo de santa clara"], "lat": 38.7154, "lng": -9.1255, "neighborhood": "São Vicente / Alfama", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
@@ -172,11 +175,16 @@ VENUE_REGISTRY = [
     {"venue": "Aula Magna — Universidade de Lisboa", "aliases": ["aula magna", "reitoria da universidade de lisboa"], "lat": 38.7525, "lng": -9.1582, "neighborhood": "Cidade Universitária", "corridor": "Northern Belt", "url": "https://www.ulisboa.pt"},
     {"venue": "Teatro da Comuna", "aliases": ["teatro da comuna", "comuna teatro", "opera-pimba no gelo"], "lat": 38.7367, "lng": -9.1605, "neighborhood": "Praça de Espanha", "corridor": "Northern Belt", "url": "https://www.comunateatropesquisa.pt"},
     {"venue": "Jardim Zoológico de Lisboa", "aliases": ["jardim zoologico", "zoo de lisboa", "reptilario"], "lat": 38.7442, "lng": -9.1712, "neighborhood": "Sete Rios", "corridor": "Northern Belt", "url": "https://www.zoo.pt"},
-    {"venue": "Evolution Valbom Rooftop", "aliases": ["evolution valbom", "rooftop over lisbon"], "lat": 38.7351, "lng": -9.1485, "neighborhood": "Saldanha", "corridor": "Northern Belt", "url": "https://www.lisabout.com/genero/dance-electronic"},
+    {"venue": "Evolution Valbom Rooftop", "aliases": ["evolution valbom", "rooftop over lisbon"], "lat": 38.7351, "lng": -9.1485, "neighborhood": "Picoas / Saldanha", "corridor": "Northern Belt", "url": "https://www.lisabout.com/genero/dance-electronic"},
+    {"venue": "Fórum Picoas", "aliases": ["forum picoas", "auditorio forum picoas", "galeria forum picoas", "fontes pereira de melo"], "lat": 38.7306, "lng": -9.1466, "neighborhood": "Picoas", "corridor": "Northern Belt", "url": "https://www.agendalx.pt"},
+    {"venue": "Casa-Museu Dr. Anastácio Gonçalves", "aliases": ["anastacio goncalves", "casa-museu dr. anastacio goncalves", "casa museu anastacio goncalves"], "lat": 38.7314, "lng": -9.1476, "neighborhood": "Picoas", "corridor": "Northern Belt", "url": "https://www.museusemonumentos.pt"},
+    {"venue": "Galeria Monumental", "aliases": ["galeria monumental"], "lat": 38.7294, "lng": -9.1442, "neighborhood": "Picoas / Saldanha", "corridor": "Northern Belt", "url": "https://www.galeriamonumental.com"},
+    {"venue": "Mercado 31 de Janeiro", "aliases": ["mercado 31 de janeiro", "rua engenheiro vieira da silva"], "lat": 38.7319, "lng": -9.1436, "neighborhood": "Picoas", "corridor": "Northern Belt", "url": "https://www.agendalx.pt"},
+    {"venue": "Imprensa Nacional — Galeria & Oficinas INCM", "aliases": ["imprensa nacional", "galeria incm", "casa da moeda", "biblioteca da imprensa nacional"], "lat": 38.7272, "lng": -9.1494, "neighborhood": "Picoas / Marquês", "corridor": "Northern Belt", "url": "https://imprensanacional.pt"},
     {"venue": "Culturgest", "aliases": ["culturgest", "fundacao caixa geral de depositos"], "lat": 38.7402, "lng": -9.1412, "neighborhood": "Campo Pequeno / Arco do Cego", "corridor": "Northern Belt", "url": "https://www.culturgest.pt"},
     {"venue": "Biblioteca Palácio Galveias", "aliases": ["palacio galveias", "biblioteca palacio galveias"], "lat": 38.7418, "lng": -9.1465, "neighborhood": "Campo Pequeno", "corridor": "Northern Belt", "url": "https://blx.cm-lisboa.pt"},
-    {"venue": "Cinema Medeia Nimas", "aliases": ["cinema nimas", "medeia nimas", "espaco nimas", "nimas"], "lat": 38.7357, "lng": -9.1495, "neighborhood": "Saldanha", "corridor": "Northern Belt", "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas"},
-    {"venue": "Cinema Medeia Monumental", "aliases": ["medeia monumental", "cinema monumental", "saldanha monumental"], "lat": 38.7338, "lng": -9.1458, "neighborhood": "Saldanha", "corridor": "Northern Belt", "url": "https://medeiafilmes.com"},
+    {"venue": "Cinema Medeia Nimas", "aliases": ["cinema nimas", "medeia nimas", "espaco nimas", "nimas"], "lat": 38.7357, "lng": -9.1495, "neighborhood": "Picoas / Saldanha", "corridor": "Northern Belt", "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas"},
+    {"venue": "Cinema Medeia Monumental", "aliases": ["medeia monumental", "cinema monumental", "saldanha monumental"], "lat": 38.7338, "lng": -9.1458, "neighborhood": "Picoas / Saldanha", "corridor": "Northern Belt", "url": "https://medeiafilmes.com"},
     {"venue": "Teatro Maria Matos", "aliases": ["maria matos", "teatro maria matos"], "lat": 38.7463, "lng": -9.1380, "neighborhood": "Roma / Areeiro", "corridor": "Northern Belt", "url": "https://teatromariamatos.pt"},
     {"venue": "Teatro Bocage", "aliases": ["teatro bocage", "rua manuel da silva leal"], "lat": 38.7429, "lng": -9.1392, "neighborhood": "Areeiro / Alvalade", "corridor": "Northern Belt", "url": "https://www.nocartaz.pt/concelhos/lisboa/"},
     {"venue": "Appleton Associação Cultural", "aliases": ["appleton", "appleton associacao cultural", "rua acacio paiva"], "lat": 38.7495, "lng": -9.1412, "neighborhood": "Alvalade", "corridor": "Northern Belt", "url": "https://appleton.pt"},
@@ -1371,6 +1379,195 @@ def scrape_markets_workshops_lectures(target_date):
     except Exception as e:
         print(f"[FICA Workshops] Notice: {e}")
 
+    # Jardins do Bombarda (LARGO Residências) live agenda check
+    try:
+        resp = fetch_url("https://www.jardinsdobombarda.pt")
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            geo = match_venue("jardins do bombarda")
+            seen_jb = set()
+            for card in soup.find_all(["article", "div", "li"]):
+                txt = clean_html_text(card.get_text(" ", strip=True))
+                if len(txt) < 25 or len(txt) > 900:
+                    continue
+                if not matches_portuguese_date_or_range(txt, target_date):
+                    continue
+                h_el = card.find(["h2", "h3", "h4", "strong"])
+                title = clean_html_text(h_el.get_text(" ", strip=True) if h_el else "")
+                if not title or len(title) < 5 or title.lower() in seen_jb:
+                    continue
+                seen_jb.add(title.lower())
+                preset = infer_category_preset(f"{title} {txt}", "community")
+                time_str, hour_int = parse_time_str(txt, "16:00")
+                price_disp, price_tier = parse_price_and_tier(txt, "Entrada Livre", "FREE")
+                end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], title, txt)
+                events.append({
+                    "id": f"bombarda-{abs(hash(title)) % 100000}",
+                    "title": f"{title} — Jardins do Bombarda",
+                    "category": preset["category"],
+                    "color": preset["color"],
+                    "icon": preset["icon"],
+                    "venue": geo["venue"],
+                    "neighborhood": geo["neighborhood"],
+                    "corridor": geo["corridor"],
+                    "lat": geo["lat"],
+                    "lng": geo["lng"],
+                    "time": time_str,
+                    "hour": hour_int,
+                    "endTime": end_t,
+                    "endHour": end_h,
+                    "price": price_disp,
+                    "priceTier": price_tier,
+                    "url": "https://www.jardinsdobombarda.pt",
+                    "description": f"{title} nos Jardins do Bombarda / LARGO Residências (Rua Gomes Freire, Arroios).",
+                })
+    except Exception as e:
+        print(f"[Jardins do Bombarda] Notice: {e}")
+
+    return events
+
+
+# ==============================================================================
+# TIER 3.8: VIRALAGENDA DYNAMIC DAILY & CATEGORY SCRAPER
+# ==============================================================================
+def scrape_viralagenda(target_date):
+    """
+    Scrapes ViralAgenda Lisboa using dynamic daily URL formatting (DD-MM-YYYY)
+    as well as category feeds (concerts, workshops-courses, exhibitions).
+    Example date URL: https://www.viralagenda.com/pt/lisboa/03-11-2026
+    """
+    events = []
+    dd_mm_yyyy = target_date.strftime("%d-%m-%Y")
+    iso_date = target_date.strftime("%Y-%m-%d")
+    print(f"[Tier 3.8] Scraping ViralAgenda for {dd_mm_yyyy} (/pt/lisboa/{dd_mm_yyyy} + concerts & workshops)...")
+
+    va_urls = [
+        (f"https://www.viralagenda.com/pt/lisboa/{dd_mm_yyyy}", "community", True),
+        ("https://www.viralagenda.com/pt/lisboa/concerts", "concerts", False),
+        ("https://www.viralagenda.com/pt/lisboa/workshops-courses", "community", False),
+        ("https://www.viralagenda.com/pt/lisboa/exhibitions", "exhibitions", False),
+    ]
+    seen_va = set()
+
+    for url, default_cat, is_date_specific_url in va_urls:
+        try:
+            resp = fetch_url(url)
+            if resp.status_code != 200:
+                print(f"[ViralAgenda] HTTP {resp.status_code} on {url}")
+                continue
+            soup = BeautifulSoup(resp.text, "html.parser")
+
+            # 1) Check JSON-LD Event blocks if present
+            for script in soup.find_all("script", type="application/ld+json"):
+                try:
+                    data = json.loads(script.string or "")
+                    items = data if isinstance(data, list) else [data]
+                    for item in items:
+                        if not isinstance(item, dict) or item.get("@type") != "Event":
+                            continue
+                        start_dt = str(item.get("startDate", ""))
+                        if not is_date_specific_url and iso_date not in start_dt and dd_mm_yyyy not in start_dt:
+                            continue
+                        title = clean_html_text(item.get("name", ""))
+                        if not title or len(title) < 4:
+                            continue
+                        loc = item.get("location") or {}
+                        venue_raw = loc.get("name", "") if isinstance(loc, dict) else str(loc)
+                        ev_url = item.get("url") or url
+                        if ev_url in seen_va:
+                            continue
+                        seen_va.add(ev_url)
+
+                        geo = match_venue(venue_raw, title, require_match=False)
+                        preset = infer_category_preset(f"{title} {venue_raw}", default_cat)
+                        time_str, hour_int = parse_time_str(start_dt, "21:00" if default_cat == "concerts" else "18:00")
+                        price_disp, price_tier = parse_price_and_tier(str(item.get("offers", "")), "Consultar evento", "ACCESSIBLE")
+                        end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], title, "")
+
+                        events.append({
+                            "id": f"va-{abs(hash(ev_url)) % 1000000}",
+                            "title": title,
+                            "category": preset["category"],
+                            "color": preset["color"],
+                            "icon": preset["icon"],
+                            "venue": geo["venue"],
+                            "neighborhood": geo["neighborhood"],
+                            "corridor": geo["corridor"],
+                            "lat": geo["lat"],
+                            "lng": geo["lng"],
+                            "time": time_str,
+                            "hour": hour_int,
+                            "endTime": end_t,
+                            "endHour": end_h,
+                            "price": price_disp,
+                            "priceTier": price_tier,
+                            "url": ev_url if str(ev_url).startswith("http") else urljoin("https://www.viralagenda.com", str(ev_url)),
+                            "description": f"{title} em {geo['venue']} ({geo['neighborhood']}). Fonte: ViralAgenda Lisboa.",
+                        })
+                except Exception:
+                    pass
+
+            # 2) Parse HTML event cards (.viral-event, li[data-id], article)
+            cards = soup.select(".viral-event, li.viral-event, article, div[itemtype*='Event']")
+            for card in cards:
+                txt = clean_html_text(card.get_text(" | ", strip=True))
+                if len(txt) < 15:
+                    continue
+                if not is_date_specific_url:
+                    date_attr = str(card.get("data-date", "")) + " " + txt
+                    if (
+                        iso_date not in date_attr
+                        and dd_mm_yyyy not in date_attr
+                        and not matches_portuguese_date_or_range(date_attr, target_date)
+                    ):
+                        continue
+
+                title_el = card.select_one(".viral-event-title, h2, h3, h4, a[itemprop='url']")
+                title = clean_html_text(title_el.get_text(" ", strip=True) if title_el else "")
+                if not title or len(title) < 4:
+                    continue
+
+                a_el = card.select_one("a[href*='/events/'], a[href]")
+                href = a_el.get("href", "") if a_el else url
+                full_url = urljoin("https://www.viralagenda.com", href) if href else url
+                dedup_k = f"{title.lower()}|{full_url}"
+                if dedup_k in seen_va:
+                    continue
+                seen_va.add(dedup_k)
+
+                venue_el = card.select_one(".viral-event-place, [itemprop='location'], .place, .venue")
+                venue_hint = clean_html_text(venue_el.get_text(" ", strip=True) if venue_el else "")
+
+                geo = match_venue(f"{venue_hint} {title}", txt, require_match=False)
+                preset = infer_category_preset(f"{title} {txt}", default_cat)
+                time_str, hour_int = parse_time_str(txt, "21:00" if default_cat == "concerts" else "18:00")
+                price_disp, price_tier = parse_price_and_tier(txt, "Consultar bilheteira", "ACCESSIBLE")
+                end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], title, txt)
+
+                events.append({
+                    "id": f"va-card-{abs(hash(dedup_k)) % 1000000}",
+                    "title": title,
+                    "category": preset["category"],
+                    "color": preset["color"],
+                    "icon": preset["icon"],
+                    "venue": geo["venue"],
+                    "neighborhood": geo["neighborhood"],
+                    "corridor": geo["corridor"],
+                    "lat": geo["lat"],
+                    "lng": geo["lng"],
+                    "time": time_str,
+                    "hour": hour_int,
+                    "endTime": end_t,
+                    "endHour": end_h,
+                    "price": price_disp,
+                    "priceTier": price_tier,
+                    "url": full_url,
+                    "description": f"{title} em {geo['venue']} ({geo['neighborhood']}).",
+                })
+        except Exception as e:
+            print(f"[ViralAgenda] Notice on {url}: {e}")
+
+    print(f"[Tier 3.8] ViralAgenda extracted {len(events)} events for {dd_mm_yyyy}.")
     return events
 
 
@@ -1613,6 +1810,59 @@ def get_ongoing_cultural_events(target_date):
                  "teatro politeama", th_late, th_late_end, "15€ - 30€", "MID",
                  "https://filipelaferia.pt", "Grandes produções musicais de Filipe La Féria no Teatro Politeama (Baixa).")
 
+    # --- 9. JARDINS DO BOMBARDA, ARTS & CRAFTS WORKSHOPS & PICOAS CULTURAL HUB ---
+    # Jardins do Bombarda (LARGO Residências) — Open Cultural Gardens, Workshops & Community Events
+    add_item(59, "Jardins Abertos, Horta Comunitária, Oficinas Criativas & Esplanada Cultural", "community",
+             "jardins do bombarda", "12:00", "20:00", "Entrada Livre", "FREE",
+             "https://www.jardinsdobombarda.pt", "Programação comunitária, oficinas de artes e ofícios, exposições e convívio nos Jardins do Bombarda / LARGO Residências (Rua Gomes Freire).")
+    add_item(60, "Noites no Bombarda: Música, Cinema ao Ar Livre & Encontros Comunitários", "concerts",
+             "jardins do bombarda", "19:00", "23:00", "Entrada Livre", "FREE",
+             "https://www.jardinsdobombarda.pt", "Fim de tarde e noite com concertos acústicos, DJ sets, tertúlias e cinema nos Jardins do Bombarda (Arroios).")
+
+    # More Arts & Crafts, Ceramics, Printmaking, Letterpress & Creative Workshops
+    if weekday != 6:
+        add_item(61, "Oficina de Olaria na Roda, Modelação em Barro & Cerâmica de Autor", "community",
+                 "caulino ceramics", "14:30", "18:30", "35€ (c/ materiais)", "MID",
+                 "https://www.caulinoceramics.com", "Workshop prático de iniciação à roda de oleiro, modelação manual e esmaltagem em atelier de cerâmica em Arroios.")
+        add_item(62, "Atelier Aberto de Serigrafia, Gravura, Risografia, Cianotipia e Zines", "community",
+                 "contraprova", "15:00", "19:30", "15€ - 25€", "ACCESSIBLE",
+                 "https://www.agendalx.pt", "Oficina prática de técnicas de impressão artesanal, linogravura, encadernação manual e autoedição nos Anjos.")
+        add_item(63, "Oficina de Tipografia Tradicional, Artes Gráficas & Exposição INCM", "community",
+                 "imprensa nacional", "10:30", "18:00", "Entrada Livre", "FREE",
+                 "https://imprensanacional.pt", "Exposição de artes do livro, imprensa de caracteres móveis e património gráfico na Imprensa Nacional (Picoas / Marquês).")
+        add_item(64, "Ateliers de Tufting, Bordado Contemporâneo, Ilustração & Feira Criativa", "community",
+                 "anjos70", "14:00", "20:00", "Entrada Livre / Oficinas", "ACCESSIBLE",
+                 "https://www.instagram.com/anjos70_", "Espaço de criadores independentes com workshops de têxteis, tufting, ilustração e artes plásticas no Regueirão dos Anjos.")
+    if weekday != 0:
+        add_item(65, "Oficina de Pintura de Azulejo Tradicional & Cerâmica Naturalista", "community",
+                 "museu bordalo pinheiro", "10:30", "17:30", "6€ - 15€", "ACCESSIBLE",
+                 "https://museubordalopinheiro.pt", "Exposição e oficinas práticas de modelação cerâmica e pintura de azulejo no Museu Bordalo Pinheiro (Campo Grande).")
+
+    # Picoas Cultural Cluster (Fórum Picoas, Anastácio Gonçalves, Galeria Monumental, Nimas, Mercado 31 de Janeiro)
+    add_item(66, "Exposição de Fotografia, Conversas Urbanas & Sessões no Fórum Picoas", "exhibitions",
+             "forum picoas", "10:00", "19:30", "Entrada Livre", "FREE",
+             "https://www.agendalx.pt", "Mostra documental, encontros culturais e programação comunitária no Fórum Picoas (Av. Fontes Pereira de Melo).")
+    add_item(67, "Matiné de Cinema de Autor & Clássicos Restaurados em Picoas", "cinema",
+             "cinema medeia nimas", "15:30", "17:45", "7.50€", "ACCESSIBLE",
+             "https://medeiafilmes.com/cinemas/cinema-medeia-nimas", "Sessão da tarde dedicada a grandes realizadores e retrospetivas no Cinema Medeia Nimas (Picoas / Saldanha).")
+    add_item(68, "Sessão da Noite: Ciclos de Cinema Independente no Medeia Nimas", "cinema",
+             "cinema medeia nimas", "21:30", "23:45", "7.50€", "ACCESSIBLE",
+             "https://medeiafilmes.com/cinemas/cinema-medeia-nimas", "Programação noturna de cinema de autor no histórico Cinema Medeia Nimas (Av. 5 de Outubro, Picoas).")
+    add_item(72, "Afterwork Sunset, Live Soul/Jazz & DJ Set entre Picoas e Saldanha", "nightlife",
+             "evolution valbom", "18:30", "23:00", "Entrada Livre", "FREE",
+             "https://www.lisabout.com/genero/dance-electronic", "Fim de tarde e noite com DJ sets, música ao vivo e cocktails entre Picoas e o Saldanha.")
+    if weekday != 6:
+        add_item(70, "Exposição de Ilustração, Livros de Artista & Oficina de Desenho em Picoas", "exhibitions",
+                 "galeria monumental", "14:00", "19:30", "Entrada Livre", "FREE",
+                 "https://www.galeriamonumental.com", "Mostra de arte contemporânea, gravura, ilustração e edição de autor na Galeria Monumental (Picoas / Saldanha).")
+        add_item(71, "Bancas de Produtores, Artesanato Urbano & Degustações em Picoas", "community",
+                 "mercado 31 de janeiro", "09:30", "16:00", "Entrada Livre", "FREE",
+                 "https://www.agendalx.pt", "Mercado tradicional e pop-ups gastronómicos e criativos no coração de Picoas (Rua Eng. Vieira da Silva).")
+    if weekday != 0:
+        add_item(69, "Coleção de Pintura, Porcelana & Oficina de Aguarela na Casa-Museu", "exhibitions",
+                 "anastacio goncalves", "10:00", "17:30", "5.00€", "ACCESSIBLE",
+                 "https://www.museusemonumentos.pt", "Visita à joia de arquitetura Arte Nova em Picoas (atelier de Malhoa) com oficinas de desenho e aguarela.")
+
     return ongoing
 
 
@@ -1669,6 +1919,7 @@ def main():
     live_raw.extend(scrape_resident_advisor(target_date))
     live_raw.extend(scrape_prior_velho_electronic(target_date))
     live_raw.extend(scrape_markets_workshops_lectures(target_date))
+    live_raw.extend(scrape_viralagenda(target_date))
     live_raw.extend(get_ongoing_cultural_events(target_date))
 
     all_events = deduplicate_events(live_raw)

@@ -676,8 +676,9 @@
         }catch(_){}
       }
 
-      function playBeerEmptyAudio(){
-        const audio = new Audio('./beer-empty.mp3');
+      function playBeerEmptyAudio(cycleCount){
+        const src = (cycleCount % 2 === 0) ? './beer-empty2.mp3' : './beer-empty.mp3';
+        const audio = new Audio(src);
         audio.volume = 0.9;
         audio.play().catch(() => {
           playWebAudioFanfare();
@@ -720,7 +721,8 @@
 
         if(beerData.clicks === 40){
           beerData.totalPoured = (beerData.totalPoured || 0) + 1;
-          playBeerEmptyAudio();
+          beerData.audioCycle = (beerData.audioCycle || 0) + 1;
+          playBeerEmptyAudio(beerData.audioCycle);
         }
         renderBeer();
       });
