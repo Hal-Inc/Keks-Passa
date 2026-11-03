@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 550" width="100%" height="100%">
+  <defs>
+    <!-- Filter for subtle plastic shine & depth -->
+    <filter id="soft-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#550000" flood-opacity="0.3" />
+    </filter>
+
+    <!-- Gradients for realistic 3D plastic shading -->
+    <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ee3b3b" />
+      <stop offset="35%" stop-color="#df1b1b" />
+      <stop offset="75%" stop-color="#bd0909" />
+      <stop offset="100%" stop-color="#8a0000" />
+    </linearGradient>
+
+    <linearGradient id="ridgeHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff7b7b" />
+      <stop offset="60%" stop-color="#ff5252" />
+      <stop offset="100%" stop-color="#d92020" />
+    </linearGradient>
+
+    <linearGradient id="interiorDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#400000" />
+      <stop offset="100%" stop-color="#1f0000" />
+    </linearGradient>
+
+    <linearGradient id="floorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#910000" />
+      <stop offset="100%" stop-color="#c41010" />
+    </linearGradient>
+
+    <linearGradient id="leftDrapeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f84d4d" />
+      <stop offset="40%" stop-color="#d61a1a" />
+      <stop offset="100%" stop-color="#910404" />
+    </linearGradient>
+
+    <linearGradient id="rightDrapeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#730101" />
+      <stop offset="50%" stop-color="#bd1313" />
+      <stop offset="100%" stop-color="#e62e2e" />
+    </linearGradient>
+
+    <linearGradient id="windowBevelLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8585" />
+      <stop offset="100%" stop-color="#b81212" />
+    </linearGradient>
+
+    <linearGradient id="windowBevelDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8a0000" />
+      <stop offset="100%" stop-color="#4d0000" />
+    </linearGradient>
+
+    <!-- Window Pane Inset Transform -->
+    <!-- Perspective matrix simulation for the window -->
+  </defs>
+
+  <!-- Ground Contact Ambient Occlusion (underneath edges only, no base) -->
+  <path d="M 22 418 L 165 470 L 350 512 L 568 435 L 575 425 L 345 500 Z" fill="#000" opacity="0.18" filter="blur(6px)" />
+
+  <!-- TENT STRUCTURE GROUP -->
+  <g id="tent-body">
+
+    <!-- 1. Tent Interior (visible through the open flaps) -->
+    <polygon points="190,170 155,445 242,472 232,185" fill="url(#interiorDark)" />
+
+    <!-- Tent Floor inside entrance -->
+    <polygon points="155,445 242,472 248,460 188,435" fill="url(#floorGrad)" />
+
+    <!-- 2. Main Right Slanted Roof / Wall Face -->
+    <path d="M 194,52
+             C 270,44 380,30 432,23
+             C 434,25 439,32 443,38
+             L 573,425
+             C 573,425 460,470 348,510
+             C 335,465 250,220 216,140
+             Z" fill="url(#roofGrad)" />
+
+    <!-- Right Roof Soft Surface Highlights & Sheen -->
+    <path d="M 215,62 L 425,36 L 545,395 L 355,465 Z" fill="#ffffff" opacity="0.08" />
+    <path d="M 240,68 C 320,55 380,45 425,40 L 460,160 C 370,175 300,195 245,210 Z" fill="#ffffff" opacity="0.06" />
+
+    <!-- Ridge Crest Highlight (Top seam) -->
+    <path d="M 194,52 C 280,43 370,30 435,23 L 442,32 C 375,39 285,52 205,62 Z" fill="url(#ridgeHighlight)" />
+
+    <!-- 3. Front Triangular Gable Structure -->
+    <polygon points="194,52 206,64 165,160 148,150" fill="#c41414" />
+    <polygon points="194,52 148,150 180,165 216,140" fill="#e82c2c" />
+
+    <!-- Front Left Outer Edge / Creep Slope -->
+    <path d="M 194,52 L 148,150 L 22,416 C 22,416 90,440 162,465 L 175,445 C 120,400 150,180 180,165 Z" fill="#c41212" />
+
+    <!-- 4. Front Left Gathered Curtain / Flap -->
+    <!-- Outer Flap Fold 1 -->
+    <path d="M 148,150
+             C 135,210 80,340 22,416
+             C 45,426 80,438 95,444
+             C 115,360 145,230 165,160 Z" fill="url(#leftDrapeGrad)" />
+
+    <!-- Fold Crease Shadows and Highlights Left -->
+    <path d="M 95,444 C 115,360 145,230 165,160 C 158,160 135,250 82,425 Z" fill="#800404" opacity="0.6" />
+    <path d="M 82,425 C 135,250 158,160 165,160 C 168,160 178,220 128,450 Z" fill="url(#leftDrapeGrad)" />
+    <path d="M 128,450 C 178,220 168,160 175,160 L 182,175 C 175,230 168,360 160,458 Z" fill="#8a0505" />
+    <path d="M 68,435 C 110,320 145,200 155,155" stroke="#ff7373" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6" />
+    <path d="M 115,447 C 145,340 165,220 170,168" stroke="#ff8585" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6" />
+
+    <!-- 5. Front Right Gathered Curtain / Flap (Opening jamb) -->
+    <path d="M 194,168
+             C 190,220 180,310 180,440
+             L 242,472
+             C 246,455 245,410 240,360
+             C 230,260 215,200 205,170 Z" fill="url(#rightDrapeGrad)" />
+
+    <!-- Right Flap Gather Ribs & Creases -->
+    <path d="M 215,185 C 225,260 238,360 242,472 C 235,465 220,380 205,270 C 198,220 196,180 196,170 Z" fill="#ff4d4d" opacity="0.4" />
+    <path d="M 180,440 C 182,340 190,240 198,170" stroke="#520000" stroke-width="3" fill="none" opacity="0.7" />
+    <path d="M 230,280 C 235,350 240,420 242,472" stroke="#ff7a7a" stroke-width="2" fill="none" opacity="0.5" />
+
+    <!-- Entrance Top Valance / Peak Overhang -->
+    <path d="M 148,150 C 170,165 190,165 210,168 L 206,155 C 190,152 170,150 148,150 Z" fill="#ff6b6b" />
+
+    <!-- 6. Bottom Edge Welts / Plastic Molded Lips -->
+    <!-- Left Bottom Rim -->
+    <path d="M 20,416 C 50,430 110,450 165,468 L 165,474 C 110,456 50,436 20,422 Z" fill="#b00d0d" />
+    <path d="M 20,416 C 50,430 110,450 165,468" stroke="#ff7575" stroke-width="2" fill="none" />
+
+    <!-- Center Threshold Rim -->
+    <path d="M 162,467 L 246,477 L 246,482 L 162,472 Z" fill="#9e0c0c" />
+
+    <!-- Right Long Bottom Rim -->
+    <path d="M 244,476 C 285,496 335,512 348,512 C 410,490 520,448 574,427 L 574,435 C 520,456 410,498 348,520 C 335,520 285,504 244,484 Z" fill="#750202" />
+    <path d="M 246,477 C 285,497 335,513 348,513 C 410,491 520,449 574,428" stroke="#ff6161" stroke-width="2.5" fill="none" opacity="0.8" />
+    <path d="M 348,512 L 348,520" stroke="#ff7b7b" stroke-width="1.5" />
+
+    <!-- 7. Embossed Window on Right Wall -->
+    <!-- Window Outer Beveled Frame -->
+    <g id="embossed-window">
+      <!-- Shadow edge (Bottom-Right of frame) -->
+      <polygon points="314,196 416,170 458,328 356,362" fill="url(#windowBevelDark)" opacity="0.9" />
+
+      <!-- Highlight edge (Top-Left of frame) -->
+      <polygon points="310,192 414,166 420,172 316,200" fill="url(#windowBevelLight)" />
+      <polygon points="310,192 316,200 352,360 346,356" fill="url(#windowBevelLight)" />
+
+      <!-- Window Main Raised Border Surface -->
+      <polygon points="314,194 416,168 456,326 354,358" fill="#e02626" />
+
+      <!-- Inner Recessed Basin (Window Aperture Cavity) -->
+      <polygon points="323,205 407,183 445,321 361,346" fill="#8f0808" />
+
+      <!-- 4 Recessed Panes (Grid cutout areas) -->
+      <!-- Top-Left Pane -->
+      <polygon points="328,212 360,203 376,260 344,268" fill="#660000" />
+      <!-- Top-Right Pane -->
+      <polygon points="370,200 401,192 417,249 386,257" fill="#570000" />
+      <!-- Bottom-Left Pane -->
+      <polygon points="348,279 380,271 396,331 364,340" fill="#7d0404" />
+      <!-- Bottom-Right Pane -->
+      <polygon points="390,268 421,260 437,319 406,328" fill="#630000" />
+
+      <!-- Crossbar Grids (Raised Mullion & Transom) -->
+      <!-- Vertical Mullion Bar -->
+      <polygon points="361,202 369,200 388,333 380,335" fill="#e62e2e" />
+      <polygon points="369,200 371,203 390,335 388,333" fill="#690202" />
+      <!-- Horizontal Transom Bar -->
+      <polygon points="342,268 420,248 422,257 344,277" fill="#d92525" />
+      <polygon points="344,277 422,257 420,261 342,280" fill="#520000" />
+
+      <!-- Plastic Glint on Window Frame Edges -->
+      <path d="M 314,194 L 416,168" stroke="#ff9494" stroke-width="2" stroke-linecap="round" />
+      <path d="M 314,194 L 354,358" stroke="#ff8585" stroke-width="1.8" stroke-linecap="round" />
+      <path d="M 361,202 L 380,335" stroke="#ff9e9e" stroke-width="1.2" stroke-linecap="round" />
+      <path d="M 342,268 L 420,248" stroke="#ffa3a3" stroke-width="1.2" stroke-linecap="round" />
+    </g>
+
+    <!-- 8. Realistic Molded Surface Creases / Wrinkles (as seen in vacuum/injection molded piece) -->
+    <!-- Wrinkles above front gable -->
+    <path d="M 160,120 C 175,130 185,120 195,128" stroke="#ff7373" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6" />
+    <path d="M 170,100 C 182,108 190,102 195,108" stroke="#a30808" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.7" />
+
+    <!-- Subtle molded wavy reflections along right roof pitch -->
+    <path d="M 230,120 C 270,110 300,105 320,100" stroke="#ff5c5c" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.4" />
+    <path d="M 440,80 C 470,120 490,160 515,220" stroke="#ff7575" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.3" />
+    <path d="M 480,260 C 510,310 525,350 545,390" stroke="#ff7575" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.3" />
+
+    <!-- Slanted Right Edge Highlight (Hip seam) -->
+    <path d="M 436,25 L 573,425" stroke="#ff7878" stroke-width="2.5" stroke-linecap="round" opacity="0.7" />
+
+  </g>
+</svg>
