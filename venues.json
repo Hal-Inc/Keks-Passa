@@ -1649,5 +1649,219 @@
     "neighborhood": "Penha de França / Anjos",
     "corridor": "Eastern Corridor",
     "url": "https://kosmicare.org/drugchecking/"
+  },
+  {
+    "venue": "Fábrica de Alternativas",
+    "aliases": [
+      "fabrica de alternativas",
+      "rua de mocambique 42",
+      "espaco alternativas penha"
+    ],
+    "lat": 38.72915,
+    "lng": -9.12785,
+    "neighborhood": "Penha de França",
+    "corridor": "Eastern Corridor",
+    "url": "https://fabricadealternativas.org"
+  },
+  {
+    "venue": "Damas Bar & Concertos",
+    "aliases": [
+      "damas",
+      "damas bar",
+      "damas lisboa",
+      "rua voz do operario 60"
+    ],
+    "lat": 38.71795,
+    "lng": -9.13065,
+    "neighborhood": "Graça / Penha de França",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.facebook.com/DamasLisboa"
+  },
+  {
+    "venue": "Sirigaita",
+    "aliases": [
+      "sirigaita",
+      "rua dos anjos 12f",
+      "espaco sirigaita"
+    ],
+    "lat": 38.72415,
+    "lng": -9.13455,
+    "neighborhood": "Anjos / Penha de França",
+    "corridor": "Eastern Corridor",
+    "url": "https://sirigaita.org"
+  },
+  {
+    "venue": "Miradouro da Penha de França",
+    "aliases": [
+      "miradouro da penha de franca",
+      "largo da penha de franca",
+      "igreja da penha de franca"
+    ],
+    "lat": 38.7265,
+    "lng": -9.1272,
+    "neighborhood": "Penha de França",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.agendalx.pt"
+  },
+  {
+    "venue": "Cooperativa Mula",
+    "aliases": [
+      "cooperativa mula",
+      "mula penha",
+      "calcada poco dos mouros"
+    ],
+    "lat": 38.7275,
+    "lng": -9.1285,
+    "neighborhood": "Penha de França",
+    "corridor": "Eastern Corridor",
+    "url": "https://cooperativamula.pt"
+  },
+  {
+    "venue": "Voz do Operário",
+    "aliases": [
+      "voz do operario",
+      "sociedade voz do operario",
+      "rua da voz do operario 13"
+    ],
+    "lat": 38.7168,
+    "lng": -9.12985,
+    "neighborhood": "Graça",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.vozoperario.pt"
+  },
+  {
+    "venue": "Largo da Graça & Miradouro",
+    "aliases": [
+      "largo da graca",
+      "miradouro da graca",
+      "miradouro sophia de mello breyner"
+    ],
+    "lat": 38.7163,
+    "lng": -9.1315,
+    "neighborhood": "Graça",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.agendalx.pt"
+  },
+  {
+    "venue": "Botequim da Graça",
+    "aliases": [
+      "botequim da graca",
+      "botequim",
+      "largo da graca 79"
+    ],
+    "lat": 38.7165,
+    "lng": -9.1312,
+    "neighborhood": "Graça",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.instagram.com/botequim_da_graca/"
+  },
+  {
+    "venue": "Convento da Graça",
+    "aliases": [
+      "convento da graca",
+      "claustros da graca",
+      "igreja da graca"
+    ],
+    "lat": 38.7162,
+    "lng": -9.1308,
+    "neighborhood": "Graça",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.agendalx.pt"
+  },
+  {
+    "venue": "Jardim do Arco do Cego",
+    "aliases": [
+      "jardim do arco do cego",
+      "arco do cego",
+      "rua dona filipa de vilhena"
+    ],
+    "lat": 38.73695,
+    "lng": -9.14195,
+    "neighborhood": "Arco do Cego / Saldanha",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt"
+  },
+  {
+    "venue": "IST — Instituto Superior Técnico",
+    "aliases": [
+      "instituto superior tecnico",
+      "ist alameda",
+      "tecnico lisboa",
+      "campus alameda ist",
+      "sala aquario ist"
+    ],
+    "lat": 38.73684,
+    "lng": -9.13854,
+    "neighborhood": "Arco do Cego / Alameda",
+    "corridor": "Northern Belt",
+    "url": "https://tecnico.ulisboa.pt"
+  },
+  {
+    "venue": "Palácio das Galveias",
+    "aliases": [
+      "palacio das galveias",
+      "palacio galveias",
+      "biblioteca palacio galveias"
+    ],
+    "lat": 38.7423,
+    "lng": -9.1449,
+    "neighborhood": "Campo Pequeno / Arco do Cego",
+    "corridor": "Northern Belt",
+    "url": "https://bibliotecas.cm-lisboa.pt"
+  },
+  {
+    "venue": "ISCTE — Instituto Universitário de Lisboa",
+    "aliases": [
+      "iscte",
+      "iscte-iul",
+      "cis-iscte",
+      "av. das forcas armadas"
+    ],
+    "lat": 38.7488,
+    "lng": -9.1539,
+    "neighborhood": "Cidade Universitária / Entre-Campos",
+    "corridor": "Northern Belt",
+    "url": "https://www.iscte-iul.pt"
+  },
+  {
+    "venue": "Faculdade de Psicologia da ULisboa (FPCE)",
+    "aliases": [
+      "faculdade de psicologia",
+      "fpce-ulisboa",
+      "labpsi",
+      "alameda da universidade"
+    ],
+    "lat": 38.7516,
+    "lng": -9.1584,
+    "neighborhood": "Cidade Universitária",
+    "corridor": "Northern Belt",
+    "url": "https://www.psicologia.ulisboa.pt"
+  },
+  {
+    "venue": "Mercado de Alvalade",
+    "aliases": [
+      "mercado de alvalade",
+      "mercado alvalade",
+      "av. rio de janeiro alvalade"
+    ],
+    "lat": 38.7516,
+    "lng": -9.1449,
+    "neighborhood": "Alvalade",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt"
+  },
+  {
+    "venue": "Fnac — Avenida de Roma",
+    "aliases": [
+      "fnac avenida de roma",
+      "fnac av. de roma",
+      "fnac roma",
+      "livraria barata"
+    ],
+    "lat": 38.74298,
+    "lng": -9.13875,
+    "neighborhood": "Alvalade / Roma",
+    "corridor": "Northern Belt",
+    "url": "https://www.fnac.pt"
   }
 ]

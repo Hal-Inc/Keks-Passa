@@ -95,6 +95,7 @@
     .quick-pill{border:1px solid #556153;background:var(--ink);color:var(--paper);padding:5px 10px;font:600 10px/1.2 var(--mono);text-transform:uppercase;cursor:pointer;transition:.14s;display:inline-flex;align-items:center;gap:5px}
     .quick-pill:hover{border-color:var(--yellow);color:var(--yellow)}
     .quick-pill.is-active{background:var(--yellow);color:var(--ink);border-color:var(--paper);box-shadow:2px 2px 0 var(--red);font-weight:700}
+    #active-venue-pill:empty{display:none!important}
     .venue-chip-btn{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;margin:-2px 2px -2px 0;border:1px solid rgba(240,237,223,.22);background:rgba(17,23,19,.65);color:var(--paper);font:600 12px/1.35 var(--body);cursor:pointer;transition:background .14s,border-color .14s,color .14s,transform .12s}
     .venue-chip-btn strong{color:var(--paper);font-weight:700}
     .venue-chip-btn:hover{border-color:var(--yellow);background:rgba(244,206,70,.16);color:var(--yellow);transform:translateY(-1px)}
@@ -414,14 +415,14 @@
 
     <section class="toolbar" aria-label="Pesquisar e filtrar eventos"><div class="filters">
       <div class="field"><label for="search-input">À procura de quê?</label><input type="search" id="search-input" placeholder="Cerâmica, Feira, Prior Velho, ZDB, Belém…" autocomplete="off"></div>
-      <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">Tudo um pouco</option><option value="Concerts & Live Music">Concertos e música ao vivo</option><option value="Theatre & Comedy">Teatro e comédia</option><option value="Exhibitions & Visual Arts">Exposições e artes visuais</option><option value="Opera & Classical">Ópera e música clássica</option><option value="Cinema & Screenings">Cinema e sessões</option><option value="Nightlife & Electronic">Noite e eletrónica</option><option value="Community & Gatherings">Mercados, oficinas, conversas e comunidade</option><option value="Family & Youth">Famílias e miúdos</option></select></div>
+      <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">Tudo um pouco</option><option value="Concerts & Live Music">Concertos e música ao vivo</option><option value="Theatre & Comedy">Teatro e comédia</option><option value="Exhibitions & Visual Arts">Exposições e artes visuais</option><option value="Opera & Classical">Ópera e música clássica</option><option value="Cinema & Screenings">Cinema e sessões</option><option value="Nightlife & Electronic">Noite e eletrónica</option><option value="Community & Gatherings">Mercados, oficinas, conversas e comunidade</option><option value="Family & Youth">Famílias e miúdos</option><option value="Blood Donation">🩸 Dádivas de sangue</option></select></div>
       <div class="field"><label for="price-filter">Quanto custa?</label><select id="price-filter"><option value="ALL">Qualquer preço</option><option value="FREE">À borla</option><option value="ACCESSIBLE">Até 15 €</option><option value="MID">15 € a 30 €</option><option value="PREMIUM">Mais de 30 €</option></select></div>
       <div class="field"><label for="corridor-filter">Por onde andas?</label><select id="corridor-filter"><option value="ALL">Lisboa inteira (tudo ao molho)</option><option value="Eastern Corridor">Lado Leste &amp; Armazéns</option><option value="Axial Spine">Baixa &amp; Almirante Reis</option><option value="Northern Belt">Zona Central</option><option value="Belém Waterfront">Pelo Rio</option></select></div>
     </div>
     <div class="toolbar-bottom">
       <span id="results-count"><strong>—</strong> eventos ativos para descobrir</span>
       <div class="toolbar-actions">
-        <button type="button" class="quick-pill is-active" id="active-venue-pill" hidden title="Clique para limpar o filtro deste espaço"></button>
+        <button type="button" class="quick-pill" id="active-venue-pill" style="display:none" title="Clique para limpar o filtro deste espaço"></button>
         <button type="button" class="quick-pill" id="btn-near-me" title="Ordenar eventos dos mais próximos para os mais distantes">📍 Perto de mim</button>
         <button type="button" class="quick-pill" id="btn-starting-soon" title="Ver apenas eventos a decorrer agora ou que começam nas próximas 2 horas">⚡ Agora / Próx. 2h</button>
         <button type="button" class="quick-pill" id="btn-saved-only" title="Ver apenas os eventos que guardaste">☆ Guardados (0)</button>
@@ -540,13 +541,14 @@
       'Cinema & Screenings':'Cinema e sessões',
       'Nightlife & Electronic':'Noite e eletrónica',
       'Community & Gatherings':'Mercados, oficinas e comunidade',
-      'Family & Youth':'Famílias e miúdos'
+      'Family & Youth':'Famílias e miúdos',
+      'Blood Donation':'Dádiva de Sangue'
     };
     let rawEventsData = [], eventsData = [], filteredEvents = [], map = null, markersGroup = null, loadedData = null;
     let currentDaylightMode = 'ALL'; // 'SUN' | 'ALL' | 'MOON' (Task 7)
 
-    const categoryColours = {'Concerts & Live Music':'#E63946','Theatre & Comedy':'#2A9D8F','Exhibitions & Visual Arts':'#1D3557','Opera & Classical':'#8338EC','Cinema & Screenings':'#06D6A0','Nightlife & Electronic':'#FB5607','Community & Gatherings':'#FFB703','Family & Youth':'#118AB2'};
-    const categoryIcons = {'Concerts & Live Music':'🎤','Theatre & Comedy':'🎭','Exhibitions & Visual Arts':'🎨','Opera & Classical':'🎻','Cinema & Screenings':'🍿','Nightlife & Electronic':'🔊','Community & Gatherings':'🛍️','Family & Youth':'🎠'};
+    const categoryColours = {'Concerts & Live Music':'#E63946','Theatre & Comedy':'#2A9D8F','Exhibitions & Visual Arts':'#1D3557','Opera & Classical':'#8338EC','Cinema & Screenings':'#06D6A0','Nightlife & Electronic':'#FB5607','Community & Gatherings':'#FFB703','Family & Youth':'#118AB2','Blood Donation':'#E63946'};
+    const categoryIcons = {'Concerts & Live Music':'🎤','Theatre & Comedy':'🎭','Exhibitions & Visual Arts':'🎨','Opera & Classical':'🎻','Cinema & Screenings':'🍿','Nightlife & Electronic':'🔊','Community & Gatherings':'🛍️','Family & Youth':'🎠','Blood Donation':'🩸'};
     const LEGACY_DOT_ICONS = new Set(['🔴','🟢','🔵','🟣','🩷','🟠','🟡','🩵']);
 
     // Classic Funktion-One Resolution 2 (Res 2) speaker SVG for night-time electronic parties (purple enclosure, cream-white waveguide & phase plug, dark bass mouth — no red)
@@ -1881,10 +1883,12 @@
       }
       if(btnVenue){
         if(activeVenueFilter){
-          btnVenue.hidden = false;
+          btnVenue.style.display = 'inline-flex';
+          btnVenue.classList.add('is-active');
           btnVenue.textContent = `📍 ${activeVenueFilter} ✕`;
         }else{
-          btnVenue.hidden = true;
+          btnVenue.style.display = 'none';
+          btnVenue.classList.remove('is-active');
           btnVenue.textContent = '';
         }
       }
@@ -2154,7 +2158,7 @@
       filteredEvents=eventsData.filter(event=>{
         const searchable=`${event.title||''} ${event.venue||''} ${event.neighborhood||''} ${event.description||''} ${categoryLabels[event.category]||event.category||''}`.toLocaleLowerCase('pt-PT');
         const matchesSearch=searchable.includes(search);
-        const matchesCategory=category==='ALL'||event.category===category;
+        const matchesCategory=category==='ALL'||event.category===category||(category==='Blood Donation'&&(event.category==='Blood Donation'||event.icon==='🩸'));
         const matchesCorridor=corridor==='ALL'||event.corridor===corridor;
         let matchesPrice=true;
         if(price==='FREE')matchesPrice=event.priceTier==='FREE';

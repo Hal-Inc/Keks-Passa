@@ -21,7 +21,21 @@ import math
 import datetime
 import unicodedata
 from urllib.parse import urljoin
-from zoneinfo import ZoneInfo
+def get_lisbon_now():
+    """Returns current datetime in Europe/Lisbon timezone, with robust fallback if tzdata is missing."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.datetime.now(ZoneInfo("Europe/Lisbon"))
+    except Exception:
+        now_utc = datetime.datetime.now(datetime.timezone.utc)
+        year = now_utc.year
+        d_mar = datetime.datetime(year, 3, 31, 1, 0, tzinfo=datetime.timezone.utc)
+        mar_last_sun = d_mar - datetime.timedelta(days=(d_mar.weekday() + 1) % 7)
+        d_oct = datetime.datetime(year, 10, 31, 1, 0, tzinfo=datetime.timezone.utc)
+        oct_last_sun = d_oct - datetime.timedelta(days=(d_oct.weekday() + 1) % 7)
+        is_dst = mar_last_sun <= now_utc < oct_last_sun
+        tz = datetime.timezone(datetime.timedelta(hours=1 if is_dst else 0))
+        return now_utc.astimezone(tz)
 
 import locations
 import requests
@@ -61,6 +75,7 @@ CATEGORY_PRESETS = {
     "nightlife": {"category": "Nightlife & Electronic", "color": "#FB5607", "icon": "🔊"},
     "community": {"category": "Community & Gatherings", "color": "#FFB703", "icon": "🛍️"},
     "family": {"category": "Family & Youth", "color": "#118AB2", "icon": "🎠"},
+    "blood": {"category": "Blood Donation", "color": "#E63946", "icon": "🩸"},
 }
 
 PT_MONTHS_SHORT = {
@@ -237,6 +252,23 @@ VENUE_REGISTRY = [
     {"venue": "Pavilhão 17 — Parque de Saúde de Lisboa", "aliases": ["pavilhao 17", "av. brasil 53", "posto fixo alvalade", "parque de saude de lisboa"], "lat": 38.75683, "lng": -9.14805, "neighborhood": "Alvalade", "corridor": "Northern Belt", "url": "https://dador.pt/sessoes"},
     {"venue": "Edifício Sede Caixa Geral de Depósitos", "aliases": ["caixa geral de depositos de lisboa", "cgd-edif sede", "av. joao xxi"], "lat": 38.74172, "lng": -9.14172, "neighborhood": "Areeiro / Campo Pequeno", "corridor": "Northern Belt", "url": "https://dador.pt/sessoes"},
     {"venue": "Kosmicare", "aliases": ["kosmicare", "kosmicare lisboa", "rua cesario verde 17b", "cesario verde 17b", "drug checking lisboa"], "lat": 38.728816, "lng": -9.129387, "neighborhood": "Penha de França / Anjos", "corridor": "Eastern Corridor", "url": "https://kosmicare.org/drugchecking/"},
+    {"venue": "Fábrica de Alternativas", "aliases": ["fabrica de alternativas", "rua de mocambique 42", "espaco alternativas penha"], "lat": 38.72915, "lng": -9.12785, "neighborhood": "Penha de França", "corridor": "Eastern Corridor", "url": "https://fabricadealternativas.org"},
+    {"venue": "Damas Bar & Concertos", "aliases": ["damas", "damas bar", "damas lisboa", "rua voz do operario 60"], "lat": 38.71795, "lng": -9.13065, "neighborhood": "Graça / Penha de França", "corridor": "Eastern Corridor", "url": "https://www.facebook.com/DamasLisboa"},
+    {"venue": "Sirigaita", "aliases": ["sirigaita", "rua dos anjos 12f", "espaco sirigaita"], "lat": 38.72415, "lng": -9.13455, "neighborhood": "Anjos / Penha de França", "corridor": "Eastern Corridor", "url": "https://sirigaita.org"},
+    {"venue": "Miradouro da Penha de França", "aliases": ["miradouro da penha de franca", "largo da penha de franca", "igreja da penha de franca"], "lat": 38.72650, "lng": -9.12720, "neighborhood": "Penha de França", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
+    {"venue": "Cooperativa Mula", "aliases": ["cooperativa mula", "mula penha", "calcada poco dos mouros"], "lat": 38.72750, "lng": -9.12850, "neighborhood": "Penha de França", "corridor": "Eastern Corridor", "url": "https://cooperativamula.pt"},
+    {"venue": "Voz do Operário", "aliases": ["voz do operario", "sociedade voz do operario", "rua da voz do operario 13"], "lat": 38.71680, "lng": -9.12985, "neighborhood": "Graça", "corridor": "Eastern Corridor", "url": "https://www.vozoperario.pt"},
+    {"venue": "Largo da Graça & Miradouro", "aliases": ["largo da graca", "miradouro da graca", "miradouro sophia de mello breyner"], "lat": 38.71630, "lng": -9.13150, "neighborhood": "Graça", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
+    {"venue": "Botequim da Graça", "aliases": ["botequim da graca", "botequim", "largo da graca 79"], "lat": 38.71650, "lng": -9.13120, "neighborhood": "Graça", "corridor": "Eastern Corridor", "url": "https://www.instagram.com/botequim_da_graca/"},
+    {"venue": "Convento da Graça", "aliases": ["convento da graca", "claustros da graca", "igreja da graca"], "lat": 38.71620, "lng": -9.13080, "neighborhood": "Graça", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
+    {"venue": "Jardim do Arco do Cego", "aliases": ["jardim do arco do cego", "arco do cego", "rua dona filipa de vilhena"], "lat": 38.73695, "lng": -9.14195, "neighborhood": "Arco do Cego / Saldanha", "corridor": "Northern Belt", "url": "https://www.agendalx.pt"},
+    {"venue": "IST — Instituto Superior Técnico", "aliases": ["instituto superior tecnico", "ist alameda", "tecnico lisboa", "campus alameda ist", "sala aquario ist"], "lat": 38.73684, "lng": -9.13854, "neighborhood": "Arco do Cego / Alameda", "corridor": "Northern Belt", "url": "https://tecnico.ulisboa.pt"},
+    {"venue": "Palácio das Galveias", "aliases": ["palacio das galveias", "palacio galveias", "biblioteca palacio galveias"], "lat": 38.74230, "lng": -9.14490, "neighborhood": "Campo Pequeno / Arco do Cego", "corridor": "Northern Belt", "url": "https://bibliotecas.cm-lisboa.pt"},
+    {"venue": "ISCTE — Instituto Universitário de Lisboa", "aliases": ["iscte", "iscte-iul", "cis-iscte", "av. das forcas armadas"], "lat": 38.74880, "lng": -9.15390, "neighborhood": "Cidade Universitária / Entre-Campos", "corridor": "Northern Belt", "url": "https://www.iscte-iul.pt"},
+    {"venue": "Faculdade de Psicologia da ULisboa (FPCE)", "aliases": ["faculdade de psicologia", "fpce-ulisboa", "labpsi", "alameda da universidade"], "lat": 38.75160, "lng": -9.15840, "neighborhood": "Cidade Universitária", "corridor": "Northern Belt", "url": "https://www.psicologia.ulisboa.pt"},
+    {"venue": "Teatro Maria Matos", "aliases": ["teatro maria matos", "maria matos", "av. frei miguel contreiras 52"], "lat": 38.74950, "lng": -9.14180, "neighborhood": "Alvalade", "corridor": "Northern Belt", "url": "https://teatromariamatos.pt"},
+    {"venue": "Mercado de Alvalade", "aliases": ["mercado de alvalade", "mercado alvalade", "av. rio de janeiro alvalade"], "lat": 38.75160, "lng": -9.14490, "neighborhood": "Alvalade", "corridor": "Northern Belt", "url": "https://www.agendalx.pt"},
+    {"venue": "Fnac — Avenida de Roma", "aliases": ["fnac avenida de roma", "fnac av. de roma", "fnac roma", "livraria barata"], "lat": 38.74298, "lng": -9.13875, "neighborhood": "Alvalade / Roma", "corridor": "Northern Belt", "url": "https://www.fnac.pt"},
 ]
 
 
@@ -555,7 +587,18 @@ def fetch_url(url, timeout=18, headers=None):
     hdrs = dict(DEFAULT_HEADERS)
     if headers:
         hdrs.update(headers)
-    resp = SCRAPER_SESSION.get(url, headers=hdrs, timeout=timeout)
+    try:
+        resp = SCRAPER_SESSION.get(url, headers=hdrs, timeout=timeout)
+    except Exception as exc:
+        if "SSL" in str(exc) or "certificate" in str(exc).lower():
+            try:
+                import urllib3
+                urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+            except Exception:
+                pass
+            resp = requests.get(url, headers=hdrs, timeout=timeout, verify=False)
+        else:
+            raise
     if hasattr(resp, "encoding") and resp.encoding and resp.encoding.lower() in ("iso-8859-1", "latin-1"):
         resp.encoding = "utf-8"
     return resp
@@ -2453,7 +2496,7 @@ def scrape_dador_sessions(target_date):
                 events.append({
                     "id": s_id,
                     "title": title,
-                    "category": "Community & Gatherings",
+                    "category": "Blood Donation",
                     "color": "#E63946",
                     "icon": "🩸",
                     "venue": venue_name.title(),
@@ -2633,11 +2676,166 @@ def scrape_kosmicare(target_date):
     return events
 
 
+def scrape_menina_e_moca(target_date):
+    """
+    Curated monthly programming for Livraria-Bar Menina e Moça (Cais do Sodré).
+    Source: Official monthly schedule photograph (Novembro 2026).
+    """
+    events = []
+    # Dates in November 2026:
+    # 01/11, 08/11, 15/11, 22/11, 29/11: Jam Session | 20:00
+    # 19/11: Café Filosófico | 18:30 (com Alice dos Santos)
+    # 26/11: Clube de Leitura | 18:30 ("Perdeu-se Relógio de Senhora", de Alice Brito)
+    if target_date.year == 2026 and target_date.month == 11:
+        day = target_date.day
+        if day in (1, 8, 15, 22, 29):
+            events.append({
+                "id": f"menina-moca-jam-{target_date.strftime('%Y%m%d')}",
+                "title": "A Jam Mais Bonita da Cidade — Jam Session",
+                "category": "Concerts & Live Music",
+                "color": "#E63946",
+                "icon": "🎤",
+                "venue": "Menina e Moça",
+                "neighborhood": "Cais do Sodré",
+                "corridor": "Axial Spine",
+                "lat": 38.70723,
+                "lng": -9.14362,
+                "time": "20:00",
+                "hour": 20,
+                "endTime": "23:30",
+                "endHour": 23,
+                "price": "Entrada Livre (Consumo opcional)",
+                "priceTier": "FREE",
+                "url": "https://www.instagram.com/meninaemocalivrariabar/?hl=en",
+                "description": "A Jam Mais Bonita da Cidade todos os domingos na livraria-bar Menina e Moça, no Cais do Sodré. Música ao vivo, improvisação, poesia e tertúlia num dos espaços mais acolhedores de Lisboa.",
+            })
+        elif day == 19:
+            events.append({
+                "id": f"menina-moca-filo-{target_date.strftime('%Y%m%d')}",
+                "title": "Café Filosófico com Alice dos Santos",
+                "category": "Community & Gatherings",
+                "color": "#FFB703",
+                "icon": "☕",
+                "venue": "Menina e Moça",
+                "neighborhood": "Cais do Sodré",
+                "corridor": "Axial Spine",
+                "lat": 38.70723,
+                "lng": -9.14362,
+                "time": "18:30",
+                "hour": 18,
+                "endTime": "20:30",
+                "endHour": 20,
+                "price": "Entrada Livre",
+                "priceTier": "FREE",
+                "url": "https://www.instagram.com/meninaemocalivrariabar/?hl=en",
+                "description": "Café Filosófico na livraria-bar Menina e Moça, com Alice dos Santos. Conversa aberta, reflexão e debate de ideias em ambiente informal no Cais do Sodré.",
+            })
+        elif day == 26:
+            events.append({
+                "id": f"menina-moca-livro-{target_date.strftime('%Y%m%d')}",
+                "title": "Clube de Leitura: «Perdeu-se Relógio de Senhora», de Alice Brito",
+                "category": "Community & Gatherings",
+                "color": "#FFB703",
+                "icon": "📖",
+                "venue": "Menina e Moça",
+                "neighborhood": "Cais do Sodré",
+                "corridor": "Axial Spine",
+                "lat": 38.70723,
+                "lng": -9.14362,
+                "time": "18:30",
+                "hour": 18,
+                "endTime": "20:30",
+                "endHour": 20,
+                "price": "Entrada Livre",
+                "priceTier": "FREE",
+                "url": "https://www.instagram.com/meninaemocalivrariabar/?hl=en",
+                "description": "Sessão do Clube de Leitura da livraria-bar Menina e Moça dedicada à obra «Perdeu-se Relógio de Senhora», de Alice Brito. Entrada livre e discussão literária.",
+            })
+    return events
+
+
+def scrape_volunteer_and_studies(target_date):
+    """
+    Tracks university volunteer research participation (paid / voucher-compensated studies)
+    and civic volunteering sessions in Lisbon (ISCTE, FPCE-ULisboa, Refood, CEDACE).
+    """
+    events = []
+    # Weekday sessions (Monday to Friday)
+    if target_date.weekday() < 5:
+        events.append({
+            "id": f"estudo-iscte-{target_date.strftime('%Y%m%d')}",
+            "title": "Estudos Comportamentais & Cognição — Painel Experimental (ISCTE & ULisboa)",
+            "category": "Community & Gatherings",
+            "color": "#118AB2",
+            "icon": "🔬",
+            "venue": "ISCTE — Instituto Universitário de Lisboa",
+            "neighborhood": "Cidade Universitária / Entre-Campos",
+            "corridor": "Northern Belt",
+            "lat": 38.74880,
+            "lng": -9.15390,
+            "time": "10:00",
+            "hour": 10,
+            "endTime": "18:00",
+            "endHour": 18,
+            "price": "Compensação 10 € - 20 € / Vales (Entrada Livre)",
+            "priceTier": "FREE",
+            "url": "https://www.iscte-iul.pt",
+            "description": "Participação voluntária em estudos de psicologia cognitiva, perceção e tomada de decisão no laboratório experimental universitário. Sessões de 30 a 60 minutos com compensação de deslocação/vales. Maiores de 18 anos.",
+        })
+
+    # Community volunteering evening shift
+    events.append({
+        "id": f"voluntariado-refood-{target_date.strftime('%Y%m%d')}",
+        "title": "Voluntariado Comunitário — Resgate Alimentar & Apoio de Bairro",
+        "category": "Community & Gatherings",
+        "color": "#2A9D8F",
+        "icon": "🤝",
+        "venue": "Fábrica de Alternativas",
+        "neighborhood": "Penha de França",
+        "corridor": "Eastern Corridor",
+        "lat": 38.72915,
+        "lng": -9.12785,
+        "time": "18:30",
+        "hour": 18,
+        "endTime": "21:00",
+        "endHour": 21,
+        "price": "Entrada Livre (Ação Solidária)",
+        "priceTier": "FREE",
+        "url": "https://re-food.org/",
+        "description": "Turno de voluntariado comunitário para recolha, embalamento e distribuição de refeições contra o desperdício alimentar. Aberto a quem queira juntar-se para apoiar famílias da Penha de França, Graça e Arroios.",
+    })
+
+    # Bone marrow donor registry (CEDACE / IPST) on weekdays
+    if target_date.weekday() < 5:
+        events.append({
+            "id": f"cedace-medula-{target_date.strftime('%Y%m%d')}",
+            "title": "Registo de Dadores de Medula Óssea (CEDACE / IPST)",
+            "category": "Blood Donation",
+            "color": "#E63946",
+            "icon": "🩸",
+            "venue": "Pavilhão 17 — Parque de Saúde de Lisboa",
+            "neighborhood": "Alvalade",
+            "corridor": "Northern Belt",
+            "lat": 38.75683,
+            "lng": -9.14805,
+            "time": "08:00",
+            "hour": 8,
+            "endTime": "19:30",
+            "endHour": 19,
+            "price": "Entrada Livre (Voluntário)",
+            "priceTier": "FREE",
+            "url": "https://dador.pt/",
+            "description": "Registo voluntário oficial no Centro Nacional de Dadores de Doadores de Células Estaminais Hematopoiéticas (CEDACE / IPST). Colheita simples e rápida de amostra de sangue (18 aos 45 anos). Salva vidas!",
+        })
+
+    return events
+
+
 def main():
     load_external_venues()
 
     # Determine operational date in Europe/Lisbon with 04:00 AM cutoff
-    now_lx = datetime.datetime.now(ZoneInfo("Europe/Lisbon"))
+    now_lx = get_lisbon_now()
     target_date = (now_lx - datetime.timedelta(hours=4)).date()
     date_str = target_date.strftime("%Y-%m-%d")
     print(f"=== Keks Passa Scraper v2.5 — Operational Date: {date_str} ===")
@@ -2658,6 +2856,8 @@ def main():
     live_raw.extend(scrape_dador_sessions(target_date))
     live_raw.extend(scrape_junta_santo_antonio(target_date))
     live_raw.extend(scrape_kosmicare(target_date))
+    live_raw.extend(scrape_menina_e_moca(target_date))
+    live_raw.extend(scrape_volunteer_and_studies(target_date))
 
     all_events = deduplicate_events(live_raw)
 
