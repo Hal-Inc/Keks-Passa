@@ -70,9 +70,8 @@
     .daylight-status.is-visible{display:block}
 
     /* Map Pin Dimming States for Task 7 */
-    .marker-pin-wrapper{position:relative}
-    .marker-badge{position:absolute;top:-4px;right:-4px;background:var(--yellow);color:var(--ink);border:1.5px solid var(--paper);border-radius:10px;font:800 10px/1 var(--mono);padding:2px 5px;box-shadow:1px 1px 0 var(--red);pointer-events:none;z-index:5}
-    .marker-pin-inner{width:34px;height:34px;border-radius:50%;border:2px solid #f0eddf;box-shadow:3px 3px 0 #111713;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;transition:opacity .22s ease,filter .22s ease,transform .22s ease}
+    .marker-badge{position:absolute;top:-6px;right:-6px;background:var(--yellow);color:var(--ink);border:1.5px solid var(--paper);border-radius:10px;font:800 10px/1 var(--mono);padding:2px 5px;box-shadow:1px 1px 0 var(--red);pointer-events:none;z-index:5}
+    .marker-pin-inner{position:relative;width:34px;height:34px;border-radius:50%;border:2px solid #f0eddf;box-shadow:3px 3px 0 #111713;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;transition:opacity .22s ease,filter .22s ease,transform .22s ease}
     .marker-pin-inner svg{display:block;width:22px;height:22px;flex-shrink:0}
     .marker-pin-inner.is-dimmed{opacity:.22;filter:grayscale(70%) brightness(.75);transform:scale(.82)}
     .marker-pin-inner.is-highlighted{opacity:1;transform:scale(1.06);box-shadow:3px 3px 0 var(--yellow)}
@@ -2067,7 +2066,7 @@
         const badgeHtml = count > 1 ? `<span class="marker-badge" title="${count} eventos">${count}</span>` : '';
         const pin = L.divIcon({
           className: 'marker-pin-wrapper',
-          html: `<div class="marker-pin-inner ${stateClass} ${liveClass}" style="background:${escapeHtml(colour)}">${iconHtml}</div>${badgeHtml}`,
+          html: `<div class="marker-pin-inner ${stateClass} ${liveClass}" style="background:${escapeHtml(colour)}">${iconHtml}${badgeHtml}</div>`,
           iconSize: [34, 34],
           iconAnchor: [17, 17],
           popupAnchor: [0, -16]
