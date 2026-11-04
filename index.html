@@ -40,10 +40,10 @@
 
     main{width:min(1600px,100%);margin:0 auto;padding:26px 22px 48px}.hero{position:relative;overflow:hidden;padding:clamp(24px,4vw,52px);background:var(--red);color:var(--ink);border:2px solid var(--paper);box-shadow:8px 8px 0 var(--yellow)}.hero-topline{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:1.2px}.hero h1{position:relative;z-index:1;margin:12px 0 0;font:900 clamp(68px,11.2vw,160px)/.78 var(--display);letter-spacing:-.045em;text-transform:uppercase}.hero h1 span{color:var(--paper);-webkit-text-stroke:1px var(--ink);text-shadow:5px 5px 0 var(--ink)}.hero-bottom{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;margin-top:22px}.hero-copy{max-width:520px;margin:0;font-size:clamp(14px,1.35vw,18px);font-weight:600;line-height:1.5}.hero-count{display:flex;flex-direction:column;align-items:flex-start;min-width:125px;margin-top:14px;margin-left:clamp(260px,22vw,325px)}.hero-count strong{font:900 42px/.9 var(--display)}.hero-count span{margin-top:6px;font:500 10px/1.5 var(--mono);text-align:left;text-transform:uppercase}
     
-    /* Interactive Draggable Marquee Ticker (1800s for 150 quotes = identical reading speed) */
+    /* Interactive Draggable Marquee Ticker (1890s for 150 quotes — 5% slower comfortable reading speed) */
     .ticker-wrap{overflow:hidden;width:100%;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:10px 0 18px;cursor:grab;user-select:none;-webkit-user-select:none}
     .ticker-wrap:active{cursor:grabbing}
-    .ticker{display:flex;width:max-content;animation:tickerScroll 1800s linear infinite;color:var(--yellow);font:700 12px var(--mono);text-transform:none;letter-spacing:.5px;will-change:transform}
+    .ticker{display:flex;width:max-content;animation:tickerScroll 1890s linear infinite;color:var(--yellow);font:700 12px var(--mono);text-transform:none;letter-spacing:.5px;will-change:transform}
     .ticker.is-dragging{animation-play-state:paused!important;cursor:grabbing}
     .ticker:hover{animation-play-state:paused}
     .ticker span{display:inline-flex;align-items:center;padding-right:24px;pointer-events:none}
@@ -281,7 +281,7 @@
     .curtain:focus-visible{box-shadow:-10px 0 22px rgba(0,0,0,.55),inset 0 0 0 3px var(--yellow)}
     .curtain::before{content:'';position:absolute;top:0;left:0;right:0;height:22px;pointer-events:none;background:linear-gradient(var(--yellow),var(--yellow)) 0 0/100% 8px no-repeat,radial-gradient(circle at 50% 0,var(--red) 0 10px,var(--ink) 10px 12px,transparent 12.5px) 0 0/calc(var(--sw) * .5) 22px repeat-x}
     .curtain::after{content:'';position:absolute;left:0;right:0;bottom:0;height:12px;pointer-events:none;border-top:2px solid var(--ink);background:repeating-linear-gradient(90deg,var(--yellow) 0 6px,transparent 6px 12px)}
-    .curtain-tab{position:absolute;top:50%;left:calc(10px - var(--p) * 7px);display:flex;align-items:center;justify-content:center;width:26px;height:64px;transform:translateY(-50%);background:var(--yellow);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font:900 16px/1 var(--mono);pointer-events:none}
+    .curtain-tab{position:absolute;top:50%;left:calc(2px - var(--p) * 7px);z-index:15;display:flex;align-items:center;justify-content:center;width:26px;height:64px;transform:translateY(-50%);background:var(--yellow);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font:900 16px/1 var(--mono);pointer-events:none}
     .tasca:not(.is-open):not(.is-dragging) .curtain-tab{animation:tabNudge 2.6s ease-in-out infinite}
     @keyframes tabNudge{0%,70%,100%{transform:translateY(-50%)}80%{transform:translate(8px,-50%)}90%{transform:translate(0,-50%)}}
     .tasca.is-open .curtain-tab{transform:translateY(-50%) scaleX(-1)}
@@ -354,7 +354,7 @@
               <span class="tasca-badge is-live" id="chess-cooldown-badge">✓ Pronto</span>
               <span class="tasca-badge" id="chess-sync-badge" title="Estado de sincronização">🌐 Local</span>
               <div class="tasca-hud-spacer"></div>
-              <button type="button" class="tasca-mini-btn" id="tasca-toggle-curtain" title="Puxar ou fechar cortina">🎪 Cortina</button>
+              <button type="button" class="tasca-mini-btn" id="tasca-toggle-curtain" title="Puxar ou fechar cortina">🎪 Puxa a cortina</button>
             </div>
 
             <div class="tasca-table">
@@ -444,9 +444,9 @@
       </div>
     </div></section>
 
-    <button type="button" class="map-toggle" id="map-toggle" aria-expanded="false" aria-controls="map-panel">＋ Ver mapa</button>
+    <button type="button" class="map-toggle" id="map-toggle" aria-expanded="true" aria-controls="map-panel">－ Esconder mapa</button>
     <section class="content-grid" aria-label="Mapa e lista de eventos">
-      <div class="map-panel" id="map-panel">
+      <div class="map-panel is-open" id="map-panel">
         <div class="map-stage">
           <!-- Task 7: Sun / All / Moon Toggle on the Map -->
           <div class="daylight-toggle" id="daylight-toggle" role="group" aria-label="Filtrar brilho do mapa por horário (antes ou depois das 18:00)">
@@ -641,8 +641,8 @@
         tasca.classList.toggle('is-open', isOpen);
         curtain.setAttribute('aria-expanded', String(isOpen));
         if(toggleCurtainBtn){
-          toggleCurtainBtn.textContent = isOpen ? '🎪 Fechar' : '🎪 Cortina';
-          toggleCurtainBtn.title = isOpen ? 'Fechar cortina' : 'Puxar cortina';
+          toggleCurtainBtn.textContent = isOpen ? '🎪 Fechar' : '🎪 Puxa a cortina';
+          toggleCurtainBtn.title = isOpen ? 'Fechar cortina' : 'Puxar a cortina';
         }
         if(toplineHint){
           toplineHint.textContent = isOpen
@@ -1623,7 +1623,7 @@
       let isDown = false;
       let startX = 0;
       let currentTranslateX = 0;
-      const totalDuration = 1800;
+      const totalDuration = 1890;
 
       function getTranslateX(el){
         const style = window.getComputedStyle(el);
@@ -2568,7 +2568,8 @@
       });
 
       await loadDailyEvents();
-      if(window.innerWidth>900)initMap();
+      initMap();
+      setTimeout(() => map && map.invalidateSize(), 200);
 
       // Register PWA Service Worker for instant offline loading and homescreen installation
       if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
