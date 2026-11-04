@@ -1793,6 +1793,72 @@
       return rawList.filter(ev => !NON_LISBON_VENUES.has(String(ev.venue || '').toLowerCase().trim()));
     }
 
+    function getEventKeksPassaUrl(evKey){
+      const loc = window.location;
+      const base = `${loc.protocol}//${loc.host}${loc.pathname}`;
+      return `${base}#event-${encodeURIComponent(evKey)}`;
+    }
+
+    function getDeepLinkedEventKey(){
+      const hash = window.location.hash || '';
+      if(hash.startsWith('#event-')){
+        return decodeURIComponent(hash.substring(7));
+      }
+      if(hash.length > 1 && !hash.startsWith('#/') && !hash.startsWith('#map')){
+        return decodeURIComponent(hash.substring(1));
+      }
+      const params = new URLSearchParams(window.location.search);
+      if(params.has('event')){
+        return params.get('event');
+      }
+      return null;
+    }
+
+    function activateDeepLinkedEvent(key, smoothScroll = true){
+      if(!key) return false;
+      const target = rawEventsData.find(e => getEventKey(e) === key || e.id === key);
+      if(!target) return false;
+
+      pinnedEventKey = getEventKey(target);
+
+      // If active filters would hide this event, reset them to ensure visibility
+      const clock = getLisbonClock();
+      const currentFiltered = filteredEvents.some(e => getEventKey(e) === pinnedEventKey);
+      if(!currentFiltered){
+        resetFilters();
+      } else {
+        renderEventsList(filteredEvents, clock);
+      }
+
+      // Fly map to event coordinates
+      if(hasCoords(target)){
+        if(!map){
+          toggleMap(true);
+          initMap();
+        }
+        if(window.innerWidth <= 900) toggleMap(true);
+        flyToEvent(Number(target.lat), Number(target.lng), pinnedEventKey);
+      }
+
+      if(smoothScroll){
+        setTimeout(() => {
+          const cardEl = document.querySelector(`.event-card.is-map-pinned`);
+          if(cardEl){
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 350);
+      }
+
+      return true;
+    }
+
+    window.addEventListener('hashchange', () => {
+      const deepKey = getDeepLinkedEventKey();
+      if(deepKey && deepKey !== pinnedEventKey){
+        activateDeepLinkedEvent(deepKey, true);
+      }
+    });
+
     async function loadDailyEvents(showError=true){
       document.getElementById('today-label').textContent = portugueseDate();
       try{
@@ -1804,6 +1870,13 @@
         rawEventsData=mergeAndCleanEvents(data.events);
         document.getElementById('today-label').textContent=portugueseDate(data.operational_date||data.date_string);
         applyFilters();
+
+        // Check for deep-linked event in URL (#event-<id> or ?event=<id>)
+        const deepKey = getDeepLinkedEventKey();
+        if(deepKey){
+          setTimeout(() => activateDeepLinkedEvent(deepKey, true), 300);
+        }
+
         return true;
       }catch(error){
         console.error(error);
@@ -1986,15 +2059,16 @@
       if(!event) return;
       const clock = getLisbonClock();
       const timing = getEventTimingState(event, clock);
-      const url = safeUrl(event.url);
-      const shareText = `🎪 ${event.title} — Hoje (${event.time || '21:00'}–${timing.endTimeStr}) @ ${event.venue || 'Lisboa'} (${event.neighborhood || 'Lisboa'}) · ${event.price || 'Consultar'}\n${url}`;
+      const keksUrl = getEventKeksPassaUrl(evKey);
+      const officialUrl = safeUrl(event.url);
+      const shareText = `📍 ${event.title}\nHoje (${event.time || '21:00'} – ${timing.endTimeStr}) @ ${event.venue || 'Lisboa'} (${event.neighborhood || 'Lisboa'}) · 🏷 ${event.price || 'Consultar'}\n\n🗺️ Ver no mapa do Keks Passa:\n${keksUrl}\n\n🔗 Info & Bilhetes:\n${officialUrl}`;
 
       if(navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){
         try{
           await navigator.share({
-            title: `${event.title} · Keks Passa`,
-            text: `🎪 ${event.title} — Hoje (${event.time || '21:00'}–${timing.endTimeStr}) @ ${event.venue || 'Lisboa'} (${event.price || ''})`,
-            url: url
+            title: `${event.title} — Keks Passa`,
+            text: `📍 ${event.title} — Hoje (${event.time || '21:00'} – ${timing.endTimeStr}) @ ${event.venue || 'Lisboa'} (${event.price || ''})`,
+            url: keksUrl
           });
           return;
         }catch(_){}
@@ -2014,7 +2088,7 @@
       if(btnEl){
         const orig = btnEl.innerHTML;
         btnEl.classList.add('is-copied');
-        btnEl.textContent = '✓ Copiado!';
+        btnEl.textContent = '✓ Link copiado!';
         setTimeout(() => {
           btnEl.classList.remove('is-copied');
           btnEl.innerHTML = orig;
@@ -2124,6 +2198,9 @@
             pinnedEventKey = primaryEvKey;
             renderEventsList(filteredEvents, getLisbonClock());
           }
+          if(window.history && window.history.replaceState){
+            window.history.replaceState(null, '', `#event-${encodeURIComponent(primaryEvKey)}`);
+          }
           const listContainer = document.getElementById('events-card-list');
           if(listContainer) listContainer.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -2169,7 +2246,7 @@
           const isKosmi=isKosmicareEvent(event);
           const colour=isKosmi ? '#000000' : (event.color||categoryColours[event.category]||'#f04432');
           const tag=isKosmi ? 'Kosmicare · Drug Checking' : (categoryLabels[event.category]||event.category||'Evento');
-          const button=hasCoords(event)?`<button type="button" onclick="flyToEvent(${Number(event.lat)},${Number(event.lng)})">📍 Mapa</button>`:'<button type="button" disabled title="Sem localização no mapa">📍 Sem mapa</button>';
+          const button=hasCoords(event)?`<button type="button" onclick="flyToEvent(${Number(event.lat)},${Number(event.lng)},'${escapeHtml(evKey)}')">📍 Mapa</button>`:'<button type="button" disabled title="Sem localização no mapa">📍 Sem mapa</button>';
           const saveBtn=`<button type="button" class="save-plan-btn ${isSaved?'is-saved':''}" data-save-key="${escapeHtml(evKey)}" title="${isSaved?'Remover dos guardados':'Guardar plano para hoje'}">${isSaved?'★ Guardado':'☆ Guardar'}</button>`;
           const shareBtn=`<button type="button" class="share-btn" data-share-key="${escapeHtml(evKey)}" title="Partilhar ou copiar plano">📲 Partilhar</button>`;
           const pinBadge = isPinned ? `<span class="map-pin-badge" title="Evento selecionado no mapa">📌 No mapa</span>` : '';
@@ -2192,7 +2269,7 @@
       document.getElementById('total-count').textContent=eventsData.length;
     }
 
-    function flyToEvent(lat,lng){
+    function flyToEvent(lat,lng,evKey){
       if(!Number.isFinite(Number(lat))||!Number.isFinite(Number(lng)))return;
       if(!map){toggleMap(true);initMap();}
       if(!map)return;
@@ -2204,6 +2281,13 @@
         const pos=layer.getLatLng();
         if(Math.abs(pos.lat-Number(lat))<.0001&&Math.abs(pos.lng-Number(lng))<.0001)layer.openPopup();
       });
+      if(evKey){
+        pinnedEventKey = evKey;
+        renderEventsList(filteredEvents, getLisbonClock());
+        if(window.history && window.history.replaceState){
+          window.history.replaceState(null, '', `#event-${encodeURIComponent(evKey)}`);
+        }
+      }
     }
 
     function applyFilters(){
@@ -2285,6 +2369,9 @@
       isSavedOnlyActive = false;
       activeVenueFilter = '';
       pinnedEventKey = '';
+      if(window.location.hash && window.history && window.history.replaceState){
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
       setDaylightMode('ALL');
       applyFilters();
       if(map)map.setView([38.732,-9.138],12);
@@ -2482,6 +2569,11 @@
 
       await loadDailyEvents();
       if(window.innerWidth>900)initMap();
+
+      // Register PWA Service Worker for instant offline loading and homescreen installation
+      if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
 
       // Task 5: Re-evaluate event expiration and operational date every 60 seconds
       setInterval(() => applyFilters(), 60 * 1000);

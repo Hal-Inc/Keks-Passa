@@ -2,13 +2,14 @@
   "name": "Keks Passa — Que temos hoje?",
   "short_name": "Keks Passa",
   "description": "Agenda cultural de rua de Lisboa em tempo real: concertos, exposições, cinema, teatro, mercados, oficinas e noite.",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "orientation": "any",
   "background_color": "#111713",
-  "theme_color": "#f04432",
+  "theme_color": "#111713",
   "lang": "pt-PT",
+  "categories": ["entertainment", "events", "music", "lifestyle"],
   "icons": [
     {
       "src": "./favicon.svg",
