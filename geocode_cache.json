@@ -1,0 +1,90 @@
+{
+ "alameda mahatma gandhi, lisboa": {
+  "area": "Lumiar",
+  "lat": 38.770137,
+  "lng": -9.173647
+ },
+ "avenida da india 172, lisboa": {
+  "area": "Prazeres",
+  "lat": 38.702945,
+  "lng": -9.173386
+ },
+ "avenida da liberdade, 195, lisboa": {
+  "area": "Santo António",
+  "lat": 38.720354,
+  "lng": -9.145717
+ },
+ "bike a wish, r. das fontainhas a sao lourenco, 1100-584 lisboa, lisboa": null,
+ "camara municipal de lisboa, lisboa": {
+  "area": "Santa Maria Maior",
+  "lat": 38.708143,
+  "lng": -9.138525
+ },
+ "campo grande 113a, lisboa": {
+  "area": "Campo Grande",
+  "lat": 38.753271,
+  "lng": -9.156887
+ },
+ "casa do alentejo, r. portas de santo antao, nº 58, lisboa": {
+  "area": "Santa Maria Maior",
+  "lat": 38.715923,
+  "lng": -9.139854
+ },
+ "ciul - centro de informacao urbana de lisboa, lisboa": null,
+ "ciul - centro de informacao urbana de lisboa, rua viriato 13 e nucleo 6 1o, lisboa": null,
+ "cossoul - sociedade de instrucao guilherme cossoul, lisboa": {
+  "area": "Mercês",
+  "lat": 38.714155,
+  "lng": -9.153246
+ },
+ "cossoul, r. nova da piedade 66, 1200-299 lisboa": {
+  "area": "Mercês",
+  "lat": 38.714155,
+  "lng": -9.153246
+ },
+ "estrada da pontinha 7, lisboa": {
+  "area": "Carnide",
+  "lat": 38.760573,
+  "lng": -9.190663
+ },
+ "fnac - avenida de roma, av. de roma, 11-a - lisboa": {
+  "area": "Areeiro",
+  "lat": 38.742985,
+  "lng": -9.138752
+ },
+ "largo de santos, 2, lisboa": {
+  "area": "Prazeres",
+  "lat": 38.707185,
+  "lng": -9.155201
+ },
+ "lisboa (cidade), pagina de eventos sem geo-localizacao precisa, lisboa": null,
+ "museu nacional de etnologia, av. ilha da madeira, lisboa": null,
+ "myfrenchfilmfestival / festival cinema frances — ifp, lisboa": null,
+ "novo banco cultura - fotografia, lisboa": null,
+ "novo banco cultura - fotografia, praca marques de pombal, 3a, piso -1, lisboa": null,
+ "praca dom pedro iv 83, lisboa": {
+  "area": "Santa Maria Maior",
+  "lat": 38.714346,
+  "lng": -9.138954
+ },
+ "praca marques de pombal, 3a, piso -1, lisboa": null,
+ "rua do instituto industrial, 16, lisboa": {
+  "area": "São Bento",
+  "lat": 38.707825,
+  "lng": -9.150365
+ },
+ "rua melvin jones, 6a, lisboa": {
+  "area": "",
+  "lat": 38.751471,
+  "lng": -9.167078
+ },
+ "rua viriato 13 e nucleo 6 1o, lisboa": null,
+ "rumo do fumo (concertos), lisboa": null,
+ "sociedade de geografia de lisboa, lisboa": null,
+ "teatro villaret, lisboa": {
+  "area": "Santo António",
+  "lat": 38.730247,
+  "lng": -9.146717
+ },
+ "varios locais, lisboa": null
+}

@@ -2301,15 +2301,16 @@
             if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
             await firebase.database().ref('keks_chess_game/suggestions').push(payload);
             savedToFirebase = true;
-          }catch(_){}
-          try{
-            const r = await fetch(`${FIREBASE_CONFIG.databaseURL}/keks_chess_game/suggestions.json`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
-            });
-            if(r.ok) savedToFirebase = true;
-          }catch(__){}
+          }catch(_){
+            try{
+              const r = await fetch(`${FIREBASE_CONFIG.databaseURL}/keks_chess_game/suggestions.json`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if(r.ok) savedToFirebase = true;
+            }catch(__){}
+          }
         }
 
         if(SUGGESTION_ENDPOINT){
@@ -2322,12 +2323,15 @@
           }catch(_){}
         }
 
-        feedback.innerHTML = savedToFirebase
-          ? `<strong>✓ Sugestão enviada diretamente para nós!</strong> Obrigado pela dica — vamos espreitar <strong>${escapeHtml(payload.venue)}</strong> (${escapeHtml(payload.neighborhood)}).`
-          : `<strong>✓ Sugestão registada!</strong> Obrigado pela dica sobre <strong>${escapeHtml(payload.venue)}</strong>.`;
-        feedback.classList.add('is-visible');
-        form.reset();
-        syncCustomCategoryField(false);
+        if(savedToFirebase){
+          feedback.innerHTML = `<strong>✓ Sugestão enviada diretamente para nós!</strong> Obrigado pela dica — vamos espreitar <strong>${escapeHtml(payload.venue)}</strong> (${escapeHtml(payload.neighborhood)}).`;
+          feedback.classList.add('is-visible');
+          form.reset();
+          syncCustomCategoryField(false);
+        }else{
+          feedback.innerHTML = `<strong>✗ Não foi possível enviar a sugestão.</strong> Tenta outra vez daqui a pouco — não perdemos o que escreveste.`;
+          feedback.classList.add('is-visible');
+        }
       });
     }
     

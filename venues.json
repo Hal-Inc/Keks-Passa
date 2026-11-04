@@ -1418,5 +1418,221 @@
     "neighborhood": "Belém / Ajuda",
     "corridor": "Belém Waterfront",
     "url": "https://lucateatroluisdecamoes.pt"
+  },
+  {
+    "venue": "Emaús Pop-Up Arroios",
+    "aliases": [
+      "emaus pop-up arroios",
+      "emaus arroios",
+      "emaus pop-up",
+      "rua carlos mardel 23",
+      "carlos mardel 23"
+    ],
+    "lat": 38.73528,
+    "lng": -9.13317,
+    "neighborhood": "Arroios",
+    "corridor": "Eastern Corridor",
+    "url": "https://cartazculturallisboa.pt"
+  },
+  {
+    "venue": "Museu de Lisboa - Santo António",
+    "aliases": [
+      "museu de lisboa - santo antonio",
+      "museu de lisboa santo antonio",
+      "museu de santo antonio",
+      "largo de santo antonio da se"
+    ],
+    "lat": 38.70996,
+    "lng": -9.13346,
+    "neighborhood": "Alfama / Sé",
+    "corridor": "Axial Spine",
+    "url": "https://www.museudelisboa.pt"
+  },
+  {
+    "venue": "Museu Berardo Arte Deco (B-MAD)",
+    "aliases": [
+      "b-mad",
+      "museu berardo arte deco",
+      "berardo arte deco",
+      "rua 1o de maio 28",
+      "rua primeiro de maio 28"
+    ],
+    "lat": 38.70428,
+    "lng": -9.18029,
+    "neighborhood": "Alcântara",
+    "corridor": "Belém Waterfront",
+    "url": "https://b-mad.pt"
+  },
+  {
+    "venue": "Museu Banksy Lisboa",
+    "aliases": [
+      "museu banksy lisboa",
+      "museu banksy",
+      "world of banksy",
+      "the world of banksy",
+      "rua viriato 25"
+    ],
+    "lat": 38.73038,
+    "lng": -9.14801,
+    "neighborhood": "Picoas / Saldanha",
+    "corridor": "Northern Belt",
+    "url": "https://museubanksy.pt"
+  },
+  {
+    "venue": "Museu de Marinha & Planetário",
+    "aliases": [
+      "museu de marinha",
+      "planetario de marinha",
+      "planetario calouste gulbenkian belem"
+    ],
+    "lat": 38.69736,
+    "lng": -9.20875,
+    "neighborhood": "Belém",
+    "corridor": "Belém Waterfront",
+    "url": "https://ccm.marinha.pt"
+  },
+  {
+    "venue": "Cordoaria Nacional",
+    "aliases": [
+      "cordoaria nacional",
+      "galerias da cordoaria nacional",
+      "av. da india"
+    ],
+    "lat": 38.69768,
+    "lng": -9.19018,
+    "neighborhood": "Belém / Junqueira",
+    "corridor": "Belém Waterfront",
+    "url": "https://www.agendalx.pt"
+  },
+  {
+    "venue": "Igreja e Museu de São Roque",
+    "aliases": [
+      "museu de sao roque",
+      "igreja de sao roque",
+      "largo trindade coelho"
+    ],
+    "lat": 38.71358,
+    "lng": -9.14349,
+    "neighborhood": "Bairro Alto",
+    "corridor": "Axial Spine",
+    "url": "https://mais.scml.pt/museu-saoroque/"
+  },
+  {
+    "venue": "Academia das Ciências de Lisboa",
+    "aliases": [
+      "academia das ciencias de lisboa",
+      "academia das ciencias",
+      "rua da academia das ciencias"
+    ],
+    "lat": 38.71285,
+    "lng": -9.14881,
+    "neighborhood": "Bairro Alto / Mercês",
+    "corridor": "Axial Spine",
+    "url": "https://www.acad-ciencias.pt"
+  },
+  {
+    "venue": "Praça da Alegria",
+    "aliases": [
+      "praca da alegria",
+      "jardim alfredo keil"
+    ],
+    "lat": 38.71802,
+    "lng": -9.14482,
+    "neighborhood": "Santo António",
+    "corridor": "Axial Spine",
+    "url": "https://www.jfsantoantonio.pt"
+  },
+  {
+    "venue": "Biblioteca Arquitecto Cosmelli Sant'Anna (BACS)",
+    "aliases": [
+      "bacs",
+      "biblioteca arquitecto cosmelli sant'anna",
+      "biblioteca cosmelli sant'anna"
+    ],
+    "lat": 38.7212,
+    "lng": -9.1518,
+    "neighborhood": "Santo António",
+    "corridor": "Axial Spine",
+    "url": "https://www.jfsantoantonio.pt"
+  },
+  {
+    "venue": "Junta de Freguesia de Santo António",
+    "aliases": [
+      "junta de freguesia de santo antonio",
+      "jfreguesia santo antonio",
+      "rua alexandre herculano 46"
+    ],
+    "lat": 38.72485,
+    "lng": -9.14394,
+    "neighborhood": "Santo António",
+    "corridor": "Axial Spine",
+    "url": "https://www.jfsantoantonio.pt"
+  },
+  {
+    "venue": "Jardim do Torel",
+    "aliases": [
+      "jardim do torel",
+      "rua julio de andrade"
+    ],
+    "lat": 38.71962,
+    "lng": -9.14081,
+    "neighborhood": "Santo António / Campo Mártires",
+    "corridor": "Axial Spine",
+    "url": "https://www.jfsantoantonio.pt"
+  },
+  {
+    "venue": "Hospital de São José",
+    "aliases": [
+      "hospital de sao jose",
+      "hospital sao jose",
+      "hospital s. jose",
+      "rua jose antonio serrano"
+    ],
+    "lat": 38.71778,
+    "lng": -9.13743,
+    "neighborhood": "Martim Moniz / Santana",
+    "corridor": "Axial Spine",
+    "url": "https://dador.pt/sessoes"
+  },
+  {
+    "venue": "Hospital de Santa Maria",
+    "aliases": [
+      "hospital de santa maria",
+      "hospital santa maria",
+      "hosp.santa maria",
+      "rampa central"
+    ],
+    "lat": 38.74846,
+    "lng": -9.16066,
+    "neighborhood": "Cidade Universitária",
+    "corridor": "Northern Belt",
+    "url": "https://dador.pt/sessoes"
+  },
+  {
+    "venue": "Pavilhão 17 — Parque de Saúde de Lisboa",
+    "aliases": [
+      "pavilhao 17",
+      "av. brasil 53",
+      "posto fixo alvalade",
+      "parque de saude de lisboa"
+    ],
+    "lat": 38.75683,
+    "lng": -9.14805,
+    "neighborhood": "Alvalade",
+    "corridor": "Northern Belt",
+    "url": "https://dador.pt/sessoes"
+  },
+  {
+    "venue": "Edifício Sede Caixa Geral de Depósitos",
+    "aliases": [
+      "caixa geral de depositos de lisboa",
+      "cgd-edif sede",
+      "av. joao xxi"
+    ],
+    "lat": 38.74172,
+    "lng": -9.14172,
+    "neighborhood": "Areeiro / Campo Pequeno",
+    "corridor": "Northern Belt",
+    "url": "https://dador.pt/sessoes"
   }
 ]
