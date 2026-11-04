@@ -111,11 +111,12 @@ VENUE_REGISTRY = [
     {"venue": "Fábrica Braço de Prata", "aliases": ["fabrica do braco de prata", "fabrica braco de prata", "braco de prata"], "lat": 38.74379, "lng": -9.10124, "neighborhood": "Marvila / Braço de Prata", "corridor": "Eastern Corridor", "url": "https://www.bracodeprata.com"},
     {"venue": "Underdogs Gallery", "aliases": ["underdogs", "underdogs gallery", "rua fernando palha"], "lat": 38.73995, "lng": -9.10035, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://www.under-dogs.net"},
     {"venue": "Teatro Meridional", "aliases": ["teatro meridional", "meridional"], "lat": 38.73785, "lng": -9.10165, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://teatromeridional.net"},
-    {"venue": "BOTA - Base Organizada da Toca das Artes", "aliases": ["bota anjos", "base organizada da toca das artes", "largo de santa barbara"], "lat": 38.72468, "lng": -9.13455, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.botaanjos.com"},
+    {"venue": "BOTA - Base Organizada da Toca das Artes", "aliases": ["bota anjos", "base organizada da toca das artes", "largo de santa barbara"], "lat": 38.72675, "lng": -9.13650, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.botaanjos.com"},
     {"venue": "Jardins do Bombarda (LARGO Residências)", "aliases": ["jardins do bombarda", "largo residencias", "hospital miguel bombarda", "rua gomes freire", "jardim do bombarda"], "lat": 38.72515, "lng": -9.13915, "neighborhood": "Arroios / Gomes Freire", "corridor": "Eastern Corridor", "url": "https://www.jardinsdobombarda.pt"},
     {"venue": "Caulino Ceramics & Ateliers de Olaria", "aliases": ["caulino ceramics", "caulino", "atelier de ceramica arroios", "olaria arroios"], "lat": 38.7278, "lng": -9.1342, "neighborhood": "Arroios", "corridor": "Eastern Corridor", "url": "https://www.caulinoceramics.com"},
     {"venue": "Contraprova — Atelier de Gravura e Risografia", "aliases": ["contraprova", "atelier de gravura", "oficina de serigrafia anjos", "risografia lisboa"], "lat": 38.7231, "lng": -9.1361, "neighborhood": "Anjos / Intendente", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
-    {"venue": "Anjos70", "aliases": ["anjos70", "anjos 70", "regueirao dos anjos"], "lat": 38.72595, "lng": -9.13535, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.instagram.com/anjos70_"},
+    {"venue": "Anjos70", "aliases": ["anjos70", "anjos 70", "regueirao dos anjos"], "lat": 38.72298, "lng": -9.13588, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://anjos70.org/"},
+    {"venue": "Well Read Bookshop", "aliases": ["well read", "well read bookshop", "calcada de sant'ana"], "lat": 38.71642, "lng": -9.13847, "neighborhood": "Arroios / Santana", "corridor": "Axial Spine", "url": "https://soko.fyi/pt/venues/well-read-nqqx52"},
     {"venue": "Hangar - Centro de Investigação Artística", "aliases": ["hangar", "centro de investigacao artistica", "rua damasceno monteiro", "mafolofolo"], "lat": 38.71975, "lng": -9.13285, "neighborhood": "Graça", "corridor": "Eastern Corridor", "url": "https://hangar.com.pt"},
     {"venue": "Feira da Ladra (Campo de Santa Clara)", "aliases": ["feira da ladra", "campo de santa clara"], "lat": 38.7154, "lng": -9.1255, "neighborhood": "São Vicente / Alfama", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
     {"venue": "Mercado de Santa Clara", "aliases": ["mercado de santa clara", "mercado santa clara"], "lat": 38.7156, "lng": -9.1252, "neighborhood": "São Vicente / Santa Clara", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
@@ -126,7 +127,11 @@ VENUE_REGISTRY = [
 
     # --- AXIAL SPINE ---
     {"venue": "Galeria Zé dos Bois (ZDB)", "aliases": ["zdb", "galeria ze dos bois", "ze dos bois", "rua da barrosa", "rua da barroca"], "lat": 38.71202, "lng": -9.14438, "neighborhood": "Bairro Alto", "corridor": "Axial Spine", "url": "https://zedosbois.org"},
+    {"venue": "Menina e Moça", "aliases": ["menina e moca", "livraria menina e moca", "livraria-bar menina e moca", "rua nova do carvalho"], "lat": 38.70723, "lng": -9.14362, "neighborhood": "Cais do Sodré", "corridor": "Axial Spine", "url": "https://meninaemoca.pt"},
     {"venue": "Musicbox", "aliases": ["musicbox", "music box"], "lat": 38.70718, "lng": -9.14338, "neighborhood": "Cais do Sodré", "corridor": "Axial Spine", "url": "https://musicboxlisboa.com"},
+    {"venue": "Lust in Rio", "aliases": ["lust in rio", "rua da cintura do porto de lisboa"], "lat": 38.70585, "lng": -9.15205, "neighborhood": "Santos / Cais do Sodré", "corridor": "Axial Spine", "url": "https://www.lisabout.com"},
+    {"venue": "The Vintage Hotel Lisbon (THE CURATED Lisbon)", "aliases": ["the vintage hotel", "the curated lisbon", "curated selection", "rua rodrigo da fonseca 2"], "lat": 38.72095, "lng": -9.15165, "neighborhood": "Príncipe Real / Rato", "corridor": "Axial Spine", "url": "https://thecuratedlisbon.com"},
+    {"venue": "Auditório Camões (Liceu Camões)", "aliases": ["auditorio camoes", "liceu camoes", "escola secundaria camoes"], "lat": 38.73255, "lng": -9.14455, "neighborhood": "Picoas / Saldanha", "corridor": "Northern Belt", "url": "https://www.agendalx.pt"},
     {"venue": "Ministerium Club", "aliases": ["ministerium", "ministerium club"], "lat": 38.70828, "lng": -9.13578, "neighborhood": "Terreiro do Paço", "corridor": "Axial Spine", "url": "https://pt.ra.co/clubs/66945"},
     {"venue": "Harbour Music Shelter", "aliases": ["harbour music shelter"], "lat": 38.7066, "lng": -9.1448, "neighborhood": "Cais do Sodré", "corridor": "Axial Spine", "url": "https://www.lisabout.com/genero/dance-electronic"},
     {"venue": "Rive Rouge", "aliases": ["rive rouge", "estudio time out", "mercado da ribeira"], "lat": 38.70695, "lng": -9.14585, "neighborhood": "Cais do Sodré", "corridor": "Axial Spine", "url": "https://www.lisabout.com/genero/dance-electronic"},
@@ -460,21 +465,20 @@ def infer_end_time(start_time, hour_int, category_name, venue_name="", title="",
 
 def parse_price_and_tier(text, default_price="Consultar bilheteira", default_tier="ACCESSIBLE"):
     low = strip_accents(text or "")
-    if any(k in low for k in ["entrada livre", "gratuito", "gratis", "free", "borla", "gratuita"]):
-        return "Entrada Livre", "FREE"
-    m = re.search(r"(?:€\s*(\d{1,3})(?:[.,](\d{1,2}))?|(\d{1,3})(?:[.,](\d{1,2}))?\s*€)", str(text))
-    if m:
+    for m in re.finditer(r"(?:€\s*(\d{1,3})(?:[.,](\d{1,2}))?|(\d{1,3})(?:[.,](\d{1,2}))?\s*€)", str(text)):
         whole = m.group(1) if m.group(1) is not None else m.group(3)
         dec = m.group(2) if m.group(1) is not None else m.group(4)
         val = float(f"{whole}.{dec or '0'}")
         disp = f"{whole}€" if not dec else f"{whole}.{dec}€"
-        if val == 0:
+        if val > 0:
+            if val <= 15:
+                return disp, "ACCESSIBLE"
+            if val <= 30:
+                return disp, "MID"
+            return disp, "PREMIUM"
+    if re.search(r"\b(entrada livre|entrada gratuita|gratuito|gratis|free entry|free admission|free entrance|a borla|gratuita)\b", low):
+        if not re.search(r"\b(birthday|aniversari|drink|beer|imperial|ate as|until)\b", low):
             return "Entrada Livre", "FREE"
-        if val <= 15:
-            return disp, "ACCESSIBLE"
-        if val <= 30:
-            return disp, "MID"
-        return disp, "PREMIUM"
     return default_price, default_tier
 
 
@@ -510,6 +514,21 @@ def matches_portuguese_date_or_range(text, target_date):
         try:
             start_d = datetime.date(y1, m1, int(d1))
             end_d = datetime.date(y2, m2, int(d2))
+            if start_d <= target_date <= end_d:
+                return True
+        except ValueError:
+            continue
+
+    num_range_pat = re.compile(
+        r"\b(\d{1,2})[./](\d{1,2})(?:[./](202\d))?\s*(?:-|–|—|\ba\b|\bate\b|\bto\b)\s*(\d{1,2})[./](\d{1,2})(?:[./](202\d))?\b"
+    )
+    for m in num_range_pat.finditer(norm):
+        d1, m1_s, y1_s, d2, m2_s, y2_s = m.groups()
+        y2 = int(y2_s) if y2_s else target_date.year
+        y1 = int(y1_s) if y1_s else (y2 - 1 if int(m1_s) > int(m2_s) else y2)
+        try:
+            start_d = datetime.date(y1, int(m1_s), int(d1))
+            end_d = datetime.date(y2, int(m2_s), int(d2))
             if start_d <= target_date <= end_d:
                 return True
         except ValueError:
@@ -1208,7 +1227,44 @@ def scrape_prior_velho_electronic(target_date):
                             v_neigh = sp[1].strip()
                         break
 
-                geo = match_venue(v_seg, title, card_text, require_match=True)
+                detail_url = urljoin("https://www.lisabout.com", href)
+                ev_url = detail_url
+                detail_text = ""
+                outbound_ticket_url = ""
+                try:
+                    d_resp = fetch_url(detail_url, timeout=10)
+                    if d_resp.status_code == 200:
+                        d_soup = BeautifulSoup(d_resp.text, "html.parser")
+                        detail_text = clean_html_text(d_soup.get_text(" ", strip=True))
+                        for ld_script in d_soup.find_all("script", type="application/ld+json"):
+                            try:
+                                ld_data = json.loads(ld_script.string or "")
+                                ld_items = ld_data if isinstance(ld_data, list) else [ld_data]
+                                for item in ld_items:
+                                    if isinstance(item, dict) and item.get("@type") in ("MusicEvent", "Event"):
+                                        loc = item.get("location") or {}
+                                        if isinstance(loc, dict) and loc.get("name") and not v_seg:
+                                            v_seg = clean_html_text(loc.get("name"))
+                                        offers = item.get("offers") or {}
+                                        if isinstance(offers, dict) and offers.get("url"):
+                                            cand = str(offers["url"]).strip()
+                                            if "lisabout.com" not in cand:
+                                                outbound_ticket_url = cand
+                            except Exception:
+                                pass
+                        if not outbound_ticket_url:
+                            for t_a in d_soup.find_all("a", href=True):
+                                t_href = t_a["href"].strip()
+                                if any(tk in t_href for tk in ("shotgun.live", "xceed.me", "ra.co/events", "dice.fm", "3cket.com", "bol.pt", "ticketline", "eventbrite", "seetickets")):
+                                    outbound_ticket_url = t_href
+                                    break
+                except Exception:
+                    pass
+
+                if outbound_ticket_url:
+                    ev_url = outbound_ticket_url
+
+                geo = match_venue(v_seg, title, card_text, detail_text, require_match=True)
                 if not geo:
                     geo = {
                         "venue": v_seg if v_seg else "Lisboa (Ver Local no Link)",
@@ -1220,9 +1276,11 @@ def scrape_prior_velho_electronic(target_date):
                     }
 
                 default_cat = "nightlife" if ("dance-electronic" in url or "prior-velho" in url or hour_int >= 22 or hour_int < 6) else "concerts"
-                preset = infer_category_preset(f"{title} {card_text}", default_cat)
-                price_disp, price_tier = parse_price_and_tier(card_text, "10€ - 20€", "ACCESSIBLE")
-                ev_url = urljoin("https://www.lisabout.com", href)
+                preset = infer_category_preset(f"{title} {card_text} {detail_text}", default_cat)
+                price_disp, price_tier = parse_price_and_tier(f"{card_text} {detail_text}", "10€ - 20€", "ACCESSIBLE")
+                # Never trust "Grátis" on Lisabout when an external ticketing link (Shotgun, 3cket, RA, Xceed, etc.) is attached
+                if outbound_ticket_url and price_tier == "FREE":
+                    price_disp, price_tier = "10€", "ACCESSIBLE"
                 end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], title, card_text)
 
                 events.append({
@@ -1593,6 +1651,236 @@ def scrape_viralagenda(target_date):
 
 
 # ==============================================================================
+# TIER 3.9: SOKO.FYI, THE CURATED LISBON & CÁPSULA MELÓDICA SCRAPER
+# ==============================================================================
+SOKO_LISBON_VENUE_SLUGS = [
+    "livraria-bar-menina-e-moca-zrc2ts",
+    "bota-base-organizada-da-toca-das-artes-6hdgvp",
+    "anjos-70-sede-ntyz9y",
+    "galeria-ze-dos-bois-eyqtdd",
+    "casa-independente-4duvmb",
+    "jardins-do-bombarda-mzpthn",
+    "arroz-estudios-2t4cc4",
+    "casa-capitao-7tepkj",
+    "zdb-8-marvila-9dsej2",
+    "musa-de-marvila-dkc4nw",
+    "well-read-nqqx52",
+    "casa-do-comum-n4ncjd",
+    "livraria-da-travessa-f9e857",
+    "maat-museu-de-arte-arquitetura-e-tecnologia-adu7aw",
+    "culturgest-4kxu7x",
+    "cinema-ideal-5hzx8f",
+    "cinemateca-portuguesa-museu-do-cinema-frq7hk",
+    "galeria-underdogs-gs8yka",
+    "appleton-square-bw94p6",
+    "fabrica-de-braco-de-prata-epmnp2",
+    "museu-nacional-de-arte-contemporanea-mnac-3mpg9e",
+    "sala-manoel-de-oliveira-cinema-de-sao-jorge-npj763",
+    "ruby-rosa-lisbon-art-stay-szv4kp",
+    "ministerium-trfstf",
+    "tokyo-lisboa-xv8nzt",
+    "b-leza-club-ec7eeg",
+    "titanic-sur-mer-gxcb85",
+    "lisboa-rio-club-6zgb7q",
+    "teatro-do-bairro-alto-f3722s",
+    "centro-cultural-de-belem-7yv6b3",
+    "fundacao-calouste-gulbenkian-nmcg58",
+]
+
+
+def scrape_soko_curated_capsula(target_date):
+    """
+    Scrapes:
+    1) Soko.fyi (https://soko.fyi / https://www.instagram.com/soko.fyi/) — Lisbon venue JSON-LD & Instagram-fed events
+    2) THE CURATED Lisbon (https://thecuratedlisbon.com/ / https://www.instagram.com/thecuratedlisbon/) — exhibitions, art walks & creative series
+    3) Cápsula Melódica (https://www.instagram.com/capsulamelodica.pt/) — Lisbon electronic music showcases
+    """
+    events = []
+    iso_date = target_date.strftime("%Y-%m-%d")
+    next_iso = (target_date + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    print(f"[Tier 3.9] Scraping Soko.fyi, THE CURATED Lisbon & Cápsula Melódica for {iso_date}...")
+
+    # 1. SOKO.FYI (Public Showcase API + Lisbon Venue JSON-LD Feeds)
+    soko_slugs = list(SOKO_LISBON_VENUE_SLUGS)
+    try:
+        resp = fetch_url("https://heyl-backend-production.onrender.com/api/v1/public/site/venue-showcase?locale=pt", timeout=10)
+        if resp.status_code == 200:
+            data = resp.json()
+            for item in data.get("items", []):
+                slug = (item.get("venue") or {}).get("slug", "")
+                if slug and slug not in soko_slugs:
+                    soko_slugs.append(slug)
+    except Exception as e:
+        print(f"[Soko Showcase API] Notice: {e}")
+
+    seen_soko = set()
+    for slug in soko_slugs:
+        v_url = f"https://soko.fyi/pt/venues/{slug}"
+        try:
+            resp = fetch_url(v_url, timeout=8)
+            if resp.status_code != 200:
+                continue
+            soup = BeautifulSoup(resp.text, "html.parser")
+            for ld_script in soup.find_all("script", type="application/ld+json"):
+                ld_data = json.loads(ld_script.string or "{}")
+                graph = ld_data.get("@graph", []) if isinstance(ld_data, dict) else []
+                for node in graph:
+                    if not isinstance(node, dict) or node.get("@type") != "LocalBusiness":
+                        continue
+                    addr_str = str((node.get("address") or {}).get("streetAddress", ""))
+                    if "lisboa" not in strip_accents(addr_str) and "lisbon" not in strip_accents(addr_str):
+                        continue
+                    v_name = clean_html_text(node.get("name", ""))
+                    geo_node = node.get("geo") or {}
+                    s_lat = geo_node.get("latitude")
+                    s_lng = geo_node.get("longitude")
+                    geo = match_venue(v_name, addr_str, require_match=True)
+                    if not geo:
+                        geo = {
+                            "venue": v_name or "Lisboa",
+                            "lat": round(float(s_lat), 5) if s_lat else 38.7169,
+                            "lng": round(float(s_lng), 5) if s_lng else -9.1399,
+                            "neighborhood": "Lisboa",
+                            "corridor": "Axial Spine",
+                            "url": v_url,
+                        }
+                    for ev in node.get("event", []):
+                        if not isinstance(ev, dict):
+                            continue
+                        start_raw = str(ev.get("startDate", ""))
+                        is_today = start_raw.startswith(iso_date)
+                        is_afterhours = start_raw.startswith(next_iso) and bool(re.search(r"T0[0-5]:", start_raw))
+                        if not (is_today or is_afterhours):
+                            continue
+                        ev_title = clean_html_text(ev.get("name", ""))
+                        if not ev_title or len(ev_title) < 3:
+                            continue
+                        ev_link = str(ev.get("url") or v_url).strip()
+                        dedup_k = f"{geo['venue'].lower()}|{ev_title.lower()}"
+                        if dedup_k in seen_soko:
+                            continue
+                        seen_soko.add(dedup_k)
+
+                        t_match = re.search(r"T(\d{2}:\d{2})", start_raw)
+                        time_str, hour_int = parse_time_str(t_match.group(1) if t_match else "", "19:00")
+                        preset = infer_category_preset(f"{ev_title} {v_name}", "community")
+                        price_disp, price_tier = parse_price_and_tier(ev_title, "Ver no link", "ACCESSIBLE")
+                        end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], ev_title, "")
+
+                        events.append({
+                            "id": f"soko-{abs(hash(dedup_k)) % 1000000}",
+                            "title": ev_title,
+                            "category": preset["category"],
+                            "color": preset["color"],
+                            "icon": preset["icon"],
+                            "venue": geo["venue"],
+                            "neighborhood": geo["neighborhood"],
+                            "corridor": geo["corridor"],
+                            "lat": geo["lat"],
+                            "lng": geo["lng"],
+                            "time": time_str,
+                            "hour": hour_int,
+                            "endTime": end_t,
+                            "endHour": end_h,
+                            "price": price_disp,
+                            "priceTier": price_tier,
+                            "url": ev_link,
+                            "description": f"{ev_title} em {geo['venue']} ({geo['neighborhood']}). Curadoria Soko Lisboa.",
+                        })
+        except Exception:
+            pass
+
+    # 2. THE CURATED LISBON (https://thecuratedlisbon.com/)
+    curated_urls = [
+        "https://thecuratedlisbon.com/curated-selection-20",
+        "https://thecuratedlisbon.com/the-creative-series",
+        "https://thecuratedlisbon.com/exhibition-quiet-objects",
+        "https://thecuratedlisbon.com/exhibition-female",
+        "https://thecuratedlisbon.com/artwalks",
+        "https://thecuratedlisbon.com/experiences",
+    ]
+    for c_url in curated_urls:
+        try:
+            resp = fetch_url(c_url, timeout=10)
+            if resp.status_code != 200:
+                continue
+            soup = BeautifulSoup(resp.text, "html.parser")
+            for tag in soup(["script", "style"]):
+                tag.decompose()
+            page_txt = clean_html_text(soup.get_text(" ", strip=True))
+            if "comporta" in strip_accents(page_txt) and "lisbon" not in strip_accents(page_txt) and "lisboa" not in strip_accents(page_txt):
+                continue
+            if not matches_portuguese_date_or_range(page_txt, target_date):
+                continue
+            h_el = soup.find(["h1", "h2", "title"])
+            raw_title = clean_html_text(h_el.get_text(" ", strip=True) if h_el else "THE CURATED Lisbon")
+            title = raw_title if "curated" in raw_title.lower() else f"THE CURATED Lisbon: {raw_title}"
+            geo = match_venue(page_txt, "the curated lisbon", require_match=False)
+            preset = infer_category_preset(f"{title} {page_txt}", "exhibitions")
+            price_disp, price_tier = parse_price_and_tier(page_txt, "Entrada Livre", "FREE")
+            events.append({
+                "id": f"curated-{abs(hash(c_url)) % 100000}",
+                "title": title,
+                "category": preset["category"],
+                "color": preset["color"],
+                "icon": preset["icon"],
+                "venue": geo["venue"],
+                "neighborhood": geo["neighborhood"],
+                "corridor": geo["corridor"],
+                "lat": geo["lat"],
+                "lng": geo["lng"],
+                "time": "11:00",
+                "hour": 11,
+                "endTime": "20:00",
+                "endHour": 20,
+                "price": price_disp,
+                "priceTier": price_tier,
+                "url": c_url,
+                "description": f"{title} — exposição e programação artística por THE CURATED Lisbon em {geo['venue']} ({geo['neighborhood']}).",
+            })
+        except Exception as e:
+            print(f"[The Curated Lisbon] Notice on {c_url}: {e}")
+
+    # 3. CÁPSULA MELÓDICA (https://www.instagram.com/capsulamelodica.pt/)
+    try:
+        resp = fetch_url("https://www.lisabout.com/events", timeout=8)
+        if resp.status_code == 200 and "capsula melodica" in strip_accents(resp.text):
+            soup = BeautifulSoup(resp.text, "html.parser")
+            for a_tag in soup.select('a[href*="/events/"]'):
+                txt = clean_html_text(a_tag.get_text(" | ", strip=True))
+                if "capsula melodica" in strip_accents(txt) and matches_portuguese_date_or_range(txt, target_date):
+                    href = a_tag.get("href", "")
+                    geo = match_venue(txt, require_match=False)
+                    time_str, hour_int = parse_time_str(txt, "23:00")
+                    end_t, end_h = infer_end_time(time_str, hour_int, CATEGORY_PRESETS["nightlife"]["category"], geo["venue"], "Cápsula Melódica", txt)
+                    events.append({
+                        "id": f"capsula-{target_date.strftime('%Y%m%d')}",
+                        "title": "Cápsula Melódica — Showcase",
+                        "category": CATEGORY_PRESETS["nightlife"]["category"],
+                        "color": CATEGORY_PRESETS["nightlife"]["color"],
+                        "icon": CATEGORY_PRESETS["nightlife"]["icon"],
+                        "venue": geo["venue"],
+                        "neighborhood": geo["neighborhood"],
+                        "corridor": geo["corridor"],
+                        "lat": geo["lat"],
+                        "lng": geo["lng"],
+                        "time": time_str,
+                        "hour": hour_int,
+                        "endTime": end_t,
+                        "endHour": end_h,
+                        "price": "10€ - 15€",
+                        "priceTier": "ACCESSIBLE",
+                        "url": urljoin("https://www.lisabout.com", href) if href else "https://www.instagram.com/capsulamelodica.pt/",
+                        "description": f"Noite de música eletrónica curada pela Cápsula Melódica em {geo['venue']} ({geo['neighborhood']}).",
+                    })
+    except Exception:
+        pass
+
+    print(f"[Tier 3.9] Soko / THE CURATED Lisbon / Cápsula Melódica extracted {len(events)} events.")
+    return events
+
+
+# ==============================================================================
 # TIER 4: ACTIVE LISBON MUSEUM EXHIBITIONS, MARKETS, WORKSHOPS & RUNS (35+ BASELINE)
 # ==============================================================================
 def get_ongoing_cultural_events(target_date):
@@ -1853,7 +2141,7 @@ def get_ongoing_cultural_events(target_date):
                  "https://imprensanacional.pt", "Exposição de artes do livro, imprensa de caracteres móveis e património gráfico na Imprensa Nacional (Picoas / Marquês).")
         add_item(64, "Ateliers de Tufting, Bordado Contemporâneo, Ilustração & Feira Criativa", "community",
                  "anjos70", "14:00", "20:00", "Entrada Livre / Oficinas", "ACCESSIBLE",
-                 "https://www.instagram.com/anjos70_", "Espaço de criadores independentes com workshops de têxteis, tufting, ilustração e artes plásticas no Regueirão dos Anjos.")
+                 "https://anjos70.org/", "Espaço de criadores independentes com workshops de têxteis, tufting, ilustração e artes plásticas no Regueirão dos Anjos.")
     if weekday != 0:
         add_item(65, "Oficina de Pintura de Azulejo Tradicional & Cerâmica Naturalista", "community",
                  "museu bordalo pinheiro", "10:30", "17:30", "6€ - 15€", "ACCESSIBLE",
@@ -2025,7 +2313,7 @@ def main():
     live_raw.extend(scrape_prior_velho_electronic(target_date))
     live_raw.extend(scrape_markets_workshops_lectures(target_date))
     live_raw.extend(scrape_viralagenda(target_date))
-    live_raw.extend(get_ongoing_cultural_events(target_date))
+    live_raw.extend(scrape_soko_curated_capsula(target_date))
 
     all_events = deduplicate_events(live_raw)
 

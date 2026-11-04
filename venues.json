@@ -206,8 +206,8 @@
       "base organizada da toca das artes",
       "largo de santa barbara"
     ],
-    "lat": 38.72468,
-    "lng": -9.13455,
+    "lat": 38.72675,
+    "lng": -9.1365,
     "neighborhood": "Anjos",
     "corridor": "Eastern Corridor",
     "url": "https://www.botaanjos.com"
@@ -262,11 +262,24 @@
       "anjos 70",
       "regueirao dos anjos"
     ],
-    "lat": 38.72595,
-    "lng": -9.13535,
+    "lat": 38.72298,
+    "lng": -9.13588,
     "neighborhood": "Anjos",
     "corridor": "Eastern Corridor",
-    "url": "https://www.instagram.com/anjos70_"
+    "url": "https://anjos70.org/"
+  },
+  {
+    "venue": "Well Read Bookshop",
+    "aliases": [
+      "well read",
+      "well read bookshop",
+      "calcada de sant'ana"
+    ],
+    "lat": 38.71642,
+    "lng": -9.13847,
+    "neighborhood": "Arroios / Santana",
+    "corridor": "Axial Spine",
+    "url": "https://soko.fyi/pt/venues/well-read-nqqx52"
   },
   {
     "venue": "Hangar - Centro de Investigação Artística",
@@ -372,6 +385,20 @@
     "url": "https://zedosbois.org"
   },
   {
+    "venue": "Menina e Moça",
+    "aliases": [
+      "menina e moca",
+      "livraria menina e moca",
+      "livraria-bar menina e moca",
+      "rua nova do carvalho"
+    ],
+    "lat": 38.70723,
+    "lng": -9.14362,
+    "neighborhood": "Cais do Sodré",
+    "corridor": "Axial Spine",
+    "url": "https://meninaemoca.pt"
+  },
+  {
     "venue": "Musicbox",
     "aliases": [
       "musicbox",
@@ -382,6 +409,45 @@
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://musicboxlisboa.com"
+  },
+  {
+    "venue": "Lust in Rio",
+    "aliases": [
+      "lust in rio",
+      "rua da cintura do porto de lisboa"
+    ],
+    "lat": 38.70585,
+    "lng": -9.15205,
+    "neighborhood": "Santos / Cais do Sodré",
+    "corridor": "Axial Spine",
+    "url": "https://www.lisabout.com"
+  },
+  {
+    "venue": "The Vintage Hotel Lisbon (THE CURATED Lisbon)",
+    "aliases": [
+      "the vintage hotel",
+      "the curated lisbon",
+      "curated selection",
+      "rua rodrigo da fonseca 2"
+    ],
+    "lat": 38.72095,
+    "lng": -9.15165,
+    "neighborhood": "Príncipe Real / Rato",
+    "corridor": "Axial Spine",
+    "url": "https://thecuratedlisbon.com"
+  },
+  {
+    "venue": "Auditório Camões (Liceu Camões)",
+    "aliases": [
+      "auditorio camoes",
+      "liceu camoes",
+      "escola secundaria camoes"
+    ],
+    "lat": 38.73255,
+    "lng": -9.14455,
+    "neighborhood": "Picoas / Saldanha",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt"
   },
   {
     "venue": "Ministerium Club",

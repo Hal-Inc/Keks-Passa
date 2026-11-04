@@ -136,7 +136,9 @@
     .footer-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;border-top:1px solid var(--line);padding-top:16px}
     footer strong{color:var(--yellow);font-weight:500}
 
-    .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--ink2);color:var(--paper)}.leaflet-popup-content-wrapper{border:1px solid var(--yellow);border-radius:0}.leaflet-popup-content{margin:12px}.leaflet-container a{color:var(--yellow)}.popup-tag{display:inline-block;padding:3px 5px;color:var(--ink);font:700 9px var(--mono);text-transform:uppercase}.popup-title{margin:8px 0 6px;font:700 15px/1.15 var(--body)}.popup-detail{margin:3px 0;color:#c4cbbd;font-size:11px;line-height:1.5}.popup-link{display:block;margin-top:9px;padding:7px 9px;background:var(--red);color:var(--ink)!important;text-align:center;text-decoration:none;font:700 10px var(--mono);text-transform:uppercase}
+    .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--ink2);color:var(--paper)}.leaflet-popup-content-wrapper{border:1px solid var(--yellow);border-radius:0}.leaflet-popup-content{margin:12px}.leaflet-container a{color:var(--yellow)}.popup-tag{display:inline-block;padding:3px 5px;color:var(--ink);font:700 9px var(--mono);text-transform:uppercase}.popup-title{margin:8px 0 6px;font:700 15px/1.15 var(--body)}.popup-detail{margin:3px 0;color:#c4cbbd;font-size:11px;line-height:1.5}.popup-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}.popup-share-btn{display:inline-flex;align-items:center;justify-content:center;padding:7px 8px;border:1px solid var(--yellow);background:var(--ink);color:var(--yellow);font:700 10px var(--mono);text-transform:uppercase;cursor:pointer;transition:.14s}.popup-share-btn:hover{background:var(--yellow);color:var(--ink)}.popup-share-btn.is-copied{border-color:var(--green)!important;color:var(--green)!important}.popup-link{display:inline-flex;align-items:center;justify-content:center;padding:7px 9px;background:var(--red);color:var(--ink)!important;text-align:center;text-decoration:none;font:700 10px var(--mono);text-transform:uppercase}.popup-link:hover{background:var(--yellow)}
+    .event-card.is-map-pinned{border-color:var(--yellow);border-left:4px solid var(--yellow);box-shadow:3px 3px 0 var(--red)}
+    .map-pin-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;background:rgba(244,206,70,.18);border:1px solid var(--yellow);color:var(--yellow);font:700 9px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.3px}
     /* ==========================================================================
        MESA DA TASCA — circus curtain · community chess · single-player caneca
        ========================================================================== */
@@ -257,23 +259,6 @@
     .tremocos-beans i:nth-child(9){left:12px;top:3px;transform:rotate(5deg)}
     .tremocos-beans i:nth-child(10){left:21px;top:4px;transform:rotate(-10deg)}
     .tremocos-label{font:500 8px/1.1 var(--mono);color:var(--yellow);text-transform:uppercase;letter-spacing:.3px}
-
-    /* Rádio da Tasca (Mini-Jukebox) */
-    .tasca-radio-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:3px;width:100%}
-    .tasca-radio-row{display:inline-flex;align-items: stretch;border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);background:#3a2212}
-    .tasca-radio-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border:0;background:linear-gradient(180deg,#52311b 0%,#361f10 100%);color:var(--paper);font:700 9px/1 var(--mono);text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s}
-    .tasca-radio-btn:hover{background:#633b20;color:var(--yellow)}
-    .tasca-radio-btn.is-playing{background:linear-gradient(180deg,#6e3f1d 0%,#472812 100%);color:var(--yellow);box-shadow:inset 0 0 8px rgba(244,206,70,.35)}
-    .tasca-radio-eq{display:inline-flex;align-items:flex-end;gap:1.5px;width:10px;height:9px}
-    .tasca-radio-eq i{display:block;width:2px;height:3px;background:var(--muted);transition:height .15s}
-    .tasca-radio-btn.is-playing .tasca-radio-eq i{background:var(--green);animation:radioEq .55s ease-in-out infinite alternate}
-    .tasca-radio-btn.is-playing .tasca-radio-eq i:nth-child(2){animation-delay:.18s}
-    .tasca-radio-btn.is-playing .tasca-radio-eq i:nth-child(3){animation-delay:.34s}
-    @keyframes radioEq{0%{height:2px}100%{height:9px}}
-    .tasca-radio-next{border:0;border-left:1px solid var(--ink);background:#26160b;color:var(--yellow);padding:4px 5px;font:700 9px/1 var(--mono);cursor:pointer;transition:background .14s}
-    .tasca-radio-next:hover{background:var(--yellow);color:var(--ink)}
-    .tasca-radio-station{font:500 8px/1.15 var(--mono);color:var(--muted);text-transform:uppercase;text-align:center;max-width:128px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .tasca-radio-wrap.is-playing .tasca-radio-station{color:var(--green)}
 
     /* Blue & white circus curtain — drag right to gather it against the pole */
     .curtain{--sw:calc(60px - var(--p) * 38px);position:absolute;top:7px;right:0;bottom:0;z-index:10;width:calc(100% - var(--p) * 92%);min-width:36px;overflow:hidden;cursor:grab;touch-action:pan-y;outline:none;border-left:3px solid var(--ink);box-shadow:-10px 0 22px rgba(0,0,0,.55);background:linear-gradient(90deg,rgba(17,23,19,.4),transparent 18px),repeating-linear-gradient(90deg,rgba(17,23,19,.34) 0,rgba(17,23,19,0) calc(var(--sw) * .22),rgba(255,255,255,.08) calc(var(--sw) * .5),rgba(17,23,19,0) calc(var(--sw) * .78),rgba(17,23,19,.34) var(--sw)),repeating-linear-gradient(90deg,var(--circus-blue) 0 calc(var(--sw) * .46),var(--circus-cyan) calc(var(--sw) * .46) calc(var(--sw) * .5),var(--paper) calc(var(--sw) * .5) calc(var(--sw) * .96),#d8d3c0 calc(var(--sw) * .96) var(--sw))}
@@ -403,18 +388,8 @@
                   </button>
                   <span class="tremocos-label" id="tremocos-label">Tremoços</span>
                 </div>
-                <div class="tasca-radio-wrap" id="tasca-radio-wrap">
-                  <div class="tasca-radio-row">
-                    <button type="button" class="tasca-radio-btn" id="tasca-radio-btn" title="Ligar / desligar Rádio da Tasca" aria-pressed="false">
-                      <span>📻 Rádio</span>
-                      <span class="tasca-radio-eq" aria-hidden="true"><i></i><i></i><i></i></span>
-                    </button>
-                    <button type="button" class="tasca-radio-next" id="tasca-radio-next" title="Mudar estação da Rádio da Tasca" aria-label="Mudar estação">⏭</button>
-                  </div>
-                  <span class="tasca-radio-station" id="tasca-radio-station">Rádio desligada</span>
-                </div>
                 <button type="button" class="tasca-cta" id="beer-refill-btn" hidden>🍺 Outra caneca</button>
-                <span class="beer-tally" id="beer-tally">Caneca da Tasca</span>
+                <span class="beer-tally" id="beer-tally">Já levas umas: <strong>0</strong></span>
               </div>
             </div>
           </div>
@@ -468,8 +443,7 @@
           <div id="map" aria-label="Mapa de eventos em Lisboa"></div>
         </div>
         <div class="map-caption">
-          <span>📍 Toca num ponto para espreitar o evento. Usa <strong>☀️ Sol / Tudo / 🌙 Lua</strong> para focar antes ou depois das 18:00.</span>
-          <span>Mapa: OpenStreetMap</span>
+          <span>Usa <strong>☀️ Sol / Tudo / 🌙 Lua</strong> para focar antes ou depois das 18:00.</span>
         </div>
       </div>
       <div class="events-column">
@@ -707,8 +681,6 @@
 
       const BEER_KEY = 'keks_beer_v2';
       let beerData = { clicks: 0, totalPoured: 0, audioCycle: 0, tremocosEaten: 0 };
-      let communityBeers = 0;
-      let firebaseBeerRef = null;
       try{
         const savedBeer = localStorage.getItem(BEER_KEY);
         if(savedBeer) beerData = Object.assign(beerData, JSON.parse(savedBeer));
@@ -797,7 +769,7 @@
         { mp3: './beer-empty4.mp3?v=2', fallback: './beer-empty4.ogg?v=2' }
       ];
 
-      // Preload all 4 tracks so there is zero network lag on the 40th sip
+      // Preload all 4 tracks so there is zero network lag on the 25th sip
       const preloadedBeerAudios = BEER_EMPTY_TRACKS.map(track => {
         const a = new Audio(track.mp3);
         a.preload = 'auto';
@@ -860,13 +832,8 @@
 
         if(beerTally){
           const myCount = beerData.totalPoured || 0;
-          const totalTasca = Math.max(myCount, communityBeers || 0);
-          if(totalTasca > 0 || myCount > 0){
-            beerTally.innerHTML = `Tu: <strong>${myCount}</strong> · Tasca: <strong>${totalTasca}</strong> 🍺`;
-            beerTally.title = `Bebeste ${myCount} caneca(s) · A malta na Tasca já bebeu ${totalTasca} caneca(s)`;
-          }else{
-            beerTally.textContent = 'Caneca da Tasca';
-          }
+          beerTally.innerHTML = `Já levas umas: <strong>${myCount}</strong>`;
+          beerTally.title = `Já bebeste ${myCount} caneca(s)`;
         }
 
         try{
@@ -887,9 +854,6 @@
           beerData.totalPoured = (beerData.totalPoured || 0) + 1;
           beerData.audioCycle = (beerData.audioCycle || 0) + 1;
           playBeerEmptyAudio(beerData.audioCycle);
-          if(firebaseBeerRef){
-            firebaseBeerRef.transaction(curr => (Number(curr) || 0) + 1).catch(() => {});
-          }
         }
         renderBeer();
       });
@@ -937,196 +901,6 @@
         if(tremocosLabel && (beerData.tremocosEaten || 0) > 0){
           tremocosLabel.textContent = `Tremoços (${beerData.tremocosEaten})`;
         }
-      }
-
-      // Rádio da Tasca (Mini-Jukebox com 3 estações em WebAudio)
-      const radioWrap = document.getElementById('tasca-radio-wrap');
-      const radioBtn = document.getElementById('tasca-radio-btn');
-      const radioNextBtn = document.getElementById('tasca-radio-next');
-      const radioStationLabel = document.getElementById('tasca-radio-station');
-
-      const TASCA_STATIONS = [
-        {
-          name: 'FM 1 · Guitarra & Vinil',
-          tempoMs: 420,
-          wave: 'triangle',
-          crackle: 0.014,
-          // Arpejos nostálgicos de guitarra (Am -> Dm -> E7 -> Am)
-          notes: [
-            220.00, 261.63, 329.63, 440.00, 329.63, 261.63,
-            293.66, 349.23, 440.00, 587.33, 440.00, 349.23,
-            164.81, 246.94, 329.63, 415.30, 329.63, 246.94,
-            220.00, 261.63, 329.63, 440.00, 523.25, 440.00
-          ]
-        },
-        {
-          name: 'FM 2 · Brisa do Tejo (Lo-Fi)',
-          tempoMs: 560,
-          wave: 'sine',
-          crackle: 0.01,
-          // Acordes suaves noturnos junto ao rio (Fmaj7 -> Em7 -> Dm7 -> Cmaj7)
-          notes: [
-            174.61, 261.63, 329.63, 440.00,
-            164.81, 246.94, 293.66, 392.00,
-            146.83, 220.00, 261.63, 349.23,
-            130.81, 196.00, 246.94, 329.63
-          ]
-        },
-        {
-          name: 'FM 3 · Prior Velho Dub',
-          tempoMs: 260,
-          wave: 'sawtooth',
-          crackle: 0.006,
-          // Pulso hipnótico minimal dub-techno
-          notes: [
-            110.00, 0, 220.00, 164.81, 110.00, 0, 261.63, 196.00,
-            98.00,  0, 196.00, 146.83, 98.00,  0, 220.00, 164.81
-          ]
-        }
-      ];
-
-      let radioPlaying = false;
-      let radioStationIdx = 0;
-      let radioStepIdx = 0;
-      let radioTimer = null;
-      let radioCrackleNode = null;
-      let radioCrackleGain = null;
-
-      function playRadioTuningClick(){
-        const ctx = getSharedAudioCtx();
-        if(!ctx) return;
-        try{
-          const now = ctx.currentTime;
-          // Clique mecânico do botão + breve sintonização FM
-          const osc = ctx.createOscillator();
-          const g = ctx.createGain();
-          osc.type = 'bandpass';
-          osc.frequency.setValueAtTime(520, now);
-          osc.frequency.exponentialRampToValueAtTime(180, now + 0.05);
-          g.gain.setValueAtTime(0.08, now);
-          g.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
-          osc.connect(g).connect(ctx.destination);
-          osc.start(now);
-          osc.stop(now + 0.065);
-        }catch(_){}
-      }
-
-      function startVinylCrackle(level){
-        stopVinylCrackle();
-        const ctx = getSharedAudioCtx();
-        if(!ctx || level <= 0) return;
-        try{
-          const bufLen = ctx.sampleRate * 2;
-          const buf = ctx.createBuffer(1, bufLen, ctx.sampleRate);
-          const data = buf.getChannelData(0);
-          for(let i = 0; i < bufLen; i++){
-            const r = Math.random();
-            data[i] = r > 0.996 ? (Math.random() * 2 - 1) * 0.9 : (Math.random() * 2 - 1) * 0.08;
-          }
-          const src = ctx.createBufferSource();
-          src.buffer = buf;
-          src.loop = true;
-          const filter = ctx.createBiquadFilter();
-          filter.type = 'bandpass';
-          filter.frequency.value = 1700;
-          filter.Q.value = 1.2;
-          const g = ctx.createGain();
-          g.gain.value = level;
-          src.connect(filter).connect(g).connect(ctx.destination);
-          src.start();
-          radioCrackleNode = src;
-          radioCrackleGain = g;
-        }catch(_){}
-      }
-
-      function stopVinylCrackle(){
-        if(radioCrackleNode){
-          try{ radioCrackleNode.stop(); radioCrackleNode.disconnect(); }catch(_){}
-          radioCrackleNode = null;
-        }
-        if(radioCrackleGain){
-          try{ radioCrackleGain.disconnect(); }catch(_){}
-          radioCrackleGain = null;
-        }
-      }
-
-      function playRadioStep(){
-        if(!radioPlaying) return;
-        const st = TASCA_STATIONS[radioStationIdx];
-        const freq = st.notes[radioStepIdx % st.notes.length];
-        radioStepIdx++;
-        const ctx = getSharedAudioCtx();
-        if(ctx && freq > 0){
-          try{
-            const now = ctx.currentTime;
-            const osc = ctx.createOscillator();
-            const sub = ctx.createOscillator();
-            const filter = ctx.createBiquadFilter();
-            const g = ctx.createGain();
-
-            osc.type = st.wave;
-            osc.frequency.setValueAtTime(freq, now);
-            sub.type = 'sine';
-            sub.frequency.setValueAtTime(freq * 0.5, now);
-
-            filter.type = 'lowpass';
-            filter.frequency.setValueAtTime(st.wave === 'sawtooth' ? 680 : 1350, now);
-            filter.frequency.exponentialRampToValueAtTime(280, now + (st.tempoMs / 1000) * 0.9);
-
-            const dur = (st.tempoMs / 1000) * 1.15;
-            g.gain.setValueAtTime(0.001, now);
-            g.gain.linearRampToValueAtTime(0.045, now + 0.025);
-            g.gain.exponentialRampToValueAtTime(0.0008, now + dur);
-
-            osc.connect(filter);
-            sub.connect(filter);
-            filter.connect(g).connect(ctx.destination);
-            osc.start(now);
-            sub.start(now);
-            osc.stop(now + dur + 0.02);
-            sub.stop(now + dur + 0.02);
-          }catch(_){}
-        }
-      }
-
-      function syncRadioEngine(){
-        if(radioTimer){
-          clearInterval(radioTimer);
-          radioTimer = null;
-        }
-        const st = TASCA_STATIONS[radioStationIdx];
-        if(radioWrap) radioWrap.classList.toggle('is-playing', radioPlaying);
-        if(radioBtn){
-          radioBtn.classList.toggle('is-playing', radioPlaying);
-          radioBtn.setAttribute('aria-pressed', String(radioPlaying));
-        }
-        if(radioStationLabel){
-          radioStationLabel.textContent = radioPlaying ? st.name : 'Rádio desligada';
-        }
-        if(radioPlaying){
-          startVinylCrackle(st.crackle);
-          playRadioStep();
-          radioTimer = setInterval(playRadioStep, st.tempoMs);
-        }else{
-          stopVinylCrackle();
-        }
-      }
-
-      if(radioBtn){
-        radioBtn.addEventListener('click', () => {
-          radioPlaying = !radioPlaying;
-          playRadioTuningClick();
-          syncRadioEngine();
-        });
-      }
-      if(radioNextBtn){
-        radioNextBtn.addEventListener('click', () => {
-          radioStationIdx = (radioStationIdx + 1) % TASCA_STATIONS.length;
-          radioStepIdx = 0;
-          radioPlaying = true;
-          playRadioTuningClick();
-          syncRadioEngine();
-        });
       }
 
       renderBeer();
@@ -1580,9 +1354,9 @@
         }
 
         if(firebaseDbRef){
-          firebaseDbRef.set(state).catch(() => {
+          firebaseDbRef.update(state).catch(() => {
             fetch(`${FIREBASE_CONFIG.databaseURL}/keks_chess_game.json`, {
-              method: 'PUT',
+              method: 'PATCH',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(state)
             }).catch(() => {});
@@ -1608,30 +1382,18 @@
         try{
           if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
           firebaseDbRef = firebase.database().ref('keks_chess_game');
-          firebaseBeerRef = firebase.database().ref('keks_tasca_beers/total');
           syncBadge.textContent = '🌐 Online';
           syncBadge.title = 'Ligado em tempo real via Firebase (Europa)';
           syncBadge.classList.add('is-live');
 
-          firebaseBeerRef.on('value', snap => {
-            const val = Number(snap.val() || 0);
-            const myCount = Number(beerData.totalPoured || 0);
-            if(val === 0 && myCount > 0){
-              firebaseBeerRef.set(myCount).catch(() => {});
-              communityBeers = myCount;
-            }else{
-              communityBeers = val;
-            }
-            renderBeer();
-          });
-
           firebaseDbRef.on('value', snap => {
             const val = snap.val();
-            if(val){
-              applyIncomingState(val, true);
+            if(val && val.fen){
+              const { suggestions, ...chessState } = val;
+              applyIncomingState(chessState, true);
             }else if(!hasInitialFirebaseLoad){
               // Inicializa o nó remoto se a base de dados estiver vazia
-              firebaseDbRef.set({
+              firebaseDbRef.update({
                 fen: game.fen(),
                 pgn: game.pgn(),
                 lastMove: lastMove,
@@ -2228,6 +1990,8 @@
       }
     }
 
+    let pinnedEventKey = '';
+
     function updateMapMarkers(events){
       if(!markersGroup)return;
       markersGroup.clearLayers();
@@ -2235,6 +1999,7 @@
       const clock = getLisbonClock();
       events.forEach(event=>{
         if(!hasCoords(event))return;
+        const evKey = getEventKey(event);
         const timing = getEventTimingState(event, clock);
         const colour = event.color||categoryColours[event.category]||'#f04432';
         const iconHtml = getEventMapIconHtml(event);
@@ -2252,14 +2017,28 @@
         });
         const marker=L.marker([Number(event.lat),Number(event.lng)],{icon:pin, zIndexOffset: zOffset});
         const venueLabel = event.venue || 'Local a confirmar';
-        marker.bindPopup(`<div style="min-width:195px;max-width:255px"><span class="popup-tag" style="background:${escapeHtml(colour)}">${escapeHtml(categoryLabels[event.category]||event.category||'Evento')}</span><div class="popup-title">${escapeHtml(event.title)}</div><p class="popup-detail">⌚ ${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}${timing.isHappeningNow?' · <strong style="color:#9ac57b">A DECORRER</strong>':''}</p><p class="popup-detail"><button type="button" class="popup-venue-btn" data-popup-venue="${escapeHtml(venueLabel)}" data-lat="${Number(event.lat)}" data-lng="${Number(event.lng)}" title="Filtrar todos os eventos neste espaço">📍 ${escapeHtml(venueLabel)}</button> · ${escapeHtml(event.neighborhood||'Lisboa')}${distTxt}</p><p class="popup-detail">€ ${escapeHtml(event.price||'Preço a confirmar')}</p><a class="popup-link" href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div>`);
+        marker.bindPopup(`<div style="min-width:205px;max-width:265px"><span class="popup-tag" style="background:${escapeHtml(colour)}">${escapeHtml(categoryLabels[event.category]||event.category||'Evento')}</span><div class="popup-title">${escapeHtml(event.title)}</div><p class="popup-detail">⌚ ${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}${timing.isHappeningNow?' · <strong style="color:#9ac57b">A DECORRER</strong>':''}</p><p class="popup-detail"><button type="button" class="popup-venue-btn" data-popup-venue="${escapeHtml(venueLabel)}" data-lat="${Number(event.lat)}" data-lng="${Number(event.lng)}" title="Filtrar todos os eventos neste espaço">📍 ${escapeHtml(venueLabel)}</button> · ${escapeHtml(event.neighborhood||'Lisboa')}${distTxt}</p><p class="popup-detail">€ ${escapeHtml(event.price||'Preço a confirmar')}</p><div class="popup-actions"><button type="button" class="popup-share-btn" data-popup-share="${escapeHtml(evKey)}" title="Partilhar ou copiar link do evento">📲 Partilhar</button><a class="popup-link" href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div></div>`);
         marker.on('popupopen', e => {
+          // Pop clicked event to the top of the right-hand list and scroll it into view
+          if(pinnedEventKey !== evKey){
+            pinnedEventKey = evKey;
+            renderEventsList(filteredEvents, getLisbonClock());
+          }
+          const listContainer = document.getElementById('events-card-list');
+          if(listContainer) listContainer.scrollTo({ top: 0, behavior: 'smooth' });
+
           const popupEl = e.popup && e.popup.getElement();
           if(!popupEl) return;
           const vBtn = popupEl.querySelector('[data-popup-venue]');
           if(vBtn){
             vBtn.addEventListener('click', () => {
               toggleVenueFilter(vBtn.getAttribute('data-popup-venue'), Number(vBtn.getAttribute('data-lat')), Number(vBtn.getAttribute('data-lng')));
+            });
+          }
+          const sBtn = popupEl.querySelector('[data-popup-share]');
+          if(sBtn){
+            sBtn.addEventListener('click', () => {
+              shareEventPlan(evKey, sBtn);
             });
           }
         });
@@ -2273,23 +2052,31 @@
       if(!events.length){
         container.innerHTML='<div class="empty-state">Não há planos ativos para estes filtros neste momento.<br>Os eventos já terminados hoje foram removidos automaticamente.<br><button type="button" class="text-button" onclick="resetFilters()">Limpar filtros e ver agenda ativa ↺</button></div>';
       }else{
-        events.forEach(event=>{
+        const orderedEvents = pinnedEventKey
+          ? [
+              ...events.filter(ev => getEventKey(ev) === pinnedEventKey),
+              ...events.filter(ev => getEventKey(ev) !== pinnedEventKey)
+            ]
+          : events;
+        orderedEvents.forEach(event=>{
           const timing = getEventTimingState(event, clock);
           const evKey = getEventKey(event);
+          const isPinned = pinnedEventKey && evKey === pinnedEventKey;
           const isSaved = savedEventIds.has(evKey);
           const venueName = event.venue || 'Local a confirmar';
           const isVenueFiltered = activeVenueFilter && activeVenueFilter.toLocaleLowerCase('pt-PT') === venueName.toLocaleLowerCase('pt-PT');
           const card=document.createElement('article');
-          card.className='event-card';
+          card.className=`event-card${isPinned ? ' is-map-pinned' : ''}`;
           const colour=event.color||categoryColours[event.category]||'#f04432';
           const tag=categoryLabels[event.category]||event.category||'Evento';
           const button=hasCoords(event)?`<button type="button" onclick="flyToEvent(${Number(event.lat)},${Number(event.lng)})">📍 Mapa</button>`:'<button type="button" disabled title="Sem localização no mapa">📍 Sem mapa</button>';
           const saveBtn=`<button type="button" class="save-plan-btn ${isSaved?'is-saved':''}" data-save-key="${escapeHtml(evKey)}" title="${isSaved?'Remover dos guardados':'Guardar plano para hoje'}">${isSaved?'★ Guardado':'☆ Guardar'}</button>`;
           const shareBtn=`<button type="button" class="share-btn" data-share-key="${escapeHtml(evKey)}" title="Partilhar ou copiar plano">📲 Partilhar</button>`;
+          const pinBadge = isPinned ? `<span class="map-pin-badge" title="Evento selecionado no mapa">📌 No mapa</span>` : '';
           const liveBadge = timing.isHappeningNow ? `<span class="live-now-badge" title="Este evento está a acontecer agora">● A decorrer</span>` : '';
           const distBadge = Number.isFinite(event._distanceKm) ? `<span class="distance-pill" title="Distância em linha reta até ti">${escapeHtml(formatDistancePt(event._distanceKm))}</span>` : '';
           const venueChip = `<button type="button" class="venue-chip-btn ${isVenueFiltered?'is-active':''}" data-venue-chip="${escapeHtml(venueName)}" title="${isVenueFiltered?'Limpar filtro de espaço':'Ver todos os planos hoje em '+escapeHtml(venueName)}">📍 <strong>${escapeHtml(venueName)}</strong></button>`;
-          card.innerHTML=`<div><div class="event-card-top"><span class="category-tag" style="background:${escapeHtml(colour)}">${escapeHtml(tag)}</span><div class="event-time-wrap">${liveBadge}<span class="event-time">${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}</span></div></div><h3 class="event-title">${escapeHtml(event.title||'Evento')}</h3><p class="event-location">${venueChip} — <em>${escapeHtml(event.neighborhood||'Lisboa')}</em>${distBadge}</p><p class="event-description">${escapeHtml(event.description||'Consulta a página oficial para mais detalhes.')}</p></div><div class="event-card-bottom"><span class="event-price">🏷 ${escapeHtml(event.price||'Preço a confirmar')}</span><div class="event-actions">${saveBtn}${shareBtn}${button}<a href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div></div>`;
+          card.innerHTML=`<div><div class="event-card-top"><span class="category-tag" style="background:${escapeHtml(colour)}">${escapeHtml(tag)}</span><div class="event-time-wrap">${pinBadge}${liveBadge}<span class="event-time">${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}</span></div></div><h3 class="event-title">${escapeHtml(event.title||'Evento')}</h3><p class="event-location">${venueChip} — <em>${escapeHtml(event.neighborhood||'Lisboa')}</em>${distBadge}</p><p class="event-description">${escapeHtml(event.description||'Consulta a página oficial para mais detalhes.')}</p></div><div class="event-card-bottom"><span class="event-price">🏷 ${escapeHtml(event.price||'Preço a confirmar')}</span><div class="event-actions">${saveBtn}${shareBtn}${button}<a href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div></div>`;
           const vChipEl = card.querySelector('[data-venue-chip]');
           if(vChipEl) vChipEl.addEventListener('click', () => toggleVenueFilter(venueName, Number(event.lat), Number(event.lng)));
           const saveEl = card.querySelector('[data-save-key]');
@@ -2397,6 +2184,7 @@
       isStartingSoonActive = false;
       isSavedOnlyActive = false;
       activeVenueFilter = '';
+      pinnedEventKey = '';
       setDaylightMode('ALL');
       applyFilters();
       if(map)map.setView([38.732,-9.138],12);
@@ -2511,18 +2299,17 @@
         if(typeof firebase !== 'undefined' && FIREBASE_CONFIG && FIREBASE_CONFIG.databaseURL){
           try{
             if(!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
-            await firebase.database().ref('keks_suggestions').push(payload);
+            await firebase.database().ref('keks_chess_game/suggestions').push(payload);
             savedToFirebase = true;
-          }catch(_){
-            try{
-              const r = await fetch(`${FIREBASE_CONFIG.databaseURL}/keks_suggestions.json`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-              });
-              if(r.ok) savedToFirebase = true;
-            }catch(__){}
-          }
+          }catch(_){}
+          try{
+            const r = await fetch(`${FIREBASE_CONFIG.databaseURL}/keks_chess_game/suggestions.json`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            if(r.ok) savedToFirebase = true;
+          }catch(__){}
         }
 
         if(SUGGESTION_ENDPOINT){
