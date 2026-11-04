@@ -131,7 +131,7 @@ VENUE_REGISTRY = [
 
     # --- AXIAL SPINE ---
     {"venue": "Galeria Zé dos Bois (ZDB)", "aliases": ["zdb", "galeria ze dos bois", "ze dos bois", "rua da barrosa", "rua da barroca"], "lat": 38.71202, "lng": -9.14438, "neighborhood": "Bairro Alto", "corridor": "Axial Spine", "url": "https://zedosbois.org"},
-    {"venue": "Menina e Moça", "aliases": ["menina e moca", "livraria menina e moca", "livraria-bar menina e moca", "rua nova do carvalho"], "lat": 38.70723, "lng": -9.14362, "neighborhood": "Cais do Sodré", "corridor": "Axial Spine", "url": "https://meninaemoca.pt"},
+    {"venue": "Menina e Moça", "aliases": ["menina e moca", "livraria menina e moca", "livraria-bar menina e moca", "rua nova do carvalho"], "lat": 38.70723, "lng": -9.14362, "neighborhood": "Cais do Sodré", "corridor": "Axial Spine", "url": "https://www.instagram.com/meninaemocalivrariabar/?hl=en"},
     {"venue": "Musicbox", "aliases": ["musicbox", "music box"], "lat": 38.70718, "lng": -9.14338, "neighborhood": "Cais do Sodré", "corridor": "Axial Spine", "url": "https://musicboxlisboa.com"},
     {"venue": "Lust in Rio", "aliases": ["lust in rio", "rua da cintura do porto de lisboa"], "lat": 38.70585, "lng": -9.15205, "neighborhood": "Santos / Cais do Sodré", "corridor": "Axial Spine", "url": "https://www.lisabout.com"},
     {"venue": "The Vintage Hotel Lisbon (THE CURATED Lisbon)", "aliases": ["the vintage hotel", "the curated lisbon", "curated selection", "rua rodrigo da fonseca 2"], "lat": 38.72095, "lng": -9.15165, "neighborhood": "Príncipe Real / Rato", "corridor": "Axial Spine", "url": "https://thecuratedlisbon.com"},
@@ -236,6 +236,7 @@ VENUE_REGISTRY = [
     {"venue": "Hospital de Santa Maria", "aliases": ["hospital de santa maria", "hospital santa maria", "hosp.santa maria", "rampa central"], "lat": 38.74846, "lng": -9.16066, "neighborhood": "Cidade Universitária", "corridor": "Northern Belt", "url": "https://dador.pt/sessoes"},
     {"venue": "Pavilhão 17 — Parque de Saúde de Lisboa", "aliases": ["pavilhao 17", "av. brasil 53", "posto fixo alvalade", "parque de saude de lisboa"], "lat": 38.75683, "lng": -9.14805, "neighborhood": "Alvalade", "corridor": "Northern Belt", "url": "https://dador.pt/sessoes"},
     {"venue": "Edifício Sede Caixa Geral de Depósitos", "aliases": ["caixa geral de depositos de lisboa", "cgd-edif sede", "av. joao xxi"], "lat": 38.74172, "lng": -9.14172, "neighborhood": "Areeiro / Campo Pequeno", "corridor": "Northern Belt", "url": "https://dador.pt/sessoes"},
+    {"venue": "Kosmicare", "aliases": ["kosmicare", "kosmicare lisboa", "rua cesario verde 17b", "cesario verde 17b", "drug checking lisboa"], "lat": 38.728816, "lng": -9.129387, "neighborhood": "Penha de França / Anjos", "corridor": "Eastern Corridor", "url": "https://kosmicare.org/drugchecking/"},
 ]
 
 
@@ -2599,6 +2600,39 @@ def scrape_junta_santo_antonio(target_date):
     return events
 
 
+def scrape_kosmicare(target_date):
+    """
+    Tracks Kosmicare Drug Checking & harm reduction service (https://kosmicare.org/drugchecking/).
+    Runs every Tuesday and Wednesday from 16:00 to 21:00 at Rua Cesário Verde 17B, Lisboa.
+    Confidential, anonymous and free substance testing and counseling.
+    """
+    events = []
+    # Weekday 1 is Tuesday (terça-feira), 2 is Wednesday (quarta-feira)
+    if target_date.weekday() in (1, 2):
+        print(f"[Tier 8] Adding Kosmicare Drug Checking session for {target_date}...")
+        events.append({
+            "id": f"kosmicare-{target_date.strftime('%Y%m%d')}",
+            "title": "Kosmicare — Drug Checking & Redução de Riscos",
+            "category": "Community & Gatherings",
+            "color": "#000000",
+            "icon": "kosmicare",
+            "venue": "Kosmicare",
+            "neighborhood": "Penha de França / Anjos",
+            "corridor": "Eastern Corridor",
+            "lat": 38.728816,
+            "lng": -9.129387,
+            "time": "16:00",
+            "hour": 16,
+            "endTime": "21:00",
+            "endHour": 21,
+            "price": "Entrada Livre (Gratuito & Confidencial)",
+            "priceTier": "FREE",
+            "url": "https://kosmicare.org/drugchecking/",
+            "description": "Serviço anónimo, confidencial e gratuito de análise de substâncias (drug checking), informação e apoio à redução de riscos na vida noturna e festivais. Terças e quartas-feiras, das 16:00 às 21:00, na Rua Cesário Verde 17B.",
+        })
+    return events
+
+
 def main():
     load_external_venues()
 
@@ -2623,6 +2657,7 @@ def main():
     live_raw.extend(scrape_soko_curated_capsula(target_date))
     live_raw.extend(scrape_dador_sessions(target_date))
     live_raw.extend(scrape_junta_santo_antonio(target_date))
+    live_raw.extend(scrape_kosmicare(target_date))
 
     all_events = deduplicate_events(live_raw)
 

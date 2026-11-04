@@ -564,6 +564,19 @@
       + '<polygon points="25.2,23 16.9,23 17.7,29.5 24.6,29.5" fill="#15151a"/>'
       + '</svg>';
 
+    // Kosmicare Drug Checking & harm reduction special icon (white crescent arch over amber triangle on black)
+    const KOSMICARE_SVG = '<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Kosmicare">'
+      + '<circle cx="16" cy="16" r="15" fill="#000000" stroke="#FFB115" stroke-width="1.2"/>'
+      + '<path d="M 3.2 25.5 A 13.5 13.5 0 0 1 28.8 25.5 A 10.8 10.8 0 0 0 3.2 25.5 Z" fill="#FFFFFF"/>'
+      + '<polygon points="16,17.2 11.2,25.4 20.8,25.4" fill="#FFB115"/>'
+      + '</svg>';
+
+    function isKosmicareEvent(event){
+      if(!event) return false;
+      const text = `${event.title || ''} ${event.venue || ''} ${event.id || ''} ${event.icon || ''}`.toLowerCase();
+      return text.includes('kosmicare');
+    }
+
     function isNightElectronicEvent(event){
       if(!event) return false;
       const cat = event.category || '';
@@ -574,10 +587,11 @@
 
     function getEventMapIconHtml(event){
       if(!event) return '📍';
+      if(isKosmicareEvent(event) || event.icon === 'kosmicare') return KOSMICARE_SVG;
       if(isNightElectronicEvent(event)) return FUNKTION_ONE_SVG;
+      if(event.icon && !LEGACY_DOT_ICONS.has(event.icon) && event.icon !== 'kosmicare') return escapeHtml(event.icon);
       const cat = event.category || '';
       if(categoryIcons[cat]) return escapeHtml(categoryIcons[cat]);
-      if(event.icon && !LEGACY_DOT_ICONS.has(event.icon)) return escapeHtml(event.icon);
       return '📍';
     }
 
@@ -2001,11 +2015,11 @@
         if(!hasCoords(event))return;
         const evKey = getEventKey(event);
         const timing = getEventTimingState(event, clock);
-        const colour = event.color||categoryColours[event.category]||'#f04432';
+        const colour = isKosmicareEvent(event) ? '#000000' : (event.color||categoryColours[event.category]||'#f04432');
         const iconHtml = getEventMapIconHtml(event);
         const isDimmed = isDimmedByDaylightMode(event, currentDaylightMode);
         const stateClass = currentDaylightMode === 'ALL' ? '' : (isDimmed ? 'is-dimmed' : 'is-highlighted');
-        const zOffset = currentDaylightMode === 'ALL' ? 0 : (isDimmed ? -200 : 500);
+        const zOffset = currentDaylightMode === 'ALL' ? (isKosmicareEvent(event) ? 400 : 0) : (isDimmed ? -200 : 500);
         const distTxt = Number.isFinite(event._distanceKm) ? ` · <strong style="color:#f4ce46">${escapeHtml(formatDistancePt(event._distanceKm))}</strong>` : '';
 
         const pin=L.divIcon({
@@ -2017,7 +2031,8 @@
         });
         const marker=L.marker([Number(event.lat),Number(event.lng)],{icon:pin, zIndexOffset: zOffset});
         const venueLabel = event.venue || 'Local a confirmar';
-        marker.bindPopup(`<div style="min-width:205px;max-width:265px"><span class="popup-tag" style="background:${escapeHtml(colour)}">${escapeHtml(categoryLabels[event.category]||event.category||'Evento')}</span><div class="popup-title">${escapeHtml(event.title)}</div><p class="popup-detail">⌚ ${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}${timing.isHappeningNow?' · <strong style="color:#9ac57b">A DECORRER</strong>':''}</p><p class="popup-detail"><button type="button" class="popup-venue-btn" data-popup-venue="${escapeHtml(venueLabel)}" data-lat="${Number(event.lat)}" data-lng="${Number(event.lng)}" title="Filtrar todos os eventos neste espaço">📍 ${escapeHtml(venueLabel)}</button> · ${escapeHtml(event.neighborhood||'Lisboa')}${distTxt}</p><p class="popup-detail">€ ${escapeHtml(event.price||'Preço a confirmar')}</p><div class="popup-actions"><button type="button" class="popup-share-btn" data-popup-share="${escapeHtml(evKey)}" title="Partilhar ou copiar link do evento">📲 Partilhar</button><a class="popup-link" href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div></div>`);
+        const tagText = isKosmicareEvent(event) ? 'Kosmicare · Drug Checking' : (categoryLabels[event.category]||event.category||'Evento');
+        marker.bindPopup(`<div style="min-width:205px;max-width:265px"><span class="popup-tag" style="background:${escapeHtml(colour)}">${escapeHtml(tagText)}</span><div class="popup-title">${escapeHtml(event.title)}</div><p class="popup-detail">⌚ ${escapeHtml(event.time||'21:00')} – ${escapeHtml(timing.endTimeStr)}${timing.isHappeningNow?' · <strong style="color:#9ac57b">A DECORRER</strong>':''}</p><p class="popup-detail"><button type="button" class="popup-venue-btn" data-popup-venue="${escapeHtml(venueLabel)}" data-lat="${Number(event.lat)}" data-lng="${Number(event.lng)}" title="Filtrar todos os eventos neste espaço">📍 ${escapeHtml(venueLabel)}</button> · ${escapeHtml(event.neighborhood||'Lisboa')}${distTxt}</p><p class="popup-detail">€ ${escapeHtml(event.price||'Preço a confirmar')}</p><div class="popup-actions"><button type="button" class="popup-share-btn" data-popup-share="${escapeHtml(evKey)}" title="Partilhar ou copiar link do evento">📲 Partilhar</button><a class="popup-link" href="${escapeHtml(safeUrl(event.url))}" target="_blank" rel="noopener noreferrer">Ver evento ↗</a></div></div>`);
         marker.on('popupopen', e => {
           // Pop clicked event to the top of the right-hand list and scroll it into view
           if(pinnedEventKey !== evKey){
@@ -2067,8 +2082,9 @@
           const isVenueFiltered = activeVenueFilter && activeVenueFilter.toLocaleLowerCase('pt-PT') === venueName.toLocaleLowerCase('pt-PT');
           const card=document.createElement('article');
           card.className=`event-card${isPinned ? ' is-map-pinned' : ''}`;
-          const colour=event.color||categoryColours[event.category]||'#f04432';
-          const tag=categoryLabels[event.category]||event.category||'Evento';
+          const isKosmi=isKosmicareEvent(event);
+          const colour=isKosmi ? '#000000' : (event.color||categoryColours[event.category]||'#f04432');
+          const tag=isKosmi ? 'Kosmicare · Drug Checking' : (categoryLabels[event.category]||event.category||'Evento');
           const button=hasCoords(event)?`<button type="button" onclick="flyToEvent(${Number(event.lat)},${Number(event.lng)})">📍 Mapa</button>`:'<button type="button" disabled title="Sem localização no mapa">📍 Sem mapa</button>';
           const saveBtn=`<button type="button" class="save-plan-btn ${isSaved?'is-saved':''}" data-save-key="${escapeHtml(evKey)}" title="${isSaved?'Remover dos guardados':'Guardar plano para hoje'}">${isSaved?'★ Guardado':'☆ Guardar'}</button>`;
           const shareBtn=`<button type="button" class="share-btn" data-share-key="${escapeHtml(evKey)}" title="Partilhar ou copiar plano">📲 Partilhar</button>`;

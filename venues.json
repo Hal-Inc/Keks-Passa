@@ -396,7 +396,7 @@
     "lng": -9.14362,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
-    "url": "https://meninaemoca.pt"
+    "url": "https://www.instagram.com/meninaemocalivrariabar/?hl=en"
   },
   {
     "venue": "Musicbox",
@@ -1634,5 +1634,20 @@
     "neighborhood": "Areeiro / Campo Pequeno",
     "corridor": "Northern Belt",
     "url": "https://dador.pt/sessoes"
+  },
+  {
+    "venue": "Kosmicare",
+    "aliases": [
+      "kosmicare",
+      "kosmicare lisboa",
+      "rua cesario verde 17b",
+      "cesario verde 17b",
+      "drug checking lisboa"
+    ],
+    "lat": 38.728816,
+    "lng": -9.129387,
+    "neighborhood": "Penha de França / Anjos",
+    "corridor": "Eastern Corridor",
+    "url": "https://kosmicare.org/drugchecking/"
   }
 ]
