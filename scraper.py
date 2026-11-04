@@ -279,7 +279,7 @@ def load_external_venues():
             with open("venues.json", "r", encoding="utf-8") as f:
                 ext = json.load(f)
             if isinstance(ext, list):
-                existing = {v["venue"].lower() for v in VENUE_REGISTRY}
+                reg_by_name = {v["venue"].lower(): v for v in VENUE_REGISTRY}
                 for item in ext:
                     if isinstance(item, dict) and item.get("venue"):
                         clean_aliases = [
@@ -287,8 +287,12 @@ def load_external_venues():
                             if strip_accents(a).strip() not in AMBIGUOUS_ALIAS_TOKENS
                         ]
                         item["aliases"] = clean_aliases
-                        if item["venue"].lower() not in existing:
+                        v_key = item["venue"].lower()
+                        if v_key in reg_by_name:
+                            reg_by_name[v_key].update(item)
+                        else:
                             VENUE_REGISTRY.append(item)
+                            reg_by_name[v_key] = item
         except Exception as e:
             print(f"[Venue Loader] Notice reading venues.json: {e}")
         # Rebuild compiled patterns to include any newly loaded external venues
