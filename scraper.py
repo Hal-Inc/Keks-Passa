@@ -515,6 +515,7 @@ def infer_end_time(start_time, hour_int, category_name, venue_name="", title="",
 
 def parse_price_and_tier(text, default_price="Consultar bilheteira", default_tier="ACCESSIBLE"):
     low = strip_accents(text or "")
+    # 1. First check explicit price amounts (€...)
     for m in re.finditer(r"(?:€\s*(\d{1,3})(?:[.,](\d{1,2}))?|(\d{1,3})(?:[.,](\d{1,2}))?\s*€)", str(text)):
         whole = m.group(1) if m.group(1) is not None else m.group(3)
         dec = m.group(2) if m.group(1) is not None else m.group(4)
@@ -526,9 +527,20 @@ def parse_price_and_tier(text, default_price="Consultar bilheteira", default_tie
             if val <= 30:
                 return disp, "MID"
             return disp, "PREMIUM"
+
+    # 2. Check for paid entry indicators before assuming free admission
+    is_paid_marker = re.search(
+        r"\b(consumo obrigatorio|consumo minimo|sujeito a consumo|entrada paga|bilhetes a venda|comprar bilhete|bilheteira|venda de bilhetes|bilhete:|bilhetes:)\b",
+        low,
+    )
+    if is_paid_marker:
+        return "Consultar bilheteira", "ACCESSIBLE"
+
+    # 3. Only declare FREE if genuine free entry is affirmed without exclusions
     if re.search(r"\b(entrada livre|entrada gratuita|gratuito|gratis|free entry|free admission|free entrance|a borla|gratuita)\b", low):
-        if not re.search(r"\b(birthday|aniversari|drink|beer|imperial|ate as|until)\b", low):
+        if not re.search(r"\b(birthday|aniversari|drink|beer|imperial|ate as|until|consumo|quota|socio)\b", low):
             return "Entrada Livre", "FREE"
+
     return default_price, default_tier
 
 
@@ -2363,8 +2375,21 @@ def _event_quality_score(ev):
     title = str(ev.get("title", ""))
     if not title.isupper() and "@" not in title:
         score += 1
-    if ev.get("category") == "Concerts & Live Music" and 20 <= int(ev.get("hour", 21)) <= 23:
-        score += 2
+
+    # Prefer evening start times for live music/performances/nightlife
+    hour = int(ev.get("hour", 21))
+    if 18 <= hour <= 23 or 0 <= hour <= 4:
+        score += 4
+    elif hour < 12:
+        # Heavily penalize morning times for concerts/parties (often scraped office/gallery hours)
+        if any(w in title.lower() for w in ["live", "band", "dj", "x zdb", "bated breath", "poison", "rave", "concerto", "festa"]):
+            score -= 6
+
+    # Prefer official ticketing and direct venue platforms over aggregators
+    url = ev.get("url", "").lower()
+    if any(plat in url for plat in ["shotgun.live", "dice.fm", "ra.co", "zedosbois.org", "bol.pt", "ticketline.pt"]):
+        score += 3
+
     return score
 
 
@@ -2385,20 +2410,33 @@ def deduplicate_events(events):
         seen_exact.add(exact_key)
 
         sig = _core_title_signature(ev.get("title", ""), ev.get("venue", ""))
+        tokens = set(sig.split())
         ev_mins = _event_op_minutes(ev)
+        ev_lat = round(float(ev.get("lat", 0)), 4)
+        ev_lng = round(float(ev.get("lng", 0)), 4)
 
         duplicate_idx = None
         for idx, existing in enumerate(unique):
             ex_venue = strip_accents(existing.get("venue", "")).strip()
-            if ex_venue != venue_norm:
+            ex_lat = round(float(existing.get("lat", 0)), 4)
+            ex_lng = round(float(existing.get("lng", 0)), 4)
+
+            # Match either by venue name OR by exact building coordinates
+            same_loc = (ex_venue == venue_norm) or (ex_lat > 0 and ex_lat == ev_lat and ex_lng == ev_lng)
+            if not same_loc:
                 continue
-            ex_mins = _event_op_minutes(existing)
-            if abs(ev_mins - ex_mins) > 300:
-                continue
+
             ex_sig = _core_title_signature(existing.get("title", ""), existing.get("venue", ""))
-            if not sig or not ex_sig:
-                continue
-            if sig == ex_sig or (len(sig) >= 4 and len(ex_sig) >= 4 and (sig in ex_sig or ex_sig in sig)):
+            ex_tokens = set(ex_sig.split())
+
+            # 1. Exact signature match -> always duplicate
+            if sig and ex_sig and sig == ex_sig:
+                duplicate_idx = idx
+                break
+
+            # 2. Strong token overlap (band names, artist collaborations at the same venue)
+            common = tokens.intersection(ex_tokens)
+            if len(common) >= 2 and (len(common) / min(len(tokens), len(ex_tokens)) >= 0.5):
                 duplicate_idx = idx
                 break
 

@@ -2,7 +2,7 @@
   "generated_at": "2026-11-04T11:38:27.017062+00:00",
   "operational_date": "2026-11-04",
   "date_string": "2026-11-04",
-  "total_events": 87,
+  "total_events": 85,
   "events": [
     {
       "id": "dador-7",
@@ -285,7 +285,7 @@
       "description": "Mercado CCB em Centro Cultural de Belém (CCB) (Belém)."
     },
     {
-      "id": "ccl-mondo-negro-x-zdb-poison-ruin-%e",
+      "id": "nocartaz-d1795ca965a3a2a1",
       "title": "Mondo Negro x ZDB: Poison Ruïn ⟡ Bated Breath",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -293,15 +293,15 @@
       "venue": "Galeria Zé dos Bois (ZDB)",
       "neighborhood": "Bairro Alto",
       "corridor": "Axial Spine",
-      "lat": 38.71202,
-      "lng": -9.14438,
-      "time": "10:00",
-      "hour": 10,
+      "lat": 38.711968,
+      "lng": -9.144333,
+      "time": "21:00",
+      "hour": 21,
       "endTime": "22:00",
       "endHour": 22,
       "price": "Consultar bilheteira",
       "priceTier": "ACCESSIBLE",
-      "url": "https://cartazculturallisboa.pt/evento/mondo-negro-x-zdb-poison-ruin-%e2%9f%a1-bated-breath/",
+      "url": "https://www.nocartaz.pt/eventos/d1795ca965a3a2a1/",
       "description": "Mondo Negro x ZDB: Poison Ruïn ⟡ Bated Breath em Galeria Zé dos Bois (ZDB) (Bairro Alto)."
     },
     {
@@ -1365,26 +1365,6 @@
       "description": "Maria Rueff e Maria do Céu Guerra reinventam Shakespeare em Happy New Lear em Lisboa (Ver Local no Link) (Centro Histórico)."
     },
     {
-      "id": "nocartaz-d1795ca965a3a2a1",
-      "title": "Mondo Negro x ZDB: Poison Ruïn ⟡ Bated Breath",
-      "category": "Exhibitions & Visual Arts",
-      "color": "#1D3557",
-      "icon": "🎨",
-      "venue": "Galeria Zé dos Bois (ZDB)",
-      "neighborhood": "Bairro Alto",
-      "corridor": "Axial Spine",
-      "lat": 38.711968,
-      "lng": -9.144333,
-      "time": "21:00",
-      "hour": 21,
-      "endTime": "22:00",
-      "endHour": 22,
-      "price": "Consultar bilheteira",
-      "priceTier": "ACCESSIBLE",
-      "url": "https://www.nocartaz.pt/eventos/d1795ca965a3a2a1/",
-      "description": "Mondo Negro x ZDB: Poison Ruïn ⟡ Bated Breath em Galeria Zé dos Bois (ZDB) (Bairro Alto)."
-    },
-    {
       "id": "nocartaz-7e126a7220e08dfb",
       "title": "NUDE",
       "category": "Concerts & Live Music",
@@ -1583,26 +1563,6 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://www.agendalx.pt/events/event/angela-ferreira/?lang=en",
       "description": "Ângela Ferreira em Centro Cultural de Belém (CCB) (Belém)."
-    },
-    {
-      "id": "adc-20261104-2080",
-      "title": "Bated Breath • Poison Ruïn",
-      "category": "Exhibitions & Visual Arts",
-      "color": "#1D3557",
-      "icon": "🎨",
-      "venue": "Galeria Zé dos Bois (ZDB)",
-      "neighborhood": "Bairro Alto",
-      "corridor": "Axial Spine",
-      "lat": 38.712029,
-      "lng": -9.144479,
-      "time": "21:30",
-      "hour": 21,
-      "endTime": "22:00",
-      "endHour": 22,
-      "price": "Consultar bilheteira",
-      "priceTier": "ACCESSIBLE",
-      "url": "https://agendadeconcertos.com/localidade/lisboa/",
-      "description": "Concerto de Bated Breath • Poison Ruïn ao vivo em Galeria Zé dos Bois (ZDB) (Bairro Alto)."
     },
     {
       "id": "adc-20261104-5041",
