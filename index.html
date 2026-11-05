@@ -50,7 +50,7 @@
     .ticker span:nth-child(even){color:var(--red)}
     @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    .toolbar{margin:10px 0 18px;padding:17px;background:var(--ink2);border:1px solid var(--line)}.filters{display:grid;grid-template-columns:1.25fr 1fr .8fr 1fr;gap:12px}.field label{display:block;margin-bottom:7px;color:var(--green);font:500 10px var(--mono);text-transform:uppercase;letter-spacing:.6px}.field input,.field select,.field textarea{width:100%;min-height:43px;padding:10px 12px;border:1px solid #526052;border-radius:0;background:var(--ink);color:var(--paper);outline:none;font-size:13px}.field input::placeholder,.field textarea::placeholder{color:#879084}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--yellow);box-shadow:0 0 0 1px var(--yellow)}.toolbar-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line);margin-top:13px;padding-top:12px;color:var(--muted);font:11px/1.4 var(--mono)}.toolbar-bottom strong{color:var(--green);font-weight:500}.toolbar-actions{display:flex;align-items:center;gap:16px}.text-button{border:0;background:none;padding:3px 0;color:var(--yellow);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font:500 11px var(--mono)}.map-toggle{display:none;border:1px solid var(--yellow);background:var(--yellow);color:var(--ink);padding:11px 14px;width:100%;margin-bottom:12px;text-transform:uppercase;font:800 15px var(--display);cursor:pointer}
+    .toolbar{margin:10px 0 18px;padding:17px;background:var(--ink2);border:1px solid var(--line)}.filters{display:grid;grid-template-columns:1.25fr 1fr .8fr 1fr;gap:12px}.field label{display:block;margin-bottom:7px;color:var(--green);font:500 10px var(--mono);text-transform:uppercase;letter-spacing:.6px}.field input,.field select,.field textarea{width:100%;min-height:43px;padding:10px 12px;border:1px solid #526052;border-radius:0;background:var(--ink);color:var(--paper);outline:none;font-size:13px}.field input::placeholder,.field textarea::placeholder{color:#879084}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--yellow);box-shadow:0 0 0 1px var(--yellow)}.toolbar-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line);margin-top:13px;padding-top:12px;color:var(--muted);font:11px/1.4 var(--mono)}.toolbar-bottom strong{color:var(--green);font-weight:500}.toolbar-actions{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}.text-button{border:0;background:none;padding:5px 0;color:var(--yellow);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font:500 11px var(--mono)}.map-toggle{display:none;border:1px solid var(--yellow);background:var(--yellow);color:var(--ink);padding:11px 14px;width:100%;margin-bottom:12px;text-transform:uppercase;font:800 15px var(--display);cursor:pointer}
     
     /* Layout with matching isolated scrollable panels */
     .content-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(350px,.92fr);align-items:start;gap:20px}
@@ -99,6 +99,9 @@
     .quick-pill:hover{border-color:var(--yellow);color:var(--yellow)}
     .quick-pill.is-active{background:var(--yellow);color:var(--ink);border-color:var(--paper);box-shadow:2px 2px 0 var(--red);font-weight:700}
     #active-venue-pill:empty{display:none!important}
+    .saved-filter-wrap{display:inline-flex;flex-direction:column;align-items:flex-start;position:relative}
+    .clear-saved-btn{border:0;background:none;padding:4px 0 0;color:var(--red);font:500 11px var(--mono);cursor:pointer;text-decoration:none;line-height:1.2;transition:opacity .15s}
+    .clear-saved-btn:hover{text-decoration:underline;opacity:.85}
     .venue-chip-btn{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;margin:-2px 2px -2px 0;border:1px solid rgba(240,237,223,.22);background:rgba(17,23,19,.65);color:var(--paper);font:600 12px/1.35 var(--body);cursor:pointer;transition:background .14s,border-color .14s,color .14s,transform .12s}
     .venue-chip-btn strong{color:var(--paper);font-weight:700}
     .venue-chip-btn:hover{border-color:var(--yellow);background:rgba(244,206,70,.16);color:var(--yellow);transform:translateY(-1px)}
@@ -430,7 +433,7 @@
     <section class="toolbar" aria-label="Pesquisar e filtrar eventos"><div class="filters">
       <div class="field"><label for="search-input">À procura de quê?</label><input type="search" id="search-input" placeholder="Cerâmica, Feira, Prior Velho, ZDB, Belém…" autocomplete="off"></div>
       <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">✨ Tudo um pouco</option><option value="Concerts & Live Music">🎤 Concertos e música ao vivo</option><option value="Theatre & Comedy">🎭 Teatro e comédia</option><option value="Exhibitions & Visual Arts">🎨 Exposições e artes visuais</option><option value="Opera & Classical">🎻 Ópera e música clássica</option><option value="Cinema & Screenings">🍿 Cinema e sessões</option><option value="Nightlife & Electronic">🔊 Noite e eletrónica</option><option value="Community & Gatherings">🛍️ Mercados, oficinas, conversas e comunidade</option><option value="Family & Youth">🎠 Famílias e miúdos</option><option value="Blood Donation">🩸 Dádivas de sangue</option></select></div>
-      <div class="field"><label for="price-filter">Quanto custa?</label><select id="price-filter"><option value="ALL">Qualquer preço</option><option value="FREE">À borla</option><option value="PAID_OPP">💰 Levas o carcanol contigo</option><option value="ACCESSIBLE">Até 15 €</option><option value="MID">15 € a 30 €</option><option value="PREMIUM">Mais de 30 €</option></select></div>
+      <div class="field"><label for="price-filter">Quanto custa?</label><select id="price-filter"><option value="ALL">Qualquer preço</option><option value="FREE">À borla</option><option value="ACCESSIBLE">Até 15 €</option><option value="MID">15 € a 30 €</option><option value="PREMIUM">Mais de 30 €</option><option value="PAID_OPP">💰 Levas o carcanol contigo</option></select></div>
       <div class="field"><label for="corridor-filter">Por onde andas?</label><select id="corridor-filter"><option value="ALL">Lisboa inteira (tudo ao molho)</option><option value="Eastern Corridor">Lado Leste &amp; Armazéns</option><option value="Axial Spine">Baixa &amp; Almirante Reis</option><option value="Northern Belt">Zona Central</option><option value="Belém Waterfront">Pelo Rio</option></select></div>
     </div>
     <div class="toolbar-bottom">
@@ -439,7 +442,10 @@
         <button type="button" class="quick-pill" id="active-venue-pill" style="display:none" title="Clique para limpar o filtro deste espaço"></button>
         <button type="button" class="quick-pill" id="btn-near-me" title="Ordenar eventos dos mais próximos para os mais distantes">📍 Perto de mim</button>
         <button type="button" class="quick-pill" id="btn-starting-soon" title="Ver apenas eventos a decorrer agora ou que começam nas próximas 2 horas">⚡ Agora / Próx. 2h</button>
-        <button type="button" class="quick-pill" id="btn-saved-only" title="Ver apenas os eventos que guardaste">☆ Guardados (0)</button>
+        <div class="saved-filter-wrap">
+          <button type="button" class="quick-pill" id="btn-saved-only" title="Ver apenas os eventos que guardaste">☆ Guardados (0)</button>
+          <button type="button" class="clear-saved-btn" id="btn-clear-saved" style="display:none" title="Remover todos os eventos guardados">Remover guardados</button>
+        </div>
         <button type="button" class="text-button" id="reset-filters">Limpar filtros ↺</button>
       </div>
     </div></section>
@@ -1968,6 +1974,10 @@
         const count = savedEventIds.size;
         btnSaved.textContent = `${count > 0 ? '★' : '☆'} Guardados (${count})`;
       }
+      const btnClearSaved = document.getElementById('btn-clear-saved');
+      if(btnClearSaved){
+        btnClearSaved.style.display = savedEventIds.size > 0 ? 'inline-block' : 'none';
+      }
       if(btnVenue){
         if(activeVenueFilter){
           btnVenue.style.display = 'inline-flex';
@@ -2559,6 +2569,18 @@
           return;
         }
         isSavedOnlyActive = !isSavedOnlyActive;
+        updateQuickFilterPillsUI();
+        applyFilters();
+      });
+
+      const btnClearSaved = document.getElementById('btn-clear-saved');
+      if(btnClearSaved) btnClearSaved.addEventListener('click', () => {
+        if(savedEventIds.size === 0) return;
+        savedEventIds.clear();
+        try{
+          localStorage.removeItem(SAVED_EVENTS_KEY);
+        }catch(_){}
+        isSavedOnlyActive = false;
         updateQuickFilterPillsUI();
         applyFilters();
       });
