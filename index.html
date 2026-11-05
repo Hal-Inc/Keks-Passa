@@ -102,6 +102,25 @@
     .saved-filter-wrap{display:inline-flex;flex-direction:column;align-items:flex-start;position:relative}
     .clear-saved-btn{border:0;background:none;padding:4px 0 0;color:var(--red);font:500 11px var(--mono);cursor:pointer;text-decoration:none;line-height:1.2;transition:opacity .15s}
     .clear-saved-btn:hover{text-decoration:underline;opacity:.85}
+    .search-field-container{position:relative}
+    .search-input-wrap{position:relative;display:flex;align-items:center;width:100%}
+    .search-input-wrap input{padding-right:38px}
+    .search-locate-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--yellow);font-size:16px;cursor:pointer;padding:4px 6px;line-height:1;display:inline-flex;align-items:center;justify-content:center;opacity:.8;transition:opacity .15s,transform .15s}
+    .search-locate-btn:hover{opacity:1;transform:translateY(-50%) scale(1.18)}
+    .search-suggestions-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:1000;background:var(--ink2);border:1px solid var(--yellow);box-shadow:4px 4px 0 var(--ink),0 10px 28px rgba(0,0,0,.7);max-height:360px;overflow-y:auto}
+    .sugg-section-title{padding:7px 12px;background:rgba(240,237,223,.06);color:var(--green);font:700 9px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid rgba(240,237,223,.1)}
+    .sugg-item{display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;border-bottom:1px solid rgba(240,237,223,.06);transition:background .12s}
+    .sugg-item:last-child{border-bottom:0}
+    .sugg-item:hover,.sugg-item.is-selected{background:rgba(244,206,70,.16)}
+    .sugg-icon{font-size:16px;flex-shrink:0}
+    .sugg-body{flex:1;min-width:0}
+    .sugg-main{display:block;font:700 12px/1.3 var(--mono);color:var(--paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sugg-sub{display:block;font:400 11px/1.2 var(--body);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sugg-action-pill{font:700 9px var(--mono);color:var(--yellow);text-transform:uppercase;flex-shrink:0;border:1px solid rgba(244,206,70,.35);padding:2px 5px;background:rgba(244,206,70,.08)}
+    .searched-location-marker{position:relative;width:36px;height:36px}
+    .searched-location-pulse{position:absolute;top:50%;left:50%;width:46px;height:46px;margin-top:-23px;margin-left:-23px;border-radius:50%;background:rgba(244,206,70,.45);animation:searchPinPulse 1.8s infinite ease-out;pointer-events:none}
+    .searched-location-dot{position:absolute;top:50%;left:50%;width:32px;height:32px;margin-top:-16px;margin-left:-16px;border-radius:50%;background:var(--yellow);border:3px solid #111713;color:#111713;font-size:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.6);cursor:pointer}
+    @keyframes searchPinPulse{0%{transform:scale(.55);opacity:.95}100%{transform:scale(1.7);opacity:0}}
     .venue-chip-btn{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;margin:-2px 2px -2px 0;border:1px solid rgba(240,237,223,.22);background:rgba(17,23,19,.65);color:var(--paper);font:600 12px/1.35 var(--body);cursor:pointer;transition:background .14s,border-color .14s,color .14s,transform .12s}
     .venue-chip-btn strong{color:var(--paper);font-weight:700}
     .venue-chip-btn:hover{border-color:var(--yellow);background:rgba(244,206,70,.16);color:var(--yellow);transform:translateY(-1px)}
@@ -431,7 +450,14 @@
     </div>
 
     <section class="toolbar" aria-label="Pesquisar e filtrar eventos"><div class="filters">
-      <div class="field"><label for="search-input">À procura de quê?</label><input type="search" id="search-input" placeholder="Cerâmica, Feira, Prior Velho, ZDB, Belém…" autocomplete="off"></div>
+      <div class="field search-field-container">
+        <label for="search-input">À procura de quê?</label>
+        <div class="search-input-wrap">
+          <input type="search" id="search-input" placeholder="Cerâmica, Feira, Duque de Loulé 1, ZDB, Belém…" autocomplete="off">
+          <button type="button" id="search-locate-btn" class="search-locate-btn" title="Pesquisar este endereço ou espaço no mapa" aria-label="Pesquisar no mapa">📍</button>
+        </div>
+        <div id="search-suggestions-dropdown" class="search-suggestions-dropdown" style="display:none" role="listbox"></div>
+      </div>
       <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">✨ Tudo um pouco</option><option value="Concerts & Live Music">🎤 Concertos e música ao vivo</option><option value="Theatre & Comedy">🎭 Teatro e comédia</option><option value="Exhibitions & Visual Arts">🎨 Exposições e artes visuais</option><option value="Opera & Classical">🎻 Ópera e música clássica</option><option value="Cinema & Screenings">🍿 Cinema e sessões</option><option value="Nightlife & Electronic">🔊 Noite e eletrónica</option><option value="Community & Gatherings">🛍️ Mercados, oficinas, conversas e comunidade</option><option value="Family & Youth">🎠 Famílias e miúdos</option><option value="Blood Donation">🩸 Dádivas de sangue</option></select></div>
       <div class="field"><label for="price-filter">Quanto custa?</label><select id="price-filter"><option value="ALL">Qualquer preço</option><option value="FREE">À borla</option><option value="ACCESSIBLE">Até 15 €</option><option value="MID">15 € a 30 €</option><option value="PREMIUM">Mais de 30 €</option><option value="PAID_OPP">💰 Levas o carcanol contigo</option></select></div>
       <div class="field"><label for="corridor-filter">Por onde andas?</label><select id="corridor-filter"><option value="ALL">Lisboa inteira (tudo ao molho)</option><option value="Eastern Corridor">Lado Leste &amp; Armazéns</option><option value="Axial Spine">Baixa &amp; Almirante Reis</option><option value="Northern Belt">Zona Central</option><option value="Belém Waterfront">Pelo Rio</option></select></div>
@@ -440,6 +466,7 @@
       <span id="results-count"><strong>—</strong> eventos ativos para descobrir</span>
       <div class="toolbar-actions">
         <button type="button" class="quick-pill" id="active-venue-pill" style="display:none" title="Clique para limpar o filtro deste espaço"></button>
+        <button type="button" class="quick-pill is-active" id="searched-loc-pill" style="display:none" title="Remover localização pesquisada"></button>
         <button type="button" class="quick-pill" id="btn-near-me" title="Ordenar eventos dos mais próximos para os mais distantes">📍 Perto de mim</button>
         <button type="button" class="quick-pill" id="btn-starting-soon" title="Ver apenas eventos a decorrer agora ou que começam nas próximas 2 horas">⚡ Agora / Próx. 2h</button>
         <div class="saved-filter-wrap">
@@ -1874,6 +1901,12 @@
         if(!data||!Array.isArray(data.events)) throw new Error('O ficheiro events.json não tem uma lista "events" válida.');
         loadedData=data;
         rawEventsData=mergeAndCleanEvents(data.events);
+        try{
+          const vResp = await fetch('./venues.json?v='+Date.now(), {cache:'no-store'});
+          if(vResp.ok){
+            venuesRegistry = await vResp.json();
+          }
+        }catch(_){}
         document.getElementById('today-label').textContent=portugueseDate(data.operational_date||data.date_string);
         applyFilters();
 
@@ -1927,6 +1960,222 @@
     let isStartingSoonActive = false;
     let isSavedOnlyActive = false;
     let activeVenueFilter = '';
+    let searchedLocation = null; // { label, shortLabel, lat, lng, isVenue, venueName }
+    let searchedLocationMarker = null;
+    let venuesRegistry = [];
+
+    function stripAccents(str){
+      return (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function searchLocalVenues(term){
+      if(!term || term.length < 2) return [];
+      const clean = stripAccents(term).toLowerCase().trim();
+      const results = [];
+      const seen = new Set();
+
+      for(const v of venuesRegistry){
+        if(!v.lat || !v.lng || !v.venue) continue;
+        const vName = v.venue;
+        const vClean = stripAccents(vName).toLowerCase();
+        const aliases = (v.aliases || []).map(a => stripAccents(a).toLowerCase());
+        const isMatch = vClean.includes(clean) || aliases.some(a => a.includes(clean) || clean.includes(a));
+        if(isMatch && !seen.has(vName)){
+          seen.add(vName);
+          results.push({
+            type: 'venue',
+            label: vName,
+            shortLabel: vName.replace(/\s*\([^)]*\)/g, '').trim(),
+            subtitle: `${v.neighborhood || 'Lisboa'}${v.corridor ? ' • ' + v.corridor : ''}`,
+            lat: Number(v.lat),
+            lng: Number(v.lng),
+            isVenue: true,
+            venueName: vName
+          });
+          if(results.length >= 4) break;
+        }
+      }
+
+      if(results.length < 4 && typeof eventsData !== 'undefined' && Array.isArray(eventsData)){
+        for(const ev of eventsData){
+          if(!hasCoords(ev) || !ev.venue) continue;
+          const vName = ev.venue;
+          const vClean = stripAccents(vName).toLowerCase();
+          if(vClean.includes(clean) && !seen.has(vName)){
+            seen.add(vName);
+            results.push({
+              type: 'venue',
+              label: vName,
+              shortLabel: vName.replace(/\s*\([^)]*\)/g, '').trim(),
+              subtitle: `${ev.neighborhood || 'Lisboa'}`,
+              lat: Number(ev.lat),
+              lng: Number(ev.lng),
+              isVenue: true,
+              venueName: vName
+            });
+            if(results.length >= 4) break;
+          }
+        }
+      }
+      return results;
+    }
+
+    let geocodeAbortController = null;
+    async function searchAddressesNominatim(term){
+      if(!term || term.trim().length < 3) return [];
+      if(geocodeAbortController){
+        geocodeAbortController.abort();
+      }
+      geocodeAbortController = new AbortController();
+
+      const cleanQuery = term.trim().replace(/,\s*lisboa.*$/i, '');
+      const query = `${cleanQuery}, Lisboa, Portugal`;
+      const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&viewbox=-9.35,38.65,-9.05,38.85&bounded=0&addressdetails=1&limit=4&countrycodes=pt`;
+
+      try {
+        const res = await fetch(url, {
+          signal: geocodeAbortController.signal,
+          headers: { 'Accept': 'application/json' }
+        });
+        if(!res.ok) return [];
+        const items = await res.json();
+        if(!Array.isArray(items)) return [];
+
+        return items.filter(item => {
+          const lat = parseFloat(item.lat);
+          const lon = parseFloat(item.lon);
+          return Number.isFinite(lat) && Number.isFinite(lon) && lat >= 38.65 && lat <= 38.85 && lon >= -9.35 && lon <= -9.05;
+        }).map(item => {
+          const addr = item.address || {};
+          const road = addr.road || addr.pedestrian || addr.square || addr.suburb || item.name || cleanQuery;
+          const num = addr.house_number ? ` ${addr.house_number}` : '';
+          const mainLabel = `${road}${num}`;
+          const parts = [addr.suburb, addr.neighbourhood, addr.village, addr.city || 'Lisboa'].filter(Boolean);
+          const subtitle = parts.filter((v, i, a) => a.indexOf(v) === i).slice(0, 2).join(' / ') || 'Lisboa';
+          return {
+            type: 'address',
+            label: mainLabel,
+            shortLabel: mainLabel,
+            fullLabel: item.display_name,
+            subtitle: subtitle,
+            lat: parseFloat(item.lat),
+            lng: parseFloat(item.lon),
+            isVenue: false
+          };
+        });
+      } catch(e) {
+        return [];
+      }
+    }
+
+    function updateSearchedLocationMarkerOnMap(){
+      if(!map) return;
+      if(!searchedLocation){
+        if(searchedLocationMarker){
+          map.removeLayer(searchedLocationMarker);
+          searchedLocationMarker = null;
+        }
+        return;
+      }
+      const icon = L.divIcon({
+        className: 'searched-loc-icon-wrap',
+        html: `<div class="searched-location-marker" title="${escapeHtml(searchedLocation.label)}"><div class="searched-location-pulse"></div><div class="searched-location-dot">📍</div></div>`,
+        iconSize: [36, 36],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -18]
+      });
+      if(searchedLocationMarker){
+        searchedLocationMarker.setLatLng([searchedLocation.lat, searchedLocation.lng]);
+        searchedLocationMarker.setIcon(icon);
+      }else{
+        searchedLocationMarker = L.marker([searchedLocation.lat, searchedLocation.lng], { icon, zIndexOffset: 950 }).addTo(map);
+      }
+      searchedLocationMarker.bindPopup(`
+        <div style="min-width:215px;padding:3px 1px">
+          <span class="popup-tag" style="background:var(--yellow);color:var(--ink);font-weight:700">📍 PONTO PESQUISADO</span>
+          <div class="popup-title" style="margin:6px 0 4px;font-size:15px;line-height:1.25">${escapeHtml(searchedLocation.label)}</div>
+          <p class="popup-detail" style="margin:0 0 8px;color:#b4b8a7">A mostrar eventos ordenados pela proximidade deste local.</p>
+          <button type="button" class="popup-venue-btn full-width" id="btn-popup-clear-searched" style="width:100%;text-align:center;padding:5px 8px;border-color:var(--red);color:var(--red);background:rgba(240,68,50,0.1)">✕ Limpar este ponto do mapa</button>
+        </div>
+      `);
+      searchedLocationMarker.off('popupopen');
+      searchedLocationMarker.on('popupopen', e => {
+        const popupEl = e.popup && e.popup.getElement();
+        if(popupEl){
+          const clrBtn = popupEl.querySelector('#btn-popup-clear-searched');
+          if(clrBtn) clrBtn.addEventListener('click', clearSearchedLocation);
+        }
+      });
+    }
+
+    function setSearchedLocation(item){
+      if(!item || !Number.isFinite(Number(item.lat)) || !Number.isFinite(Number(item.lng))) return;
+      searchedLocation = {
+        label: item.label,
+        shortLabel: item.shortLabel || item.label.split(',')[0],
+        lat: Number(item.lat),
+        lng: Number(item.lng),
+        isVenue: Boolean(item.isVenue || item.type === 'venue'),
+        venueName: item.venueName || ''
+      };
+
+      const sInput = document.getElementById('search-input');
+      if(sInput) sInput.value = searchedLocation.shortLabel || searchedLocation.label;
+
+      const dd = document.getElementById('search-suggestions-dropdown');
+      if(dd) { dd.style.display = 'none'; dd.innerHTML = ''; }
+
+      if(searchedLocation.isVenue && searchedLocation.venueName){
+        activeVenueFilter = searchedLocation.venueName;
+      }
+
+      if(!map){ toggleMap(true); initMap(); }
+      if(window.innerWidth <= 900) toggleMap(true);
+      map.invalidateSize();
+
+      updateSearchedLocationMarkerOnMap();
+      map.flyTo([searchedLocation.lat, searchedLocation.lng], 16, { duration: 1.0 });
+
+      if(window.innerWidth <= 900){
+        const mapEl = document.getElementById('map-panel');
+        if(mapEl) mapEl.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      setTimeout(() => {
+        if(searchedLocation.isVenue && markersGroup){
+          let found = false;
+          markersGroup.eachLayer(layer => {
+            if(found) return;
+            const pos = layer.getLatLng();
+            if(Math.abs(pos.lat - searchedLocation.lat) < 0.0004 && Math.abs(pos.lng - searchedLocation.lng) < 0.0004){
+              layer.openPopup();
+              found = true;
+            }
+          });
+          if(!found && searchedLocationMarker) searchedLocationMarker.openPopup();
+        } else if(searchedLocationMarker){
+          searchedLocationMarker.openPopup();
+        }
+      }, 1050);
+
+      updateQuickFilterPillsUI();
+      applyFilters();
+    }
+
+    function clearSearchedLocation(){
+      searchedLocation = null;
+      if(searchedLocationMarker && map){
+        map.removeLayer(searchedLocationMarker);
+        searchedLocationMarker = null;
+      }
+      activeVenueFilter = '';
+      const sInput = document.getElementById('search-input');
+      if(sInput) sInput.value = '';
+      const dd = document.getElementById('search-suggestions-dropdown');
+      if(dd) { dd.style.display = 'none'; dd.innerHTML = ''; }
+      updateQuickFilterPillsUI();
+      applyFilters();
+    }
 
     function getEventKey(event){
       return String(event.id || `${event.venue || ''}|${event.title || ''}|${event.time || ''}`);
@@ -1973,6 +2222,16 @@
         btnSaved.classList.toggle('is-active', isSavedOnlyActive);
         const count = savedEventIds.size;
         btnSaved.textContent = `${count > 0 ? '★' : '☆'} Guardados (${count})`;
+      }
+      const searchedLocPill = document.getElementById('searched-loc-pill');
+      if(searchedLocPill){
+        if(searchedLocation){
+          searchedLocPill.style.display = 'inline-flex';
+          searchedLocPill.textContent = `📍 ${searchedLocation.shortLabel || searchedLocation.label} ✕`;
+        }else{
+          searchedLocPill.style.display = 'none';
+          searchedLocPill.textContent = '';
+        }
       }
       const btnClearSaved = document.getElementById('btn-clear-saved');
       if(btnClearSaved){
@@ -2036,6 +2295,7 @@
           if(!map && window.innerWidth <= 900){ toggleMap(true); }
           initMap();
           updateUserGpsMarkerOnMap();
+      updateSearchedLocationMarkerOnMap();
           if(map) map.flyTo([userCoords.lat, userCoords.lng], 14, { duration: 0.9 });
           applyFilters();
         },
@@ -2311,11 +2571,13 @@
       // Task 5: Prune any event whose endTime has already passed
       eventsData = rawEventsData.filter(event => !getEventTimingState(event, clock).isFinished);
 
-      // Compute GPS distance if userCoords is available
-      if(userCoords){
+      // Compute GPS distance if userCoords or searchedLocation is available
+      const refCoords = (isNearMeActive && userCoords) ? userCoords : (searchedLocation ? { lat: searchedLocation.lat, lng: searchedLocation.lng } : null);
+
+      if(refCoords){
         eventsData.forEach(event => {
           if(hasCoords(event)){
-            event._distanceKm = computeDistanceKm(userCoords.lat, userCoords.lng, Number(event.lat), Number(event.lng));
+            event._distanceKm = computeDistanceKm(refCoords.lat, refCoords.lng, Number(event.lat), Number(event.lng));
           }else{
             event._distanceKm = Infinity;
           }
@@ -2324,14 +2586,17 @@
         eventsData.forEach(event => { delete event._distanceKm; });
       }
 
-      const search=document.getElementById('search-input').value.trim().toLocaleLowerCase('pt-PT');
+      const rawSearch = document.getElementById('search-input').value.trim();
+      const search = rawSearch.toLocaleLowerCase('pt-PT');
       const category=document.getElementById('category-filter').value;
       const price=document.getElementById('price-filter').value;
       const corridor=document.getElementById('corridor-filter').value;
 
+      const isAddressSearch = searchedLocation && !searchedLocation.isVenue;
+
       filteredEvents=eventsData.filter(event=>{
         const searchable=`${event.title||''} ${event.venue||''} ${event.neighborhood||''} ${event.description||''} ${categoryLabels[event.category]||event.category||''}`.toLocaleLowerCase('pt-PT');
-        const matchesSearch=searchable.includes(search);
+        const matchesSearch = isAddressSearch ? true : searchable.includes(search);
         const matchesCategory=category==='ALL'||event.category===category||(category==='Blood Donation'&&(event.category==='Blood Donation'||event.icon==='🩸'));
         const matchesCorridor=corridor==='ALL'||event.corridor===corridor;
         let matchesPrice=true;
@@ -2361,7 +2626,7 @@
         return matchesSearch&&matchesCategory&&matchesCorridor&&matchesPrice&&matchesSoon&&matchesSaved&&matchesVenueChip;
       });
 
-      if(isNearMeActive && userCoords){
+      if((isNearMeActive && userCoords) || searchedLocation){
         filteredEvents.sort((a, b) => (a._distanceKm ?? Infinity) - (b._distanceKm ?? Infinity));
       }
 
@@ -2372,6 +2637,7 @@
 
     function resetFilters(){
       document.getElementById('search-input').value='';
+      clearSearchedLocation();
       document.getElementById('category-filter').value='ALL';
       document.getElementById('price-filter').value='ALL';
       document.getElementById('corridor-filter').value='ALL';
@@ -2540,7 +2806,137 @@
       initSuggestionModal();
       updateQuickFilterPillsUI();
 
-      document.getElementById('search-input').addEventListener('input',applyFilters);
+      // Search input live filtering, debounced location suggestions & key controls
+      let searchDebounceTimer = null;
+      const searchInputEl = document.getElementById('search-input');
+      const searchDdEl = document.getElementById('search-suggestions-dropdown');
+
+      searchInputEl.addEventListener('input', () => {
+        applyFilters();
+        clearTimeout(searchDebounceTimer);
+        const query = searchInputEl.value.trim();
+        if(!searchDdEl) return;
+
+        if(query.length < 2){
+          searchDdEl.style.display = 'none';
+          searchDdEl.innerHTML = '';
+          return;
+        }
+
+        searchDebounceTimer = setTimeout(async () => {
+          const venueMatches = searchLocalVenues(query);
+          let addressMatches = [];
+          if(query.length >= 3){
+            addressMatches = await searchAddressesNominatim(query);
+          }
+
+          if(!venueMatches.length && !addressMatches.length){
+            searchDdEl.style.display = 'none';
+            searchDdEl.innerHTML = '';
+            return;
+          }
+
+          let html = '';
+          if(venueMatches.length){
+            html += `<div class="sugg-section-title">🏛️ Espaços Culturais & Venues</div>`;
+            venueMatches.forEach((vm, idx) => {
+              html += `<div class="sugg-item" data-sugg-type="venue" data-sugg-idx="${idx}">
+                <span class="sugg-icon">🏛️</span>
+                <div class="sugg-body">
+                  <span class="sugg-main">${escapeHtml(vm.label)}</span>
+                  <span class="sugg-sub">${escapeHtml(vm.subtitle)}</span>
+                </div>
+                <span class="sugg-action-pill">Ver no mapa ↗</span>
+              </div>`;
+            });
+          }
+          if(addressMatches.length){
+            html += `<div class="sugg-section-title">📍 Endereços & Locais (Lisboa)</div>`;
+            addressMatches.forEach((am, idx) => {
+              html += `<div class="sugg-item" data-sugg-type="address" data-sugg-idx="${idx}">
+                <span class="sugg-icon">📍</span>
+                <div class="sugg-body">
+                  <span class="sugg-main">${escapeHtml(am.label)}</span>
+                  <span class="sugg-sub">${escapeHtml(am.subtitle)}</span>
+                </div>
+                <span class="sugg-action-pill">Fixar 📍</span>
+              </div>`;
+            });
+          }
+
+          searchDdEl.innerHTML = html;
+          searchDdEl.style.display = 'block';
+
+          searchDdEl.querySelectorAll('.sugg-item').forEach(itemEl => {
+            itemEl.addEventListener('click', () => {
+              const type = itemEl.getAttribute('data-sugg-type');
+              const idx = parseInt(itemEl.getAttribute('data-sugg-idx'), 10);
+              const target = (type === 'venue') ? venueMatches[idx] : addressMatches[idx];
+              if(target){
+                searchInputEl.value = target.label;
+                searchDdEl.style.display = 'none';
+                setSearchedLocation(target);
+              }
+            });
+          });
+        }, 320);
+      });
+
+      searchInputEl.addEventListener('keydown', async (e) => {
+        if(e.key === 'Enter'){
+          e.preventDefault();
+          const query = searchInputEl.value.trim();
+          if(!query) return;
+          if(searchDdEl) { searchDdEl.style.display = 'none'; }
+
+          const venueMatches = searchLocalVenues(query);
+          if(venueMatches.length > 0){
+            setSearchedLocation(venueMatches[0]);
+            return;
+          }
+
+          const addressMatches = await searchAddressesNominatim(query);
+          if(addressMatches.length > 0){
+            setSearchedLocation(addressMatches[0]);
+            return;
+          }
+
+          applyFilters();
+        }
+      });
+
+      const locateBtn = document.getElementById('search-locate-btn');
+      if(locateBtn){
+        locateBtn.addEventListener('click', async () => {
+          const query = searchInputEl.value.trim();
+          if(!query) return;
+          if(searchDdEl) { searchDdEl.style.display = 'none'; }
+
+          const venueMatches = searchLocalVenues(query);
+          if(venueMatches.length > 0){
+            setSearchedLocation(venueMatches[0]);
+            return;
+          }
+          const addressMatches = await searchAddressesNominatim(query);
+          if(addressMatches.length > 0){
+            setSearchedLocation(addressMatches[0]);
+            return;
+          }
+          applyFilters();
+        });
+      }
+
+      const searchedLocPill = document.getElementById('searched-loc-pill');
+      if(searchedLocPill){
+        searchedLocPill.addEventListener('click', clearSearchedLocation);
+      }
+
+      document.addEventListener('click', (e) => {
+        const container = document.querySelector('.search-field-container');
+        if(searchDdEl && container && !container.contains(e.target)){
+          searchDdEl.style.display = 'none';
+        }
+      });
       ['category-filter','price-filter','corridor-filter'].forEach(id=>document.getElementById(id).addEventListener('change',applyFilters));
       document.getElementById('reset-filters').addEventListener('click',resetFilters);
       document.getElementById('map-toggle').addEventListener('click',()=>toggleMap());
