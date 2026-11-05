@@ -131,7 +131,7 @@ VENUE_REGISTRY = [
     {"venue": "Underdogs Gallery", "aliases": ["underdogs", "underdogs gallery", "rua fernando palha"], "lat": 38.73995, "lng": -9.10035, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://www.under-dogs.net"},
     {"venue": "Teatro Meridional", "aliases": ["teatro meridional", "meridional"], "lat": 38.73785, "lng": -9.10165, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://teatromeridional.net"},
     {"venue": "BOTA - Base Organizada da Toca das Artes", "aliases": ["bota anjos", "base organizada da toca das artes", "largo de santa barbara"], "lat": 38.72675, "lng": -9.13650, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.botaanjos.com"},
-    {"venue": "Jardins do Bombarda (LARGO Residências)", "aliases": ["jardins do bombarda", "largo residencias", "hospital miguel bombarda", "rua gomes freire", "jardim do bombarda"], "lat": 38.72515, "lng": -9.13915, "neighborhood": "Arroios / Gomes Freire", "corridor": "Eastern Corridor", "url": "https://www.jardinsdobombarda.pt"},
+    {"venue": "Jardins do Bombarda (LARGO Residências)", "aliases": ["jardins do bombarda", "largo residencias", "hospital miguel bombarda", "rua gomes freire", "jardim do bombarda"], "lat": 38.72537, "lng": -9.14071, "neighborhood": "Arroios / Gomes Freire", "corridor": "Axial Spine", "url": "https://www.jardinsdobombarda.pt"},
     {"venue": "Caulino Ceramics & Ateliers de Olaria", "aliases": ["caulino ceramics", "caulino", "atelier de ceramica arroios", "olaria arroios"], "lat": 38.7278, "lng": -9.1342, "neighborhood": "Arroios", "corridor": "Eastern Corridor", "url": "https://www.caulinoceramics.com"},
     {"venue": "Contraprova — Atelier de Gravura e Risografia", "aliases": ["contraprova", "atelier de gravura", "oficina de serigrafia anjos", "risografia lisboa"], "lat": 38.7231, "lng": -9.1361, "neighborhood": "Anjos / Intendente", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
     {"venue": "Anjos70", "aliases": ["anjos70", "anjos 70", "regueirao dos anjos"], "lat": 38.72298, "lng": -9.13588, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://anjos70.org/"},
@@ -515,6 +515,10 @@ def infer_end_time(start_time, hour_int, category_name, venue_name="", title="",
 
 def parse_price_and_tier(text, default_price="Consultar bilheteira", default_tier="ACCESSIBLE"):
     low = strip_accents(text or "")
+    # 0. Check for compensated / paid participant opportunities (levas o carcanol contigo)
+    if re.search(r"\b(compensacao|remunerad|carcanol|vales de compras|pago ao participante)\b", low):
+        return text if text else "Compensação ao participante", "PAID_OPP"
+
     # 1. First check explicit price amounts (€...)
     for m in re.finditer(r"(?:€\s*(\d{1,3})(?:[.,](\d{1,2}))?|(\d{1,3})(?:[.,](\d{1,2}))?\s*€)", str(text)):
         whole = m.group(1) if m.group(1) is not None else m.group(3)
@@ -2819,10 +2823,30 @@ def scrape_volunteer_and_studies(target_date):
             "hour": 10,
             "endTime": "18:00",
             "endHour": 18,
-            "price": "Compensação 10 € - 20 € / Vales (Entrada Livre)",
-            "priceTier": "FREE",
+            "price": "Compensação 10 € - 20 € / Vales",
+            "priceTier": "PAID_OPP",
             "url": "https://www.iscte-iul.pt",
             "description": "Participação voluntária em estudos de psicologia cognitiva, perceção e tomada de decisão no laboratório experimental universitário. Sessões de 30 a 60 minutos com compensação de deslocação/vales. Maiores de 18 anos.",
+        })
+        events.append({
+            "id": f"estudo-ulisboa-{target_date.strftime('%Y%m%d')}",
+            "title": "Estudos de Neurociência & Cognição — Participação Remunerada (ULisboa)",
+            "category": "Community & Gatherings",
+            "color": "#118AB2",
+            "icon": "🔬",
+            "venue": "Faculdade de Psicologia — Universidade de Lisboa",
+            "neighborhood": "Cidade Universitária / Entre-Campos",
+            "corridor": "Northern Belt",
+            "lat": 38.75230,
+            "lng": -9.15680,
+            "time": "10:30",
+            "hour": 10,
+            "endTime": "17:30",
+            "endHour": 17,
+            "price": "Compensação 15 € / Sessão (Vales ou Transferência)",
+            "priceTier": "PAID_OPP",
+            "url": "https://www.psicologia.ulisboa.pt/",
+            "description": "Participação voluntária em experiências comportamentais e EEG/Eye-tracking no laboratório de investigação da ULisboa. Sessões de 45 a 60 min com compensação monetária ou vales de compras aos participantes elegíveis.",
         })
 
     # Community volunteering evening shift
