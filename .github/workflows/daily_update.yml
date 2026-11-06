@@ -5,6 +5,12 @@ on:
     - cron: '0 4 * * *'
       timezone: 'Europe/Lisbon'
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/daily_update.yml'
+      - 'scraper.py' 
 
 permissions:
   contents: write

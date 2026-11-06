@@ -161,6 +161,18 @@
     footer{max-width:1600px;margin:0 auto;padding:20px 22px 30px;color:var(--muted);font:10px/1.7 var(--mono);text-transform:uppercase}
     .footer-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;border-top:1px solid var(--line);padding-top:16px}
     footer strong{color:var(--yellow);font-weight:500}
+    .footer-links{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:2px}
+    .footer-link-btn{background:none;border:none;color:var(--muted);font:9px var(--mono);text-transform:uppercase;text-decoration:underline;cursor:pointer;padding:2px 4px;transition:color .15s;letter-spacing:.4px}
+    .footer-link-btn:hover{color:var(--yellow)}
+
+    .legal-modal{max-width:620px}
+    .legal-content{font:12px/1.6 var(--mono);color:var(--paper);display:flex;flex-direction:column;gap:10px;margin-top:10px}
+    .legal-content h3{font:700 12px/1.2 var(--mono);color:var(--yellow);text-transform:uppercase;margin:10px 0 2px;letter-spacing:.4px}
+    .legal-content p{margin:0;color:#c8cebf;font-size:11px;line-height:1.6}
+    .legal-content strong{color:var(--paper)}
+    .legal-contact-box{background:var(--ink);border:1px solid var(--yellow);padding:8px 12px;font:700 12px var(--mono);color:var(--yellow);display:inline-block;margin:4px 0}
+    .legal-email-link{color:var(--yellow);text-decoration:underline}
+    .legal-email-link:hover{color:var(--paper)}
 
     .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--ink2);color:var(--paper)}.leaflet-popup-content-wrapper{border:1px solid var(--yellow);border-radius:0}.leaflet-popup-content{margin:12px}.leaflet-container a{color:var(--yellow)}.popup-tag{display:inline-block;padding:3px 5px;color:var(--ink);font:700 9px var(--mono);text-transform:uppercase}.popup-title{margin:8px 0 6px;font:700 15px/1.15 var(--body)}.popup-detail{margin:3px 0;color:#c4cbbd;font-size:11px;line-height:1.5}.popup-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}.popup-share-btn{display:inline-flex;align-items:center;justify-content:center;padding:7px 8px;border:1px solid var(--yellow);background:var(--ink);color:var(--yellow);font:700 10px var(--mono);text-transform:uppercase;cursor:pointer;transition:.14s}.popup-share-btn:hover{background:var(--yellow);color:var(--ink)}.popup-share-btn.is-copied{border-color:var(--green)!important;color:var(--green)!important}.popup-link{display:inline-flex;align-items:center;justify-content:center;padding:7px 9px;background:var(--red);color:var(--ink)!important;text-align:center;text-decoration:none;font:700 10px var(--mono);text-transform:uppercase}.popup-link:hover{background:var(--yellow)}
     .popup-venue-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
@@ -557,10 +569,43 @@
     </div>
   </div>
 
+  <!-- Modal: Aviso Legal & Termos / Takedown -->
+  <div class="modal-backdrop" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="suggest-modal legal-modal">
+      <div class="suggest-modal-header">
+        <div>
+          <h2 id="legal-modal-title">Aviso Legal &amp; Direitos</h2>
+          <p>Transparência, fontes públicas e política de remoção (Notice &amp; Takedown)</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="close-legal-modal" aria-label="Fechar janela">✕</button>
+      </div>
+      <div class="legal-content">
+        <h3>1. Projeto Comunitário &amp; Finalidade</h3>
+        <p>O <strong>Keks Passa</strong> é uma plataforma cultural comunitária e independente, sem fins lucrativos, desenvolvida para mapear, apoiar e divulgar a oferta cultural e artística da cidade de Lisboa.</p>
+
+        <h3>2. Fontes Públicas &amp; Ligações Oficiais</h3>
+        <p>Os eventos, datas, horários e moradas são compilados a partir de agendas públicas, comunicados municipais e sítios oficiais de teatros, galerias e espaços culturais. Todas as entradas incluem hiperligação direta para a fonte original e/ou bilheteira oficial dos respetivos promotores, incentivando a participação direta e a compra de bilhetes junto dos criadores.</p>
+
+        <h3>3. Direitos de Autor &amp; Marcas</h3>
+        <p>Todos os nomes de eventos, marcas, logótipos e referências pertencem integralmente aos seus respetivos autores, promotores e artistas. O Keks Passa não reivindica qualquer propriedade sobre as marcas ou criações aqui referenciadas, atuando exclusivamente como índice e diretório informativo de livre acesso.</p>
+
+        <h3>4. Política de Remoção (Notice &amp; Takedown)</h3>
+        <p>És artista, promotor, produtor ou responsável por um espaço e pretendes retificar, atualizar ou <strong>remover de imediato</strong> qualquer evento ou menção da nossa plataforma? Envia-nos um email:</p>
+        <div class="legal-contact-box">
+          ✉️ <a href="mailto:kekspassa@proton.me" class="legal-email-link">kekspassa@proton.me</a>
+        </div>
+        <p>Garantimos a retificação ou remoção no próprio dia útil.</p>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-inner">
       <span>Se quiseres fazer um donativo, faz mas é um MB WAY à Federação Portuguesa dos Bancos Alimentares: <strong>917491866</strong></span>
       <strong>KEKS PASSA</strong>
+      <div class="footer-links">
+        <button type="button" class="footer-link-btn" id="open-legal-modal">Aviso Legal &amp; Takedown</button>
+      </div>
     </div>
   </footer>
 
@@ -2799,11 +2844,31 @@
       });
     }
     
+    function initLegalModal(){
+      const modal = document.getElementById('legal-modal');
+      const openBtn = document.getElementById('open-legal-modal');
+      const closeBtn = document.getElementById('close-legal-modal');
+      if(!modal) return;
+
+      function openModal(){
+        modal.classList.add('is-open');
+      }
+      function closeModal(){
+        modal.classList.remove('is-open');
+      }
+
+      if(openBtn) openBtn.addEventListener('click', openModal);
+      if(closeBtn) closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+      window.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+    }
+
     document.addEventListener('DOMContentLoaded',async()=>{
       initTascaMinigame();
       initTicker();
       initDraggableTicker();
       initSuggestionModal();
+      initLegalModal();
       updateQuickFilterPillsUI();
 
       // Search input live filtering, debounced location suggestions & key controls
