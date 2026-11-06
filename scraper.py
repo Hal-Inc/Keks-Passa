@@ -131,7 +131,7 @@ VENUE_REGISTRY = [
     {"venue": "Underdogs Gallery", "aliases": ["underdogs", "underdogs gallery", "rua fernando palha"], "lat": 38.73995, "lng": -9.10035, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://www.under-dogs.net"},
     {"venue": "Teatro Meridional", "aliases": ["teatro meridional", "meridional"], "lat": 38.73785, "lng": -9.10165, "neighborhood": "Marvila", "corridor": "Eastern Corridor", "url": "https://teatromeridional.net"},
     {"venue": "BOTA - Base Organizada da Toca das Artes", "aliases": ["bota anjos", "base organizada da toca das artes", "largo de santa barbara"], "lat": 38.72675, "lng": -9.13650, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://www.botaanjos.com"},
-    {"venue": "Jardins do Bombarda (LARGO Residências)", "aliases": ["jardins do bombarda", "largo residencias", "hospital miguel bombarda", "rua gomes freire", "jardim do bombarda"], "lat": 38.72537, "lng": -9.14071, "neighborhood": "Arroios / Gomes Freire", "corridor": "Axial Spine", "url": "https://www.jardinsdobombarda.pt"},
+    {"venue": "Jardins do Bombarda (LARGO Residências)", "aliases": ["jardins do bombarda", "largo residencias", "hospital miguel bombarda", "rua gomes freire", "jardim do bombarda"], "lat": 38.72537, "lng": -9.14071, "neighborhood": "Arroios / Gomes Freire", "corridor": "Axial Spine", "url": "https://largoresidencias.com"},
     {"venue": "Caulino Ceramics & Ateliers de Olaria", "aliases": ["caulino ceramics", "caulino", "atelier de ceramica arroios", "olaria arroios"], "lat": 38.7278, "lng": -9.1342, "neighborhood": "Arroios", "corridor": "Eastern Corridor", "url": "https://www.caulinoceramics.com"},
     {"venue": "Contraprova — Atelier de Gravura e Risografia", "aliases": ["contraprova", "atelier de gravura", "oficina de serigrafia anjos", "risografia lisboa"], "lat": 38.7231, "lng": -9.1361, "neighborhood": "Anjos / Intendente", "corridor": "Eastern Corridor", "url": "https://www.agendalx.pt"},
     {"venue": "Anjos70", "aliases": ["anjos70", "anjos 70", "regueirao dos anjos"], "lat": 38.72298, "lng": -9.13588, "neighborhood": "Anjos", "corridor": "Eastern Corridor", "url": "https://anjos70.org/"},
@@ -1569,7 +1569,7 @@ def scrape_markets_workshops_lectures(target_date):
 
     # Jardins do Bombarda (LARGO Residências) live agenda check
     try:
-        resp = fetch_url("https://www.jardinsdobombarda.pt")
+        resp = fetch_url("https://largoresidencias.com")
         if resp.status_code == 200:
             soup = BeautifulSoup(resp.text, "html.parser")
             geo = match_venue("jardins do bombarda")
@@ -1606,7 +1606,7 @@ def scrape_markets_workshops_lectures(target_date):
                     "endHour": end_h,
                     "price": price_disp,
                     "priceTier": price_tier,
-                    "url": "https://www.jardinsdobombarda.pt",
+                    "url": "https://largoresidencias.com",
                     "description": f"{title} nos Jardins do Bombarda / LARGO Residências (Rua Gomes Freire, Arroios).",
                 })
     except Exception as e:
@@ -2258,10 +2258,10 @@ def get_ongoing_cultural_events(target_date):
     # Jardins do Bombarda (LARGO Residências) — Open Cultural Gardens, Workshops & Community Events
     add_item(59, "Jardins Abertos, Horta Comunitária, Oficinas Criativas & Esplanada Cultural", "community",
              "jardins do bombarda", "12:00", "20:00", "Entrada Livre", "FREE",
-             "https://www.jardinsdobombarda.pt", "Programação comunitária, oficinas de artes e ofícios, exposições e convívio nos Jardins do Bombarda / LARGO Residências (Rua Gomes Freire).")
+             "https://largoresidencias.com", "Programação comunitária, oficinas de artes e ofícios, exposições e convívio nos Jardins do Bombarda / LARGO Residências (Rua Gomes Freire).")
     add_item(60, "Noites no Bombarda: Música, Cinema ao Ar Livre & Encontros Comunitários", "concerts",
              "jardins do bombarda", "19:00", "23:00", "Entrada Livre", "FREE",
-             "https://www.jardinsdobombarda.pt", "Fim de tarde e noite com concertos acústicos, DJ sets, tertúlias e cinema nos Jardins do Bombarda (Arroios).")
+             "https://largoresidencias.com", "Fim de tarde e noite com concertos acústicos, DJ sets, tertúlias e cinema nos Jardins do Bombarda (Arroios).")
 
     # More Arts & Crafts, Ceramics, Printmaking, Letterpress & Creative Workshops
     if weekday != 6:

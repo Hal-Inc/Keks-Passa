@@ -158,20 +158,9 @@
     .suggest-feedback pre{margin:8px 0 0;padding:8px;background:var(--ink2);color:var(--paper);overflow-x:auto;font-size:10px;border:1px solid var(--line)}
 
     /* Footer styling */
-    footer{max-width:1600px;margin:0 auto;padding:24px 22px 34px;color:var(--muted);font:10px/1.6 var(--mono);text-transform:uppercase}
-    .footer-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;border-top:1px solid var(--line);padding-top:20px}
-    .footer-prompt{margin:0;color:#c0c5b5;font-size:11px;letter-spacing:.4px}
-    .footer-charities{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;max-width:1200px;margin:2px 0 6px}
-    .charity-card{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(240,237,223,.04);border:1px solid rgba(240,237,223,.14);cursor:pointer;transition:border-color .15s,background .15s,transform .12s}
-    .charity-card:hover{border-color:var(--yellow);background:rgba(244,206,70,.1);transform:translateY(-1px)}
-    .charity-name{color:var(--paper);font-weight:600;font-size:10px}
-    .charity-sub{color:var(--muted);font-weight:400;font-size:9px}
-    .charity-mbway{color:var(--yellow);font-weight:700;font-size:10px;background:rgba(244,206,70,.14);padding:2px 6px;white-space:nowrap;letter-spacing:.3px}
-    .charity-mbway strong{color:var(--yellow)}
-    .charity-card.is-copied .charity-mbway{color:var(--green);background:rgba(154,197,123,.25)}
-    .footer-brand{color:var(--yellow);font:800 14px/1 var(--display);letter-spacing:2.5px;margin-top:6px}
-
-
+    footer{max-width:1600px;margin:0 auto;padding:20px 22px 30px;color:var(--muted);font:10px/1.7 var(--mono);text-transform:uppercase}
+    .footer-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;border-top:1px solid var(--line);padding-top:16px}
+    footer strong{color:var(--yellow);font-weight:500}
 
     .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--ink2);color:var(--paper)}.leaflet-popup-content-wrapper{border:1px solid var(--yellow);border-radius:0}.leaflet-popup-content{margin:12px}.leaflet-container a{color:var(--yellow)}.popup-tag{display:inline-block;padding:3px 5px;color:var(--ink);font:700 9px var(--mono);text-transform:uppercase}.popup-title{margin:8px 0 6px;font:700 15px/1.15 var(--body)}.popup-detail{margin:3px 0;color:#c4cbbd;font-size:11px;line-height:1.5}.popup-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}.popup-share-btn{display:inline-flex;align-items:center;justify-content:center;padding:7px 8px;border:1px solid var(--yellow);background:var(--ink);color:var(--yellow);font:700 10px var(--mono);text-transform:uppercase;cursor:pointer;transition:.14s}.popup-share-btn:hover{background:var(--yellow);color:var(--ink)}.popup-share-btn.is-copied{border-color:var(--green)!important;color:var(--green)!important}.popup-link{display:inline-flex;align-items:center;justify-content:center;padding:7px 9px;background:var(--red);color:var(--ink)!important;text-align:center;text-decoration:none;font:700 10px var(--mono);text-transform:uppercase}.popup-link:hover{background:var(--yellow)}
     .popup-venue-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
@@ -570,22 +559,8 @@
 
   <footer>
     <div class="footer-inner">
-      <p class="footer-prompt">Se quiseres fazer um donativo, faz mas é um MB WAY à:</p>
-      <div class="footer-charities" role="list">
-        <div class="charity-card" role="listitem" title="Toca para copiar o número MB WAY" data-copy-phone="917491866">
-          <span class="charity-name">Federação Portuguesa dos Bancos Alimentares</span>
-          <span class="charity-mbway">MB WAY <strong>917 491 866</strong></span>
-        </div>
-        <div class="charity-card" role="listitem" title="Toca para copiar o número MB WAY" data-copy-phone="912340222">
-          <span class="charity-name">Comunidade Vida e Paz <span class="charity-sub">(Sem-Abrigo &amp; Emergência Social)</span></span>
-          <span class="charity-mbway">MB WAY <strong>912 340 222</strong></span>
-        </div>
-        <div class="charity-card" role="listitem" title="Toca para copiar o número MB WAY" data-copy-phone="916897230">
-          <span class="charity-name">Acreditar <span class="charity-sub">(Crianças com Cancro)</span></span>
-          <span class="charity-mbway">MB WAY <strong>916 897 230</strong></span>
-        </div>
-      </div>
-      <div class="footer-brand">KEKS PASSA</div>
+      <span>Se quiseres fazer um donativo, faz mas é um MB WAY à Federação Portuguesa dos Bancos Alimentares: <strong>917491866</strong></span>
+      <strong>KEKS PASSA</strong>
     </div>
   </footer>
 
@@ -3014,27 +2989,6 @@
       await loadDailyEvents();
       initMap();
       setTimeout(() => map && map.invalidateSize(), 200);
-
-      // Copy MB WAY phone number to clipboard on tap
-      document.querySelectorAll('.charity-card').forEach(card => {
-        card.addEventListener('click', async () => {
-          const phone = card.getAttribute('data-copy-phone');
-          if(!phone) return;
-          try {
-            await navigator.clipboard.writeText(phone);
-            const mbEl = card.querySelector('.charity-mbway');
-            if(mbEl){
-              const originalHtml = mbEl.innerHTML;
-              card.classList.add('is-copied');
-              mbEl.innerHTML = 'COPIADO! ✓';
-              setTimeout(() => {
-                card.classList.remove('is-copied');
-                mbEl.innerHTML = originalHtml;
-              }, 1800);
-            }
-          } catch(_) {}
-        });
-      });
 
       // Register PWA Service Worker for instant offline loading and homescreen installation
       if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
