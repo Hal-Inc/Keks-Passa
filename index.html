@@ -161,9 +161,16 @@
     footer{max-width:1600px;margin:0 auto;padding:20px 22px 30px;color:var(--muted);font:10px/1.7 var(--mono);text-transform:uppercase}
     .footer-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;border-top:1px solid var(--line);padding-top:16px}
     footer strong{color:var(--yellow);font-weight:500}
-    .footer-links{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:2px}
+    .footer-bottom-bar{display:flex;align-items:center;justify-content:center;position:relative;width:100%;min-height:22px;margin-top:4px}
+    .footer-brand{color:var(--yellow);font-weight:500;letter-spacing:1px}
+    .footer-links{position:absolute;right:0;display:flex;align-items:center}
     .footer-link-btn{background:none;border:none;color:var(--muted);font:9px var(--mono);text-transform:uppercase;text-decoration:underline;cursor:pointer;padding:2px 4px;transition:color .15s;letter-spacing:.4px}
     .footer-link-btn:hover{color:var(--yellow)}
+
+    @media (max-width:580px){
+      .footer-bottom-bar{flex-direction:column;gap:6px}
+      .footer-links{position:static;width:100%;justify-content:flex-end}
+    }
 
     .legal-modal{max-width:620px}
     .legal-content{font:12px/1.6 var(--mono);color:var(--paper);display:flex;flex-direction:column;gap:10px;margin-top:10px}
@@ -602,9 +609,11 @@
   <footer>
     <div class="footer-inner">
       <span>Se quiseres fazer um donativo, faz mas é um MB WAY à Federação Portuguesa dos Bancos Alimentares: <strong>917491866</strong></span>
-      <strong>KEKS PASSA</strong>
-      <div class="footer-links">
-        <button type="button" class="footer-link-btn" id="open-legal-modal">Aviso Legal &amp; Takedown</button>
+      <div class="footer-bottom-bar">
+        <strong class="footer-brand">KEKS PASSA</strong>
+        <div class="footer-links">
+          <button type="button" class="footer-link-btn" id="open-legal-modal">Aviso Legal &amp; Takedown</button>
+        </div>
       </div>
     </div>
   </footer>
