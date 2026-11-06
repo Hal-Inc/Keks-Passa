@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T15:24:04.414803+00:00",
+  "generated_at": "2026-11-06T15:29:38.071592+00:00",
   "operational_date": "2026-11-06",
   "date_string": "2026-11-06",
   "total_events": 154,
@@ -185,7 +185,7 @@
       "description": "Participação voluntária em estudos de psicologia cognitiva, perceção e tomada de decisão no laboratório experimental universitário. Sessões de 30 a 60 minutos com compensação de deslocação/vales. Maiores de 18 anos."
     },
     {
-      "id": "soko-600383",
+      "id": "soko-183373",
       "title": "Expor, Publicar: o MAAT Impresso (2016–2026)",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -265,7 +265,7 @@
       "description": "Exposição “Tiro no Escuro” – Francisco Leal em NOVIDADE – Espaço Cultural Dona Ajuda (Santo António)."
     },
     {
-      "id": "agendalx-82003",
+      "id": "agendalx-562944",
       "title": "Forest: A Rooted Experience",
       "category": "Family & Youth",
       "color": "#118AB2",
@@ -285,7 +285,7 @@
       "description": "Forest: A Rooted Experience em Pavilhão do Conhecimento (Parque das Nações)."
     },
     {
-      "id": "agendalx-600718",
+      "id": "agendalx-202021",
       "title": "Guided Tours to B-MAD, Museu Berardo Arte Deco",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -305,7 +305,7 @@
       "description": "Guided Tours to B-MAD, Museu Berardo Arte Deco em Museu Berardo Arte Deco (B-MAD) (Alcântara)."
     },
     {
-      "id": "soko-623754",
+      "id": "soko-111476",
       "title": "Joaquín Sorolla - Mostra Espanha 2026",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -325,7 +325,7 @@
       "description": "Joaquín Sorolla - Mostra Espanha 2026 em MNAC - Museu do Chiado (Chiado). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-920036",
+      "id": "soko-519651",
       "title": "João Pimenta Gomes - New Age",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -365,7 +365,7 @@
       "description": "Meditação do Chacra do Coração em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém)."
     },
     {
-      "id": "soko-218735",
+      "id": "soko-377561",
       "title": "Mercado CCB",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -445,7 +445,7 @@
       "description": "Oceanário de Lisboa em Oceanário de Lisboa (Parque das Nações)."
     },
     {
-      "id": "agendalx-374971",
+      "id": "agendalx-503762",
       "title": "Pantónio",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -545,7 +545,7 @@
       "description": "Uma deriva atlântica em Centro Cultural de Belém (CCB) (Belém)."
     },
     {
-      "id": "agendalx-236721",
+      "id": "agendalx-528802",
       "title": "Venus - Valentino Garavani Through the Eyes of Joana Vasconcelos",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -573,8 +573,8 @@
       "venue": "Aquário Vasco da Gama, R. Direita do Dafundo, 1495-718 Cruz Quebrada",
       "neighborhood": "Bairro Clemente Vicente",
       "corridor": "Belém Waterfront",
-      "lat": 38.699195,
-      "lng": -9.237565,
+      "lat": 38.69921,
+      "lng": -9.238597,
       "time": "10:00",
       "hour": 10,
       "endTime": "12:00",
@@ -645,7 +645,7 @@
       "description": "a travessia (escolas) | Trama em Museu da Marioneta (Madragoa / Santos)."
     },
     {
-      "id": "soko-49631",
+      "id": "soko-921736",
       "title": "Amelie Von Wulffen",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -665,7 +665,7 @@
       "description": "Amelie Von Wulffen em Culturgest (Campo Pequeno / Arco do Cego). Curadoria Soko Lisboa."
     },
     {
-      "id": "curated-65713",
+      "id": "curated-41472",
       "title": "Curated Selection 2.0",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -725,7 +725,7 @@
       "description": "Segundo Ciclo em Centro Cultural de Belém (CCB) (Belém)."
     },
     {
-      "id": "soko-838877",
+      "id": "soko-939676",
       "title": "1.º Aniversário da Brava: Do rural à cidade, a insurgência dos territórios",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -745,7 +745,7 @@
       "description": "1.º Aniversário da Brava: Do rural à cidade, a insurgência dos territórios em Jardins do Bombarda (LARGO Residências) (Arroios / Gomes Freire). Curadoria Soko Lisboa."
     },
     {
-      "id": "va-card-833986",
+      "id": "va-card-986701",
       "title": "A Maior Exposição de Modelos Feitos com Peças de LEGO® da Europa",
       "category": "Family & Youth",
       "color": "#118AB2",
@@ -765,7 +765,7 @@
       "description": "A Maior Exposição de Modelos Feitos com Peças de LEGO® da Europa em Cordoaria Nacional (Belém / Junqueira)."
     },
     {
-      "id": "soko-628773",
+      "id": "soko-248833",
       "title": "Alexandre Estrela - RedSkyFalls (réplica)",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -805,7 +805,7 @@
       "description": "Cabaz de Natal 2026 na Freguesia de Santo António, Santo António."
     },
     {
-      "id": "agendalx-431562",
+      "id": "agendalx-223590",
       "title": "Cinema no àCapela – Ciclo Luís Alves de Matos",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -825,7 +825,7 @@
       "description": "Cinema no àCapela – Ciclo Luís Alves de Matos em MACAM / àCapela (Belém / Junqueira)."
     },
     {
-      "id": "va-card-255863",
+      "id": "va-card-684570",
       "title": "Comunicar é Natural – A Botânica das Comunicações",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -845,7 +845,7 @@
       "description": "Comunicar é Natural – A Botânica das Comunicações em Fundação Portuguesa das Comunicações, Lisboa (São Bento)."
     },
     {
-      "id": "va-card-964677",
+      "id": "va-card-41979",
       "title": "Era Uma Vez na América",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -865,7 +865,7 @@
       "description": "Era Uma Vez na América em Pavilhão Julião Sarmento, Lisboa (São Francisco Xavier)."
     },
     {
-      "id": "va-card-516783",
+      "id": "va-card-102113",
       "title": "Linha do Tempo – 40 anos das escolas de calceteiros e de jardinagem",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -885,7 +885,7 @@
       "description": "Linha do Tempo – 40 anos das escolas de calceteiros e de jardinagem em Câmara Municipal de Lisboa, Lisboa (Santa Maria Maior)."
     },
     {
-      "id": "va-card-240696",
+      "id": "va-card-899507",
       "title": "Peso-Contra-Peso",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -905,7 +905,7 @@
       "description": "Peso-Contra-Peso em MACAM / àCapela (Belém / Junqueira)."
     },
     {
-      "id": "va-card-200339",
+      "id": "va-card-989933",
       "title": "Reservas visitáveis do Museu Nacional de Etnologia",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -925,7 +925,7 @@
       "description": "Reservas visitáveis do Museu Nacional de Etnologia em Museu Nacional de Etnologia, Lisboa (São Francisco Xavier)."
     },
     {
-      "id": "va-card-897289",
+      "id": "va-card-182790",
       "title": "Timeless Experiences",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -933,8 +933,8 @@
       "venue": "Lisboa (cidade), Lisboa",
       "neighborhood": "Quinta das Courelas",
       "corridor": "Northern Belt",
-      "lat": 38.787655,
-      "lng": -9.141169,
+      "lat": 38.78848,
+      "lng": -9.141047,
       "time": "18:00",
       "hour": 18,
       "endTime": "20:30",
@@ -945,7 +945,7 @@
       "description": "Timeless Experiences em Lisboa (cidade), Lisboa (Quinta das Courelas)."
     },
     {
-      "id": "va-card-904812",
+      "id": "va-card-33591",
       "title": "Turn Around",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -965,7 +965,7 @@
       "description": "Turn Around em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém)."
     },
     {
-      "id": "va-card-725347",
+      "id": "va-card-232875",
       "title": "Visitas ao Palácio Alverca | Casa do Alentejo",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -985,7 +985,7 @@
       "description": "Visitas ao Palácio Alverca | Casa do Alentejo em Casa do Alentejo, Lisboa (Santa Maria Maior)."
     },
     {
-      "id": "va-card-680130",
+      "id": "va-card-493986",
       "title": "Visitas ao Templo Radha Krishna",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1005,7 +1005,7 @@
       "description": "Visitas ao Templo Radha Krishna em Comunidade Hindu De Portugal, Lisboa (Lumiar)."
     },
     {
-      "id": "va-card-127844",
+      "id": "va-card-872",
       "title": "Visitas guiadas ao B-MAD, Museu Berardo Arte Deco",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1025,7 +1025,7 @@
       "description": "Visitas guiadas ao B-MAD, Museu Berardo Arte Deco em Museu Berardo Arte Deco (B-MAD) (Alcântara)."
     },
     {
-      "id": "va-card-759589",
+      "id": "va-card-89933",
       "title": "Visitas guiadas à Brotéria",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1045,7 +1045,7 @@
       "description": "Visitas guiadas à Brotéria em Brotéria, Lisboa (Encarnação)."
     },
     {
-      "id": "va-card-135183",
+      "id": "va-card-578082",
       "title": "Visitas guiadas à Igreja e Museu de São Roque",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1085,7 +1085,7 @@
       "description": "Turno de voluntariado comunitário para recolha, embalamento e distribuição de refeições contra o desperdício alimentar. Aberto a quem queira juntar-se para apoiar famílias da Penha de França, Graça e Arroios."
     },
     {
-      "id": "soko-483986",
+      "id": "soko-332395",
       "title": "Carlos Wallenstein | Jogo de Mão",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1105,7 +1105,7 @@
       "description": "Carlos Wallenstein | Jogo de Mão em Cinemateca Portuguesa (Avenida / Marquês). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-851823",
+      "id": "soko-444609",
       "title": "Counterpoint: Bankz B2B Pix.L",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1125,7 +1125,7 @@
       "description": "Counterpoint: Bankz B2B Pix.L em Ministerium Club (Terreiro do Paço). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-786212",
+      "id": "soko-162959",
       "title": "Durruti – Eran Todos",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1165,7 +1165,7 @@
       "description": "Geologist @ B.Leza em B.Leza (Cais do Sodré)."
     },
     {
-      "id": "soko-242054",
+      "id": "soko-718609",
       "title": "LEFFEST",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1185,7 +1185,7 @@
       "description": "LEFFEST em Sala Manoel de Oliveira @ Cinema de São Jorge (Lisboa). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-315695",
+      "id": "soko-736726",
       "title": "LEFFEST (Lisboa Film Festival)",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1205,7 +1205,7 @@
       "description": "LEFFEST (Lisboa Film Festival) em Sala Manoel de Oliveira @ Cinema de São Jorge (Lisboa). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-545713",
+      "id": "soko-356420",
       "title": "LEFFEST 2026 celebra 20 edições de cinema, pensamento e outras artes em Lisboa",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1225,7 +1225,7 @@
       "description": "LEFFEST 2026 celebra 20 edições de cinema, pensamento e outras artes em Lisboa em Culturgest (Campo Pequeno / Arco do Cego). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-78986",
+      "id": "soko-514219",
       "title": "LEFFEST 2026 | Paper Tiger – Filme de Abertura",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1245,7 +1245,7 @@
       "description": "LEFFEST 2026 | Paper Tiger – Filme de Abertura em Sala Manoel de Oliveira @ Cinema de São Jorge (Lisboa). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-274093",
+      "id": "soko-741045",
       "title": "LISBON'S BIGGEST INTERNATIONAL SOCIALISING EVENT • DJ PARTY",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -1265,7 +1265,7 @@
       "description": "LISBON'S BIGGEST INTERNATIONAL SOCIALISING EVENT • DJ PARTY em Ruby Rosa - Lisbon Art Stay (Lisboa). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-597147",
+      "id": "soko-689248",
       "title": "Pantónio: Solo Exhibition",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1285,7 +1285,7 @@
       "description": "Pantónio: Solo Exhibition em Underdogs Gallery (Marvila). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-127273",
+      "id": "soko-225211",
       "title": "Paraíso, Hoje",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1305,7 +1305,7 @@
       "description": "Paraíso, Hoje em Centro Cultural de Belém (CCB) (Belém). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-519018",
+      "id": "soko-823990",
       "title": "Petrouchka",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1325,7 +1325,7 @@
       "description": "Petrouchka em CAM - Centro de Arte Moderna Gulbenkian (Avenidas Novas / Praça de Espanha). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-928355",
+      "id": "soko-736182",
       "title": "Salsa Jam",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1345,7 +1345,7 @@
       "description": "Salsa Jam em Fábrica Braço de Prata (Marvila / Braço de Prata). Curadoria Soko Lisboa."
     },
     {
-      "id": "agendalx-437693",
+      "id": "agendalx-957495",
       "title": "TEATRO",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1365,7 +1365,7 @@
       "description": "TEATRO em Teatro Nacional D. Maria II (Rossio)."
     },
     {
-      "id": "soko-985590",
+      "id": "soko-574720",
       "title": "World on a Plate: Eleven Lunch Menu",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1385,7 +1385,7 @@
       "description": "World on a Plate: Eleven Lunch Menu em Eleven (Lisboa). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-263923",
+      "id": "soko-215631",
       "title": "vulnerable grounds ~ on practising breakdown",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1405,7 +1405,7 @@
       "description": "vulnerable grounds ~ on practising breakdown em Jardins do Bombarda (LARGO Residências) (Arroios / Gomes Freire). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-607868",
+      "id": "soko-143715",
       "title": "Câncer em Saturno",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -1425,7 +1425,7 @@
       "description": "Câncer em Saturno em Teatro do Bairro Alto (TBA) (Príncipe Real). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-709752",
+      "id": "soko-800828",
       "title": "Frank Borzage | Bad Girl",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1445,7 +1445,7 @@
       "description": "Frank Borzage | Bad Girl em Cinemateca Portuguesa (Avenida / Marquês). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-572091",
+      "id": "soko-157775",
       "title": "Glue Trip",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1465,7 +1465,7 @@
       "description": "Glue Trip em Casa Capitão (Beato). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-625953",
+      "id": "soko-614588",
       "title": "Parece ser — direção de Iván Haidar",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1485,7 +1485,7 @@
       "description": "Parece ser — direção de Iván Haidar em Galeria Zé dos Bois (ZDB) (Bairro Alto). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-4949",
+      "id": "soko-263631",
       "title": "98.3",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -1505,7 +1505,7 @@
       "description": "98.3 em Teatro do Bairro Alto (TBA) (Príncipe Real). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-863968",
+      "id": "soko-737772",
       "title": "Luar: Soundsystem Party",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1545,7 +1545,7 @@
       "description": "Exibição de Possible Love (de Lee Chang-dong) no Cinema Medeia Nimas (Saldanha)."
     },
     {
-      "id": "agendalx-670904",
+      "id": "agendalx-983280",
       "title": "1936-1939: Espanha Fraturada",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1565,7 +1565,7 @@
       "description": "1936-1939: Espanha Fraturada em Reitoria da Universidade NOVA de Lisboa (Campolide / Praça de Espanha)."
     },
     {
-      "id": "bota-20261106-322",
+      "id": "bota-20261106-8551",
       "title": "Boémia",
       "category": "Family & Youth",
       "color": "#118AB2",
@@ -1585,7 +1585,7 @@
       "description": "Boémia na BOTA Anjos (Largo de Santa Bárbara, Anjos)."
     },
     {
-      "id": "soko-792142",
+      "id": "soko-573386",
       "title": "City Of Dance: 7.ª edição",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1685,7 +1685,7 @@
       "description": "Earth Quartet – jazz ao vivo na Cossoul em Cossoul, R. Nova da Piedade 66, 1200-299 Lisboa (Mercês)."
     },
     {
-      "id": "bota-20261106-4297",
+      "id": "bota-20261106-4340",
       "title": "Esta Noite Grita-se|Vitória de Pau Miró",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1725,7 +1725,7 @@
       "description": "Fado tradicional no Reservatório da Patriarcal leva música portuguesa ao subsolo do Príncipe Real em Jardim do Príncipe Real (Príncipe Real)."
     },
     {
-      "id": "soko-672302",
+      "id": "soko-273105",
       "title": "GEOLOGIST c/ 1ª Parte TOMÉ",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1765,7 +1765,7 @@
       "description": "Gurriers em Casa Capitão (Beato)."
     },
     {
-      "id": "soko-302140",
+      "id": "soko-204651",
       "title": "Gurriers + Really Good Time",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1905,7 +1905,7 @@
       "description": "Maria Rueff e Maria do Céu Guerra reinventam Shakespeare em Happy New Lear em Teatro Cinearte (Prazeres)."
     },
     {
-      "id": "agendalx-359410",
+      "id": "agendalx-669310",
       "title": "May I help you? Posso Ajudar?",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -1965,7 +1965,7 @@
       "description": "QUANDO MENOS SE ESPERA em Teatro Tivoli BBVA (Avenida da Liberdade)."
     },
     {
-      "id": "agendalx-369037",
+      "id": "agendalx-626389",
       "title": "Sei Miguel",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -2045,7 +2045,7 @@
       "description": "Teatro em BOTA - Base Organizada da Toca das Artes (Anjos)."
     },
     {
-      "id": "soko-905342",
+      "id": "soko-859903",
       "title": "Teumarulo",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -2145,7 +2145,7 @@
       "description": "Villa Sambô - Especial aniversário em LX Factory / Village Underground (Alcântara)."
     },
     {
-      "id": "soko-398846",
+      "id": "soko-706081",
       "title": "Vitória",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -2245,7 +2245,7 @@
       "description": "“Petrouchka” de Stravinsky regressa à Gulbenkian com Hannu Lintu — sessão de 6 de novembro de 2026 em CAM - Centro de Arte Moderna Gulbenkian (Avenidas Novas / Praça de Espanha)."
     },
     {
-      "id": "soko-985035",
+      "id": "soko-463810",
       "title": "FESTA DO JAZZ 2026 | JULIA PERMINOVA TRIO",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -2285,7 +2285,7 @@
       "description": "Julia Perminova Trio em Centro Cultural de Belém (CCB) (Belém)."
     },
     {
-      "id": "soko-140701",
+      "id": "soko-432505",
       "title": "LEFFEST'26 | CAVALO SELVAGEM NOVE - FILME ABERTURA",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -2325,7 +2325,7 @@
       "description": "Maat Saxophone Quartet @ Cineteatro Sabrosa em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém)."
     },
     {
-      "id": "soko-478138",
+      "id": "soko-85429",
       "title": "Stand Up Philosophy: Habit(u)ação",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -2405,7 +2405,7 @@
       "description": "Cícero Lee Quarteto - Live Jazz no Távola Jazz Club em Távola Jazz Club (Alvalade)."
     },
     {
-      "id": "soko-763454",
+      "id": "soko-984332",
       "title": "Efter Repetitionen (Depois do Ensaio)",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -2425,7 +2425,7 @@
       "description": "Efter Repetitionen (Depois do Ensaio) em Cinemateca Portuguesa (Avenida / Marquês). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-764753",
+      "id": "soko-463521",
       "title": "Ray & Tó Trips: Tocam Robert Johnson",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -2445,7 +2445,7 @@
       "description": "Ray & Tó Trips: Tocam Robert Johnson em Casa Capitão (Beato). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-389506",
+      "id": "soko-261714",
       "title": "Rita Azevedo Gomes | Efter Repetitionen",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -2465,7 +2465,7 @@
       "description": "Rita Azevedo Gomes | Efter Repetitionen em Cinemateca Portuguesa (Avenida / Marquês). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-618428",
+      "id": "soko-251371",
       "title": "Tokyo Lisboa: Júlio César",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -2665,7 +2665,7 @@
       "description": "Pix.L @ Ministerium Club em Ministerium Club (Terreiro do Paço)."
     },
     {
-      "id": "soko-60178",
+      "id": "soko-378283",
       "title": "QZB @ Ministerium Club",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -2885,7 +2885,7 @@
       "description": "Pharah @ KØMPLEX Lisbon em Kømplex Lisbon (Prior Velho / Oriente)."
     },
     {
-      "id": "soko-690487",
+      "id": "soko-724048",
       "title": "BAILE – Apupu",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -2945,7 +2945,7 @@
       "description": "Remember - 2000's em Titanic Sur Mer (Cais do Sodré)."
     },
     {
-      "id": "soko-801061",
+      "id": "soko-167128",
       "title": "Apupu: DJ Satellite + Guima + Umafricana + Décio",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -2965,7 +2965,7 @@
       "description": "Apupu: DJ Satellite + Guima + Umafricana + Décio em Casa Capitão (Beato). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-63794",
+      "id": "soko-673127",
       "title": "Cuid'Arte",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -2985,7 +2985,7 @@
       "description": "Cuid'Arte em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-476633",
+      "id": "soko-748866",
       "title": "Embrasa: Baile com DJ Saze + Rafa Militão + DJ Lorrany + Bieu S2 + Xavbeatz B2B Brilhante",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -3005,7 +3005,7 @@
       "description": "Embrasa: Baile com DJ Saze + Rafa Militão + DJ Lorrany + Bieu S2 + Xavbeatz B2B Brilhante em Casa Capitão (Beato). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-490485",
+      "id": "soko-16486",
       "title": "Embrasa: Baile com Gavi + Ana Lauriz",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -3025,7 +3025,7 @@
       "description": "Embrasa: Baile com Gavi + Ana Lauriz em Casa Capitão (Beato). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-880603",
+      "id": "soko-135552",
       "title": "Partimento: Progressivu + Indi Mateta",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -3045,7 +3045,7 @@
       "description": "Partimento: Progressivu + Indi Mateta em Casa Capitão (Beato). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-551492",
+      "id": "soko-362347",
       "title": "Triplets: SYL + Cherry Knot",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -3065,7 +3065,7 @@
       "description": "Triplets: SYL + Cherry Knot em Casa Capitão (Beato). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-855344",
+      "id": "soko-518319",
       "title": "Visitas à Fábrica da Eletricidade",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
