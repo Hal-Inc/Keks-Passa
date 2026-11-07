@@ -2,15 +2,19 @@ name: Atualizar eventos do Keks Passa
 
 on:
   schedule:
-    - cron: '0 4 * * *'
-      timezone: 'Europe/Lisbon'
+    - cron: '5 0 * * *'
+    - cron: '5 4 * * *'
+    - cron: '0 9 * * *'
+    - cron: '0 15 * * *'
   workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - '.github/workflows/daily_update.yml'
-      - 'scraper.py' 
+      - 'scraper.py'
+      - 'locations.py'
+      - 'venues.json'
 
 permissions:
   contents: write
@@ -22,7 +26,7 @@ concurrency:
 jobs:
   scrape-and-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - name: Obter o repositório
         uses: actions/checkout@v4
@@ -33,7 +37,10 @@ jobs:
           python-version: '3.12'
 
       - name: Instalar dependências
-        run: python -m pip install --upgrade pip requests curl_cffi beautifulsoup4 lxml
+        run: python -m pip install --upgrade pip requests curl_cffi beautifulsoup4 lxml certifi tzdata
+
+      - name: Auditar registo de espaços (venues.json)
+        run: python verify_venues.py --strict
 
       - name: Recolher eventos para hoje
         run: python scraper.py
@@ -41,7 +48,7 @@ jobs:
       - name: Validar events.json antes de publicar
         run: |
           python -c "
-          import json, datetime
+          import json, scraper
 
           with open('events.json', 'r', encoding='utf-8') as f:
               data = json.load(f)
@@ -52,22 +59,26 @@ jobs:
           # 1. Minimum event count
           assert len(events) >= 30, f'Too few events generated ({len(events)})!'
 
-          # 2. operational_date must match today (UTC+0/+1 — Lisbon time)
-          today = datetime.date.today().isoformat()
+          # 2. operational_date must match today in Europe/Lisbon timezone
+          today = scraper.get_lisbon_now().date().isoformat()
           op_date = data.get('operational_date', '')
-          assert op_date == today, \
-              f'operational_date {op_date!r} does not match today {today!r}. Stale or cached output?'
+          assert op_date == today, (
+              f'operational_date {op_date!r} does not match Lisbon today {today!r}. Stale or cached output?'
+          )
 
           # 3. Per-event field validation
           valid_tiers = {'FREE', 'ACCESSIBLE', 'MID', 'PREMIUM', 'CONSULTAR', 'PAID_OPP'}
           for ev in events:
-              assert ev.get('url', '').startswith('http'), f'Invalid URL in {ev}'
-              assert 38.65 <= float(ev['lat']) <= 38.82, f'Lat out of Lisbon bounds: {ev}'
-              assert -9.25 <= float(ev['lng']) <= -9.05, f'Lng out of Lisbon bounds: {ev}'
+              url = ev.get('url', '')
+              assert url.startswith('http'), f'Invalid URL in {ev}'
+              assert 'facebook.com/sharer' not in url, f'Sharer URL leaked in {ev}'
+              assert 38.690 <= float(ev['lat']) <= 38.805, f'Lat out of Lisbon bounds: {ev}'
+              assert -9.235 <= float(ev['lng']) <= -9.085, f'Lng out of Lisbon bounds: {ev}'
               assert ev.get('title', '').strip(), f'Empty title in {ev}'
               assert ev.get('venue', '').strip(), f'Empty venue in {ev}'
-              assert ev.get('priceTier') in valid_tiers, \
+              assert ev.get('priceTier') in valid_tiers, (
                   f'Unknown priceTier {ev.get(\"priceTier\")!r} in {ev}'
+              )
 
           print('All validations passed.')
           "
@@ -76,10 +87,11 @@ jobs:
         run: |
           git config user.name "Keks Passa Event Bot"
           git config user.email "keks-passa-bot@users.noreply.github.com"
-          git add events.json
+          git add events.json geocode_cache.json
           if git diff --cached --quiet; then
             echo "events.json não mudou; não há commit a criar."
             exit 0
           fi
-          git commit -m "chore: atualizar agenda diária do Keks Passa"
+          git commit -m "chore: atualizar agenda diária do Keks Passa ($(date -u +%Y-%m-%d))"
+          git pull --rebase origin main
           git push

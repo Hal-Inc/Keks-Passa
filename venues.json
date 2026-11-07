@@ -80,8 +80,8 @@
     "lng": -9.0975,
     "neighborhood": "Parque das Nações / Oriente",
     "corridor": "Eastern Corridor",
-    "url": "https://pt.ra.co/clubs/254407",
-    "agenda_url": "https://pt.ra.co/clubs/254407",
+    "url": "https://www.lisabout.com/genero/dance-electronic",
+    "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
     "source_platform": "resident_advisor"
   },
   {
@@ -109,7 +109,7 @@
     "neighborhood": "Santa Apolónia",
     "corridor": "Eastern Corridor",
     "url": "https://www.luxfragil.com/",
-    "agenda_url": "https://pt.ra.co/clubs/3811",
+    "agenda_url": "https://www.luxfragil.com/",
     "source_platform": "resident_advisor"
   },
   {
@@ -250,15 +250,16 @@
       "jardins do bombarda",
       "largo residencias",
       "hospital miguel bombarda",
-      "rua gomes freire",
-      "jardim do bombarda"
+      "rua gomes freire 161",
+      "jardim do bombarda",
+      "centro cultural e comunitario jardins do bombarda"
     ],
     "lat": 38.72537,
     "lng": -9.14071,
     "neighborhood": "Arroios / Gomes Freire",
     "corridor": "Axial Spine",
-    "url": "https://www.jardinsdobombarda.pt",
-    "agenda_url": "https://www.jardinsdobombarda.pt",
+    "url": "https://largoresidencias.com/",
+    "agenda_url": "https://largoresidencias.com/",
     "source_platform": "official_web"
   },
   {
@@ -290,7 +291,7 @@
     "neighborhood": "Anjos / Intendente",
     "corridor": "Eastern Corridor",
     "url": "https://contraprova.pt/",
-    "agenda_url": "https://contraprova.pt/workshops/",
+    "agenda_url": "https://contraprova.pt/",
     "source_platform": "official_web"
   },
   {
@@ -349,8 +350,8 @@
     "lng": -9.1255,
     "neighborhood": "São Vicente / Alfama",
     "corridor": "Eastern Corridor",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/feira-da-ladra",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/feira-da-ladra",
+    "url": "https://www.visitlisboa.com/pt-pt/locais/feira-da-ladra",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -363,8 +364,8 @@
     "lng": -9.1252,
     "neighborhood": "São Vicente / Santa Clara",
     "corridor": "Eastern Corridor",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-de-santa-clara",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-de-santa-clara",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -439,7 +440,7 @@
     "neighborhood": "Bairro Alto",
     "corridor": "Axial Spine",
     "url": "https://zedosbois.org/",
-    "agenda_url": "https://dice.fm/venue/galeria-z-dos-bois-zdb-qmve",
+    "agenda_url": "https://zedosbois.org/",
     "source_platform": "dice"
   },
   {
@@ -469,7 +470,7 @@
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://musicboxlisboa.com/",
-    "agenda_url": "https://dice.fm/venue/musicbox-lisboa-b6vx",
+    "agenda_url": "https://musicboxlisboa.com/",
     "source_platform": "dice"
   },
   {
@@ -513,8 +514,8 @@
     "lng": -9.14455,
     "neighborhood": "Picoas / Saldanha",
     "corridor": "Northern Belt",
-    "url": "https://esjcamoes.pt/",
-    "agenda_url": "https://esjcamoes.pt/",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "official_web"
   },
   {
@@ -527,8 +528,8 @@
     "lng": -9.13578,
     "neighborhood": "Terreiro do Paço",
     "corridor": "Axial Spine",
-    "url": "https://pt.ra.co/clubs/66945",
-    "agenda_url": "https://pt.ra.co/clubs/66945",
+    "url": "https://www.instagram.com/ministeriumclub/",
+    "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
     "source_platform": "resident_advisor"
   },
   {
@@ -541,7 +542,7 @@
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://www.instagram.com/harbourmusicshelter/",
-    "agenda_url": "https://pt.ra.co/clubs/178129",
+    "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
     "source_platform": "resident_advisor"
   },
   {
@@ -556,7 +557,7 @@
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
     "url": "https://www.instagram.com/riverougelisboa/",
-    "agenda_url": "https://pt.ra.co/clubs/128690",
+    "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
     "source_platform": "resident_advisor"
   },
   {
@@ -568,8 +569,8 @@
     "lng": -9.14315,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
-    "url": "https://tokyolisboa.com",
-    "agenda_url": "https://tokyolisboa.com",
+    "url": "https://www.instagram.com/tokyolisboa/",
+    "agenda_url": "https://www.instagram.com/tokyolisboa/",
     "source_platform": "official_web"
   },
   {
@@ -583,23 +584,22 @@
     "lng": -9.14565,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
-    "url": "https://www.instagram.com/blezaclube/",
-    "agenda_url": "https://shotgun.live/venues/b-leza-clube",
+    "url": "https://www.instagram.com/bleza.clube/",
+    "agenda_url": "https://www.instagram.com/bleza.clube/",
     "source_platform": "shotgun"
   },
   {
     "venue": "Titanic Sur Mer",
     "aliases": [
       "titanic sur mer",
-      "lisboa rio",
-      "cais do gas"
+      "titanic cais do sodre"
     ],
     "lat": 38.70572,
     "lng": -9.14678,
     "neighborhood": "Cais do Sodré",
     "corridor": "Axial Spine",
-    "url": "https://www.instagram.com/titanicsurmer/",
-    "agenda_url": "https://shotgun.live/venues/titanic-sur-mer",
+    "url": "https://shotgun.live/pt-pt/venues/titanic-sur-mer",
+    "agenda_url": "https://shotgun.live/pt-pt/venues/titanic-sur-mer",
     "source_platform": "shotgun"
   },
   {
@@ -625,8 +625,8 @@
     "lng": -9.13772,
     "neighborhood": "Baixa / Terreiro do Paço",
     "corridor": "Axial Spine",
-    "url": "https://www.visitlisboa.com/pt-pt/locais/patio-da-gale",
-    "agenda_url": "https://www.visitlisboa.com/pt-pt/locais/patio-da-gale",
+    "url": "https://www.lisabout.com/genero/dance-electronic",
+    "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
     "source_platform": "municipal"
   },
   {
@@ -710,22 +710,23 @@
     "lng": -9.15935,
     "neighborhood": "Estrela / Lapa",
     "corridor": "Axial Spine",
-    "url": "https://www.facebook.com/craftsdesignjardimdaestrela/",
-    "agenda_url": "https://www.facebook.com/craftsdesignjardimdaestrela/",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "official_web"
   },
   {
     "venue": "Jardim do Príncipe Real",
     "aliases": [
       "jardim do principe real",
-      "mercado biologico do principe real"
+      "mercado biologico do principe real",
+      "jardim franca borges"
     ],
     "lat": 38.71645,
     "lng": -9.14875,
     "neighborhood": "Príncipe Real",
     "corridor": "Axial Spine",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-franca-borges-jardim-do-principe-real",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-franca-borges-jardim-do-principe-real",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -828,8 +829,8 @@
     "lng": -9.14635,
     "neighborhood": "Parque Mayer / Avenida",
     "corridor": "Axial Spine",
-    "url": "https://www.cineteatrocapitolio.pt",
-    "agenda_url": "https://www.cineteatrocapitolio.pt",
+    "url": "https://teatrovariedades-capitolio.pt/",
+    "agenda_url": "https://teatrovariedades-capitolio.pt/",
     "source_platform": "official_web"
   },
   {
@@ -930,8 +931,8 @@
     "lng": -9.14242,
     "neighborhood": "Chiado / Bairro Alto",
     "corridor": "Axial Spine",
-    "url": "https://teatrodatrindade.inatel.pt",
-    "agenda_url": "https://teatrodatrindade.inatel.pt",
+    "url": "https://www.inatel.pt/",
+    "agenda_url": "https://www.inatel.pt/",
     "source_platform": "official_web"
   },
   {
@@ -960,13 +961,17 @@
     "neighborhood": "Avenida / Marquês",
     "corridor": "Axial Spine",
     "url": "https://www.cinemateca.pt/",
-    "agenda_url": "https://www.cinemateca.pt/Cinemateca/Programacao.aspx",
+    "agenda_url": "https://www.cinemateca.pt/Programacao.aspx",
     "source_platform": "official_web"
   },
   {
     "venue": "Cinema São Jorge",
     "aliases": [
-      "cinema sao jorge"
+      "cinema sao jorge",
+      "cinema de sao jorge",
+      "cinema de são jorge",
+      "sala manoel de oliveira",
+      "sala manoel de oliveira @ cinema de sao jorge"
     ],
     "lat": 38.71915,
     "lng": -9.14502,
@@ -986,8 +991,8 @@
     "lng": -9.14442,
     "neighborhood": "Chiado / Camões",
     "corridor": "Axial Spine",
-    "url": "https://cinemaideal.pt",
-    "agenda_url": "https://cinemaideal.pt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "official_web"
   },
   {
@@ -1072,8 +1077,8 @@
     "lng": -9.15035,
     "neighborhood": "São Bento",
     "corridor": "Axial Spine",
-    "url": "https://incognitobar.com",
-    "agenda_url": "https://incognitobar.com",
+    "url": "https://www.instagram.com/incognitobar/",
+    "agenda_url": "https://www.instagram.com/incognitobar/",
     "source_platform": "official_web"
   },
   {
@@ -1191,8 +1196,8 @@
     "lng": -9.14525,
     "neighborhood": "Picoas / Saldanha",
     "corridor": "Northern Belt",
-    "url": "https://valbom.evolution-hotels.com/",
-    "agenda_url": "https://valbom.evolution-hotels.com/",
+    "url": "https://www.lisabout.com/genero/dance-electronic",
+    "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
     "source_platform": "official_web"
   },
   {
@@ -1207,8 +1212,8 @@
     "lng": -9.14692,
     "neighborhood": "Picoas",
     "corridor": "Northern Belt",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/forum-picoas",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/forum-picoas",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -1235,8 +1240,8 @@
     "lng": -9.1442,
     "neighborhood": "Picoas / Saldanha",
     "corridor": "Northern Belt",
-    "url": "https://www.galeriamonumental.com",
-    "agenda_url": "https://www.galeriamonumental.com",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "official_web"
   },
   {
@@ -1249,17 +1254,17 @@
     "lng": -9.14362,
     "neighborhood": "Picoas",
     "corridor": "Northern Belt",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-31-de-janeiro",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-31-de-janeiro",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
     "venue": "Imprensa Nacional — Galeria & Oficinas INCM",
     "aliases": [
-      "imprensa nacional",
       "galeria incm",
       "casa da moeda",
-      "biblioteca da imprensa nacional"
+      "biblioteca da imprensa nacional",
+      "oficinas incm"
     ],
     "lat": 38.7278,
     "lng": -9.1486,
@@ -1286,15 +1291,16 @@
   {
     "venue": "Biblioteca Palácio Galveias",
     "aliases": [
+      "palacio das galveias",
       "palacio galveias",
       "biblioteca palacio galveias"
     ],
-    "lat": 38.74175,
-    "lng": -9.14685,
+    "lat": 38.7421,
+    "lng": -9.1466,
     "neighborhood": "Campo Pequeno",
     "corridor": "Northern Belt",
-    "url": "https://blx.cm-lisboa.pt",
-    "agenda_url": "https://blx.cm-lisboa.pt",
+    "url": "https://blx.cm-lisboa.pt/",
+    "agenda_url": "https://blx.cm-lisboa.pt/",
     "source_platform": "municipal"
   },
   {
@@ -1331,15 +1337,16 @@
   {
     "venue": "Teatro Maria Matos",
     "aliases": [
+      "teatro maria matos",
       "maria matos",
-      "teatro maria matos"
+      "av. frei miguel contreiras 52"
     ],
-    "lat": 38.74632,
-    "lng": -9.13808,
+    "lat": 38.74457,
+    "lng": -9.13825,
     "neighborhood": "Roma / Areeiro",
     "corridor": "Northern Belt",
     "url": "https://teatromariamatos.pt/",
-    "agenda_url": "https://teatromariamatos.pt/programacao/",
+    "agenda_url": "https://teatromariamatos.pt/",
     "source_platform": "ticketline"
   },
   {
@@ -1352,8 +1359,8 @@
     "lng": -9.1392,
     "neighborhood": "Areeiro / Alvalade",
     "corridor": "Northern Belt",
-    "url": "https://www.teatrobocage.pt/",
-    "agenda_url": "https://www.teatrobocage.pt/programacao/",
+    "url": "https://nocartaz.pt/concelhos/lisboa/",
+    "agenda_url": "https://nocartaz.pt/concelhos/lisboa/",
     "source_platform": "official_web"
   },
   {
@@ -1423,8 +1430,8 @@
     "lng": -9.1398,
     "neighborhood": "Alvalade",
     "corridor": "Northern Belt",
-    "url": "https://www.tavolajazzclub.com",
-    "agenda_url": "https://www.tavolajazzclub.com",
+    "url": "https://www.instagram.com/tavolajazzclub/",
+    "agenda_url": "https://www.instagram.com/tavolajazzclub/",
     "source_platform": "official_web"
   },
   {
@@ -1451,8 +1458,8 @@
     "lng": -9.14532,
     "neighborhood": "Campo Pequeno",
     "corridor": "Northern Belt",
-    "url": "https://www.campopequeno.com",
-    "agenda_url": "https://www.campopequeno.com",
+    "url": "https://www.instagram.com/sagrescampopequeno/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "official_web"
   },
   {
@@ -1465,7 +1472,7 @@
     "neighborhood": "Parque Eduardo VII",
     "corridor": "Northern Belt",
     "url": "https://www.visitlisboa.com/pt-pt/locais/pavilhao-carlos-lopes",
-    "agenda_url": "https://www.visitlisboa.com/pt-pt/locais/pavilhao-carlos-lopes",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -1487,8 +1494,16 @@
   {
     "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
     "aliases": [
+      "maat - museu de arte, arquitetura e tecnologia",
+      "museu maat",
+      "central tejo",
+      "fabrica da eletricidade",
+      "maat belem",
+      "maat central",
+      "maat gallery",
       "maat",
-      "central tejo"
+      "maat: museu de arte, arquitetura e tecnologia",
+      "maat museu de arte arquitetura e tecnologia"
     ],
     "lat": 38.69588,
     "lng": -9.19448,
@@ -1536,8 +1551,8 @@
     "lng": -9.2038,
     "neighborhood": "Belém",
     "corridor": "Belém Waterfront",
-    "url": "https://www.associacaonavaldelisboa.pt/",
-    "agenda_url": "https://www.associacaonavaldelisboa.pt/",
+    "url": "https://anl.pt/",
+    "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
     "source_platform": "official_web"
   },
   {
@@ -1573,16 +1588,16 @@
     "aliases": [
       "lx factory",
       "lxfactory",
-      "ler devagar",
-      "livraria ler devagar",
-      "cais do gais alcantara"
+      "collect lx factory",
+      "lx rural",
+      "rua rodrigues de faria 103"
     ],
     "lat": 38.70355,
     "lng": -9.17885,
     "neighborhood": "Alcântara",
     "corridor": "Belém Waterfront",
     "url": "https://lxfactory.com/",
-    "agenda_url": "https://lxfactory.com/agenda/",
+    "agenda_url": "https://lxfactory.com/",
     "source_platform": "official_web"
   },
   {
@@ -1590,16 +1605,14 @@
     "aliases": [
       "village underground",
       "village underground lisboa",
-      "vu lisboa",
-      "autocarro village underground",
-      "carrilho videira alcantara"
+      "vu lisboa"
     ],
     "lat": 38.70348,
     "lng": -9.17935,
     "neighborhood": "Alcântara",
     "corridor": "Belém Waterfront",
     "url": "https://vulisboa.com/",
-    "agenda_url": "https://shotgun.live/venues/village-underground-lisboa",
+    "agenda_url": "https://vulisboa.com/",
     "source_platform": "shotgun"
   },
   {
@@ -1698,6 +1711,7 @@
       "b-mad",
       "museu berardo arte deco",
       "berardo arte deco",
+      "berardo museu arte deco",
       "rua 1o de maio 28",
       "rua primeiro de maio 28"
     ],
@@ -1705,8 +1719,8 @@
     "lng": -9.18029,
     "neighborhood": "Alcântara",
     "corridor": "Belém Waterfront",
-    "url": "https://b-mad.pt",
-    "agenda_url": "https://b-mad.pt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "official_web"
   },
   {
@@ -1752,7 +1766,7 @@
     "lng": -9.19018,
     "neighborhood": "Belém / Junqueira",
     "corridor": "Belém Waterfront",
-    "url": "https://galeriasmunicipais.pt/galerias/cordoaria-nacional/",
+    "url": "https://galeriasmunicipais.pt/",
     "agenda_url": "https://galeriasmunicipais.pt/exposicoes/",
     "source_platform": "municipal"
   },
@@ -1767,8 +1781,8 @@
     "lng": -9.14349,
     "neighborhood": "Bairro Alto",
     "corridor": "Axial Spine",
-    "url": "https://mais.scml.pt/museu-saoroque/",
-    "agenda_url": "https://mais.scml.pt/museu-saoroque/",
+    "url": "https://scml.pt/",
+    "agenda_url": "https://scml.pt/",
     "source_platform": "official_web"
   },
   {
@@ -1935,8 +1949,8 @@
     "lng": -9.12785,
     "neighborhood": "Penha de França",
     "corridor": "Eastern Corridor",
-    "url": "https://fabricadealternativas.org",
-    "agenda_url": "https://fabricadealternativas.org",
+    "url": "https://www.instagram.com/fabricadealternativas/",
+    "agenda_url": "https://www.instagram.com/fabricadealternativas/",
     "source_platform": "official_web"
   },
   {
@@ -1981,8 +1995,8 @@
     "lng": -9.1272,
     "neighborhood": "Penha de França",
     "corridor": "Eastern Corridor",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/miradouro-da-penha-de-franca",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/miradouro-da-penha-de-franca",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -1996,8 +2010,8 @@
     "lng": -9.1285,
     "neighborhood": "Penha de França",
     "corridor": "Eastern Corridor",
-    "url": "https://cooperativamula.pt",
-    "agenda_url": "https://cooperativamula.pt",
+    "url": "https://www.instagram.com/mula.cooperativa/",
+    "agenda_url": "https://www.instagram.com/mula.cooperativa/",
     "source_platform": "official_web"
   },
   {
@@ -2026,8 +2040,8 @@
     "lng": -9.1315,
     "neighborhood": "Graça",
     "corridor": "Eastern Corridor",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/miradouro-da-graca-ou-miradouro-sophia-de-mello-breyner-andresen",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/miradouro-da-graca-ou-miradouro-sophia-de-mello-breyner-andresen",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -2056,8 +2070,8 @@
     "lng": -9.1308,
     "neighborhood": "Graça",
     "corridor": "Eastern Corridor",
-    "url": "https://conventodagraca.pt/",
-    "agenda_url": "https://conventodagraca.pt/",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "official_web"
   },
   {
@@ -2071,8 +2085,8 @@
     "lng": -9.14195,
     "neighborhood": "Arco do Cego / Saldanha",
     "corridor": "Northern Belt",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-do-arco-do-cego",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-do-arco-do-cego",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -2090,21 +2104,6 @@
     "corridor": "Northern Belt",
     "url": "https://tecnico.ulisboa.pt",
     "agenda_url": "https://tecnico.ulisboa.pt",
-    "source_platform": "municipal"
-  },
-  {
-    "venue": "Palácio das Galveias",
-    "aliases": [
-      "palacio das galveias",
-      "palacio galveias",
-      "biblioteca palacio galveias"
-    ],
-    "lat": 38.7423,
-    "lng": -9.1449,
-    "neighborhood": "Campo Pequeno / Arco do Cego",
-    "corridor": "Northern Belt",
-    "url": "https://bibliotecas.cm-lisboa.pt",
-    "agenda_url": "https://bibliotecas.cm-lisboa.pt",
     "source_platform": "municipal"
   },
   {
@@ -2150,8 +2149,8 @@
     "lng": -9.1449,
     "neighborhood": "Alvalade",
     "corridor": "Northern Belt",
-    "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-de-alvalade-norte",
-    "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-de-alvalade-norte",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
     "source_platform": "municipal"
   },
   {
@@ -2169,5 +2168,616 @@
     "url": "https://www.fnac.pt",
     "agenda_url": "https://www.fnac.pt",
     "source_platform": "official_web"
+  },
+  {
+    "venue": "Trumps Club",
+    "aliases": [
+      "trumps",
+      "trumps club",
+      "trumps lisboa",
+      "rua da imprensa nacional 104b",
+      "dirrty pop"
+    ],
+    "lat": 38.71765,
+    "lng": -9.15195,
+    "neighborhood": "Príncipe Real",
+    "corridor": "Axial Spine",
+    "url": "https://trumps.pt/",
+    "agenda_url": "https://trumps.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Reservatório da Patriarcal (Museu da Água)",
+    "aliases": [
+      "reservatorio da patriarcal",
+      "cisterna da patriarcal",
+      "museu da agua patriarcal"
+    ],
+    "lat": 38.7164,
+    "lng": -9.1489,
+    "neighborhood": "Príncipe Real",
+    "corridor": "Axial Spine",
+    "url": "https://www.epal.pt/",
+    "agenda_url": "https://www.epal.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Teatro Cinearte (A Barraca)",
+    "aliases": [
+      "teatro cinearte",
+      "cinearte",
+      "a barraca",
+      "companhia de teatro a barraca",
+      "largo de santos 2"
+    ],
+    "lat": 38.70725,
+    "lng": -9.1552,
+    "neighborhood": "Santos",
+    "corridor": "Axial Spine",
+    "url": "http://www.abarracateatro.com/",
+    "agenda_url": "http://www.abarracateatro.com/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Teatro Villaret",
+    "aliases": [
+      "teatro villaret",
+      "villaret",
+      "av. fontes pereira de melo 30a"
+    ],
+    "lat": 38.73025,
+    "lng": -9.14672,
+    "neighborhood": "Picoas / Saldanha",
+    "corridor": "Northern Belt",
+    "url": "https://fproducao.pt/",
+    "agenda_url": "https://fproducao.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Sociedade Guilherme Cossoul",
+    "aliases": [
+      "cossoul",
+      "sociedade guilherme cossoul",
+      "sociedade de instrucao guilherme cossoul",
+      "guilherme cossoul",
+      "rua nova da piedade 66",
+      "cossoul - sociedade de instrucao guilherme cossoul"
+    ],
+    "lat": 38.714155,
+    "lng": -9.153246,
+    "neighborhood": "Mercês / Príncipe Real",
+    "corridor": "Axial Spine",
+    "url": "https://guilhermecossoul.pt/",
+    "agenda_url": "https://guilhermecossoul.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Casa do Comum",
+    "aliases": [
+      "casa do comum",
+      "rua da rosa 285"
+    ],
+    "lat": 38.71365,
+    "lng": -9.14495,
+    "neighborhood": "Bairro Alto",
+    "corridor": "Axial Spine",
+    "url": "https://www.instagram.com/casadocomum/",
+    "agenda_url": "https://www.instagram.com/casadocomum/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Livraria da Travessa",
+    "aliases": [
+      "livraria da travessa",
+      "rua da escola politecnica 46"
+    ],
+    "lat": 38.71525,
+    "lng": -9.14945,
+    "neighborhood": "Príncipe Real",
+    "corridor": "Axial Spine",
+    "url": "https://www.travessa.pt/",
+    "agenda_url": "https://www.travessa.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Brotéria",
+    "aliases": [
+      "broteria",
+      "centro cultural broteria",
+      "rua de sao pedro de alcantara 3"
+    ],
+    "lat": 38.7134,
+    "lng": -9.1438,
+    "neighborhood": "Bairro Alto",
+    "corridor": "Axial Spine",
+    "url": "https://broteria.org/",
+    "agenda_url": "https://broteria.org/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Casa do Alentejo",
+    "aliases": [
+      "casa do alentejo",
+      "rua das portas de santo antao 58"
+    ],
+    "lat": 38.71592,
+    "lng": -9.13985,
+    "neighborhood": "Baixa / Rossio",
+    "corridor": "Axial Spine",
+    "url": "https://casadoalentejo.com.pt/",
+    "agenda_url": "https://casadoalentejo.com.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Associação Cultural Desterro",
+    "aliases": [
+      "desterro",
+      "associacao cultural desterro",
+      "calcada do desterro 7"
+    ],
+    "lat": 38.7196,
+    "lng": -9.136,
+    "neighborhood": "Intendente / Desterro",
+    "corridor": "Axial Spine",
+    "url": "https://www.instagram.com/desterro.lisboa/",
+    "agenda_url": "https://www.instagram.com/desterro.lisboa/",
+    "source_platform": "instagram"
+  },
+  {
+    "venue": "BUS Paragem Cultural",
+    "aliases": [
+      "bus paragem cultural",
+      "rua maria andrade 39b"
+    ],
+    "lat": 38.7232,
+    "lng": -9.1342,
+    "neighborhood": "Anjos",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.instagram.com/bus.paragemcultural/",
+    "agenda_url": "https://www.instagram.com/bus.paragemcultural/",
+    "source_platform": "instagram"
+  },
+  {
+    "venue": "Bicaense",
+    "aliases": [
+      "bicaense",
+      "cafe bicaense",
+      "rua da bica de duarte belo 42"
+    ],
+    "lat": 38.7097,
+    "lng": -9.1462,
+    "neighborhood": "Bica",
+    "corridor": "Axial Spine",
+    "url": "https://www.instagram.com/bicaense/",
+    "agenda_url": "https://www.instagram.com/bicaense/",
+    "source_platform": "instagram"
+  },
+  {
+    "venue": "Polo Cultural Gaivotas | Boavista (Rua das Gaivotas 6)",
+    "aliases": [
+      "rua das gaivotas 6",
+      "polo cultural gaivotas",
+      "gaivotas 6"
+    ],
+    "lat": 38.70985,
+    "lng": -9.15165,
+    "neighborhood": "Santa Catarina / Boavista",
+    "corridor": "Axial Spine",
+    "url": "https://ruadasgaivotas6.pt/",
+    "agenda_url": "https://ruadasgaivotas6.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Museu de Lisboa - Palácio Pimenta",
+    "aliases": [
+      "palacio pimenta",
+      "museu de lisboa - palacio pimenta",
+      "museu de lisboa palacio pimenta",
+      "campo grande 245"
+    ],
+    "lat": 38.75865,
+    "lng": -9.15275,
+    "neighborhood": "Campo Grande",
+    "corridor": "Northern Belt",
+    "url": "https://museudelisboa.pt/pt/locais/palacio-pimenta",
+    "agenda_url": "https://museudelisboa.pt/pt/acontece",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Auditório Santa Joana Princesa",
+    "aliases": [
+      "auditorio santa joana princesa",
+      "paroquia santa joana princesa"
+    ],
+    "lat": 38.75275,
+    "lng": -9.14635,
+    "neighborhood": "Alvalade",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Teatro Armando Cortez (Casa do Artista)",
+    "aliases": [
+      "teatro armando cortez",
+      "armando cortez",
+      "casa do artista"
+    ],
+    "lat": 38.7634,
+    "lng": -9.18825,
+    "neighborhood": "Carnide",
+    "corridor": "Northern Belt",
+    "url": "https://www.casadoartista.net/",
+    "agenda_url": "https://www.casadoartista.net/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Basílica da Estrela",
+    "aliases": [
+      "basilica da estrela",
+      "igreja da estrela"
+    ],
+    "lat": 38.71345,
+    "lng": -9.16045,
+    "neighborhood": "Estrela",
+    "corridor": "Axial Spine",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Estufa Fria de Lisboa",
+    "aliases": [
+      "estufa fria",
+      "estufa fria de lisboa"
+    ],
+    "lat": 38.72905,
+    "lng": -9.15565,
+    "neighborhood": "Parque Eduardo VII",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Museu Nacional de Etnologia",
+    "aliases": [
+      "museu nacional de etnologia",
+      "museu de etnologia",
+      "av. ilha da madeira"
+    ],
+    "lat": 38.70375,
+    "lng": -9.20895,
+    "neighborhood": "Restelo / Belém",
+    "corridor": "Belém Waterfront",
+    "url": "https://www.museusemonumentos.pt/",
+    "agenda_url": "https://www.museusemonumentos.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Arquivo Municipal de Lisboa - Videoteca",
+    "aliases": [
+      "arquivo municipal de lisboa - videoteca",
+      "videoteca municipal",
+      "largo do calvario 2"
+    ],
+    "lat": 38.70425,
+    "lng": -9.17955,
+    "neighborhood": "Alcântara",
+    "corridor": "Belém Waterfront",
+    "url": "https://arquivomunicipal.lisboa.pt/",
+    "agenda_url": "https://arquivomunicipal.lisboa.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Galeria Francisco Fino",
+    "aliases": [
+      "galeria francisco fino",
+      "francisco fino",
+      "rua capitao leitao 76"
+    ],
+    "lat": 38.73855,
+    "lng": -9.10325,
+    "neighborhood": "Marvila",
+    "corridor": "Eastern Corridor",
+    "url": "https://www.franciscofino.com/",
+    "agenda_url": "https://www.franciscofino.com/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Galeria Quadrum & Coruchéus",
+    "aliases": [
+      "galeria quadrum",
+      "palacio dos corucheus",
+      "corucheus – um teatro em cada bairro",
+      "corucheus - um teatro em cada bairro",
+      "corucheus"
+    ],
+    "lat": 38.75015,
+    "lng": -9.14565,
+    "neighborhood": "Alvalade",
+    "corridor": "Northern Belt",
+    "url": "https://galeriasmunicipais.pt/",
+    "agenda_url": "https://galeriasmunicipais.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Avenidas - Um Teatro em Cada Bairro",
+    "aliases": [
+      "avenidas - um teatro em cada bairro",
+      "rua alberto de sousa 10a"
+    ],
+    "lat": 38.74585,
+    "lng": -9.15785,
+    "neighborhood": "Avenidas Novas",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Turim - Um Teatro em Cada Bairro",
+    "aliases": [
+      "turim - um teatro em cada bairro",
+      "cine-teatro turim",
+      "estrada de benfica 723"
+    ],
+    "lat": 38.74985,
+    "lng": -9.20165,
+    "neighborhood": "Benfica",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Boutique da Cultura - Um Teatro em Cada Bairro",
+    "aliases": [
+      "boutique da cultura",
+      "boutique da cultura - um teatro em cada bairro"
+    ],
+    "lat": 38.75955,
+    "lng": -9.18925,
+    "neighborhood": "Carnide",
+    "corridor": "Northern Belt",
+    "url": "https://www.boutiquedacultura.org/",
+    "agenda_url": "https://www.boutiquedacultura.org/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Quinta Alegre - Um Teatro em Cada Bairro",
+    "aliases": [
+      "quinta alegre",
+      "quinta alegre - um teatro em cada bairro",
+      "palacio do marques do alegrete"
+    ],
+    "lat": 38.78665,
+    "lng": -9.14545,
+    "neighborhood": "Santa Clara / Charneca",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Fab Lab Lisboa",
+    "aliases": [
+      "fab lab lisboa",
+      "fablab lisboa",
+      "mercado do forno do tijolo"
+    ],
+    "lat": 38.72195,
+    "lng": -9.13285,
+    "neighborhood": "Arroios / Anjos",
+    "corridor": "Eastern Corridor",
+    "url": "https://fablablisboa.pt/",
+    "agenda_url": "https://fablablisboa.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Centro de Informação Urbana de Lisboa (CIUL)",
+    "aliases": [
+      "ciul",
+      "centro de informacao urbana de lisboa",
+      "rua viriato 13"
+    ],
+    "lat": 38.73105,
+    "lng": -9.14725,
+    "neighborhood": "Picoas",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Galeria Novo Banco Cultura",
+    "aliases": [
+      "novo banco cultura",
+      "galeria novo banco",
+      "praca marques de pombal 3a"
+    ],
+    "lat": 38.72485,
+    "lng": -9.14945,
+    "neighborhood": "Marquês de Pombal",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Sociedade de Geografia de Lisboa",
+    "aliases": [
+      "sociedade de geografia de lisboa",
+      "sociedade de geografia",
+      "rua das portas de santo antao 100"
+    ],
+    "lat": 38.71635,
+    "lng": -9.14045,
+    "neighborhood": "Baixa / Rossio",
+    "corridor": "Axial Spine",
+    "url": "https://www.socgeografialisboa.pt/",
+    "agenda_url": "https://www.socgeografialisboa.pt/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "O Rumo do Fumo (Espaço da Penha)",
+    "aliases": [
+      "o rumo do fumo",
+      "rumo do fumo",
+      "espaco da penha",
+      "travessa do calado 26b"
+    ],
+    "lat": 38.72925,
+    "lng": -9.12875,
+    "neighborhood": "Penha de França",
+    "corridor": "Eastern Corridor",
+    "url": "https://orumodofumo.com/",
+    "agenda_url": "https://orumodofumo.com/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Institut Français du Portugal",
+    "aliases": [
+      "institut francais du portugal",
+      "instituto frances",
+      "ifp lisboa",
+      "rua santos-o-velho 11",
+      "myfrenchfilmfestival"
+    ],
+    "lat": 38.70765,
+    "lng": -9.15725,
+    "neighborhood": "Santos / Madragoa",
+    "corridor": "Axial Spine",
+    "url": "https://www.institutfrancais-portugal.com/",
+    "agenda_url": "https://www.institutfrancais-portugal.com/",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Biblioteca Municipal Camões",
+    "aliases": [
+      "biblioteca municipal camoes",
+      "biblioteca camoes",
+      "biblioteca camões",
+      "largo do calhariz 17"
+    ],
+    "lat": 38.7106,
+    "lng": -9.14592,
+    "neighborhood": "Bairro Alto / Chiado",
+    "corridor": "Axial Spine",
+    "url": "https://blx.cm-lisboa.pt/rede-de-bibliotecas/biblioteca-camoes/",
+    "agenda_url": "https://blx.cm-lisboa.pt/agenda/"
+  },
+  {
+    "venue": "Museu de Lisboa - Teatro Romano",
+    "aliases": [
+      "museu de lisboa - teatro romano",
+      "teatro romano",
+      "museu do teatro romano",
+      "rua de sao mamede 3a"
+    ],
+    "lat": 38.71125,
+    "lng": -9.13265,
+    "neighborhood": "Alfama / Sé",
+    "corridor": "Axial Spine",
+    "url": "https://museudelisboa.pt/pt/visitar/teatro-romano/",
+    "agenda_url": "https://museudelisboa.pt/pt/acontece/"
+  },
+  {
+    "venue": "Auditório Emílio Rui Vilar (Culturgest)",
+    "aliases": [
+      "auditorio emilio rui vilar",
+      "auditório emílio rui vilar"
+    ],
+    "lat": 38.7453,
+    "lng": -9.1407,
+    "neighborhood": "Campo Pequeno / Arco do Cego",
+    "corridor": "Northern Belt",
+    "url": "https://www.culturgest.pt/",
+    "agenda_url": "https://www.culturgest.pt/pt/programacao/"
+  },
+  {
+    "venue": "Carmo Rooftop",
+    "aliases": [
+      "carmo rooftop",
+      "terracos do carmo",
+      "terraços do carmo"
+    ],
+    "lat": 38.71215,
+    "lng": -9.14025,
+    "neighborhood": "Chiado / Carmo",
+    "corridor": "Axial Spine",
+    "url": "https://www.carmorooftop.pt/",
+    "agenda_url": "https://www.carmorooftop.pt/"
+  },
+  {
+    "venue": "Lisboa Rio",
+    "aliases": [
+      "lisboa rio",
+      "lisboa rio club",
+      "cais do gas 7"
+    ],
+    "lat": 38.70595,
+    "lng": -9.1462,
+    "neighborhood": "Cais do Sodré",
+    "corridor": "Axial Spine",
+    "url": "https://soko.fyi/pt/venues/lisboa-rio-club-6zgb7q",
+    "agenda_url": "https://soko.fyi/pt/venues/lisboa-rio-club-6zgb7q",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Badassery",
+    "aliases": [
+      "badassery",
+      "bar badassery",
+      "rua das salgadeiras 28"
+    ],
+    "lat": 38.7124,
+    "lng": -9.1446,
+    "neighborhood": "Bairro Alto",
+    "corridor": "Axial Spine",
+    "url": "https://www.instagram.com/badassery.lisbon/",
+    "agenda_url": "https://shotgun.live/pt-pt/cities/lisbon",
+    "source_platform": "instagram"
+  },
+  {
+    "venue": "Café do Rio",
+    "aliases": [
+      "cafe do rio",
+      "café do rio"
+    ],
+    "lat": 38.7088,
+    "lng": -9.13435,
+    "neighborhood": "Santa Maria Maior",
+    "corridor": "Axial Spine",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Mojito Company",
+    "aliases": [
+      "mojito company"
+    ],
+    "lat": 38.71304,
+    "lng": -9.14359,
+    "neighborhood": "Bairro Alto",
+    "corridor": "Axial Spine",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Fnac - Avenida De Roma",
+    "aliases": [
+      "fnac - avenida de roma"
+    ],
+    "lat": 38.74298,
+    "lng": -9.13875,
+    "neighborhood": "Areeiro",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
   }
 ]

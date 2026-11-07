@@ -1,8 +1,18 @@
 {
+ "academia de santo amaro, r. academia recreativa de santo amaro 9, 1300-001 lisboa": null,
  "alameda mahatma gandhi, lisboa": {
   "area": "Lumiar",
   "lat": 38.770137,
   "lng": -9.173647
+ },
+ "arca gallery, r. das portas de santo antao 112 134, 1150-268 lisboa": null,
+ "armazem 18, lisboa": null,
+ "auditorio s. vicente em alcabideche, lisboa": null,
+ "auditorio s. vicente em alcabideche, rua rio das grades, 190/190a, lisboa": null,
+ "avenida 24 de julho, 8a-b, lisboa": {
+  "area": "Prazeres",
+  "lat": 38.703712,
+  "lng": -9.162997
  },
  "avenida da india 172, lisboa": {
   "area": "Prazeres",
@@ -14,24 +24,25 @@
   "lat": 38.720354,
   "lng": -9.145717
  },
- "bike a wish, r. das fontainhas a sao lourenco, 1100-584 lisboa, lisboa": null,
- "camara municipal de lisboa, lisboa": {
+ "badassery, lisboa": null,
+ "cafe do rio, lisboa": {
   "area": "Santa Maria Maior",
-  "lat": 38.708143,
-  "lng": -9.138525
+  "lat": 38.708801,
+  "lng": -9.13435
  },
  "campo grande 113a, lisboa": {
   "area": "Campo Grande",
   "lat": 38.753271,
   "lng": -9.156887
  },
+ "capsule gallery, r. viriato 25b, 1050-234 lisboa": null,
  "casa do alentejo, r. portas de santo antao, nº 58, lisboa": {
   "area": "Santa Maria Maior",
   "lat": 38.715923,
   "lng": -9.139854
  },
- "ciul - centro de informacao urbana de lisboa, lisboa": null,
- "ciul - centro de informacao urbana de lisboa, rua viriato 13 e nucleo 6 1o, lisboa": null,
+ "casino estoril, 2765-617 estoril, lisboa": null,
+ "centro cultural malaposta, r. de angola, 2620-492 olival basto, lisboa": null,
  "cossoul - sociedade de instrucao guilherme cossoul, lisboa": {
   "area": "Mercês",
   "lat": 38.714155,
@@ -47,44 +58,113 @@
   "lat": 38.760573,
   "lng": -9.190663
  },
+ "estrada militar nº 66 - barcarena, lisboa": null,
  "fnac - avenida de roma, av. de roma, 11-a - lisboa": {
   "area": "Areeiro",
   "lat": 38.742985,
   "lng": -9.138752
  },
+ "fnac colombo, av. lusiada, 1500-392 lisboa": null,
+ "fnac vasco da gama, c. vasco da gama, 1990-094 lisboa": null,
+ "home.lier, lisboa": null,
  "largo de santos, 2, lisboa": {
   "area": "Prazeres",
   "lat": 38.707185,
   "lng": -9.155201
  },
+ "largo do calhariz 17 - lisboa": {
+  "area": "Bairro Alto",
+  "lat": 38.710601,
+  "lng": -9.14592
+ },
+ "largo do calhariz 17, lisboa": {
+  "area": "Bairro Alto",
+  "lat": 38.710601,
+  "lng": -9.14592
+ },
+ "largo julio de castilho, lisboa": {
+  "area": "Lumiar",
+  "lat": 38.775453,
+  "lng": -9.164325
+ },
  "lisboa (cidade), pagina de eventos sem geo-localizacao precisa, lisboa": null,
- "museu nacional de etnologia, av. ilha da madeira, lisboa": null,
- "myfrenchfilmfestival / festival cinema frances — ifp, lisboa": null,
- "novo banco cultura - fotografia, lisboa": null,
- "novo banco cultura - fotografia, praca marques de pombal, 3a, piso -1, lisboa": null,
+ "mojito company, lisboa": {
+  "area": "Bairro Alto",
+  "lat": 38.71304,
+  "lng": -9.143586
+ },
+ "nirvana studios, estrada militar nº 66 - barcarena, lisboa": null,
+ "nirvana studios, lisboa": null,
+ "palacio anjos - centro de arte contemporanea, lisboa": null,
  "praca dom pedro iv 83, lisboa": {
   "area": "Santa Maria Maior",
   "lat": 38.714346,
   "lng": -9.138954
  },
- "praca marques de pombal, 3a, piso -1, lisboa": null,
+ "praca restauradores, lisboa": {
+  "area": "Santa Maria Maior",
+  "lat": 38.714591,
+  "lng": -9.141841
+ },
+ "principe real, principe real, lisboa": {
+  "area": "Mercês",
+  "lat": 38.716681,
+  "lng": -9.148606
+ },
+ "radio-hotel, lisboa": null,
+ "rua da fe, 46a, lisboa": {
+  "area": "Santo António",
+  "lat": 38.71999,
+  "lng": -9.142734
+ },
+ "rua de sao mamede 3a, lisboa": {
+  "area": "Santa Maria Maior",
+  "lat": 38.710604,
+  "lng": -9.132356
+ },
  "rua do instituto industrial, 16, lisboa": {
   "area": "São Bento",
   "lat": 38.707825,
   "lng": -9.150365
+ },
+ "rua gomes freire, 161, lisboa": {
+  "area": "Pena",
+  "lat": 38.72511,
+  "lng": -9.141037
  },
  "rua melvin jones, 6a, lisboa": {
   "area": "",
   "lat": 38.751471,
   "lng": -9.167078
  },
- "rua viriato 13 e nucleo 6 1o, lisboa": null,
- "rumo do fumo (concertos), lisboa": null,
- "sociedade de geografia de lisboa, lisboa": null,
+ "rua moura girao 3a, lisboa": {
+  "area": "Campo Grande",
+  "lat": 38.748173,
+  "lng": -9.136131
+ },
+ "rua neves costa 45 - carnide, lisboa": {
+  "area": "Carnide",
+  "lat": 38.759924,
+  "lng": -9.189274
+ },
+ "rua rio das grades, 190/190a, lisboa": null,
+ "rua rodrigo da fonseca, 115, lisboa": {
+  "area": "Campo Pequeno",
+  "lat": 38.726434,
+  "lng": -9.15721
+ },
+ "rua tomas del negro, 8a, lisboa": {
+  "area": "Lumiar",
+  "lat": 38.775011,
+  "lng": -9.151369
+ },
+ "selva, r. luis de camoes 112 a, 1300-361 lisboa": null,
+ "teatro do bairro, r. luz soriano 63, 1200-246 lisboa": null,
  "teatro villaret, lisboa": {
   "area": "Santo António",
   "lat": 38.730247,
   "lng": -9.146717
  },
- "varios locais, lisboa": null
+ "varios locais, lisboa": null,
+ "zabra, r. alexandre braga 15b, 1150-002 lisboa": null
 }

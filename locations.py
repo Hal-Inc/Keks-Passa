@@ -20,7 +20,7 @@ import unicodedata
 import urllib.parse
 import urllib.request
 
-LISBON_BOUNDS = (38.65, 38.82, -9.25, -9.05)  # lat_min, lat_max, lng_min, lng_max
+LISBON_BOUNDS = (38.690, 38.805, -9.235, -9.085)  # lat_min, lat_max, lng_min, lng_max (North of Tagus, Lisbon Municipality)
 CACHE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "geocode_cache.json")
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 USER_AGENT = "KeksPassa/1.0 (+https://github.com/Hal-Inc/Keks-Passa; daily Lisbon events map)"
@@ -170,8 +170,36 @@ def _nominatim(query):
     if not in_lisbon(lat, lng):
         return None
     addr = hit.get("address", {})
+    muni_fields = " ".join(
+        _strip_accents(addr.get(k, "")).lower()
+        for k in ("city", "town", "municipality", "county")
+    )
+    non_lisbon_munis = (
+        "almada", "seixal", "barreiro", "oeiras", "cascais",
+        "sintra", "amadora", "odivelas", "vila franca de xira",
+        "moita", "montijo", "alcochete", "mafra", "setubal",
+    )
+    if any(m in muni_fields for m in non_lisbon_munis):
+        return None
     area = addr.get("suburb") or addr.get("neighbourhood") or addr.get("quarter") or addr.get("city_district") or ""
     return {"lat": round(lat, 6), "lng": round(lng, 6), "area": area}
+
+
+GENERIC_QUERY_BLACKLIST = {
+    "lisboa",
+    "lisboa, lisboa",
+    "lisboa (cidade)",
+    "lisboa (cidade), lisboa",
+    "camara municipal de lisboa",
+    "camara municipal de lisboa, lisboa",
+    "varios locais",
+    "varios locais, lisboa",
+    "centro",
+    "centro, lisboa",
+    "portugal",
+    "gare do oriente, - lisboa, lisboa",
+    "gare do oriente, lisboa",
+}
 
 
 def geocode(query):
@@ -179,8 +207,10 @@ def geocode(query):
     query = re.sub(r"\s+", " ", (query or "")).strip(" ,")
     if len(query) < 4:
         return None
-    cache = _load_cache()
     key = _strip_accents(query).lower()
+    if key in GENERIC_QUERY_BLACKLIST:
+        return None
+    cache = _load_cache()
     if key in cache:
         return cache[key]
     result = _nominatim(query)

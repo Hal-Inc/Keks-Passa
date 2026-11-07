@@ -23,12 +23,18 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 VENUES_FILE = os.path.join(SCRIPT_DIR, "venues.json")
 REPORT_FILE = os.path.join(SCRIPT_DIR, "venue_audit_report.json")
 
-# Greater Lisbon geographic bounding box
+# Lisbon Municipality (North of Tagus) geographic bounding box
 LISBON_BOUNDS = {
-    "lat_min": 38.65,
-    "lat_max": 38.85,
-    "lng_min": -9.35,
-    "lng_max": -9.05,
+    "lat_min": 38.690,
+    "lat_max": 38.805,
+    "lng_min": -9.235,
+    "lng_max": -9.085,
+}
+
+AMBIGUOUS_STANDALONE_ALIASES = {
+    "nada", "nāda", "naada", "rca", "lav", "bota", "lux", "fil",
+    "alvalade", "alcantara", "alcântara", "campolide", "campo pequeno",
+    "campo grande", "principe real", "arroios", "anjos", "marvila", "beato",
 }
 
 VALID_CORRIDORS = {
@@ -56,19 +62,19 @@ PRIMARY_SOURCE_UPGRADES: Dict[str, Dict[str, str]] = {
         "source_platform": "shotgun",
     },
     "B.Leza": {
-        "url": "https://www.instagram.com/blezaclube/",
-        "agenda_url": "https://shotgun.live/venues/b-leza-clube",
-        "source_platform": "shotgun",
+        "url": "https://www.instagram.com/bleza.clube/",
+        "agenda_url": "https://www.instagram.com/bleza.clube/",
+        "source_platform": "instagram",
     },
     "Rive Rouge": {
         "url": "https://www.instagram.com/riverougelisboa/",
-        "agenda_url": "https://pt.ra.co/clubs/128690",
-        "source_platform": "resident_advisor",
+        "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
+        "source_platform": "instagram",
     },
     "Harbour Music Shelter": {
         "url": "https://www.instagram.com/harbourmusicshelter/",
-        "agenda_url": "https://pt.ra.co/clubs/178129",
-        "source_platform": "resident_advisor",
+        "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
+        "source_platform": "instagram",
     },
     "Lust in Rio": {
         "url": "https://www.instagram.com/lustinrio/",
@@ -90,34 +96,14 @@ PRIMARY_SOURCE_UPGRADES: Dict[str, Dict[str, str]] = {
         "agenda_url": "https://www.instagram.com/skones.lisboa/",
         "source_platform": "instagram",
     },
-    "Plano B / Bica & Cais": {
-        "url": "https://www.instagram.com/planob_lisboa/",
-        "agenda_url": "https://www.instagram.com/planob_lisboa/",
-        "source_platform": "instagram",
-    },
     "Contraprova — Atelier de Gravura e Risografia": {
         "url": "https://contraprova.pt/",
-        "agenda_url": "https://contraprova.pt/workshops/",
+        "agenda_url": "https://contraprova.pt/",
         "source_platform": "official_web",
     },
     "Feira da Ladra (Campo de Santa Clara)": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/feira-da-ladra",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/feira-da-ladra",
-        "source_platform": "municipal",
-    },
-    "Mercado de Santa Clara": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-de-santa-clara",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-de-santa-clara",
-        "source_platform": "municipal",
-    },
-    "Auditório Camões (Liceu Camões)": {
-        "url": "https://esjcamoes.pt/",
-        "agenda_url": "https://esjcamoes.pt/",
-        "source_platform": "official_web",
-    },
-    "Pátio da Galé": {
-        "url": "https://www.visitlisboa.com/pt-pt/locais/patio-da-gale",
-        "agenda_url": "https://www.visitlisboa.com/pt-pt/locais/patio-da-gale",
+        "url": "https://www.visitlisboa.com/pt-pt/locais/feira-da-ladra",
+        "agenda_url": "https://www.agendalx.pt/",
         "source_platform": "municipal",
     },
     "Chiado Comedy Club": {
@@ -126,34 +112,9 @@ PRIMARY_SOURCE_UPGRADES: Dict[str, Dict[str, str]] = {
         "source_platform": "official_web",
     },
     "Jardim da Estrela (Crafts & Design)": {
-        "url": "https://www.facebook.com/craftsdesignjardimdaestrela/",
-        "agenda_url": "https://www.facebook.com/craftsdesignjardimdaestrela/",
-        "source_platform": "official_web",
-    },
-    "Jardim do Príncipe Real": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-franca-borges-jardim-do-principe-real",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-franca-borges-jardim-do-principe-real",
+        "url": "https://www.agendalx.pt/",
+        "agenda_url": "https://www.agendalx.pt/",
         "source_platform": "municipal",
-    },
-    "Evolution Valbom Rooftop": {
-        "url": "https://valbom.evolution-hotels.com/",
-        "agenda_url": "https://valbom.evolution-hotels.com/",
-        "source_platform": "official_web",
-    },
-    "Fórum Picoas": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/forum-picoas",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/forum-picoas",
-        "source_platform": "municipal",
-    },
-    "Mercado 31 de Janeiro": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-31-de-janeiro",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-31-de-janeiro",
-        "source_platform": "municipal",
-    },
-    "Teatro Bocage": {
-        "url": "https://www.teatrobocage.pt/",
-        "agenda_url": "https://www.teatrobocage.pt/programacao/",
-        "source_platform": "official_web",
     },
     "República da Música": {
         "url": "https://www.instagram.com/republicadamusicaoficial/",
@@ -162,12 +123,12 @@ PRIMARY_SOURCE_UPGRADES: Dict[str, Dict[str, str]] = {
     },
     "Pavilhão Carlos Lopes": {
         "url": "https://www.visitlisboa.com/pt-pt/locais/pavilhao-carlos-lopes",
-        "agenda_url": "https://www.visitlisboa.com/pt-pt/locais/pavilhao-carlos-lopes",
+        "agenda_url": "https://www.agendalx.pt/",
         "source_platform": "municipal",
     },
     "BONANÇA - Associação Naval de Lisboa": {
-        "url": "https://www.associacaonavaldelisboa.pt/",
-        "agenda_url": "https://www.associacaonavaldelisboa.pt/",
+        "url": "https://anl.pt/",
+        "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
         "source_platform": "official_web",
     },
     "MACAM / àCapela": {
@@ -186,55 +147,29 @@ PRIMARY_SOURCE_UPGRADES: Dict[str, Dict[str, str]] = {
         "source_platform": "instagram",
     },
     "Cordoaria Nacional": {
-        "url": "https://galeriasmunicipais.pt/galerias/cordoaria-nacional/",
+        "url": "https://galeriasmunicipais.pt/",
         "agenda_url": "https://galeriasmunicipais.pt/exposicoes/",
         "source_platform": "municipal",
     },
-    "Miradouro da Penha de França": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/miradouro-da-penha-de-franca",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/miradouro-da-penha-de-franca",
-        "source_platform": "municipal",
-    },
-    "Largo da Graça & Miradouro": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/miradouro-da-graca-ou-miradouro-sophia-de-mello-breyner-andresen",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/miradouro-da-graca-ou-miradouro-sophia-de-mello-breyner-andresen",
-        "source_platform": "municipal",
-    },
-    "Convento da Graça": {
-        "url": "https://conventodagraca.pt/",
-        "agenda_url": "https://conventodagraca.pt/",
-        "source_platform": "official_web",
-    },
-    "Jardim do Arco do Cego": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-do-arco-do-cego",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/jardim-do-arco-do-cego",
-        "source_platform": "municipal",
-    },
-    "Mercado de Alvalade": {
-        "url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-de-alvalade-norte",
-        "agenda_url": "https://informacoeseservicos.lisboa.pt/contactos/diretorio-da-cidade/mercado-de-alvalade-norte",
-        "source_platform": "municipal",
-    },
-    # Key cultural and club upgrades to enrich platform and agenda endpoints
     "Galeria Zé dos Bois (ZDB)": {
         "url": "https://zedosbois.org/",
-        "agenda_url": "https://dice.fm/venue/galeria-z-dos-bois-zdb-qmve",
-        "source_platform": "dice",
+        "agenda_url": "https://zedosbois.org/",
+        "source_platform": "official_web",
     },
     "Musicbox": {
         "url": "https://musicboxlisboa.com/",
-        "agenda_url": "https://dice.fm/venue/musicbox-lisboa-b6vx",
-        "source_platform": "dice",
+        "agenda_url": "https://musicboxlisboa.com/",
+        "source_platform": "official_web",
     },
     "Lux Frágil": {
         "url": "https://www.luxfragil.com/",
-        "agenda_url": "https://pt.ra.co/clubs/3811",
-        "source_platform": "resident_advisor",
+        "agenda_url": "https://www.luxfragil.com/",
+        "source_platform": "official_web",
     },
     "Ministerium Club": {
-        "url": "https://pt.ra.co/clubs/66945",
-        "agenda_url": "https://pt.ra.co/clubs/66945",
-        "source_platform": "resident_advisor",
+        "url": "https://www.instagram.com/ministeriumclub/",
+        "agenda_url": "https://www.lisabout.com/genero/dance-electronic",
+        "source_platform": "instagram",
     },
     "Kømplex Lisbon": {
         "url": "https://shotgun.live/pt-pt/venues/komplex",
@@ -263,12 +198,12 @@ PRIMARY_SOURCE_UPGRADES: Dict[str, Dict[str, str]] = {
     },
     "Cinemateca Portuguesa": {
         "url": "https://www.cinemateca.pt/",
-        "agenda_url": "https://www.cinemateca.pt/Cinemateca/Programacao.aspx",
+        "agenda_url": "https://www.cinemateca.pt/Programacao.aspx",
         "source_platform": "official_web",
     },
-    "Cinema Nimas": {
-        "url": "https://medeiafilmes.com/cinemas/cinema-nimas",
-        "agenda_url": "https://medeiafilmes.com/cinemas/cinema-nimas",
+    "Cinema Medeia Nimas": {
+        "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas",
+        "agenda_url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas",
         "source_platform": "official_web",
     },
     "Centro Cultural de Belém (CCB)": {
@@ -276,7 +211,7 @@ PRIMARY_SOURCE_UPGRADES: Dict[str, Dict[str, str]] = {
         "agenda_url": "https://www.ccb.pt/programacao/",
         "source_platform": "bol",
     },
-    "Teatro São Luiz": {
+    "São Luiz Teatro Municipal": {
         "url": "https://www.teatrosaoluiz.pt/",
         "agenda_url": "https://www.teatrosaoluiz.pt/espetaculos/",
         "source_platform": "bol",
@@ -288,7 +223,7 @@ PRIMARY_SOURCE_UPGRADES: Dict[str, Dict[str, str]] = {
     },
     "Teatro Maria Matos": {
         "url": "https://teatromariamatos.pt/",
-        "agenda_url": "https://teatromariamatos.pt/programacao/",
+        "agenda_url": "https://teatromariamatos.pt/",
         "source_platform": "ticketline",
     },
     "Kosmicare": {
@@ -349,8 +284,12 @@ def audit_venues(venues: List[Dict[str, Any]]) -> Dict[str, Any]:
     authoritative_venues = []
     platform_counts: Dict[str, int] = {}
 
+    seen_names = set()
     for idx, v in enumerate(venues):
         name = v.get("venue", f"Venue #{idx}")
+        if name.lower() in seen_names:
+            geo_errors.append({"venue": name, "reason": "Duplicate venue entry in venues.json"})
+        seen_names.add(name.lower())
         lat = v.get("lat")
         lng = v.get("lng")
         corridor = v.get("corridor")
@@ -376,6 +315,14 @@ def audit_venues(venues: List[Dict[str, Any]]) -> Dict[str, Any]:
         # 3. Aliases Check
         if not aliases or not isinstance(aliases, list):
             alias_warnings.append({"venue": name, "reason": "No aliases defined"})
+        else:
+            for al in aliases:
+                if str(al).strip().lower() in AMBIGUOUS_STANDALONE_ALIASES:
+                    alias_warnings.append({"venue": name, "reason": f"Ambiguous standalone alias '{al}'"})
+
+        # 3b. URL Format Check
+        if not str(url).startswith("http") or not str(agenda_url).startswith("http"):
+            geo_errors.append({"venue": name, "reason": f"Missing or non-HTTP url/agenda_url: {url!r}"})
 
         # 4. Source Platform & Authoritative URL Check
         is_fallback = any(agg in url.lower() for agg in AGGREGATOR_DOMAINS)
@@ -431,7 +378,7 @@ def upgrade_venues_registry(venues: List[Dict[str, Any]]) -> (List[Dict[str, Any
             v["venue"] = "LX Factory"
             v["aliases"] = ["lx factory", "lxfactory", "ler devagar", "livraria ler devagar", "cais do gais alcantara"]
             v["url"] = "https://lxfactory.com/"
-            v["agenda_url"] = "https://lxfactory.com/agenda/"
+            v["agenda_url"] = "https://lxfactory.com/"
             v["source_platform"] = "official_web"
             updated_venues.append(v)
             upgraded_count += 1
@@ -451,8 +398,8 @@ def upgrade_venues_registry(venues: List[Dict[str, Any]]) -> (List[Dict[str, Any
                 "neighborhood": "Alcântara",
                 "corridor": "Belém Waterfront",
                 "url": "https://vulisboa.com/",
-                "agenda_url": "https://shotgun.live/venues/village-underground-lisboa",
-                "source_platform": "shotgun",
+                "agenda_url": "https://vulisboa.com/",
+                "source_platform": "official_web",
             }
             updated_venues.append(vu)
             upgraded_count += 1
@@ -513,10 +460,51 @@ def main():
 
     parser = argparse.ArgumentParser(description="Keks Passa Venue-to-Source Verification Engine")
     parser.add_argument("--upgrade", action="store_true", help="Apply verified primary source upgrades to venues.json")
+    parser.add_argument("--promote-cache", action="store_true", help="Promote newly geocoded named venues from geocode_cache.json into venues.json")
+    parser.add_argument("--strict", action="store_true", help="Exit with code 1 if any geo, corridor, alias, or URL error is found")
+    parser.add_argument("--check-live", action="store_true", help="Perform live HTTP status checks on all venue URLs")
     parser.add_argument("--report", default=REPORT_FILE, help="Path for JSON audit report output")
     args = parser.parse_args()
 
     venues = load_venues()
+
+    if args.promote_cache:
+        import locations
+        cache_path = os.path.join(SCRIPT_DIR, "geocode_cache.json")
+        if os.path.exists(cache_path):
+            with open(cache_path, "r", encoding="utf-8") as cf:
+                gcache = json.load(cf)
+            existing_aliases = set()
+            for v in venues:
+                existing_aliases.add(locations._strip_accents(v.get("venue", "")).lower())
+                for al in v.get("aliases", []):
+                    existing_aliases.add(locations._strip_accents(al).lower())
+            promoted = 0
+            for raw_k, hit in gcache.items():
+                if not isinstance(hit, dict) or "lat" not in hit or "lng" not in hit:
+                    continue
+                v_part = raw_k.split(",")[0].strip().lower()
+                if len(v_part) < 4 or locations.STREET_PREFIX.match(v_part) or v_part in existing_aliases or v_part in AMBIGUOUS_STANDALONE_ALIASES:
+                    continue
+                lat_f, lng_f = float(hit["lat"]), float(hit["lng"])
+                if not locations.in_lisbon(lat_f, lng_f):
+                    continue
+                venues.append({
+                    "venue": v_part.title(),
+                    "aliases": [v_part.lower()],
+                    "lat": round(lat_f, 5),
+                    "lng": round(lng_f, 5),
+                    "neighborhood": locations.infer_neighborhood(lat_f, lng_f, hit.get("area", "")),
+                    "corridor": locations.infer_corridor(lat_f, lng_f),
+                    "url": "https://www.agendalx.pt/",
+                    "agenda_url": "https://www.agendalx.pt/",
+                    "source_platform": "municipal",
+                })
+                existing_aliases.add(v_part.lower())
+                promoted += 1
+            if promoted:
+                save_venues(venues)
+                print(f"[✓] Promoted {promoted} newly geocoded Lisbon venues from geocode_cache.json into venues.json!")
 
     if args.upgrade:
         print("\n[+] Upgrading venues registry with verified primary URLs & agenda platforms...")
@@ -527,10 +515,43 @@ def main():
     report = audit_venues(venues)
     print_audit_summary(report)
 
+    if args.check_live:
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        try:
+            from curl_cffi import requests as cffi_req
+            make_req = lambda u: cffi_req.get(u, impersonate="chrome120", timeout=10, verify=False).status_code
+        except ImportError:
+            import urllib.request
+            make_req = lambda u: urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=10).status
+        urls_to_check = sorted({v.get("url", "") for v in venues if v.get("url")} | {v.get("agenda_url", "") for v in venues if v.get("agenda_url")})
+        print(f"\n[+] Live HTTP verification of {len(urls_to_check)} unique venue URLs...")
+        dead_urls = []
+        with ThreadPoolExecutor(max_workers=12) as pool:
+            futs = {pool.submit(make_req, u): u for u in urls_to_check}
+            for fut in as_completed(futs):
+                u = futs[fut]
+                try:
+                    code = fut.result()
+                    if code == 404 or code >= 500:
+                        dead_urls.append((u, code))
+                except Exception as exc:
+                    dead_urls.append((u, str(exc)))
+        report["dead_urls"] = dead_urls
+        if dead_urls:
+            print(f"⚠️  Live URL issues detected ({len(dead_urls)}):")
+            for u, err in dead_urls:
+                print(f"   - [{err}] {u}")
+        else:
+            print("✅ All venue URLs passed live HTTP verification.")
+
     # Save detailed JSON report
     with open(args.report, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     print(f"\n[✓] Detailed audit report written to: {args.report}")
+
+    if args.strict and (report["geo_errors"] or report["corridor_warnings"] or report["alias_warnings"]):
+        print("❌ Strict audit failed due to schema/geo/alias warnings above.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
