@@ -7,6 +7,7 @@
  },
  "arca gallery, r. das portas de santo antao 112 134, 1150-268 lisboa": null,
  "armazem 18, lisboa": null,
+ "artemis gallery, lisboa": null,
  "auditorio s. vicente em alcabideche, lisboa": null,
  "auditorio s. vicente em alcabideche, rua rio das grades, 190/190a, lisboa": null,
  "avenida 24 de julho, 8a-b, lisboa": {
@@ -25,6 +26,7 @@
   "lng": -9.145717
  },
  "badassery, lisboa": null,
+ "bike a wish, r. das fontainhas a sao lourenco, 1100-584 lisboa, lisboa": null,
  "cafe do rio, lisboa": {
   "area": "Santa Maria Maior",
   "lat": 38.708801,
@@ -43,6 +45,11 @@
  },
  "casino estoril, 2765-617 estoril, lisboa": null,
  "centro cultural malaposta, r. de angola, 2620-492 olival basto, lisboa": null,
+ "construction, lisboa": {
+  "area": "Campolide",
+  "lat": 38.735001,
+  "lng": -9.167485
+ },
  "cossoul - sociedade de instrucao guilherme cossoul, lisboa": {
   "area": "Mercês",
   "lat": 38.714155,
@@ -152,6 +159,11 @@
   "area": "Campo Pequeno",
   "lat": 38.726434,
   "lng": -9.15721
+ },
+ "rua soeiro pereira gomes, lote 1, lisboa": {
+  "area": "Campo Pequeno",
+  "lat": 38.743681,
+  "lng": -9.15925
  },
  "rua tomas del negro, 8a, lisboa": {
   "area": "Lumiar",
