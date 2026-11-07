@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-07T13:03:30.543404+00:00",
+  "generated_at": "2026-11-07T14:47:48.222171+00:00",
   "operational_date": "2026-11-07",
   "date_string": "2026-11-07",
-  "total_events": 149,
+  "total_events": 154,
   "events": [
     {
       "id": "dador-6",
@@ -225,7 +225,7 @@
       "description": "Exposição permanente de coches e carruagens reais dos séculos XVI a XIX em Belém."
     },
     {
-      "id": "va-card-876291",
+      "id": "va-card-488232",
       "title": "Comunicar é Natural – A Botânica das Comunicações",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -245,7 +245,7 @@
       "description": "Comunicar é Natural – A Botânica das Comunicações em Fundação Portuguesa das Comunicações (São Bento)."
     },
     {
-      "id": "va-card-421",
+      "id": "va-card-607620",
       "title": "Cuid’Arte",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -283,6 +283,26 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://www.mude.pt/",
       "description": "Exposições de design industrial, gráfico e moda no MUDE — Museu do Design (Rua Augusta, Baixa)."
+    },
+    {
+      "id": "nimas-20261107-1000",
+      "title": "Diálogos Depois do Fim (Versão Série) (de Tiago Guedes)",
+      "category": "Cinema & Screenings",
+      "color": "#06D6A0",
+      "icon": "🍿",
+      "venue": "Cinema Medeia Nimas",
+      "neighborhood": "Picoas / Saldanha",
+      "corridor": "Northern Belt",
+      "lat": 38.73342,
+      "lng": -9.14798,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "12:00",
+      "endHour": 12,
+      "price": "7.50€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas",
+      "description": "Exibição de Diálogos Depois do Fim (Versão Série) (de Tiago Guedes) no Cinema Medeia Nimas (Saldanha)."
     },
     {
       "id": "ongoing-20261107-7",
@@ -365,7 +385,7 @@
       "description": "Exposições de artes performativas e património asiático no Museu do Oriente (Alcântara)."
     },
     {
-      "id": "soko-237421",
+      "id": "soko-462798",
       "title": "Joaquín Sorolla - Mostra Espanha 2026",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -385,7 +405,7 @@
       "description": "Joaquín Sorolla - Mostra Espanha 2026 em MNAC - Museu do Chiado (Chiado). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-225841",
+      "id": "soko-563354",
       "title": "João Pimenta Gomes - New Age",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -405,7 +425,7 @@
       "description": "João Pimenta Gomes - New Age em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-182134",
+      "id": "soko-398137",
       "title": "Mercado CCB",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -525,8 +545,8 @@
       "description": "A 25 de setembro, Dia Nacional da Sustentabilidade, o artista inaugura Em Suspensão, uma exposição que reúne trabalhos recentes que investigam a roupa como corpo político, arquivo de memórias e dispositivo crítico, articulando questões ambi"
     },
     {
-      "id": "va-card-865486",
-      "title": "Turn Around",
+      "id": "soko-399126",
+      "title": "Turn Around - Obras da Coleção de Arte Fundação EDP",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
       "icon": "🎨",
@@ -541,11 +561,11 @@
       "endHour": 19,
       "price": "11.00€",
       "priceTier": "ACCESSIBLE",
-      "url": "https://www.maat.pt/pt/bilheteira",
-      "description": "Turn Around em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém)."
+      "url": "https://www.agendalx.pt/events/event/turn-around/",
+      "description": "Turn Around - Obras da Coleção de Arte Fundação EDP em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-526412",
+      "id": "soko-240045",
       "title": "VENUS: Valentino Garavani by Joana Vasconcelos",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -565,7 +585,7 @@
       "description": "VENUS: Valentino Garavani by Joana Vasconcelos em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
     },
     {
-      "id": "va-card-719162",
+      "id": "va-card-498382",
       "title": "Visitas guiadas ao B-MAD, Museu Berardo Arte Deco",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -705,7 +725,7 @@
       "description": "Com texto original do escritor angolano Ondjaki e de Miguel Sermão, e encenação de Miguel Sermão, o espetáculo acompanha a aventura de Martina, na sua viagem de descoberta e superação a bordo de um navio pirata, até se tornar maruja. Numa h"
     },
     {
-      "id": "soko-98666",
+      "id": "soko-815180",
       "title": "Amelie Von Wulffen",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -725,7 +745,7 @@
       "description": "Amelie Von Wulffen em Culturgest (Campo Pequeno / Arco do Cego). Curadoria Soko Lisboa."
     },
     {
-      "id": "curated-41254",
+      "id": "curated-26975",
       "title": "Curated Selection 2.0",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -925,7 +945,7 @@
       "description": "Welcome autumn with creativity and style! 🎨🍷🇬🇪"
     },
     {
-      "id": "soko-765123",
+      "id": "soko-528891",
       "title": "vulnerable grounds ~ on practising breakdown",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1005,6 +1025,26 @@
       "description": "Espaço cultural inaugurado em novembro de 2023 com uma programação multidisciplinar onde as componentes sociais, artísticas e criativas se interligam, que promove sinergias com as comunidades e com as entidades vizinhas do bairro de Alvalad"
     },
     {
+      "id": "nimas-20261107-1400",
+      "title": "Moscas (de Fernando Eimbcke)",
+      "category": "Cinema & Screenings",
+      "color": "#06D6A0",
+      "icon": "🍿",
+      "venue": "Cinema Medeia Nimas",
+      "neighborhood": "Picoas / Saldanha",
+      "corridor": "Northern Belt",
+      "lat": 38.733368,
+      "lng": -9.147933,
+      "time": "14:00",
+      "hour": 14,
+      "endTime": "16:00",
+      "endHour": 16,
+      "price": "7.50€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas",
+      "description": "Exibição de Moscas (de Fernando Eimbcke) no Cinema Medeia Nimas (Saldanha)."
+    },
+    {
       "id": "agendalx-pantonio-2",
       "title": "Pantónio",
       "category": "Exhibitions & Visual Arts",
@@ -1025,7 +1065,7 @@
       "description": "A Underdogs Gallery apresenta Ser Vivo , a nova exposição de Pantónio, artista contemporâneo português reconhecido pela sua linguagem visual singular, marcada por linhas fluidas, formas orgânicas e figuras animais."
     },
     {
-      "id": "soko-814733",
+      "id": "soko-248899",
       "title": "Arte por receita",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1105,7 +1145,27 @@
       "description": "🌊 Na Onda do Oceano – Aventura Educativa em Família no Oceanário de Lisboa O Oceanário de Lisboa convida miúdos e graúdos a embarcar numa viagem cheia de descobertas, brincadeiras e desafios em nome da proteção dos oceanos."
     },
     {
-      "id": "soko-446827",
+      "id": "ccl-oficina-se-eu-fosse-um-animal-er",
+      "title": "Oficina • Se eu fosse um animal, era…",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "Museu de Lisboa - Palácio Pimenta",
+      "neighborhood": "Campo Grande",
+      "corridor": "Northern Belt",
+      "lat": 38.758598,
+      "lng": -9.152703,
+      "time": "15:00",
+      "hour": 15,
+      "endTime": "16:15",
+      "endHour": 16,
+      "price": "5€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://cartazculturallisboa.pt/evento/oficina-se-eu-fosse-um-animal-era/",
+      "description": "Diz-se que o elefante tem boa memória, que a raposa é astuta, que a formiga é trabalhadora e que a coruja é sábia… Mas será mesmo assim? E tu, se fosses um animal, qual serias? Nesta visita-oficina, as famílias exploram a exposição Animais"
+    },
+    {
+      "id": "soko-385668",
       "title": "Practicing Breakdown",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1125,27 +1185,7 @@
       "description": "Practicing Breakdown em Jardins do Bombarda (LARGO Residências) (Arroios / Gomes Freire). Curadoria Soko Lisboa."
     },
     {
-      "id": "agendalx-se-eu-fosse-um-animal-era",
-      "title": "Se eu fosse um animal, era…",
-      "category": "Community & Gatherings",
-      "color": "#FFB703",
-      "icon": "🛍️",
-      "venue": "Museu de Lisboa - Palácio Pimenta",
-      "neighborhood": "Campo Grande",
-      "corridor": "Northern Belt",
-      "lat": 38.758598,
-      "lng": -9.152703,
-      "time": "15:00",
-      "hour": 15,
-      "endTime": "17:30",
-      "endHour": 17,
-      "price": "5€",
-      "priceTier": "ACCESSIBLE",
-      "url": "https://www.agendalx.pt/events/event/se-eu-fosse-um-animal-era/",
-      "description": "Diz-se que o elefante tem boa memória, que a raposa é astuta, que a formiga é trabalhadora e que a coruja é sábia… Mas será mesmo assim? E tu, se fosses um animal, qual serias? Nesta visita-oficina, as famílias exploram a exposição Animais"
-    },
-    {
-      "id": "soko-971355",
+      "id": "soko-630819",
       "title": "Sábados em Família | Beetlejuice Beetlejuice",
       "category": "Family & Youth",
       "color": "#118AB2",
@@ -1205,7 +1245,7 @@
       "description": "“Quando Menos se Espera” chega ao Teatro Tivoli BBVA com uma comédia de Miguel Falabella 🎭"
     },
     {
-      "id": "soko-445152",
+      "id": "soko-289091",
       "title": "SECRETS",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1265,7 +1305,7 @@
       "description": "Há momentos que nos obrigam a mudar de rumo. A Travessia parte dessa ideia para construir um espetáculo visual onde marionetas e objetos dão forma às dúvidas, aos desafios e às transformações que acompanham o percurso da vida."
     },
     {
-      "id": "va-card-983807",
+      "id": "va-card-304543",
       "title": "Carlos No",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1345,7 +1385,7 @@
       "description": "E se fosse possível entrar na floresta sem sair da cidade e explorá-la com todos os sentidos?"
     },
     {
-      "id": "soko-207632",
+      "id": "soko-934690",
       "title": "GoodRelay: Samba por uma Causa",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -1385,6 +1425,26 @@
       "description": "Groove Castle V5 @Carmo Rooftop - Lisbon Art Weekend Special em Carmo Rooftop (Chiado / Carmo)."
     },
     {
+      "id": "nimas-20261107-1600",
+      "title": "Heysel 85 (de Teodora Mihai)",
+      "category": "Cinema & Screenings",
+      "color": "#06D6A0",
+      "icon": "🍿",
+      "venue": "Cinema Medeia Nimas",
+      "neighborhood": "Picoas / Saldanha",
+      "corridor": "Northern Belt",
+      "lat": 38.733429,
+      "lng": -9.148079,
+      "time": "16:00",
+      "hour": 16,
+      "endTime": "18:00",
+      "endHour": 18,
+      "price": "7.50€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas",
+      "description": "Exibição de Heysel 85 (de Teodora Mihai) no Cinema Medeia Nimas (Saldanha)."
+    },
+    {
       "id": "ccl-les-rayons-et-les-ombres",
       "title": "Les rayons et les ombres",
       "category": "Cinema & Screenings",
@@ -1405,7 +1465,7 @@
       "description": "🎤 Les rayons et les ombres — Lisboa"
     },
     {
-      "id": "va-card-647285",
+      "id": "va-card-993104",
       "title": "Linha do Tempo – 40 anos das escolas de calceteiros e de jardinagem",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1425,7 +1485,7 @@
       "description": "Linha do Tempo – 40 anos das escolas de calceteiros e de jardinagem em Biblioteca Palácio Galveias (Campo Pequeno)."
     },
     {
-      "id": "va-card-111379",
+      "id": "va-card-665160",
       "title": "Mercado de Trocas",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1465,7 +1525,7 @@
       "description": "A edição de 2026 de Topografias Imaginárias , ciclo de visionamentos comentados, dedica-se à relação entre Lisboa e a Natureza, propondo um percurso cinematográfico que convida o público a redescobrir a cidade através dos seus ecossistemas,"
     },
     {
-      "id": "va-card-253652",
+      "id": "va-card-991359",
       "title": "Visitas ao Palácio Alverca | Casa do Alentejo",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1485,7 +1545,7 @@
       "description": "Visitas ao Palácio Alverca | Casa do Alentejo em Casa do Alentejo (Baixa / Rossio)."
     },
     {
-      "id": "va-card-926975",
+      "id": "va-card-266983",
       "title": "Visitas ao Templo Radha Krishna",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1505,7 +1565,7 @@
       "description": "Visitas ao Templo Radha Krishna em Comunidade Hindu De Portugal (Lumiar)."
     },
     {
-      "id": "va-card-613487",
+      "id": "va-card-683772",
       "title": "Visitas guiadas à Brotéria",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1525,7 +1585,7 @@
       "description": "Visitas guiadas à Brotéria em Brotéria (Bairro Alto)."
     },
     {
-      "id": "va-card-354528",
+      "id": "va-card-29571",
       "title": "Visitas orientadas à Casa Fernando Pessoa",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1585,7 +1645,7 @@
       "description": "Até que ponto objetos do nosso quotidiano podem ser responsáveis por grandes catástrofes naturais? O Estado do Mundo (Quando Acordas) coloca em cena relações de causa-efeito entre pequenos gestos e grandes consequências. Edi e um rapaz de o"
     },
     {
-      "id": "soko-96243",
+      "id": "soko-316888",
       "title": "'Naza' de Yuval Abraham e Rachel Szor",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1645,7 +1705,7 @@
       "description": "“Significado de Consentimento n.m. 1. Ação de consentir; 2. Autorização ou assentimento; aprovação; permitir algo; 3. Concordância; anuência ou aquiescência; ser favorável a algo ou alguém. (Etm. do latim: consentir + mento)”*"
     },
     {
-      "id": "soko-175650",
+      "id": "soko-773467",
       "title": "Turmalina Parahyba Forró Fest: Aula de Forró e música ao vivo",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -1685,7 +1745,7 @@
       "description": "SINOPSE"
     },
     {
-      "id": "soko-462351",
+      "id": "soko-30744",
       "title": "Alexandre Estrela - RedSkyFalls (réplica)",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1745,7 +1805,7 @@
       "description": "Cabaz de Natal 2026 na Junta de Freguesia de Santo António, Santo António."
     },
     {
-      "id": "soko-782922",
+      "id": "soko-748416",
       "title": "Cristina Lamas",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1765,7 +1825,7 @@
       "description": "Cristina Lamas em Galeria Zé dos Bois (ZDB) (Bairro Alto). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-912449",
+      "id": "soko-143096",
       "title": "Esta Noite Grita-se: Vitória de Pau Miró",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -1785,7 +1845,7 @@
       "description": "Esta Noite Grita-se: Vitória de Pau Miró em Casa do Comum (Bairro Alto). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-27319",
+      "id": "soko-390670",
       "title": "Inês Raposo",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1805,7 +1865,7 @@
       "description": "Inês Raposo em Galeria Zé dos Bois (ZDB) (Bairro Alto). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-66990",
+      "id": "soko-536196",
       "title": "Kathy Hinde",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1865,7 +1925,7 @@
       "description": "Pathogenic - No Limits em República da Música (Alvalade)."
     },
     {
-      "id": "soko-869952",
+      "id": "soko-479992",
       "title": "Rita Azevedo Gomes | 25 de Abril, 25 Anos | Intromisôes | Belle de Jou",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1885,7 +1945,7 @@
       "description": "Rita Azevedo Gomes | 25 de Abril, 25 Anos | Intromisôes | Belle de Jou em Cinemateca Portuguesa (Avenida / Marquês). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-791253",
+      "id": "soko-75655",
       "title": "LEFFEST 2026 | 9 Temples to Heaven",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1923,6 +1983,26 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://cartazculturallisboa.pt/evento/la-vie-au-ranch/",
       "description": "🎤 La vie au ranch — Lisboa"
+    },
+    {
+      "id": "nimas-20261107-1830",
+      "title": "Old Joy (de Kelly Reichardt)",
+      "category": "Cinema & Screenings",
+      "color": "#06D6A0",
+      "icon": "🍿",
+      "venue": "Cinema Medeia Nimas",
+      "neighborhood": "Picoas / Saldanha",
+      "corridor": "Northern Belt",
+      "lat": 38.733494,
+      "lng": -9.147884,
+      "time": "18:30",
+      "hour": 18,
+      "endTime": "20:30",
+      "endHour": 20,
+      "price": "7.50€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas",
+      "description": "Exibição de Old Joy (de Kelly Reichardt) no Cinema Medeia Nimas (Saldanha)."
     },
     {
       "id": "voluntariado-refood-20261107",
@@ -1985,7 +2065,7 @@
       "description": "Marco Rodrigues apresenta-se em palco com um espetáculo que evoca a memória e o legado de Carlos do Carmo – sua referência e figura maior do Fado. Com a solidez de uma carreira firmada no respeito pela tradição, o fadista revisita os temas"
     },
     {
-      "id": "soko-321962",
+      "id": "soko-280128",
       "title": "Residências Insubmissas Gerador: pensar a Palestina em voz alta",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2185,7 +2265,7 @@
       "description": "🎤 Festa do Jazz 2026 — 24.ª edição"
     },
     {
-      "id": "soko-651929",
+      "id": "soko-877131",
       "title": "LEFFEST 2026 | You Can See Everything",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -2205,7 +2285,7 @@
       "description": "LEFFEST 2026 | You Can See Everything em Cinema São Jorge (Avenida da Liberdade). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-605795",
+      "id": "soko-482346",
       "title": "LEFFEST'26 | BUNKER",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -2219,7 +2299,7 @@
       "hour": 21,
       "endTime": "23:00",
       "endHour": 23,
-      "price": "8.60€",
+      "price": "8.59€",
       "priceTier": "ACCESSIBLE",
       "url": "https://www.ticketline.pt/evento/leffest-26-bunker-109148",
       "description": "LEFFEST'26 | BUNKER em Culturgest (Campo Pequeno / Arco do Cego). Curadoria Soko Lisboa."
@@ -2265,7 +2345,7 @@
       "description": "OMIRI @ Jardins do Bombarda em Jardins do Bombarda (LARGO Residências) (Arroios / Gomes Freire)."
     },
     {
-      "id": "va-card-214261",
+      "id": "va-card-917804",
       "title": "Tasting Fado",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -2305,7 +2385,7 @@
       "description": "O Távola Jazz Club , em Lisboa, propõe uma experiência dedicada ao melhor do jazz ao vivo , num ambiente intimista, acolhedor e pensado para ouvir música de perto."
     },
     {
-      "id": "adc-20261107-6258",
+      "id": "adc-20261107-6116",
       "title": "António Luís Silva",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2385,6 +2465,26 @@
       "description": "A cantora e compositora francesa Daphné Chenel apresenta-se no Sótão da Casa Capitão. A artista vive em Lisboa há vários anos e desenvolveu na cidade um percurso de escrita e composição entre pop intimista, canção francesa e produção contem"
     },
     {
+      "id": "nimas-20261107-2130",
+      "title": "Ela Olhava Sem Nada Ver (de Fanny Ardant)",
+      "category": "Cinema & Screenings",
+      "color": "#06D6A0",
+      "icon": "🍿",
+      "venue": "Cinema Medeia Nimas",
+      "neighborhood": "Picoas / Saldanha",
+      "corridor": "Northern Belt",
+      "lat": 38.733282,
+      "lng": -9.148004,
+      "time": "21:30",
+      "hour": 21,
+      "endTime": "23:30",
+      "endHour": 23,
+      "price": "7.50€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://medeiafilmes.com/cinemas/cinema-medeia-nimas",
+      "description": "Exibição de Ela Olhava Sem Nada Ver (de Fanny Ardant) no Cinema Medeia Nimas (Saldanha)."
+    },
+    {
       "id": "agendalx-frank-borzage-o-lugar-mais-sagrado",
       "title": "Frank Borzage – o lugar mais sagrado",
       "category": "Cinema & Screenings",
@@ -2425,7 +2525,7 @@
       "description": "Uma tragicomédia escrita por Patrícia Portela (recentemente distinguida com o Grande Prémio de Romance e Novela da Associação Portuguesa de Escritores pelo livro Manual para andar espantada por existir ) a partir do Rei Lear de Shakespeare"
     },
     {
-      "id": "adc-20261107-908",
+      "id": "adc-20261107-7973",
       "title": "Jazzopa ᛫ Ensemble Festa do Jazz & Mané Fernandes",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -2465,7 +2565,7 @@
       "description": "Um espaço cultural de proximidade, agregando, valorizando e integrando pessoas e comunidades, com oferta de programação variada, através do cruzamento entre a produção artística e cultural do território em diálogo com novas abordagens e pro"
     },
     {
-      "id": "soko-633581",
+      "id": "soko-577991",
       "title": "Sala de Estar com Vasco Ribeiro Casais",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2505,7 +2605,7 @@
       "description": "Um grupo de desconhecidos aluga, sem saber, o mesmo apartamento no bairro de Benfica, em Lisboa, por 600 euros. Uma pechincha! Mas… será que o apartamento tem algum problema que não foi colocado no anúncio? Ou será que tudo não passa de um"
     },
     {
-      "id": "soko-170927",
+      "id": "soko-670359",
       "title": "The Clash",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2525,7 +2625,7 @@
       "description": "The Clash em Tokyo Lisboa (Cais do Sodré). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-83051",
+      "id": "soko-128906",
       "title": "Tokyo Lisboa: The Chisel + Spiritual Decay",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2565,7 +2665,7 @@
       "description": "Versus: Fly Anakin & Quelle Chris Em Lisboa em LX Factory (Alcântara)."
     },
     {
-      "id": "adc-20261107-8226",
+      "id": "adc-20261107-439",
       "title": "Vizir ᛫ Azzaya ᛫ Toranos",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2705,7 +2805,7 @@
       "description": "Nuno Leote @ Palácio Chiado em Palácio Chiado (Chiado)."
     },
     {
-      "id": "soko-926361",
+      "id": "soko-751359",
       "title": "Beija flor",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -2865,7 +2965,7 @@
       "description": "BAILE | EMBRASA: DJ SAZE + DJ Lorrany + Rafa Militão + bieu s2 + GAVI + Ana Lauriz + Tarik + Naomy Vissolela + Xavbeatzz b2b Brilhante em Casa Capitão (Casa Capitão - Baile) (Beato). Bilhetes oficiais via DICE."
     },
     {
-      "id": "soko-53970",
+      "id": "soko-30558",
       "title": "Embrasa: Última edição do ano",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
