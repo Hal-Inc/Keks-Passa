@@ -1007,6 +1007,40 @@
       });
 
       // Pratinho de Tremoços Easter Egg
+      const TREMOCO_EATING_TRACK = {
+        mp3: './eating-termo%C3%A7o.mp3?v=2',
+        fallback: './eating-termo%C3%A7o.ogg?v=2'
+      };
+      const TREMOCO_FINISHED_TRACK = {
+        mp3: './finished-termo%C3%A7o.mp3?v=2',
+        fallback: './finished-termo%C3%A7o.ogg?v=2'
+      };
+
+      const eatingTremocoAudio = new Audio(TREMOCO_EATING_TRACK.mp3);
+      eatingTremocoAudio.preload = 'auto';
+      eatingTremocoAudio.volume = 0.92;
+
+      const finishedTremocoAudio = new Audio(TREMOCO_FINISHED_TRACK.mp3);
+      finishedTremocoAudio.preload = 'auto';
+      finishedTremocoAudio.volume = 0.95;
+
+      function playTremocoTrack(audioEl, track){
+        try{
+          audioEl.pause();
+          audioEl.currentTime = 0;
+          const p = audioEl.play();
+          if(p && typeof p.catch === 'function'){
+            p.catch(() => {
+              const alt = new Audio(track.fallback);
+              alt.volume = audioEl.volume;
+              alt.play().catch(() => playAudioBufferFallback(track.mp3));
+            });
+          }
+        }catch(_){
+          playAudioBufferFallback(track.mp3);
+        }
+      }
+
       if(tremocosPlate && tremocosBeans){
         const beanEls = Array.from(tremocosBeans.querySelectorAll('i'));
         let beansLeft = beanEls.length;
@@ -1025,11 +1059,23 @@
             return;
           }
 
+          const eatenInPlate = (beanEls.length - beansLeft) + 1;
           const targetBean = beanEls[beanEls.length - beansLeft];
           if(targetBean) targetBean.classList.add('is-eaten');
           beansLeft--;
           beerData.tremocosEaten = (beerData.tremocosEaten || 0) + 1;
-          playTremocoSound(false);
+
+          if(beansLeft === 0){
+            // Último tremoço do prato (10.º): toca finished-termoço
+            try{ eatingTremocoAudio.pause(); eatingTremocoAudio.currentTime = 0; }catch(_){}
+            playTremocoTrack(finishedTremocoAudio, TREMOCO_FINISHED_TRACK);
+          }else if(eatenInPlate === 1 || eatenInPlate === 5){
+            // 1.º e 5.º tremoço do prato: toca eating-termoço sem sobrepor o resto do prato
+            try{ finishedTremocoAudio.pause(); finishedTremocoAudio.currentTime = 0; }catch(_){}
+            playTremocoTrack(eatingTremocoAudio, TREMOCO_EATING_TRACK);
+          }else{
+            playTremocoSound(false);
+          }
           try{ localStorage.setItem(BEER_KEY, JSON.stringify(beerData)); }catch(_){}
 
           if(tremocosLabel){

@@ -1,7 +1,7 @@
-// Keks Passa Service Worker v1.1
+// Keks Passa Service Worker v1.2
 // Lightweight progressive web app caching for instant loads and true underground offline resilience
 
-const CACHE_NAME = 'keks-passa-v1.1';
+const CACHE_NAME = 'keks-passa-v1.2';
 
 const PRECACHE_ASSETS = [
   './',
@@ -15,6 +15,10 @@ const PRECACHE_ASSETS = [
   './beer-empty2.mp3',
   './beer-empty3.mp3',
   './beer-empty4.mp3',
+  './eating-termo%C3%A7o.mp3',
+  './eating-termo%C3%A7o.ogg',
+  './finished-termo%C3%A7o.mp3',
+  './finished-termo%C3%A7o.ogg',
   './kosmicare.svg',
   './kosmicare.png',
   './Kosmicare.jfif'
