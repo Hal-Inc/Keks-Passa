@@ -1,14 +1,14 @@
 {
-  "total_venues": 186,
-  "authoritative_count": 157,
-  "fallback_count": 29,
-  "authoritative_percentage": 84.4,
+  "total_venues": 189,
+  "authoritative_count": 159,
+  "fallback_count": 30,
+  "authoritative_percentage": 84.1,
   "platform_distribution": {
     "shotgun": 6,
-    "official_web": 112,
+    "official_web": 114,
     "resident_advisor": 5,
     "instagram": 15,
-    "municipal": 38,
+    "municipal": 39,
     "dice": 2,
     "bol": 2,
     "ticketline": 1,
@@ -333,6 +333,17 @@
       "corridor": "Northern Belt",
       "lat": 38.74298,
       "lng": -9.13875,
+      "url": "https://www.agendalx.pt/",
+      "agenda_url": "https://www.agendalx.pt/",
+      "source_platform": "municipal",
+      "has_primary_upgrade_available": false
+    },
+    {
+      "venue": "Construction",
+      "neighborhood": "Campolide",
+      "corridor": "Northern Belt",
+      "lat": 38.735,
+      "lng": -9.16748,
       "url": "https://www.agendalx.pt/",
       "agenda_url": "https://www.agendalx.pt/",
       "source_platform": "municipal",
@@ -2065,6 +2076,28 @@
       "url": "https://www.instagram.com/badassery.lisbon/",
       "agenda_url": "https://shotgun.live/pt-pt/cities/lisbon",
       "source_platform": "instagram",
+      "has_primary_upgrade_available": false
+    },
+    {
+      "venue": "Santuário",
+      "neighborhood": "Santos",
+      "corridor": "Belém Waterfront",
+      "lat": 38.70625,
+      "lng": -9.15737,
+      "url": "https://xceed.me/pt/lisboa/venue/santuario",
+      "agenda_url": "https://xceed.me/pt/lisboa/venue/santuario",
+      "source_platform": "official_web",
+      "has_primary_upgrade_available": false
+    },
+    {
+      "venue": "Jardim do Éden (Monsanto)",
+      "neighborhood": "Monsanto",
+      "corridor": "Northern Belt",
+      "lat": 38.72479,
+      "lng": -9.19725,
+      "url": "https://xceed.me/pt/lisboa/venue/jardim-do-eden",
+      "agenda_url": "https://xceed.me/pt/lisboa/venue/jardim-do-eden",
+      "source_platform": "official_web",
       "has_primary_upgrade_available": false
     }
   ]

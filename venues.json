@@ -1590,7 +1590,9 @@
       "lxfactory",
       "collect lx factory",
       "lx rural",
-      "rua rodrigues de faria 103"
+      "rua rodrigues de faria 103",
+      "fabrica xl",
+      "fábrica xl"
     ],
     "lat": 38.70355,
     "lng": -9.17885,
@@ -2775,6 +2777,50 @@
     "lat": 38.74298,
     "lng": -9.13875,
     "neighborhood": "Areeiro",
+    "corridor": "Northern Belt",
+    "url": "https://www.agendalx.pt/",
+    "agenda_url": "https://www.agendalx.pt/",
+    "source_platform": "municipal"
+  },
+  {
+    "venue": "Santuário",
+    "aliases": [
+      "santuario",
+      "santuário",
+      "escadinhas da praia 5"
+    ],
+    "lat": 38.70625,
+    "lng": -9.15737,
+    "neighborhood": "Santos",
+    "corridor": "Belém Waterfront",
+    "url": "https://xceed.me/pt/lisboa/venue/santuario",
+    "agenda_url": "https://xceed.me/pt/lisboa/venue/santuario",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Jardim do Éden (Monsanto)",
+    "aliases": [
+      "jardim do eden",
+      "jardim do éden",
+      "jardim do eden.",
+      "jardim do éden."
+    ],
+    "lat": 38.72479,
+    "lng": -9.19725,
+    "neighborhood": "Monsanto",
+    "corridor": "Northern Belt",
+    "url": "https://xceed.me/pt/lisboa/venue/jardim-do-eden",
+    "agenda_url": "https://xceed.me/pt/lisboa/venue/jardim-do-eden",
+    "source_platform": "official_web"
+  },
+  {
+    "venue": "Construction",
+    "aliases": [
+      "construction"
+    ],
+    "lat": 38.735,
+    "lng": -9.16748,
+    "neighborhood": "Campolide",
     "corridor": "Northern Belt",
     "url": "https://www.agendalx.pt/",
     "agenda_url": "https://www.agendalx.pt/",

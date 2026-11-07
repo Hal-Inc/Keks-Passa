@@ -12,7 +12,7 @@ import sys
 import os
 import json
 import re
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 from urllib.parse import urlparse
 
 # Reconfigure stdout for UTF-8 on Windows
@@ -455,18 +455,119 @@ def print_audit_summary(report: Dict[str, Any]) -> None:
     print("=" * 72)
 
 
+def sync_firebase_suggestions(venues: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], int, List[Dict[str, Any]]]:
+    """
+    Fetches community-submitted venue suggestions from the Keks Passa Firebase RTDB,
+    verifies coordinates within strict Lisbon bounds and checks URL health,
+    and promotes verified new venues into venues.json.
+    """
+    import requests
+    import urllib3
+    import locations
+
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    firebase_url = "https://keks-passa-default-rtdb.europe-west1.firebasedatabase.app/keks_chess_game/suggestions.json"
+    existing_aliases = set()
+    for v in venues:
+        existing_aliases.add(locations._strip_accents(v.get("venue", "")).lower())
+        for al in v.get("aliases", []):
+            existing_aliases.add(locations._strip_accents(al).lower())
+
+    promoted = 0
+    summary_log: List[Dict[str, Any]] = []
+    try:
+        resp = requests.get(firebase_url, timeout=10, verify=False)
+        if resp.status_code != 200 or not resp.json():
+            return venues, 0, summary_log
+        data = resp.json()
+        if not isinstance(data, dict):
+            return venues, 0, summary_log
+
+        for sug_id, item in data.items():
+            if not isinstance(item, dict):
+                continue
+            v_name = str(item.get("venue") or item.get("name") or "").strip()
+            if not v_name or len(v_name) < 3:
+                continue
+            v_norm = locations._strip_accents(v_name).lower()
+            if v_norm in existing_aliases or v_norm in AMBIGUOUS_STANDALONE_ALIASES:
+                summary_log.append({"id": sug_id, "venue": v_name, "status": "already_verified"})
+                continue
+
+            raw_nb = str(item.get("neighborhood") or "").strip()
+            raw_notes = str(item.get("notes") or item.get("description") or "").strip()
+            raw_url = str(item.get("url") or item.get("links") or "").strip()
+            if raw_url.startswith("@"):
+                raw_url = f"https://www.instagram.com/{raw_url[1:].strip('/')}/"
+            elif raw_url and not raw_url.startswith("http"):
+                raw_url = "https://" + raw_url
+
+            geo = locations._nominatim(f"{v_name}, {raw_nb or 'Lisboa'}, Lisboa")
+            if not geo and raw_notes:
+                geo = locations._nominatim(f"{raw_notes}, Lisboa")
+            if not geo:
+                summary_log.append({"id": sug_id, "venue": v_name, "status": "needs_manual_coords"})
+                continue
+
+            lat_f, lng_f = float(geo["lat"]), float(geo["lng"])
+            if not locations.in_lisbon(lat_f, lng_f):
+                summary_log.append({"id": sug_id, "venue": v_name, "status": "outside_lisbon_bounds"})
+                continue
+
+            final_url = "https://www.agendalx.pt/"
+            if raw_url.startswith("http"):
+                try:
+                    u_resp = requests.get(raw_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=8, verify=False)
+                    if u_resp.status_code < 400 or u_resp.status_code == 403:
+                        final_url = raw_url
+                except Exception:
+                    pass
+
+            nb_final = raw_nb or locations.infer_neighborhood(lat_f, lng_f, geo.get("area", ""))
+            corridor_final = locations.infer_corridor(lat_f, lng_f)
+            platform_final = infer_platform_from_url(final_url)
+
+            venues.append({
+                "venue": v_name,
+                "aliases": [v_norm],
+                "lat": round(lat_f, 5),
+                "lng": round(lng_f, 5),
+                "neighborhood": nb_final,
+                "corridor": corridor_final,
+                "url": final_url,
+                "agenda_url": final_url,
+                "source_platform": platform_final,
+            })
+            existing_aliases.add(v_norm)
+            promoted += 1
+            summary_log.append({"id": sug_id, "venue": v_name, "status": "promoted", "lat": lat_f, "lng": lng_f, "url": final_url})
+    except Exception as exc:
+        summary_log.append({"error": str(exc)})
+
+    return venues, promoted, summary_log
+
+
 def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="Keks Passa Venue-to-Source Verification Engine")
     parser.add_argument("--upgrade", action="store_true", help="Apply verified primary source upgrades to venues.json")
     parser.add_argument("--promote-cache", action="store_true", help="Promote newly geocoded named venues from geocode_cache.json into venues.json")
+    parser.add_argument("--sync-suggestions", action="store_true", help="Sync and verify community venue suggestions from Firebase RTDB")
     parser.add_argument("--strict", action="store_true", help="Exit with code 1 if any geo, corridor, alias, or URL error is found")
     parser.add_argument("--check-live", action="store_true", help="Perform live HTTP status checks on all venue URLs")
     parser.add_argument("--report", default=REPORT_FILE, help="Path for JSON audit report output")
     args = parser.parse_args()
 
     venues = load_venues()
+
+    if args.sync_suggestions:
+        venues, sug_promoted, sug_log = sync_firebase_suggestions(venues)
+        print(f"[+] Checked Firebase community suggestions ({len(sug_log)} items, {sug_promoted} newly promoted):")
+        for s in sug_log:
+            print(f"    • {s.get('venue', 'item')}: {s.get('status', s.get('error', 'checked'))}")
+        if sug_promoted:
+            save_venues(venues)
 
     if args.promote_cache:
         import locations

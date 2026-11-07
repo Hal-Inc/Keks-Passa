@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-07T12:19:18.413322+00:00",
+  "generated_at": "2026-11-07T13:01:21.154572+00:00",
   "operational_date": "2026-11-07",
   "date_string": "2026-11-07",
-  "total_events": 139,
+  "total_events": 162,
   "events": [
     {
       "id": "dador-6",
@@ -85,8 +85,8 @@
       "description": "Sessão de dádiva e colheita de sangue (POSTO AVANCADO) em HOSPITAL S. JOSE - RUA JOSE ANTONIO SERRANO - LISBOA. Horário: 09:00 às 13:00. Dá sangue, salva vidas!"
     },
     {
-      "id": "ongoing-20261107-1",
-      "title": "Feira da Ladra — Mercado Histórico de Antiguidades, Artesanato e Vinil",
+      "id": "ccl-feira-da-ladra-em-lisboa-o-merca",
+      "title": "Feira da Ladra em Lisboa: o mercado mais antigo da cidade",
       "category": "Community & Gatherings",
       "color": "#FFB703",
       "icon": "🛍️",
@@ -97,12 +97,12 @@
       "lng": -9.1255,
       "time": "09:00",
       "hour": 9,
-      "endTime": "17:00",
-      "endHour": 17,
+      "endTime": "18:00",
+      "endHour": 18,
       "price": "Entrada Livre",
       "priceTier": "FREE",
-      "url": "https://www.visitlisboa.com/pt-pt/locais/feira-da-ladra",
-      "description": "O mercado de rua mais antigo de Lisboa no Campo de Santa Clara (terças e sábados, das 09:00 às 17:00)."
+      "url": "https://cartazculturallisboa.pt/evento/feira-da-ladra-em-lisboa-o-mercado-mais-antigo-da-cidade/",
+      "description": "🧳 “Feira da Ladra em Lisboa: o mercado mais antigo da cidade continua a revelar tesouros, histórias e achados únicos”"
     },
     {
       "id": "ongoing-20261107-2",
@@ -145,6 +145,26 @@
       "description": "Exposição permanente sobre a vida e obra de José Saramago na histórica Casa dos Bicos (Alfama)."
     },
     {
+      "id": "agendalx-bichole",
+      "title": "Bicholé",
+      "category": "Theatre & Comedy",
+      "color": "#2A9D8F",
+      "icon": "🎭",
+      "venue": "Boutique da Cultura - Um Teatro em Cada Bairro",
+      "neighborhood": "Carnide",
+      "corridor": "Northern Belt",
+      "lat": 38.75955,
+      "lng": -9.18925,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "12:00",
+      "endHour": 12,
+      "price": "Consultar bilheteira",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://www.agendalx.pt/events/event/bichole/",
+      "description": "Inspirado no “Carnaval dos Animais de Camille Saint-Saëns”, todos os bichos foram convidados para uma festa muito especial. Os sons nascem ao ritmo do corpo: há passos gravíssimos de Bicholás, bicadas agudíssimas de Bicholis, rugidos fortes"
+    },
+    {
       "id": "ccl-chiado-volta-a-ser-capital-dos-l",
       "title": "Chiado volta a ser capital dos livros usados: Feira dos Alfarrabistas",
       "category": "Community & Gatherings",
@@ -185,7 +205,7 @@
       "description": "Exposição permanente de coches e carruagens reais dos séculos XVI a XIX em Belém."
     },
     {
-      "id": "va-card-351625",
+      "id": "va-card-576348",
       "title": "Comunicar é Natural – A Botânica das Comunicações",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -205,7 +225,7 @@
       "description": "Comunicar é Natural – A Botânica das Comunicações em Fundação Portuguesa das Comunicações (São Bento)."
     },
     {
-      "id": "va-card-48508",
+      "id": "va-card-81313",
       "title": "Cuid’Arte",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -305,6 +325,26 @@
       "description": "Um balanço da atividade editorial do museu através da apresentação de uma seleção de mais de 300 publicações. Num espaço cuidadosamente preparado, as qualidades destes objetos editoriais são evidenciadas, sobretudo na sua relação com a prog"
     },
     {
+      "id": "agendalx-henrique-neves-4",
+      "title": "Henrique Neves",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "Estufa Fria de Lisboa",
+      "neighborhood": "Parque Eduardo VII",
+      "corridor": "Northern Belt",
+      "lat": 38.72905,
+      "lng": -9.15565,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "17:00",
+      "endHour": 17,
+      "price": "Entrada Livre",
+      "priceTier": "FREE",
+      "url": "https://www.agendalx.pt/events/event/henrique-neves-4/",
+      "description": "A Rosa tem Dentes é o resultado de uma residência artística na Estufa Fria, onde Henrique Neves escavou narrativas ocultas e investigou elementos vislumbrados por entre a exuberância e a espetacularidade da estufa e do seu entorno."
+    },
+    {
       "id": "ongoing-20261107-12",
       "title": "Japão: Festas e Rituais & Coleção Kwok On no Museu do Oriente",
       "category": "Exhibitions & Visual Arts",
@@ -325,7 +365,7 @@
       "description": "Exposições de artes performativas e património asiático no Museu do Oriente (Alcântara)."
     },
     {
-      "id": "soko-400094",
+      "id": "soko-210772",
       "title": "Joaquín Sorolla - Mostra Espanha 2026",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -345,7 +385,47 @@
       "description": "Joaquín Sorolla - Mostra Espanha 2026 em MNAC - Museu do Chiado (Chiado). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-255898",
+      "id": "soko-283534",
+      "title": "João Pimenta Gomes - New Age",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
+      "neighborhood": "Belém",
+      "corridor": "Belém Waterfront",
+      "lat": 38.695889,
+      "lng": -9.194579,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "19:00",
+      "endHour": 19,
+      "price": "11.00€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://soko.fyi/pt/venues/maat-museu-de-arte-arquitetura-e-tecnologia-adu7aw",
+      "description": "João Pimenta Gomes - New Age em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "soko-527607",
+      "title": "Life is the Game",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
+      "neighborhood": "Belém",
+      "corridor": "Belém Waterfront",
+      "lat": 38.695954,
+      "lng": -9.194384,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "19:00",
+      "endHour": 19,
+      "price": "11.00€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://soko.fyi/pt/venues/maat-museu-de-arte-arquitetura-e-tecnologia-adu7aw",
+      "description": "Life is the Game em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "soko-158739",
       "title": "Mercado CCB",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -385,7 +465,47 @@
       "description": "Mercado de autor, cerâmica, ilustração, joalharia e design independente no Jardim da Estrela."
     },
     {
-      "id": "soko-590354",
+      "id": "agendalx-paraiso-hoje",
+      "title": "Paraíso, Hoje",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "Centro Cultural de Belém (CCB)",
+      "neighborhood": "Belém",
+      "corridor": "Belém Waterfront",
+      "lat": 38.695528,
+      "lng": -9.206373,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "18:30",
+      "endHour": 18,
+      "price": "10.00€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://www.agendalx.pt/events/event/paraiso-hoje/",
+      "description": "A Representação Oficial Portuguesa na 19.ª Exposição Internacional de Arquitetura – La Biennale di Venezia em 2025 chega agora ao MAC/CCB. Propondo uma reflexão crítica sobre as relações entre arquitetura, paisagem e território contemporâne"
+    },
+    {
+      "id": "soko-495063",
+      "title": "Pedro Cabrita Reis: Com o Coração Livre de Cuidados",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
+      "neighborhood": "Belém",
+      "corridor": "Belém Waterfront",
+      "lat": 38.695742,
+      "lng": -9.194504,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "19:00",
+      "endHour": 19,
+      "price": "11.00€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://soko.fyi/pt/venues/maat-museu-de-arte-arquitetura-e-tecnologia-adu7aw",
+      "description": "Pedro Cabrita Reis: Com o Coração Livre de Cuidados em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "soko-96063",
       "title": "Repair Café",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -393,8 +513,8 @@
       "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
       "neighborhood": "Belém",
       "corridor": "Belém Waterfront",
-      "lat": 38.695889,
-      "lng": -9.194579,
+      "lat": 38.696012,
+      "lng": -9.194564,
       "time": "10:00",
       "hour": 10,
       "endTime": "19:00",
@@ -425,6 +545,26 @@
       "description": "🎤 Retro Series Game Day — oficinas de criação de videojogos retro"
     },
     {
+      "id": "agendalx-sandra-muteteri-heremans",
+      "title": "Sandra Muteteri Heremans",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "Lumiar Cité",
+      "neighborhood": "Lumiar",
+      "corridor": "Northern Belt",
+      "lat": 38.775011,
+      "lng": -9.151369,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "18:00",
+      "endHour": 18,
+      "price": "Entrada Livre / Bilheteira",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://www.agendalx.pt/events/event/sandra-muteteri-heremans/",
+      "description": "Em The Space Between the Silences , a artista ruando-belga Sandra Muteteri Heremans explora histórias entrelaçadas, moldadas pela experiência da diáspora, pelos movimentos socialistas africanos do período pós-independência e pela herança po"
+    },
+    {
       "id": "agendalx-tales-frey-2",
       "title": "Tales Frey",
       "category": "Exhibitions & Visual Arts",
@@ -445,27 +585,47 @@
       "description": "A 25 de setembro, Dia Nacional da Sustentabilidade, o artista inaugura Em Suspensão, uma exposição que reúne trabalhos recentes que investigam a roupa como corpo político, arquivo de memórias e dispositivo crítico, articulando questões ambi"
     },
     {
-      "id": "va-card-458410",
-      "title": "Turn Around",
+      "id": "soko-733087",
+      "title": "Turn Around - Obras da Coleção de Arte Fundação EDP",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
       "icon": "🎨",
       "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
       "neighborhood": "Belém",
       "corridor": "Belém Waterfront",
-      "lat": 38.695954,
-      "lng": -9.194384,
+      "lat": 38.695835,
+      "lng": -9.194314,
       "time": "10:00",
       "hour": 10,
       "endTime": "19:00",
       "endHour": 19,
       "price": "11.00€",
       "priceTier": "ACCESSIBLE",
-      "url": "https://www.maat.pt/pt/bilheteira",
-      "description": "Turn Around em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém)."
+      "url": "https://www.agendalx.pt/events/event/turn-around/",
+      "description": "Turn Around - Obras da Coleção de Arte Fundação EDP em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
     },
     {
-      "id": "va-card-44265",
+      "id": "soko-156877",
+      "title": "VENUS: Valentino Garavani by Joana Vasconcelos",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
+      "neighborhood": "Belém",
+      "corridor": "Belém Waterfront",
+      "lat": 38.695795,
+      "lng": -9.194644,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "19:00",
+      "endHour": 19,
+      "price": "11.00€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://soko.fyi/pt/venues/maat-museu-de-arte-arquitetura-e-tecnologia-adu7aw",
+      "description": "VENUS: Valentino Garavani by Joana Vasconcelos em MAAT - Museu de Arte, Arquitetura e Tecnologia (Belém). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "va-card-203685",
       "title": "Visitas guiadas ao B-MAD, Museu Berardo Arte Deco",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -485,7 +645,27 @@
       "description": "Visitas guiadas ao B-MAD, Museu Berardo Arte Deco em Museu Berardo Arte Deco (B-MAD) (Alcântara)."
     },
     {
-      "id": "soko-30645",
+      "id": "agendalx-angela-ferreira-8",
+      "title": "Ângela Ferreira",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "Centro Cultural de Belém (CCB)",
+      "neighborhood": "Belém",
+      "corridor": "Belém Waterfront",
+      "lat": 38.695589,
+      "lng": -9.206519,
+      "time": "10:00",
+      "hour": 10,
+      "endTime": "18:30",
+      "endHour": 18,
+      "price": "10.00€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://www.agendalx.pt/events/event/angela-ferreira-8/",
+      "description": "Figura central da arte contemporânea portuguesa, Ângela Ferreira chega ao MAC/CCB com Here I Stand , uma exposição que percorre mais de três décadas da sua prática artística."
+    },
+    {
+      "id": "soko-755044",
       "title": "A Fábrica da Eletricidade para os mais pequenos",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -493,8 +673,8 @@
       "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
       "neighborhood": "Belém",
       "corridor": "Belém Waterfront",
-      "lat": 38.695742,
-      "lng": -9.194504,
+      "lat": 38.696066,
+      "lng": -9.194412,
       "time": "10:30",
       "hour": 10,
       "endTime": "19:00",
@@ -525,6 +705,46 @@
       "description": "Ateliers abertos, bancas de artesãos, edições independentes e Livraria Ler Devagar na antiga fábrica de Alcântara."
     },
     {
+      "id": "agendalx-leonel-dos-santos-2",
+      "title": "Leonel dos Santos",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "Basílica da Estrela",
+      "neighborhood": "Estrela",
+      "corridor": "Axial Spine",
+      "lat": 38.71345,
+      "lng": -9.16045,
+      "time": "10:30",
+      "hour": 10,
+      "endTime": "17:00",
+      "endHour": 17,
+      "price": "Entrada Livre",
+      "priceTier": "FREE",
+      "url": "https://www.agendalx.pt/events/event/leonel-dos-santos-2/",
+      "description": "Nesta exposição Leonel dos Santos apresenta um conjunto de esculturas figurativas em mármore e ferro cuja identidade não está apenas na forma mas, nasce da tensão entre os materiais."
+    },
+    {
+      "id": "agendalx-o-principezinho-o-novo-musical",
+      "title": "O Principezinho – O Novo Musical",
+      "category": "Theatre & Comedy",
+      "color": "#2A9D8F",
+      "icon": "🎭",
+      "venue": "Auditório Santa Joana Princesa",
+      "neighborhood": "Alvalade",
+      "corridor": "Northern Belt",
+      "lat": 38.75275,
+      "lng": -9.14635,
+      "time": "10:30",
+      "hour": 10,
+      "endTime": "12:30",
+      "endHour": 12,
+      "price": "Consultar bilheteira",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://www.agendalx.pt/events/event/o-principezinho-o-novo-musical/",
+      "description": "Quando um piloto faz uma aterragem inesperada no deserto, conhece um pequeno viajante vindo de um distante asteroide. Assim começa uma extraordinária aventura por planetas habitados por personagens tão curiosas quanto inesquecíveis, onde ca"
+    },
+    {
       "id": "agendalx-a-menina-que-queria-ser-pirata",
       "title": "A Menina que queria Ser Pirata",
       "category": "Theatre & Comedy",
@@ -545,7 +765,7 @@
       "description": "Com texto original do escritor angolano Ondjaki e de Miguel Sermão, e encenação de Miguel Sermão, o espetáculo acompanha a aventura de Martina, na sua viagem de descoberta e superação a bordo de um navio pirata, até se tornar maruja. Numa h"
     },
     {
-      "id": "soko-670748",
+      "id": "soko-391311",
       "title": "Amelie Von Wulffen",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -565,7 +785,7 @@
       "description": "Amelie Von Wulffen em Culturgest (Campo Pequeno / Arco do Cego). Curadoria Soko Lisboa."
     },
     {
-      "id": "curated-65373",
+      "id": "curated-4760",
       "title": "Curated Selection 2.0",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -585,7 +805,7 @@
       "description": "Curated Selection 2.0 — exposição e programação artística por THE CURATED Lisbon em The Vintage Hotel Lisbon (THE CURATED Lisbon) (Príncipe Real / Rato)."
     },
     {
-      "id": "soko-409280",
+      "id": "soko-246000",
       "title": "Estas obras MAATam-me! - Oficina Teatro Praga x MAAT",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -593,8 +813,8 @@
       "venue": "MAAT - Museu de Arte, Arquitetura e Tecnologia",
       "neighborhood": "Belém",
       "corridor": "Belém Waterfront",
-      "lat": 38.696012,
-      "lng": -9.194564,
+      "lat": 38.695686,
+      "lng": -9.1944,
       "time": "11:00",
       "hour": 11,
       "endTime": "19:00",
@@ -645,7 +865,7 @@
       "description": "Neste percurso pela vertente sul da colina do Castelo vamos conhecer alguns espaços da cidade pré-terramoto destruídos no dia 1 de novembro de 1755, onde os sinais da catástrofe ainda são visíveis. Vamos percorrer as artérias antigas e os n"
     },
     {
-      "id": "soko-653566",
+      "id": "soko-397801",
       "title": "Sei Miguel",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -663,6 +883,26 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://www.agendalx.pt/events/event/sei-miguel/",
       "description": "Sei Miguel em Culturgest (Campo Pequeno / Arco do Cego). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "agendalx-vanessa-teodoro-3",
+      "title": "Vanessa Teodoro",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "Pop-Up GAU",
+      "neighborhood": "Prazeres",
+      "corridor": "Belém Waterfront",
+      "lat": 38.703712,
+      "lng": -9.162997,
+      "time": "11:00",
+      "hour": 11,
+      "endTime": "12:30",
+      "endHour": 12,
+      "price": "Entrada Livre / Bilheteira",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://www.agendalx.pt/events/event/vanessa-teodoro-3/",
+      "description": "A Pop-Up GAU, projeto-piloto da Galeria de Arte Urbana, estreia-se com a exposição MOTHER – A Metamorfose da Criação , de Vanessa Teodoro."
     },
     {
       "id": "ccl-visita-orientada-migracoes",
@@ -725,6 +965,26 @@
       "description": "Entre o mito, o humor e o absurdo, Gabriel Abrantes apresenta Tom and Godiva , uma exposição que cruza pintura, instalação e narrativa para criar um universo onde diferentes realidades colidem."
     },
     {
+      "id": "agendalx-rita-fernandes",
+      "title": "Rita Fernandes",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "8 Marvila",
+      "neighborhood": "Marvila",
+      "corridor": "Eastern Corridor",
+      "lat": 38.742098,
+      "lng": -9.101903,
+      "time": "12:00",
+      "hour": 12,
+      "endTime": "23:59",
+      "endHour": 23,
+      "price": "Entrada Livre",
+      "priceTier": "FREE",
+      "url": "https://www.agendalx.pt/events/event/rita-fernandes/",
+      "description": "Virtues propõe uma reflexão sobre poder e responsabilidade na contemporaneidade, transformando virtudes em pilares simbólicos de uma experiência coletiva."
+    },
+    {
       "id": "ccl-masterclass-on-painting-traditio",
       "title": "masterclass on painting traditional Portuguese azulejo tiles, taking place at the most atmospheric Georgian bar",
       "category": "Concerts & Live Music",
@@ -745,7 +1005,7 @@
       "description": "Welcome autumn with creativity and style! 🎨🍷🇬🇪"
     },
     {
-      "id": "soko-801307",
+      "id": "soko-954991",
       "title": "vulnerable grounds ~ on practising breakdown",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -845,8 +1105,8 @@
       "description": "Exibição de Moscas (de Fernando Eimbcke) no Cinema Medeia Nimas (Saldanha)."
     },
     {
-      "id": "soko-590332",
-      "title": "Pantónio: Solo Exhibition",
+      "id": "agendalx-pantonio-2",
+      "title": "Pantónio",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
       "icon": "🎨",
@@ -861,11 +1121,11 @@
       "endHour": 19,
       "price": "Entrada Livre",
       "priceTier": "FREE",
-      "url": "https://soko.fyi/pt/venues/galeria-underdogs-gs8yka",
-      "description": "Pantónio: Solo Exhibition em Underdogs Gallery (Marvila). Curadoria Soko Lisboa."
+      "url": "https://www.agendalx.pt/events/event/pantonio-2/",
+      "description": "A Underdogs Gallery apresenta Ser Vivo , a nova exposição de Pantónio, artista contemporâneo português reconhecido pela sua linguagem visual singular, marcada por linhas fluidas, formas orgânicas e figuras animais."
     },
     {
-      "id": "soko-586041",
+      "id": "soko-208515",
       "title": "Arte por receita",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -903,6 +1163,26 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://shotgun.live/en/events/drop-the-beats-4-xavi",
       "description": "Drop The Beats 4 Xavi em Kømplex Lisbon (Prior Velho / Oriente)."
+    },
+    {
+      "id": "ccl-exposicao-mafolofolo-abre-no-han",
+      "title": "Exposição “Mafolofolo” abre no Hangar",
+      "category": "Exhibitions & Visual Arts",
+      "color": "#1D3557",
+      "icon": "🎨",
+      "venue": "Hangar - Centro de Investigação Artística",
+      "neighborhood": "Graça",
+      "corridor": "Eastern Corridor",
+      "lat": 38.71975,
+      "lng": -9.13285,
+      "time": "15:00",
+      "hour": 15,
+      "endTime": "19:00",
+      "endHour": 19,
+      "price": "Entrada Livre",
+      "priceTier": "FREE",
+      "url": "https://cartazculturallisboa.pt/evento/exposicao-mafolofolo-abre-no-hangar/",
+      "description": "🎧 Exposição “Mafolofolo” abre no Hangar com instalação sonora sobre memória, terra e resistência"
     },
     {
       "id": "agendalx-mowgli-o-livro-da-selva",
@@ -945,27 +1225,7 @@
       "description": "🌊 Na Onda do Oceano – Aventura Educativa em Família no Oceanário de Lisboa O Oceanário de Lisboa convida miúdos e graúdos a embarcar numa viagem cheia de descobertas, brincadeiras e desafios em nome da proteção dos oceanos."
     },
     {
-      "id": "ccl-oficina-se-eu-fosse-um-animal-er",
-      "title": "Oficina • Se eu fosse um animal, era…",
-      "category": "Exhibitions & Visual Arts",
-      "color": "#1D3557",
-      "icon": "🎨",
-      "venue": "Museu de Lisboa - Palácio Pimenta",
-      "neighborhood": "Campo Grande",
-      "corridor": "Northern Belt",
-      "lat": 38.758598,
-      "lng": -9.152703,
-      "time": "15:00",
-      "hour": 15,
-      "endTime": "16:15",
-      "endHour": 16,
-      "price": "5€",
-      "priceTier": "ACCESSIBLE",
-      "url": "https://cartazculturallisboa.pt/evento/oficina-se-eu-fosse-um-animal-era/",
-      "description": "Diz-se que o elefante tem boa memória, que a raposa é astuta, que a formiga é trabalhadora e que a coruja é sábia… Mas será mesmo assim? E tu, se fosses um animal, qual serias? Nesta visita-oficina, as famílias exploram a exposição Animais"
-    },
-    {
-      "id": "soko-984299",
+      "id": "soko-728136",
       "title": "Practicing Breakdown",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -985,7 +1245,27 @@
       "description": "Practicing Breakdown em Jardins do Bombarda (LARGO Residências) (Arroios / Gomes Freire). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-743037",
+      "id": "agendalx-se-eu-fosse-um-animal-era",
+      "title": "Se eu fosse um animal, era…",
+      "category": "Community & Gatherings",
+      "color": "#FFB703",
+      "icon": "🛍️",
+      "venue": "Museu de Lisboa - Palácio Pimenta",
+      "neighborhood": "Campo Grande",
+      "corridor": "Northern Belt",
+      "lat": 38.758598,
+      "lng": -9.152703,
+      "time": "15:00",
+      "hour": 15,
+      "endTime": "17:30",
+      "endHour": 17,
+      "price": "5€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://www.agendalx.pt/events/event/se-eu-fosse-um-animal-era/",
+      "description": "Diz-se que o elefante tem boa memória, que a raposa é astuta, que a formiga é trabalhadora e que a coruja é sábia… Mas será mesmo assim? E tu, se fosses um animal, qual serias? Nesta visita-oficina, as famílias exploram a exposição Animais"
+    },
+    {
+      "id": "soko-979146",
       "title": "Sábados em Família | Beetlejuice Beetlejuice",
       "category": "Family & Youth",
       "color": "#118AB2",
@@ -1045,7 +1325,7 @@
       "description": "“Quando Menos se Espera” chega ao Teatro Tivoli BBVA com uma comédia de Miguel Falabella 🎭"
     },
     {
-      "id": "soko-378525",
+      "id": "soko-670023",
       "title": "SECRETS",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1105,7 +1385,7 @@
       "description": "Há momentos que nos obrigam a mudar de rumo. A Travessia parte dessa ideia para construir um espetáculo visual onde marionetas e objetos dão forma às dúvidas, aos desafios e às transformações que acompanham o percurso da vida."
     },
     {
-      "id": "va-card-570343",
+      "id": "va-card-607692",
       "title": "Carlos No",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1185,7 +1465,7 @@
       "description": "E se fosse possível entrar na floresta sem sair da cidade e explorá-la com todos os sentidos?"
     },
     {
-      "id": "soko-511015",
+      "id": "soko-775513",
       "title": "GoodRelay: Samba por uma Causa",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -1265,7 +1545,7 @@
       "description": "🎤 Les rayons et les ombres — Lisboa"
     },
     {
-      "id": "va-card-725964",
+      "id": "va-card-179542",
       "title": "Linha do Tempo – 40 anos das escolas de calceteiros e de jardinagem",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1285,7 +1565,7 @@
       "description": "Linha do Tempo – 40 anos das escolas de calceteiros e de jardinagem em Biblioteca Palácio Galveias (Campo Pequeno)."
     },
     {
-      "id": "va-card-450744",
+      "id": "va-card-180241",
       "title": "Mercado de Trocas",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1303,26 +1583,6 @@
       "priceTier": "FREE",
       "url": "https://agendalx.pt/events/event/mercado-de-trocas-2/",
       "description": "Mercado de Trocas em Biblioteca Municipal Camões (Bairro Alto / Chiado)."
-    },
-    {
-      "id": "soko-667444",
-      "title": "Paraíso, Hoje",
-      "category": "Community & Gatherings",
-      "color": "#FFB703",
-      "icon": "🛍️",
-      "venue": "Centro Cultural de Belém (CCB)",
-      "neighborhood": "Belém",
-      "corridor": "Belém Waterfront",
-      "lat": 38.695528,
-      "lng": -9.206373,
-      "time": "16:00",
-      "hour": 16,
-      "endTime": "18:30",
-      "endHour": 18,
-      "price": "Entrada Livre",
-      "priceTier": "FREE",
-      "url": "https://www.agendalx.pt/events/event/paraiso-hoje/",
-      "description": "Paraíso, Hoje em Centro Cultural de Belém (CCB) (Belém). Curadoria Soko Lisboa."
     },
     {
       "id": "agendalx-topografias-imaginarias-7",
@@ -1345,7 +1605,7 @@
       "description": "A edição de 2026 de Topografias Imaginárias , ciclo de visionamentos comentados, dedica-se à relação entre Lisboa e a Natureza, propondo um percurso cinematográfico que convida o público a redescobrir a cidade através dos seus ecossistemas,"
     },
     {
-      "id": "va-card-268686",
+      "id": "va-card-847444",
       "title": "Visitas ao Palácio Alverca | Casa do Alentejo",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1365,7 +1625,7 @@
       "description": "Visitas ao Palácio Alverca | Casa do Alentejo em Casa do Alentejo (Baixa / Rossio)."
     },
     {
-      "id": "va-card-676961",
+      "id": "va-card-336803",
       "title": "Visitas ao Templo Radha Krishna",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1385,7 +1645,7 @@
       "description": "Visitas ao Templo Radha Krishna em Comunidade Hindu De Portugal (Lumiar)."
     },
     {
-      "id": "va-card-784138",
+      "id": "va-card-177198",
       "title": "Visitas guiadas à Brotéria",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1405,7 +1665,7 @@
       "description": "Visitas guiadas à Brotéria em Brotéria (Bairro Alto)."
     },
     {
-      "id": "va-card-124891",
+      "id": "va-card-31917",
       "title": "Visitas orientadas à Casa Fernando Pessoa",
       "category": "Community & Gatherings",
       "color": "#FFB703",
@@ -1465,7 +1725,7 @@
       "description": "Até que ponto objetos do nosso quotidiano podem ser responsáveis por grandes catástrofes naturais? O Estado do Mundo (Quando Acordas) coloca em cena relações de causa-efeito entre pequenos gestos e grandes consequências. Edi e um rapaz de o"
     },
     {
-      "id": "soko-364863",
+      "id": "soko-339110",
       "title": "'Naza' de Yuval Abraham e Rachel Szor",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1525,7 +1785,7 @@
       "description": "“Significado de Consentimento n.m. 1. Ação de consentir; 2. Autorização ou assentimento; aprovação; permitir algo; 3. Concordância; anuência ou aquiescência; ser favorável a algo ou alguém. (Etm. do latim: consentir + mento)”*"
     },
     {
-      "id": "soko-847032",
+      "id": "soko-122561",
       "title": "Turmalina Parahyba Forró Fest: Aula de Forró e música ao vivo",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -1565,7 +1825,7 @@
       "description": "SINOPSE"
     },
     {
-      "id": "soko-557436",
+      "id": "soko-548095",
       "title": "Alexandre Estrela - RedSkyFalls (réplica)",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1625,7 +1885,7 @@
       "description": "Cabaz de Natal 2026 na Junta de Freguesia de Santo António, Santo António."
     },
     {
-      "id": "soko-565857",
+      "id": "soko-714033",
       "title": "Cristina Lamas",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1645,7 +1905,7 @@
       "description": "Cristina Lamas em Galeria Zé dos Bois (ZDB) (Bairro Alto). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-589112",
+      "id": "soko-457185",
       "title": "Esta Noite Grita-se: Vitória de Pau Miró",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -1665,7 +1925,7 @@
       "description": "Esta Noite Grita-se: Vitória de Pau Miró em Casa do Comum (Bairro Alto). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-696376",
+      "id": "soko-748047",
       "title": "Inês Raposo",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1685,7 +1945,7 @@
       "description": "Inês Raposo em Galeria Zé dos Bois (ZDB) (Bairro Alto). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-722407",
+      "id": "soko-567883",
       "title": "Kathy Hinde",
       "category": "Exhibitions & Visual Arts",
       "color": "#1D3557",
@@ -1705,27 +1965,27 @@
       "description": "Kathy Hinde em Galeria Zé dos Bois (ZDB) (Bairro Alto). Curadoria Soko Lisboa."
     },
     {
-      "id": "pv-1500-pathogenic-no-limits",
-      "title": "Pathogenic - No Limits",
-      "category": "Nightlife & Electronic",
-      "color": "#FB5607",
-      "icon": "🔊",
-      "venue": "República da Música",
-      "neighborhood": "Alvalade",
+      "id": "xceed-249074",
+      "title": "O AMOR ESTÁ NO AR 💘 #VaoViver / Pagode, samba / Lisboa / Lisbon",
+      "category": "Concerts & Live Music",
+      "color": "#E63946",
+      "icon": "🎤",
+      "venue": "Jardim do Éden (Monsanto)",
+      "neighborhood": "Monsanto",
       "corridor": "Northern Belt",
-      "lat": 38.75545,
-      "lng": -9.14295,
+      "lat": 38.72479,
+      "lng": -9.19725,
       "time": "18:00",
       "hour": 18,
       "endTime": "02:00",
       "endHour": 2,
-      "price": "12€",
+      "price": "8€",
       "priceTier": "ACCESSIBLE",
-      "url": "https://shotgun.live/en/events/pathogenic-no-limits",
-      "description": "Pathogenic - No Limits em República da Música (Alvalade)."
+      "url": "https://xceed.me/pt/lisboa/event/o-amor-esta-no-ar-vaoviver-pagode-samba-lisboa-lisbon-1/249074",
+      "description": "O AMOR ESTÁ NO AR 💘 #VaoViver / Pagode, samba / Lisboa / Lisbon em Jardim do Éden (Monsanto) (Monsanto). Bilhetes e guestlist via Xceed."
     },
     {
-      "id": "soko-761687",
+      "id": "soko-769973",
       "title": "Rita Azevedo Gomes | 25 de Abril, 25 Anos | Intromisôes | Belle de Jou",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1745,7 +2005,7 @@
       "description": "Rita Azevedo Gomes | 25 de Abril, 25 Anos | Intromisôes | Belle de Jou em Cinemateca Portuguesa (Avenida / Marquês). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-2384",
+      "id": "soko-778820",
       "title": "LEFFEST 2026 | 9 Temples to Heaven",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -1825,6 +2085,26 @@
       "description": "Turno de voluntariado comunitário para recolha, embalamento e distribuição de refeições contra o desperdício alimentar. Aberto a quem queira juntar-se para apoiar famílias da Penha de França, Graça e Arroios."
     },
     {
+      "id": "sg-clarice-falcao-lucas-de-paiva-em",
+      "title": "Clarice Falcão & Lucas De Paiva Em Episódio Especial",
+      "category": "Concerts & Live Music",
+      "color": "#E63946",
+      "icon": "🎤",
+      "venue": "Badassery",
+      "neighborhood": "Bairro Alto",
+      "corridor": "Axial Spine",
+      "lat": 38.7124,
+      "lng": -9.1446,
+      "time": "19:00",
+      "hour": 19,
+      "endTime": "21:15",
+      "endHour": 21,
+      "price": "25€",
+      "priceTier": "MID",
+      "url": "https://shotgun.live/pt-pt/events/clarice-falcao-lucas-de-paiva-em-episodio-especial",
+      "description": "Clarice Falcão & Lucas De Paiva Em Episódio Especial em Badassery (Bairro Alto). Bilhetes via Shotgun."
+    },
+    {
       "id": "ccl-fado-tradicional-no-reservatorio",
       "title": "Fado tradicional no Reservatório da Patriarcal leva música portuguesa ao subsolo do Príncipe Real",
       "category": "Concerts & Live Music",
@@ -1853,8 +2133,8 @@
       "venue": "Centro Cultural de Belém (CCB)",
       "neighborhood": "Belém",
       "corridor": "Belém Waterfront",
-      "lat": 38.695589,
-      "lng": -9.206519,
+      "lat": 38.695654,
+      "lng": -9.206324,
       "time": "19:00",
       "hour": 19,
       "endTime": "21:15",
@@ -1865,7 +2145,27 @@
       "description": "Marco Rodrigues apresenta-se em palco com um espetáculo que evoca a memória e o legado de Carlos do Carmo – sua referência e figura maior do Fado. Com a solidez de uma carreira firmada no respeito pela tradição, o fadista revisita os temas"
     },
     {
-      "id": "soko-481620",
+      "id": "sg-pathogenic-no-limits",
+      "title": "Pathogenic - No Limits",
+      "category": "Nightlife & Electronic",
+      "color": "#FB5607",
+      "icon": "🔊",
+      "venue": "República da Música",
+      "neighborhood": "Alvalade",
+      "corridor": "Northern Belt",
+      "lat": 38.75545,
+      "lng": -9.14295,
+      "time": "19:00",
+      "hour": 19,
+      "endTime": "02:00",
+      "endHour": 2,
+      "price": "12€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://shotgun.live/pt-pt/events/pathogenic-no-limits",
+      "description": "Pathogenic - No Limits em República da Música (Alvalade). Bilhetes via Shotgun."
+    },
+    {
+      "id": "soko-936640",
       "title": "Residências Insubmissas Gerador: pensar a Palestina em voz alta",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -1943,6 +2243,26 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://shotgun.live/en/events/barbara-rodrix",
       "description": "Bárbara Rodrix em Voz do Operário (Graça)."
+    },
+    {
+      "id": "xceed-244549",
+      "title": "Elysian Groove - Still on Vacation",
+      "category": "Concerts & Live Music",
+      "color": "#E63946",
+      "icon": "🎤",
+      "venue": "LX Factory",
+      "neighborhood": "Alcântara",
+      "corridor": "Belém Waterfront",
+      "lat": 38.703498,
+      "lng": -9.178803,
+      "time": "20:00",
+      "hour": 20,
+      "endTime": "04:00",
+      "endHour": 4,
+      "price": "15€ - 25€",
+      "priceTier": "MID",
+      "url": "https://xceed.me/pt/lisboa/event/elysian-groove-still-on-vacation/244549",
+      "description": "Elysian Groove - Still on Vacation em LX Factory (Alcântara). Bilhetes e guestlist via Xceed."
     },
     {
       "id": "ccl-alcool-club-ao-vivo-em-lisboa",
@@ -2033,8 +2353,8 @@
       "venue": "Centro Cultural de Belém (CCB)",
       "neighborhood": "Belém",
       "corridor": "Belém Waterfront",
-      "lat": 38.695654,
-      "lng": -9.206324,
+      "lat": 38.695442,
+      "lng": -9.206444,
       "time": "21:00",
       "hour": 21,
       "endTime": "06:00",
@@ -2045,7 +2365,7 @@
       "description": "🎤 Festa do Jazz 2026 — 24.ª edição"
     },
     {
-      "id": "soko-350911",
+      "id": "soko-527618",
       "title": "LEFFEST 2026 | You Can See Everything",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -2065,7 +2385,7 @@
       "description": "LEFFEST 2026 | You Can See Everything em Cinema São Jorge (Avenida da Liberdade). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-668679",
+      "id": "soko-402071",
       "title": "LEFFEST'26 | BUNKER",
       "category": "Cinema & Screenings",
       "color": "#06D6A0",
@@ -2085,7 +2405,7 @@
       "description": "LEFFEST'26 | BUNKER em Culturgest (Campo Pequeno / Arco do Cego). Curadoria Soko Lisboa."
     },
     {
-      "id": "ccl-lotte-em-weimar",
+      "id": "agendalx-lotte-em-weimar",
       "title": "Lotte em Weimar",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -2099,10 +2419,10 @@
       "hour": 21,
       "endTime": "23:00",
       "endHour": 23,
-      "price": "15€",
+      "price": "12€ - 15€",
       "priceTier": "ACCESSIBLE",
-      "url": "https://cartazculturallisboa.pt/evento/lotte-em-weimar/",
-      "description": "🎤 Lotte em Weimar"
+      "url": "https://www.agendalx.pt/events/event/lotte-em-weimar/",
+      "description": "Agora viúva, a conselheira da corte Charlotte Kestner está de regresso a Weimar. Corre 1816. Aquela que há quarenta anos prendeu de amores o gigante Goethe, que todos conhecem por Lotte, e foi parar como inigualável personagem romântica ao"
     },
     {
       "id": "ccl-omiri-nos-jardins-do-bombarda-wo",
@@ -2125,7 +2445,7 @@
       "description": "OMIRI @ Jardins do Bombarda em Jardins do Bombarda (LARGO Residências) (Arroios / Gomes Freire)."
     },
     {
-      "id": "va-card-148924",
+      "id": "va-card-298443",
       "title": "Tasting Fado",
       "category": "Theatre & Comedy",
       "color": "#2A9D8F",
@@ -2165,7 +2485,7 @@
       "description": "O Távola Jazz Club , em Lisboa, propõe uma experiência dedicada ao melhor do jazz ao vivo , num ambiente intimista, acolhedor e pensado para ouvir música de perto."
     },
     {
-      "id": "adc-20261107-5823",
+      "id": "adc-20261107-7818",
       "title": "António Luís Silva",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2201,12 +2521,12 @@
       "endHour": 23,
       "price": "18€ - 25€",
       "priceTier": "MID",
-      "url": "https://cartazculturallisboa.pt/evento/antonio-raminhos-volto-ja-na-aula-magna/",
+      "url": "https://www.ulisboa.pt",
       "description": "António Raminhos apresenta “Volto Já”, um espetáculo de stand-up comedy sobre a morte, a ansiedade e a tentativa de compreender o que significa viver sabendo que a finitude é inevitável."
     },
     {
-      "id": "adc-20261107-3877",
-      "title": "Carla Prata",
+      "id": "dice-6a79be05d207ce0001623c17",
+      "title": "Carla Prata - It All Leads Back South + Herlander",
       "category": "Concerts & Live Music",
       "color": "#E63946",
       "icon": "🎤",
@@ -2217,12 +2537,12 @@
       "lng": -9.105903,
       "time": "21:30",
       "hour": 21,
-      "endTime": "23:45",
-      "endHour": 23,
-      "price": "8€ - 15€",
-      "priceTier": "ACCESSIBLE",
-      "url": "https://casa-capitao.com",
-      "description": "Concerto de Carla Prata ao vivo em Casa Capitão (Beato)."
+      "endTime": "01:30",
+      "endHour": 1,
+      "price": "19.50€",
+      "priceTier": "MID",
+      "url": "https://dice.fm/event/6a79be05d207ce0001623c17",
+      "description": "Carla Prata - It All Leads Back South + Herlander em Casa Capitão (Casa Capitão - Rés do Chão) (Beato). Bilhetes oficiais via DICE."
     },
     {
       "id": "ccl-daphne-chenel-na-casa-capitao",
@@ -2305,7 +2625,7 @@
       "description": "Uma tragicomédia escrita por Patrícia Portela (recentemente distinguida com o Grande Prémio de Romance e Novela da Associação Portuguesa de Escritores pelo livro Manual para andar espantada por existir ) a partir do Rei Lear de Shakespeare"
     },
     {
-      "id": "adc-20261107-1792",
+      "id": "adc-20261107-5065",
       "title": "Jazzopa ᛫ Ensemble Festa do Jazz & Mané Fernandes",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -2325,27 +2645,27 @@
       "description": "Concerto de Jazzopa ᛫ Ensemble Festa do Jazz & Mané Fernandes ao vivo em Teatro da Comuna (Praça de Espanha)."
     },
     {
-      "id": "adc-20261107-8327",
-      "title": "José Pinhal Post-Mortem Experience",
+      "id": "agendalx-novembro-na-quinta-alegre-3",
+      "title": "Novembro na Quinta Alegre",
       "category": "Concerts & Live Music",
       "color": "#E63946",
       "icon": "🎤",
-      "venue": "Coliseu dos Recreios",
-      "neighborhood": "Baixa / Rossio",
-      "corridor": "Axial Spine",
-      "lat": 38.71662,
-      "lng": -9.14082,
+      "venue": "Quinta Alegre - Um Teatro em Cada Bairro",
+      "neighborhood": "Santa Clara / Charneca",
+      "corridor": "Northern Belt",
+      "lat": 38.78665,
+      "lng": -9.14545,
       "time": "21:30",
       "hour": 21,
       "endTime": "23:45",
       "endHour": 23,
-      "price": "25€",
-      "priceTier": "MID",
-      "url": "https://www.coliseulisboa.com",
-      "description": "Concerto de José Pinhal Post-Mortem Experience ao vivo em Coliseu dos Recreios (Baixa / Rossio)."
+      "price": "Entrada Livre",
+      "priceTier": "FREE",
+      "url": "https://www.agendalx.pt/events/event/novembro-na-quinta-alegre-3/",
+      "description": "Um espaço cultural de proximidade, agregando, valorizando e integrando pessoas e comunidades, com oferta de programação variada, através do cruzamento entre a produção artística e cultural do território em diálogo com novas abordagens e pro"
     },
     {
-      "id": "soko-725543",
+      "id": "soko-522728",
       "title": "Sala de Estar com Vasco Ribeiro Casais",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2365,7 +2685,47 @@
       "description": "Sala de Estar com Vasco Ribeiro Casais em BOTA - Base Organizada da Toca das Artes (Anjos). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-950267",
+      "id": "agendalx-t2-em-benfica-por-600-euros-2",
+      "title": "T2 em Benfica por 600 euros",
+      "category": "Theatre & Comedy",
+      "color": "#2A9D8F",
+      "icon": "🎭",
+      "venue": "Turim - Um Teatro em Cada Bairro",
+      "neighborhood": "Benfica",
+      "corridor": "Northern Belt",
+      "lat": 38.74985,
+      "lng": -9.20165,
+      "time": "21:30",
+      "hour": 21,
+      "endTime": "23:30",
+      "endHour": 23,
+      "price": "16€",
+      "priceTier": "MID",
+      "url": "https://www.agendalx.pt/events/event/t2-em-benfica-por-600-euros-2/",
+      "description": "Um grupo de desconhecidos aluga, sem saber, o mesmo apartamento no bairro de Benfica, em Lisboa, por 600 euros. Uma pechincha! Mas… será que o apartamento tem algum problema que não foi colocado no anúncio? Ou será que tudo não passa de um"
+    },
+    {
+      "id": "soko-242411",
+      "title": "TRIPLETS: Syl + Cherry Knot",
+      "category": "Concerts & Live Music",
+      "color": "#E63946",
+      "icon": "🎤",
+      "venue": "Casa Capitão",
+      "neighborhood": "Beato",
+      "corridor": "Eastern Corridor",
+      "lat": 38.733024,
+      "lng": -9.105854,
+      "time": "21:30",
+      "hour": 21,
+      "endTime": "23:45",
+      "endHour": 23,
+      "price": "8€ - 15€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://soko.fyi/pt/venues/casa-capitao-7tepkj",
+      "description": "TRIPLETS: Syl + Cherry Knot em Casa Capitão (Beato). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "soko-354721",
       "title": "The Clash",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2385,7 +2745,7 @@
       "description": "The Clash em Tokyo Lisboa (Cais do Sodré). Curadoria Soko Lisboa."
     },
     {
-      "id": "soko-231178",
+      "id": "soko-820427",
       "title": "Tokyo Lisboa: The Chisel + Spiritual Decay",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2413,8 +2773,8 @@
       "venue": "LX Factory",
       "neighborhood": "Alcântara",
       "corridor": "Belém Waterfront",
-      "lat": 38.703498,
-      "lng": -9.178803,
+      "lat": 38.703559,
+      "lng": -9.178949,
       "time": "21:30",
       "hour": 21,
       "endTime": "06:00",
@@ -2425,7 +2785,27 @@
       "description": "Versus: Fly Anakin & Quelle Chris Em Lisboa em LX Factory (Alcântara)."
     },
     {
-      "id": "adc-20261107-5316",
+      "id": "soko-352966",
+      "title": "Vertigo",
+      "category": "Cinema & Screenings",
+      "color": "#06D6A0",
+      "icon": "🍿",
+      "venue": "Cinemateca Portuguesa",
+      "neighborhood": "Avenida / Marquês",
+      "corridor": "Axial Spine",
+      "lat": 38.721542,
+      "lng": -9.148304,
+      "time": "21:30",
+      "hour": 21,
+      "endTime": "23:30",
+      "endHour": 23,
+      "price": "3.20€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://soko.fyi/pt/venues/cinemateca-portuguesa-museu-do-cinema-frq7hk",
+      "description": "Vertigo em Cinemateca Portuguesa (Avenida / Marquês). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "adc-20261107-3696",
       "title": "Vizir ᛫ Azzaya ᛫ Toranos",
       "category": "Concerts & Live Music",
       "color": "#E63946",
@@ -2463,26 +2843,6 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://cartazculturallisboa.pt/evento/separados-mas-pouco-comedia-romantica/",
       "description": "“Separados… Mas Pouco” – Comédia Romântica Hilariante em Lisboa 🎭"
-    },
-    {
-      "id": "ccl-t2-em-benfica-por-600-euros-regr",
-      "title": "“T2 em Benfica por 600 euros” regressa para olhar a crise da habitação em Lisboa",
-      "category": "Theatre & Comedy",
-      "color": "#2A9D8F",
-      "icon": "🎭",
-      "venue": "Turim - Um Teatro em Cada Bairro",
-      "neighborhood": "Benfica",
-      "corridor": "Northern Belt",
-      "lat": 38.74985,
-      "lng": -9.20165,
-      "time": "21:30",
-      "hour": 21,
-      "endTime": "23:30",
-      "endHour": 23,
-      "price": "Consultar bilheteira",
-      "priceTier": "ACCESSIBLE",
-      "url": "https://cartazculturallisboa.pt/evento/t2-em-benfica-por-600-euros-regressa-para-olhar-a-crise-da-habitacao-em-lisboa/",
-      "description": "🏠 “T2 em Benfica por 600 euros” regressa para olhar a crise da habitação em Lisboa"
     },
     {
       "id": "pv-1911-boora-nights",
@@ -2525,6 +2885,26 @@
       "description": "DIXIE GANG"
     },
     {
+      "id": "agendalx-jose-pinhal-post-mortem-experience-2",
+      "title": "José Pinhal Post-Mortem Experience",
+      "category": "Concerts & Live Music",
+      "color": "#E63946",
+      "icon": "🎤",
+      "venue": "Coliseu dos Recreios",
+      "neighborhood": "Baixa / Rossio",
+      "corridor": "Axial Spine",
+      "lat": 38.71662,
+      "lng": -9.14082,
+      "time": "22:00",
+      "hour": 22,
+      "endTime": "00:15",
+      "endHour": 0,
+      "price": "18€ - 30€",
+      "priceTier": "MID",
+      "url": "https://www.agendalx.pt/events/event/jose-pinhal-post-mortem-experience-2/",
+      "description": "Com uma carreira de dez anos, José Pinhal Post-Mortem Experience mantém viva a chama do imortal cantor José Pinhal, mestre de baile, ícone romântico e figura maior da cultura popular nortenha. Nascida em 2016 como uma homenagem espontânea,"
+    },
+    {
       "id": "pv-1763-overcrooks-x-badassery",
       "title": "Overcrooks X Badassery",
       "category": "Nightlife & Electronic",
@@ -2533,8 +2913,8 @@
       "venue": "Badassery",
       "neighborhood": "Bairro Alto",
       "corridor": "Axial Spine",
-      "lat": 38.7124,
-      "lng": -9.1446,
+      "lat": 38.712348,
+      "lng": -9.144553,
       "time": "22:00",
       "hour": 22,
       "endTime": "06:00",
@@ -2565,27 +2945,7 @@
       "description": "Nuno Leote @ Palácio Chiado em Palácio Chiado (Chiado)."
     },
     {
-      "id": "nocartaz-0d560a8d981942d8",
-      "title": "Anya @ Lux Fragil",
-      "category": "Concerts & Live Music",
-      "color": "#E63946",
-      "icon": "🎤",
-      "venue": "Lux Frágil",
-      "neighborhood": "Santa Apolónia",
-      "corridor": "Eastern Corridor",
-      "lat": 38.71575,
-      "lng": -9.12135,
-      "time": "23:00",
-      "hour": 23,
-      "endTime": "01:15",
-      "endHour": 1,
-      "price": "15€ - 25€",
-      "priceTier": "MID",
-      "url": "https://www.bandsintown.com/e/1040750979-anya-at-lux-fragil?came_from=209",
-      "description": "Anya @ Lux Fragil em Lux Frágil (Santa Apolónia)."
-    },
-    {
-      "id": "soko-289056",
+      "id": "soko-220488",
       "title": "Beija flor",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -2603,6 +2963,26 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://soko.fyi/pt/venues/fabrica-de-braco-de-prata-epmnp2",
       "description": "Beija flor em Fábrica Braço de Prata (Marvila / Braço de Prata). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "dice-6ae229950263c10001eb360f",
+      "title": "Quest, Space Riders, Anya, NVNO",
+      "category": "Nightlife & Electronic",
+      "color": "#FB5607",
+      "icon": "🔊",
+      "venue": "Lux Frágil",
+      "neighborhood": "Santa Apolónia",
+      "corridor": "Eastern Corridor",
+      "lat": 38.71575,
+      "lng": -9.12135,
+      "time": "23:00",
+      "hour": 23,
+      "endTime": "06:00",
+      "endHour": 6,
+      "price": "17.84€",
+      "priceTier": "MID",
+      "url": "https://dice.fm/event/6ae229950263c10001eb360f",
+      "description": "Quest, Space Riders, Anya, NVNO em Lux Frágil (Santa Apolónia). Bilhetes oficiais via DICE."
     },
     {
       "id": "nocartaz-967e06892eb5ebc1",
@@ -2685,11 +3065,11 @@
       "description": "Together 10 Anos em Moon Club (Prior Velho / Oriente)."
     },
     {
-      "id": "nocartaz-3d7f62051f0f0a9d",
-      "title": "phyles @ KØMPLEX Lisbon",
-      "category": "Concerts & Live Music",
-      "color": "#E63946",
-      "icon": "🎤",
+      "id": "sg-fastlove-bounce-groove-new-faces",
+      "title": "Fastlove - Bounce & Groove W/ Paisana, Phyles, Mafaya ++",
+      "category": "Nightlife & Electronic",
+      "color": "#FB5607",
+      "icon": "🔊",
       "venue": "Kømplex Lisbon",
       "neighborhood": "Prior Velho / Oriente",
       "corridor": "Eastern Corridor",
@@ -2697,15 +3077,35 @@
       "lng": -9.119153,
       "time": "23:45",
       "hour": 23,
-      "endTime": "02:00",
-      "endHour": 2,
-      "price": "10€ - 18€",
+      "endTime": "06:00",
+      "endHour": 6,
+      "price": "15€",
       "priceTier": "ACCESSIBLE",
-      "url": "https://www.bandsintown.com/e/1040825181-phyles-at-komplex-lisbon?came_from=209",
-      "description": "phyles @ KØMPLEX Lisbon em Kømplex Lisbon (Prior Velho / Oriente)."
+      "url": "https://shotgun.live/pt-pt/events/fastlove-bounce-groove-new-faces-community-free",
+      "description": "Fastlove - Bounce & Groove W/ Paisana, Phyles, Mafaya ++ em Kømplex Lisbon (Prior Velho / Oriente). Bilhetes via Shotgun."
     },
     {
-      "id": "soko-696999",
+      "id": "dice-6ae2168a1975e10001a14e47",
+      "title": "BAILE | EMBRASA: DJ SAZE + DJ Lorrany + Rafa Militão + bieu s2 + GAVI + Ana Lauriz + Tarik + Naomy Vissolela + Xavbeatzz b2b Brilhante",
+      "category": "Nightlife & Electronic",
+      "color": "#FB5607",
+      "icon": "🔊",
+      "venue": "Casa Capitão",
+      "neighborhood": "Beato",
+      "corridor": "Eastern Corridor",
+      "lat": 38.732812,
+      "lng": -9.105974,
+      "time": "23:59",
+      "hour": 23,
+      "endTime": "06:00",
+      "endHour": 6,
+      "price": "13€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://dice.fm/event/6ae2168a1975e10001a14e47",
+      "description": "BAILE | EMBRASA: DJ SAZE + DJ Lorrany + Rafa Militão + bieu s2 + GAVI + Ana Lauriz + Tarik + Naomy Vissolela + Xavbeatzz b2b Brilhante em Casa Capitão (Casa Capitão - Baile) (Beato). Bilhetes oficiais via DICE."
+    },
+    {
+      "id": "soko-936153",
       "title": "Embrasa: Última edição do ano",
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
@@ -2713,8 +3113,8 @@
       "venue": "Casa Capitão",
       "neighborhood": "Beato",
       "corridor": "Eastern Corridor",
-      "lat": 38.733024,
-      "lng": -9.105854,
+      "lat": 38.733082,
+      "lng": -9.106034,
       "time": "23:59",
       "hour": 23,
       "endTime": "06:00",
@@ -2723,6 +3123,26 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://soko.fyi/pt/venues/casa-capitao-7tepkj",
       "description": "Embrasa: Última edição do ano em Casa Capitão (Beato). Curadoria Soko Lisboa."
+    },
+    {
+      "id": "xceed-249584",
+      "title": "Ladies Night | Girls free until 00:30am",
+      "category": "Nightlife & Electronic",
+      "color": "#FB5607",
+      "icon": "🔊",
+      "venue": "Lisboa Rio",
+      "neighborhood": "Cais do Sodré",
+      "corridor": "Axial Spine",
+      "lat": 38.70595,
+      "lng": -9.1462,
+      "time": "23:59",
+      "hour": 23,
+      "endTime": "06:00",
+      "endHour": 6,
+      "price": "15€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://xceed.me/pt/lisboa/event/ladies-night-girls-free-until-0030am-3/249584",
+      "description": "Ladies Night | Girls free until 00:30am em Lisboa Rio (Cais do Sodré). Bilhetes e guestlist via Xceed."
     },
     {
       "id": "pv-1662-noite-principe",
@@ -2750,11 +3170,11 @@
       "category": "Nightlife & Electronic",
       "color": "#FB5607",
       "icon": "🔊",
-      "venue": "Construction, Lisboa",
+      "venue": "Construction",
       "neighborhood": "Campolide",
       "corridor": "Northern Belt",
-      "lat": 38.735001,
-      "lng": -9.167485,
+      "lat": 38.735,
+      "lng": -9.16748,
       "time": "23:59",
       "hour": 23,
       "endTime": "06:00",
@@ -2762,7 +3182,7 @@
       "price": "25€",
       "priceTier": "MID",
       "url": "https://shotgun.live/en/events/open-bar-b-day-dj-ricky-amaro",
-      "description": "Open Bar ✨ B*Day Dj Ricky Amaro em Construction, Lisboa (Campolide)."
+      "description": "Open Bar ✨ B*Day Dj Ricky Amaro em Construction (Campolide)."
     },
     {
       "id": "ccl-superlativo-by-super-bock-gustav",
@@ -2783,6 +3203,46 @@
       "priceTier": "ACCESSIBLE",
       "url": "https://cartazculturallisboa.pt/evento/superlativo-by-super-bock-gustavo-50-1/",
       "description": "🎤 Superlativo by Super Bock — Gustavo (50-1)"
+    },
+    {
+      "id": "xceed-250528",
+      "title": "Zazu, Revimo Art, Dub Tiger",
+      "category": "Nightlife & Electronic",
+      "color": "#FB5607",
+      "icon": "🔊",
+      "venue": "Santuário",
+      "neighborhood": "Santos",
+      "corridor": "Belém Waterfront",
+      "lat": 38.70625,
+      "lng": -9.15737,
+      "time": "23:59",
+      "hour": 23,
+      "endTime": "06:00",
+      "endHour": 6,
+      "price": "10€ - 15€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://xceed.me/pt/lisboa/event/zazu-revimo-art-dub-tiger/250528",
+      "description": "Zazu, Revimo Art, Dub Tiger em Santuário (Santos). Bilhetes e guestlist via Xceed."
+    },
+    {
+      "id": "sg-frequency-lx-08nov26",
+      "title": "Frequency After - Drahko | Lexa | Oyak",
+      "category": "Nightlife & Electronic",
+      "color": "#FB5607",
+      "icon": "🔊",
+      "venue": "Titanic Sur Mer",
+      "neighborhood": "Cais do Sodré",
+      "corridor": "Axial Spine",
+      "lat": 38.705668,
+      "lng": -9.146733,
+      "time": "06:00",
+      "hour": 6,
+      "endTime": "12:00",
+      "endHour": 12,
+      "price": "10€",
+      "priceTier": "ACCESSIBLE",
+      "url": "https://shotgun.live/pt-pt/events/frequency-lx-08nov26",
+      "description": "Frequency After - Drahko | Lexa | Oyak em Titanic Sur Mer (Cais do Sodré). Bilhetes via Shotgun."
     }
   ]
 }

@@ -1963,6 +1963,253 @@ def scrape_prior_velho_electronic(target_date):
         except Exception as e:
             print(f"[Shotgun Venue Scraper] Notice on {sg_u}: {e}")
 
+    # Direct DICE Lisbon & Xceed Lisboa Scrapers (Structured JSON-LD / NEXT_DATA)
+    events.extend(scrape_xceed_and_dice(target_date))
+
+    return events
+
+
+def scrape_xceed_and_dice(target_date):
+    """
+    Scrapes DICE Lisbon (dice.fm/browse/lisbon) and Xceed Lisboa (xceed.me/pt/lisboa/events)
+    for today's concerts, club nights, and electronic events with exact door times, end times,
+    venue coordinates, and ticket prices in EUR.
+    """
+    events = []
+    iso_date = target_date.strftime("%Y-%m-%d")
+    next_date = target_date + datetime.timedelta(days=1)
+    next_iso = next_date.strftime("%Y-%m-%d")
+    pt_short_months = {
+        1: "jan", 2: "fev", 3: "mar", 4: "abr", 5: "mai", 6: "jun",
+        7: "jul", 8: "ago", 9: "set", 10: "out", 11: "nov", 12: "dez",
+    }
+    mon_short = pt_short_months[target_date.month]
+
+    # 1. DICE Lisbon (__NEXT_DATA__)
+    try:
+        r_dice = fetch_url("https://dice.fm/browse/lisbon", timeout=12)
+        if r_dice.status_code == 200:
+            soup_dice = BeautifulSoup(r_dice.text, "html.parser")
+            nd_script = soup_dice.find("script", id="__NEXT_DATA__")
+            if nd_script and nd_script.string:
+                nd_data = json.loads(nd_script.string)
+                dice_items = nd_data.get("props", {}).get("pageProps", {}).get("events", [])
+                for item in dice_items:
+                    if not isinstance(item, dict):
+                        continue
+                    dates_obj = item.get("dates") or {}
+                    start_iso = str(dates_obj.get("event_start_date") or "")
+                    end_iso = str(dates_obj.get("event_end_date") or "")
+                    is_today = start_iso.startswith(iso_date)
+                    is_after = start_iso.startswith(next_iso) and bool(re.search(r"T0[1-6]:", start_iso))
+                    if not (is_today or is_after):
+                        continue
+
+                    ev_id = str(item.get("id") or "").strip()
+                    title = clean_html_text(item.get("name") or "")
+                    if not ev_id or not title:
+                        continue
+
+                    v_list = item.get("venues") or []
+                    v_obj = v_list[0] if v_list and isinstance(v_list[0], dict) else {}
+                    v_name = clean_html_text(v_obj.get("name") or "")
+                    v_addr = clean_html_text(v_obj.get("address") or "")
+                    v_space = clean_html_text(v_obj.get("space_name") or "")
+
+                    geo = match_venue(v_name, f"{v_addr} {v_space}", require_match=True)
+                    if not geo:
+                        continue
+
+                    m_st = re.search(r"T(\d{2}:\d{2})", start_iso)
+                    t_str = m_st.group(1) if m_st else "23:00"
+                    h_int = int(t_str.split(":")[0])
+
+                    preset = infer_category_preset(
+                        f"{title} {v_name} {v_space}",
+                        "nightlife" if (h_int >= 22 or h_int <= 6) else "concerts",
+                    )
+
+                    m_et = re.search(r"T(\d{2}:\d{2})", end_iso)
+                    if m_et:
+                        end_t = m_et.group(1)
+                        end_h = int(end_t.split(":")[0])
+                    else:
+                        end_t, end_h = infer_end_time(t_str, h_int, preset["category"], geo["venue"], title, "")
+
+                    price_obj = item.get("price") or {}
+                    amt_cents = price_obj.get("amount")
+                    if amt_cents == 0:
+                        p_disp, p_tier = "Entrada Livre", "FREE"
+                    elif isinstance(amt_cents, (int, float)) and amt_cents > 0:
+                        eur = float(amt_cents) / 100.0
+                        p_raw = f"{int(round(eur))}€" if abs(eur - round(eur)) < 0.15 else f"{eur:.2f}€"
+                        p_disp, p_tier = parse_price_and_tier(p_raw, venue_name=geo["venue"], category_name=preset["category"])
+                    else:
+                        p_disp, p_tier = parse_price_and_tier("", venue_name=geo["venue"], category_name=preset["category"])
+
+                    space_note = f" ({v_space})" if v_space and v_space.lower() != v_name.lower() else ""
+                    events.append({
+                        "id": f"dice-{ev_id[:24]}",
+                        "title": title,
+                        "category": preset["category"],
+                        "color": preset["color"],
+                        "icon": preset["icon"],
+                        "venue": geo["venue"],
+                        "neighborhood": geo["neighborhood"],
+                        "corridor": geo["corridor"],
+                        "lat": geo["lat"],
+                        "lng": geo["lng"],
+                        "time": t_str,
+                        "hour": h_int,
+                        "endTime": end_t,
+                        "endHour": end_h,
+                        "price": p_disp,
+                        "priceTier": p_tier,
+                        "url": f"https://dice.fm/event/{ev_id}",
+                        "description": f"{title} em {geo['venue']}{space_note} ({geo['neighborhood']}). Bilhetes oficiais via DICE.",
+                    })
+    except Exception as e:
+        print(f"[DICE Scraper] Notice: {e}")
+
+    # 2. Xceed Lisboa (Card discovery + parallel JSON-LD detail extraction)
+    try:
+        r_xc = fetch_url("https://xceed.me/pt/lisboa/events", timeout=12)
+        if r_xc.status_code == 200:
+            soup_xc = BeautifulSoup(r_xc.text, "html.parser")
+            candidate_xc_urls = set()
+            day_pat = re.compile(rf"\b0?{target_date.day}\s+{mon_short}\b", re.I)
+
+            for a_xc in soup_xc.find_all("a", href=re.compile(r"/event/")):
+                href = a_xc.get("href", "").strip()
+                txt = clean_html_text(a_xc.get_text(" ", strip=True))
+                if day_pat.search(strip_accents(txt)):
+                    candidate_xc_urls.add(urljoin("https://xceed.me", href))
+
+            for sc in soup_xc.find_all("script", type="application/ld+json"):
+                try:
+                    ld_arr = json.loads(sc.string or "[]")
+                    if isinstance(ld_arr, list):
+                        for ev_ld in ld_arr:
+                            if isinstance(ev_ld, dict) and str(ev_ld.get("startDate", "")).startswith(iso_date):
+                                if ev_ld.get("url"):
+                                    candidate_xc_urls.add(ev_ld["url"])
+                except Exception:
+                    pass
+
+            def _fetch_xceed_detail(xc_url):
+                try:
+                    dr = fetch_url(xc_url, timeout=8)
+                    if dr.status_code != 200:
+                        return None
+                    ds = BeautifulSoup(dr.text, "html.parser")
+                    for sc in ds.find_all("script", type="application/ld+json"):
+                        try:
+                            d = json.loads(sc.string or "{}")
+                            items = d if isinstance(d, list) else [d]
+                            for ev_d in items:
+                                if isinstance(ev_d, dict) and ev_d.get("@type") == "Event":
+                                    return (xc_url, ev_d)
+                        except Exception:
+                            pass
+                except Exception:
+                    pass
+                return None
+
+            if candidate_xc_urls:
+                with ThreadPoolExecutor(max_workers=4) as xc_pool:
+                    for res in xc_pool.map(_fetch_xceed_detail, sorted(candidate_xc_urls)):
+                        if not res:
+                            continue
+                        xc_url, ev_d = res
+                        st_raw = str(ev_d.get("startDate") or "")
+                        et_raw = str(ev_d.get("endDate") or "")
+                        if not (st_raw.startswith(iso_date) or (st_raw.startswith(next_iso) and re.search(r"T0[1-6]:", st_raw))):
+                            continue
+                        title = clean_html_text(ev_d.get("name") or "")
+                        if not title:
+                            continue
+                        loc = ev_d.get("location") or {}
+                        v_name = clean_html_text(loc.get("name") or "").rstrip(".")
+                        addr_obj = loc.get("address") or {}
+                        v_addr = clean_html_text(addr_obj.get("streetAddress") or "") if isinstance(addr_obj, dict) else ""
+                        geo_obj = loc.get("geo") or {}
+
+                        geo = match_venue(v_name, v_addr, require_match=True)
+                        if not geo and isinstance(geo_obj, dict) and geo_obj.get("latitude") and geo_obj.get("longitude"):
+                            lat_f = round(float(geo_obj["latitude"]), 5)
+                            lng_f = round(float(geo_obj["longitude"]), 5)
+                            if locations.in_lisbon(lat_f, lng_f):
+                                geo = {
+                                    "venue": v_name or "Lisboa",
+                                    "lat": lat_f,
+                                    "lng": lng_f,
+                                    "neighborhood": locations.infer_neighborhood(lat_f, lng_f),
+                                    "corridor": locations.infer_corridor(lat_f, lng_f),
+                                    "url": xc_url,
+                                }
+                        if not geo:
+                            continue
+
+                        m_st = re.search(r"T(\d{2}:\d{2})", st_raw)
+                        t_str = m_st.group(1) if m_st else "23:00"
+                        h_int = int(t_str.split(":")[0])
+                        preset = infer_category_preset(f"{title} {v_name}", "nightlife" if (h_int >= 21 or h_int <= 6) else "concerts")
+
+                        m_et = re.search(r"T(\d{2}:\d{2})", et_raw)
+                        if m_et:
+                            end_t = m_et.group(1)
+                            end_h = int(end_t.split(":")[0])
+                        else:
+                            end_t, end_h = infer_end_time(t_str, h_int, preset["category"], geo["venue"], title, "")
+
+                        offers = ev_d.get("offers") or []
+                        if isinstance(offers, dict):
+                            offers = [offers]
+                        in_stock_prices = [
+                            float(o["price"]) for o in offers
+                            if isinstance(o, dict) and o.get("price") is not None and "SoldOut" not in str(o.get("availability", ""))
+                        ]
+                        if not in_stock_prices:
+                            in_stock_prices = [
+                                float(o["price"]) for o in offers
+                                if isinstance(o, dict) and o.get("price") is not None
+                            ]
+                        if in_stock_prices:
+                            min_p, max_p = min(in_stock_prices), max(in_stock_prices)
+                            if max_p == 0:
+                                p_disp, p_tier = "Entrada Livre", "FREE"
+                            elif min_p == max_p:
+                                p_disp, p_tier = parse_price_and_tier(f"{int(round(min_p))}€", venue_name=geo["venue"], category_name=preset["category"])
+                            else:
+                                p_disp, p_tier = parse_price_and_tier(f"{int(round(min_p))}€ - {int(round(max_p))}€", venue_name=geo["venue"], category_name=preset["category"])
+                        else:
+                            p_disp, p_tier = parse_price_and_tier(title, venue_name=geo["venue"], category_name=preset["category"])
+
+                        slug_id = xc_url.rstrip("/").split("/")[-1][:24]
+                        events.append({
+                            "id": f"xceed-{slug_id}",
+                            "title": title,
+                            "category": preset["category"],
+                            "color": preset["color"],
+                            "icon": preset["icon"],
+                            "venue": geo["venue"],
+                            "neighborhood": geo["neighborhood"],
+                            "corridor": geo["corridor"],
+                            "lat": geo["lat"],
+                            "lng": geo["lng"],
+                            "time": t_str,
+                            "hour": h_int,
+                            "endTime": end_t,
+                            "endHour": end_h,
+                            "price": p_disp,
+                            "priceTier": p_tier,
+                            "url": xc_url,
+                            "description": f"{title} em {geo['venue']} ({geo['neighborhood']}). Bilhetes e guestlist via Xceed.",
+                        })
+    except Exception as e:
+        print(f"[Xceed Scraper] Notice: {e}")
+
+    print(f"[Tier 3] DICE & Xceed extracted {len(events)} events for {iso_date}.")
     return events
 
 
@@ -2663,7 +2910,7 @@ def _event_quality_score(ev):
         score -= 6
 
     url = ev.get("url", "").lower()
-    if any(plat in url for plat in ["shotgun.live", "3cket.com", "zedosbois.org", "bol.pt", "ticketline.pt", "ccb.pt", "culturgest.pt", "gulbenkian.pt", "tndm.pt", "teatrosaoluiz.pt", "agendalx.pt/events/event/", "cartazculturallisboa.pt/evento/"]):
+    if any(plat in url for plat in ["shotgun.live", "dice.fm", "xceed.me", "ra.co", "3cket.com", "zedosbois.org", "bol.pt", "ticketline.pt", "ccb.pt", "culturgest.pt", "gulbenkian.pt", "tndm.pt", "teatrosaoluiz.pt", "agendalx.pt/events/event/", "cartazculturallisboa.pt/evento/"]):
         score += 4
     elif "nocartaz.pt" in url:
         score -= 1
@@ -2681,22 +2928,28 @@ def _merge_event_pair(existing, candidate):
     # Inherit explicit euro price if winner only has generic/range fallback
     w_price = str(winner.get("price", ""))
     l_price = str(loser.get("price", ""))
-    if ("Consultar" in w_price or "Ver no link" in w_price or " - " in w_price) and ("€" in l_price and " - " not in l_price):
+    is_w_generic_price = any(k in w_price for k in ("Consultar", "Ver no link", "Preço a confirmar", " - "))
+    if is_w_generic_price and ("€" in l_price and " - " not in l_price):
         winner["price"] = loser["price"]
         winner["priceTier"] = loser["priceTier"]
-    elif ("Consultar" in w_price or "Ver no link" in w_price) and ("€" in l_price or "Livre" in l_price):
+    elif any(k in w_price for k in ("Consultar", "Ver no link", "Preço a confirmar")) and ("€" in l_price or "Livre" in l_price):
         winner["price"] = loser["price"]
         winner["priceTier"] = loser["priceTier"]
 
-    # Inherit better direct URL if winner points to generic aggregator
+    # Inherit better direct URL if winner points to generic aggregator or root domain
     w_url = str(winner.get("url", "")).lower()
     l_url = str(loser.get("url", "")).lower()
-    if any(g in w_url for g in ("nocartaz.pt", "soko.fyi/pt/venues/")) and not any(g in l_url for g in ("nocartaz.pt", "soko.fyi/pt/venues/")):
+    is_l_deep_ticket = any(t in l_url for t in ("dice.fm/event/", "xceed.me/", "shotgun.live/", "ra.co/events/", "bol.pt/", "ticketline.", "agendalx.pt/events/event/"))
+    if any(g in w_url for g in ("nocartaz.pt", "soko.fyi/pt/venues/", "viralagenda.com")) and not any(g in l_url for g in ("nocartaz.pt", "soko.fyi/pt/venues/")):
+        winner["url"] = loser["url"]
+    elif w_url.rstrip("/") in ("https://www.agendalx.pt", "https://lxfactory.com") and is_l_deep_ticket:
         winner["url"] = loser["url"]
 
-    # Inherit longer, more informative description
-    if len(str(loser.get("description", ""))) > len(str(winner.get("description", ""))) + 20 and "Curadoria Soko" not in str(loser.get("description", "")):
-        winner["description"] = loser["description"]
+    # Inherit longer, more informative Portuguese description
+    l_desc = str(loser.get("description", ""))
+    w_desc = str(winner.get("description", ""))
+    if len(l_desc) > len(w_desc) + 20 and not any(s in l_desc for s in ("Curadoria Soko", "Bilhetes oficiais via DICE", "Bilhetes e guestlist via Xceed")):
+        winner["description"] = l_desc
 
     return winner
 
@@ -3304,11 +3557,54 @@ def main():
         ev["lng"] = round(lng, 6)
 
         ev_url = str(ev.get("url", "")).strip()
-        if not ev_url.startswith("http") or "facebook.com/sharer" in ev_url or "twitter.com/intent" in ev_url:
+        if not ev_url.startswith("http") or "facebook.com/sharer" in ev_url or "twitter.com/intent" in ev_url or "/event-test" in ev_url.lower():
             v_match = match_venue(ev.get("venue", ""), require_match=True)
             ev["url"] = (v_match.get("agenda_url") or v_match.get("url")) if v_match else "https://www.agendalx.pt/"
 
         validated.append(ev)
+
+    # Pre-Publish Dead-Link Firewall: concurrent HTTP verification of external event links
+    trusted_venue_urls = set()
+    for v_info in VENUE_REGISTRY:
+        if v_info.get("url"):
+            trusted_venue_urls.add(v_info["url"])
+        if v_info.get("agenda_url"):
+            trusted_venue_urls.add(v_info["agenda_url"])
+
+    urls_to_probe = sorted({
+        ev["url"] for ev in validated
+        if ev.get("url") and ev["url"] not in trusted_venue_urls
+        and not any(p in ev["url"] for p in (
+            "agendalx.pt/events/event/", "dice.fm/event/", "xceed.me/pt/lisboa/event/",
+            "ra.co/events/", "shotgun.live/pt-pt/events/", "soko.fyi/pt/venues/",
+            "dador.pt/", "kosmicare.org/", "re-food.org/",
+        ))
+    })
+    if urls_to_probe:
+        dead_set = set()
+        def _probe_url(u):
+            try:
+                r = fetch_url(u, timeout=6)
+                if r.status_code in (404, 410) or r.status_code >= 500:
+                    return u
+            except Exception:
+                return u
+            return None
+
+        with ThreadPoolExecutor(max_workers=12) as fw_pool:
+            for bad_u in fw_pool.map(_probe_url, urls_to_probe):
+                if bad_u:
+                    dead_set.add(bad_u)
+
+        if dead_set:
+            for ev in validated:
+                if ev.get("url") in dead_set:
+                    v_match = match_venue(ev.get("venue", ""), require_match=True)
+                    fallback_u = (v_match.get("url") or v_match.get("agenda_url")) if v_match else "https://www.agendalx.pt/"
+                    if fallback_u in dead_set:
+                        fallback_u = "https://www.agendalx.pt/"
+                    print(f"[Dead-Link Firewall] Healed dead URL {ev['url']} -> {fallback_u}")
+                    ev["url"] = fallback_u
 
     def op_sort_key(e):
         t_parts = str(e.get("time", "21:00")).split(":")

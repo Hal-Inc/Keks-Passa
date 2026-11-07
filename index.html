@@ -98,6 +98,10 @@
     .quick-pill{border:1px solid #556153;background:var(--ink);color:var(--paper);padding:5px 10px;font:600 10px/1.2 var(--mono);text-transform:uppercase;cursor:pointer;transition:.14s;display:inline-flex;align-items:center;gap:5px}
     .quick-pill:hover{border-color:var(--yellow);color:var(--yellow)}
     .quick-pill.is-active{background:var(--yellow);color:var(--ink);border-color:var(--paper);box-shadow:2px 2px 0 var(--red);font-weight:700}
+    .vibe-bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px dashed var(--line);margin-top:13px;padding-top:12px}
+    .vibe-bar-label{color:var(--yellow);font:700 10px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap}
+    .vibe-pills{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+    .vibe-pill{padding:6px 11px;border-color:#526052}
     #active-venue-pill:empty{display:none!important}
     .saved-filter-wrap{display:inline-flex;flex-direction:column;align-items:flex-start;position:relative}
     .clear-saved-btn{border:0;background:none;padding:4px 0 0;color:var(--red);font:500 11px var(--mono);cursor:pointer;text-decoration:none;line-height:1.2;transition:opacity .15s}
@@ -480,6 +484,16 @@
       <div class="field"><label for="category-filter">Tipo de plano</label><select id="category-filter"><option value="ALL">✨ Tudo um pouco</option><option value="Concerts & Live Music">🎤 Concertos e música ao vivo</option><option value="Theatre & Comedy">🎭 Teatro e comédia</option><option value="Exhibitions & Visual Arts">🎨 Exposições e artes visuais</option><option value="Opera & Classical">🎻 Ópera e música clássica</option><option value="Cinema & Screenings">🍿 Cinema e sessões</option><option value="Nightlife & Electronic">🔊 Noite e eletrónica</option><option value="Community & Gatherings">🛍️ Mercados, oficinas, conversas e comunidade</option><option value="Family & Youth">🎠 Famílias e miúdos</option><option value="Blood Donation">🩸 Dádivas de sangue</option></select></div>
       <div class="field"><label for="price-filter">Quanto custa?</label><select id="price-filter"><option value="ALL">Qualquer preço</option><option value="FREE">À borla</option><option value="ACCESSIBLE">Até 15 €</option><option value="MID">15 € a 30 €</option><option value="PREMIUM">Mais de 30 €</option><option value="PAID_OPP">💰 Levas o carcanol contigo</option></select></div>
       <div class="field"><label for="corridor-filter">Por onde andas?</label><select id="corridor-filter"><option value="ALL">Lisboa inteira (tudo ao molho)</option><option value="Eastern Corridor">Lado Leste &amp; Armazéns</option><option value="Axial Spine">Baixa &amp; Almirante Reis</option><option value="Northern Belt">Zona Central</option><option value="Belém Waterfront">Pelo Rio</option></select></div>
+    </div>
+    <div class="vibe-bar" role="group" aria-label="Qual é a tua onda hoje?">
+      <span class="vibe-bar-label">Qual é a tua onda?</span>
+      <div class="vibe-pills">
+        <button type="button" class="quick-pill vibe-pill" data-vibe="TESO" title="Planos à borla ou até 10 € (concertos, mercados, exposições, tertúlias e festa)">💸 Teso mas com sede</button>
+        <button type="button" class="quick-pill vibe-pill" data-vibe="SUNSET" title="Planos de fim de tarde (começam ou decorrem entre as 17:00 e as 20:30)">🌅 Fim de Tarde</button>
+        <button type="button" class="quick-pill vibe-pill" data-vibe="RAINPROOF" title="100% portas adentro: cinemas, teatros, galerias, museus, livrarias e clubes">🌧️ À Prova de Chuva</button>
+        <button type="button" class="quick-pill vibe-pill" data-vibe="AFTERHOURS" title="Noite dentro: concertos tardios, eletrónica, clubbing e afters depois da meia-noite">🦉 Depois da Meia-Noite</button>
+        <button type="button" class="quick-pill vibe-pill" data-vibe="DATE" title="Bons para 1.º date: jazz, cinema de autor, exposições, teatro intimista, livrarias e miradouros">🍷 Bom p/ 1.º Date</button>
+      </div>
     </div>
     <div class="toolbar-bottom">
       <span id="results-count"><strong>—</strong> eventos ativos para descobrir</span>
@@ -2014,9 +2028,59 @@
     let isStartingSoonActive = false;
     let isSavedOnlyActive = false;
     let activeVenueFilter = '';
+    let activeVibePreset = ''; // 'TESO' | 'SUNSET' | 'RAINPROOF' | 'AFTERHOURS' | 'DATE'
     let searchedLocation = null; // { label, shortLabel, lat, lng, isVenue, venueName }
     let searchedLocationMarker = null;
     let venuesRegistry = [];
+
+    function matchesEventVibe(event, vibe, clock){
+      if(!vibe) return true;
+      const timing = getEventTimingState(event, clock);
+      const cat = event.category || '';
+      const tier = event.priceTier || '';
+      const priceStr = String(event.price || '').toLowerCase();
+      const text = `${event.title || ''} ${event.venue || ''} ${event.description || ''}`.toLowerCase();
+
+      if(vibe === 'TESO'){
+        if(cat === 'Family & Youth' || cat === 'Blood Donation') return false;
+        if(tier === 'FREE' || tier === 'PAID_OPP' || /livre|gr[aá]tis|gratuit/i.test(priceStr)) return true;
+        if(tier === 'ACCESSIBLE'){
+          const m = priceStr.match(/(\d+(?:[.,]\d+)?)\s*€/);
+          if(m && parseFloat(m[1].replace(',', '.')) <= 10) return true;
+        }
+        return false;
+      }
+
+      if(vibe === 'SUNSET'){
+        if(cat === 'Blood Donation') return false;
+        // Starts between 16:30 and 20:30, or afternoon plan running past 18:00
+        return (timing.startOpMins >= 16 * 60 + 30 && timing.startOpMins <= 20 * 60 + 30)
+          || (timing.startOpMins >= 14 * 60 && timing.startOpMins <= 19 * 60 && timing.endOpMins >= 18 * 60);
+      }
+
+      if(vibe === 'RAINPROOF'){
+        if(/\b(jardim|parque|miradouro|feira da ladra|campo de santa clara|ar livre|outdoor|rooftop|terra[çc]o|caminhada|passeio|pra[çc]a da alegria)\b/i.test(text)){
+          return false;
+        }
+        return true;
+      }
+
+      if(vibe === 'AFTERHOURS'){
+        // Starts at/after 22:30 or runs past 00:30 AM (1470 operational minutes)
+        return timing.startOpMins >= 22 * 60 + 30 || timing.endOpMins >= 24 * 60 + 30;
+      }
+
+      if(vibe === 'DATE'){
+        if(cat === 'Blood Donation' || cat === 'Family & Youth' || tier === 'PAID_OPP') return false;
+        if(/\b(estudos comportamentais|neuroci[êe]ncia|voluntariado|schranz|hard techno)\b/i.test(text)) return false;
+        if(cat === 'Cinema & Screenings' || cat === 'Exhibitions & Visual Arts' || cat === 'Theatre & Comedy' || cat === 'Opera & Classical') return true;
+        if(cat === 'Concerts & Live Music' && timing.startOpMins <= 23 * 60 + 30) return true;
+        if(/\b(jazz|vinho|tert[uú]lia|livraria|menina e mo[çc]a|rooftop|carmo|miradouro|ac[uú]stico|fado|poesia|broteria|casa do comum|zdb)\b/i.test(text)) return true;
+        return false;
+      }
+
+      return true;
+    }
 
     function stripAccents(str){
       return (str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -2302,6 +2366,9 @@
           btnVenue.textContent = '';
         }
       }
+      document.querySelectorAll('.vibe-pill').forEach(btn => {
+        btn.classList.toggle('is-active', btn.getAttribute('data-vibe') === activeVibePreset);
+      });
     }
 
     function updateUserGpsMarkerOnMap(){
@@ -2677,7 +2744,9 @@
           matchesVenueChip = String(event.venue || '').trim().toLocaleLowerCase('pt-PT') === activeVenueFilter.toLocaleLowerCase('pt-PT');
         }
 
-        return matchesSearch&&matchesCategory&&matchesCorridor&&matchesPrice&&matchesSoon&&matchesSaved&&matchesVenueChip;
+        const matchesVibe = matchesEventVibe(event, activeVibePreset, clock);
+
+        return matchesSearch&&matchesCategory&&matchesCorridor&&matchesPrice&&matchesSoon&&matchesSaved&&matchesVenueChip&&matchesVibe;
       });
 
       if((isNearMeActive && userCoords) || searchedLocation){
@@ -2699,6 +2768,7 @@
       isStartingSoonActive = false;
       isSavedOnlyActive = false;
       activeVenueFilter = '';
+      activeVibePreset = '';
       pinnedEventKey = '';
       if(window.location.hash && window.history && window.history.replaceState){
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -3058,6 +3128,16 @@
       // Task 7: Bind Sun / All / Moon buttons
       document.querySelectorAll('.daylight-btn').forEach(btn => {
         btn.addEventListener('click', () => setDaylightMode(btn.getAttribute('data-mode')));
+      });
+
+      // Secret Sauce #3: Bind "Qual é a tua onda?" Vibe Presets
+      document.querySelectorAll('.vibe-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const vibe = btn.getAttribute('data-vibe') || '';
+          activeVibePreset = (activeVibePreset === vibe) ? '' : vibe;
+          updateQuickFilterPillsUI();
+          applyFilters();
+        });
       });
 
       await loadDailyEvents();

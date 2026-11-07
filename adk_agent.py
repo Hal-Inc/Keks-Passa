@@ -42,14 +42,25 @@ import scraper
 # ==============================================================================
 # 1. DETERMINISTIC PYTHON TOOLS EXPOSED TO ADK AGENTS
 # ==============================================================================
-def audit_venues_tool(promote_from_cache: bool = False, check_live_urls: bool = False) -> Dict[str, Any]:
+def audit_venues_tool(
+    promote_from_cache: bool = False,
+    sync_suggestions: bool = False,
+    check_live_urls: bool = False,
+) -> Dict[str, Any]:
     """
     Audits all Lisbon venues in venues.json for strict North-of-Tagus coordinates,
     valid corridors, non-ambiguous aliases, and authoritative URLs.
-    Optionally promotes newly geocoded venues from geocode_cache.json.
+    Optionally promotes newly geocoded venues from geocode_cache.json or syncs
+    community venue suggestions from Firebase RTDB.
     """
     venues = verify_venues.load_venues(VENUES_PATH)
     promoted_count = 0
+    suggestions_promoted = 0
+
+    if sync_suggestions:
+        venues, suggestions_promoted, _ = verify_venues.sync_firebase_suggestions(venues)
+        if suggestions_promoted:
+            verify_venues.save_venues(venues, VENUES_PATH)
 
     if promote_from_cache:
         cache_path = os.path.join(SCRIPT_DIR, "geocode_cache.json")
