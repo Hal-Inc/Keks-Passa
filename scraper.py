@@ -20,6 +20,7 @@ import sys
 import json
 import math
 import datetime
+import hashlib
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import urljoin
@@ -29,6 +30,12 @@ if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     except Exception:
         pass
+
+
+def _stable_hash(value, mod=1000000):
+    """Deterministic cross-platform MD5 integer hash (immune to PYTHONHASHSEED randomization)."""
+    digest = hashlib.md5(str(value).encode("utf-8", errors="ignore")).hexdigest()
+    return int(digest[:12], 16) % mod
 
 
 def get_lisbon_now():
@@ -46,6 +53,16 @@ def get_lisbon_now():
         is_dst = mar_last_sun <= now_utc < oct_last_sun
         tz = datetime.timezone(datetime.timedelta(hours=1 if is_dst else 0))
         return now_utc.astimezone(tz)
+
+
+def get_lisbon_operational_date(now_lx=None):
+    """
+    Matches the frontend's 04:00 AM operational day rollover (getLiveLisbonOperationalDateISO):
+    Between 00:00 and 03:59 Europe/Lisbon, the operational day is still the previous calendar day's night.
+    """
+    if now_lx is None:
+        now_lx = get_lisbon_now()
+    return (now_lx - datetime.timedelta(hours=4)).date()
 
 
 import locations
@@ -1511,7 +1528,7 @@ def scrape_agendadeconcertos(target_date):
                             price_disp, price_tier = resolve_venue_default_price(geo["venue"], preset["category"])
                             end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], artist)
                             events.append({
-                                "id": f"adc-{target_date.strftime('%Y%m%d')}-{abs(hash(artist + geo['venue'])) % 10000}",
+                                "id": f"adc-{target_date.strftime('%Y%m%d')}-{_stable_hash(artist + geo['venue'], 10000)}",
                                 "title": artist,
                                 "category": preset["category"],
                                 "color": preset["color"],
@@ -1582,7 +1599,7 @@ def scrape_bota_anjos(target_date):
                 price_disp, price_tier = parse_price_and_tier(d_txt, "8€ - 10€", "ACCESSIBLE", venue_name=ev_geo["venue"])
                 end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], ev_geo["venue"], title, d_txt)
                 events.append({
-                    "id": f"bota-{target_date.strftime('%Y%m%d')}-{abs(hash(title)) % 10000}",
+                    "id": f"bota-{target_date.strftime('%Y%m%d')}-{_stable_hash(title, 10000)}",
                     "title": title,
                     "category": preset["category"],
                     "color": preset["color"],
@@ -1697,7 +1714,7 @@ def scrape_resident_advisor(target_date):
                     price_disp, price_tier = resolve_venue_default_price(geo["venue"], "Nightlife & Electronic")
 
                     events.append({
-                        "id": f"ra-{ev.get('id') or abs(hash(title))}",
+                        "id": f"ra-{ev.get('id') or _stable_hash(title)}",
                         "title": title,
                         "category": CATEGORY_PRESETS["nightlife"]["category"],
                         "color": CATEGORY_PRESETS["nightlife"]["color"],
@@ -2244,7 +2261,7 @@ def scrape_markets_workshops_lectures(target_date):
                 price_disp, price_tier = parse_price_and_tier(txt, "35€ - 55€", "MID")
                 end_t, end_h = infer_end_time(time_str, hour_int, CATEGORY_PRESETS["community"]["category"], geo["venue"], title, txt)
                 events.append({
-                    "id": f"fica-{abs(hash(href)) % 100000}",
+                    "id": f"fica-{_stable_hash(href, 100000)}",
                     "title": f"Oficina FICA: {title}",
                     "category": CATEGORY_PRESETS["community"]["category"],
                     "color": CATEGORY_PRESETS["community"]["color"],
@@ -2288,7 +2305,7 @@ def scrape_markets_workshops_lectures(target_date):
                 price_disp, price_tier = parse_price_and_tier(txt, "Entrada Livre", "FREE")
                 end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], title, txt)
                 events.append({
-                    "id": f"bombarda-{abs(hash(title)) % 100000}",
+                    "id": f"bombarda-{_stable_hash(title, 100000)}",
                     "title": f"{title} — Jardins do Bombarda",
                     "category": preset["category"],
                     "color": preset["color"],
@@ -2432,7 +2449,7 @@ def scrape_viralagenda(target_date):
             end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], title, f"{raw_card_time} {detail_text}")
 
             events.append({
-                "id": f"va-card-{abs(hash(full_url)) % 1000000}",
+                "id": f"va-card-{_stable_hash(full_url, 1000000)}",
                 "title": title,
                 "category": preset["category"],
                 "color": preset["color"],
@@ -2640,7 +2657,7 @@ def scrape_soko_curated_capsula(target_date):
                         end_t, end_h = infer_end_time(time_str, hour_int, preset["category"], geo["venue"], ev_title, "")
 
                         slug_events.append((dedup_k, {
-                            "id": f"soko-{abs(hash(dedup_k)) % 1000000}",
+                            "id": f"soko-{_stable_hash(dedup_k, 1000000)}",
                             "title": ev_title,
                             "category": preset["category"],
                             "color": preset["color"],
@@ -2699,7 +2716,7 @@ def scrape_soko_curated_capsula(target_date):
             preset = infer_category_preset(f"{title} {page_txt}", "exhibitions")
             price_disp, price_tier = parse_price_and_tier(page_txt, "Entrada Livre", "FREE")
             events.append({
-                "id": f"curated-{abs(hash(c_url)) % 100000}",
+                "id": f"curated-{_stable_hash(c_url, 100000)}",
                 "title": title,
                 "category": preset["category"],
                 "color": preset["color"],
@@ -3116,7 +3133,7 @@ def scrape_dador_sessions(target_date):
                     neighborhood = locations.infer_neighborhood(lat, lng)
 
                 title = f"Dádiva de Sangue: {des_brigada.title()}"
-                s_id = f"dador-{s.get('Id', abs(hash(des_brigada + geo_ref)) % 10000)}"
+                s_id = f"dador-{s.get('Id', _stable_hash(des_brigada + geo_ref, 10000))}"
                 desc = f"Sessão de dádiva e colheita de sangue ({tipo}) em {local or des_brigada}. Horário: {time_str} às {end_t}. Dá sangue, salva vidas!"
 
                 events.append({
@@ -3477,7 +3494,7 @@ def main():
     if env_date:
         target_date = datetime.date.fromisoformat(env_date)
     else:
-        target_date = now_lx.date()
+        target_date = get_lisbon_operational_date(now_lx)
 
     date_str = target_date.strftime("%Y-%m-%d")
     print(f"=== Keks Passa Scraper v3.0 — Operational Date: {date_str} ===")
@@ -3520,6 +3537,19 @@ def main():
     live_raw.extend(get_ongoing_cultural_events(target_date))
 
     _save_same_day_tier_cache(date_str, updated_tiers)
+
+    # Preserve same-day Shotgun/RA/DICE/Xceed events from existing events.json if a cloud runner IP is throttled by Cloudflare
+    events_out_path = os.path.join(SCRIPT_DIR, "events.json")
+    if os.path.exists(events_out_path):
+        try:
+            with open(events_out_path, "r", encoding="utf-8") as ef:
+                prev_payload = json.load(ef)
+            if isinstance(prev_payload, dict) and prev_payload.get("operational_date") == date_str:
+                for prev_ev in prev_payload.get("events", []):
+                    if isinstance(prev_ev, dict) and str(prev_ev.get("id", "")).startswith(("sg-", "ra-", "dice-", "xceed-")):
+                        live_raw.append(prev_ev)
+        except Exception:
+            pass
 
     all_events = deduplicate_events(live_raw)
 

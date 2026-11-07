@@ -127,7 +127,7 @@ def verify_events_tool() -> Dict[str, Any]:
 
     events = data.get("events", [])
     op_date = data.get("operational_date", "")
-    expected_today = scraper.get_lisbon_now().date().isoformat()
+    expected_today = scraper.get_lisbon_operational_date().isoformat()
 
     anomalies = []
     by_category: Dict[str, int] = {}

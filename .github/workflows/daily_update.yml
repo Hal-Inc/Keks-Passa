@@ -2,10 +2,10 @@ name: Atualizar eventos do Keks Passa
 
 on:
   schedule:
-    - cron: '5 0 * * *'
     - cron: '5 4 * * *'
     - cron: '0 9 * * *'
-    - cron: '0 15 * * *'
+    - cron: '0 14 * * *'
+    - cron: '30 18 * * *'
   workflow_dispatch:
   push:
     branches:
@@ -68,8 +68,8 @@ jobs:
           # 1. Minimum event count
           assert len(events) >= 30, f'Too few events generated ({len(events)})!'
 
-          # 2. operational_date must match today in Europe/Lisbon timezone
-          today = scraper.get_lisbon_now().date().isoformat()
+          # 2. operational_date must match today in Europe/Lisbon operational day (04:00 rollover)
+          today = scraper.get_lisbon_operational_date().isoformat()
           op_date = data.get('operational_date', '')
           assert op_date == today, (
               f'operational_date {op_date!r} does not match Lisbon today {today!r}. Stale or cached output?'
